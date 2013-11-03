@@ -1,0 +1,85 @@
+/* 
+    Document   : style
+    Created on : Oct 29, 2013, 8:41:20 PM
+    Author     : TNT
+    Description:
+        Purpose of the stylesheet follows.
+*/
+/*@import url("bootstrap.min.css");*/
+/*color-defaut #2fa4e7*/
+/*body {
+    background-image: 
+}*/
+body {
+    background: #3b3b3b url(../images/body.png);
+}
+.container {
+    background-color: #fff;
+    min-height: 1000px;
+}
+.nav-tabs>li>a {
+    text-decoration: none;
+    color: #3b3b3b;
+    background-color: #E8E8E8;
+}
+
+#banner {
+    min-height: 120px;
+}
+.navbar {
+    margin-bottom: 2px;
+    border-radius: 0px;
+}
+.navbar-collapse {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.carousel-indicators {
+    left: 93%;
+    bottom: 0px;
+}
+#content {
+    min-height: 1200px;
+    margin: 0px 2px 0px 2px;
+
+}
+#content-top {
+    height: 292px;
+}
+
+.panel-heading {
+    padding: 10px 15px 0px;
+    border-bottom: 0px;
+}
+#content-middle {
+    height: 41px;
+}
+#content-middle .panel-heading {
+    height: 41px;
+}
+#content-middle .col-lg-8,#content-middle .col-lg-4 {
+    margin-bottom: -18px;
+    margin-top: -16px;
+}
+#content-bottom {
+    height: auto;
+}
+#form-search input,#form-search button {
+    height: 44px;
+
+}
+.column-right {
+    margin-left: -10px;
+}
+#footer {
+    height: 100px;
+    color: #FFF;
+    position: relative;
+    background:#77303C;
+}
+.footer-content {
+    position: absolute;
+    top: 50%;
+    margin-top: 25px;
+    
+}
