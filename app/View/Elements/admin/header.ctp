@@ -16,8 +16,8 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Danh sách bài viết</a></li> 
-						<li><a href="#">Thêm mới bài viết</a></li> 
+						<li><a href="/danh-sach-bai-viet">Danh sách bài viết</a></li> 
+						<li><a href="/them-bai-viet">Thêm mới bài viết</a></li> 
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -25,8 +25,8 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="#">Danh sách danh mục</a></li> 
-						<li><a href="#">Thêm mới danh mục</a></li> 
+						<li><a href="/danh-muc">Danh sách danh mục</a></li> 
+						<li><a href="/them-danh-muc">Thêm mới danh mục</a></li> 
 					</ul>
 				</li>
 				<li>

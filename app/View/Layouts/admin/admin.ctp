@@ -18,7 +18,9 @@ and open the template in the editor.
     <body>
        <?php echo $this->element('admin/header'); ?>
 		
-		
+		<?php
+			echo $this->fetch('content');
+		?>
 		
         <?php
 			echo $this->Html->script('vendor/jquery-2.0.2.min');

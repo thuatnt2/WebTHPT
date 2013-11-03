@@ -14,8 +14,9 @@ class CategoriesController extends AppController {
  * @var array
  */
 	public $components = array('Paginator');
+	public $layout = 'admin/admin';
 
-/**
+	/**
  * index method
  *
  * @return void

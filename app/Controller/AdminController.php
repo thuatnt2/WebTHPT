@@ -34,7 +34,7 @@ class AdminController extends AppController {
 
 	public $layout = 'admin/admin';
 
-	public function index() {
+	public function admin_index() {
 		
 	}
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2013-11-03 15:01:19
+Date: 2013-11-03 17:37:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,10 +23,10 @@ CREATE TABLE `categories` (
   `parent_id` int(11) DEFAULT '0',
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `alias` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
   `actived` tinyint(1) NOT NULL DEFAULT '1',
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `ordering` int(11) NOT NULL,
+  `ordering` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -47,11 +47,12 @@ CREATE TABLE `login_tokens` (
   `created` datetime NOT NULL,
   `expires` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_tokens
 -- ----------------------------
+INSERT INTO login_tokens VALUES ('1', '1', 'c275d47c3f16e03ebc407f3608b63c40', '2 weeks', '0', '2013-11-03 03:58:23', '2013-11-17 03:58:23');
 
 -- ----------------------------
 -- Table structure for `posts`
@@ -64,15 +65,12 @@ CREATE TABLE `posts` (
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `alias` varchar(255) CHARACTER SET utf8 NOT NULL,
   `actived` int(1) NOT NULL DEFAULT '1',
-  `published` int(1) NOT NULL DEFAULT '0',
   `ordering` int(11) NOT NULL,
-  `image` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `image_thumb` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `intro_text` text CHARACTER SET utf8 NOT NULL,
-  `full_text` text CHARACTER SET utf8 NOT NULL,
+  `thumbnail` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `sumary` text CHARACTER SET utf8 NOT NULL,
+  `content` text CHARACTER SET utf8 NOT NULL,
   `created` date NOT NULL,
   `modified` date NOT NULL,
-  `language` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
