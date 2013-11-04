@@ -10,3 +10,33 @@ and open the template in the editor.
 #prifile-user>li>a{
     padding-top: 9px;
 }
+
+.block {
+	border: 1px solid #ccc;
+	background: white;
+	margin: 1em 0em;
+	border-top: none;
+}
+
+.block-content {
+	margin: 1em;
+	min-height: .25em;
+}
+
+.block-header {
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 0px;
+	border-right: none;
+	border-left: none;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;
+	padding-left: 10px;
+}
+.block-header div {
+	padding-top: 10px;
+}
+.form-container{
+	width: 500px;
+}

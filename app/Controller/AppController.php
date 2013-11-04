@@ -34,15 +34,25 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    var $helpers = array('Form', 'Html', 'Session', 'Js', 'Usermgmt.UserAuth');
-    public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth');
+	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Table','TvFck');
+	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth', 'Common',);
 
-    function beforeFilter() {
-        $this->userAuth();
-    }
+	function beforeFilter() {
+		$this->userAuth();
+	}
 
-    private function userAuth() {
-        $this->UserAuth->beforeFilter($this);
-    }
+	private function userAuth() {
+		$this->UserAuth->beforeFilter($this);
+	}
+
+	public function admin_active($controller, $model, $id, $status, $page = 1) {
+		$this->loadModel($model);
+		$this->$model->id = $id;
+		$this->$model->saveField('is_active', $status);
+		if ($page == 1)
+			$this->redirect(array('controller' => $controller, 'action' => 'index'));
+		else
+			$this->redirect(array('controller' => $controller, 'action' => 'index', 'page' => $page));
+	}
 
 }
