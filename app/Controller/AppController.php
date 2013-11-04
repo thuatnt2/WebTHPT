@@ -38,7 +38,9 @@ class AppController extends Controller {
     public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth');
 
     function beforeFilter() {
-        $this->userAuth();
+        if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
+            $this->userAuth();
+        }
     }
 
     private function userAuth() {
