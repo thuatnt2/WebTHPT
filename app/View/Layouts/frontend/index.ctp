@@ -92,14 +92,14 @@
                                 <div class="panel panel-primary" id="tab-content">
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#">Hoạt động sự kiện</a></li>
-                                            <li><a href="#">Tin tức chung</a></li>
-                                            <li><a href="#">Đoàn thanh niên</a></li>
-                                            <li><a href="#">Gương mặt tiêu biểu</a></li>
-                                            <li><a href="#">Tâm sự thầy trò</a></li>
+                                            <li class="active"><a href="#tabs1-pane1" data-toggle="tab">Hoạt động sự kiện</a></li>
+                                            <li><a href="#tabs1-pane2" data-toggle="tab">Tin tức chung</a></li>
+                                            <li><a href="#tabs1-pane3" data-toggle="tab">Đoàn thanh niên</a></li>
+                                            <li><a href="#tabs1-pane4" data-toggle="tab">Gương mặt tiêu biểu</a></li>
+                                            <li><a href="#tabs1-pane5" data-toggle="tab">Tâm sự thầy trò</a></li>
                                         </ul>
                                     </div>
-                                    <div class="panel-body">
+                                    <div class="panel-body" style="height: 750px;">
                                         <!--<begin information>-->
                                         <?php
                                         echo $this->fetch('content');
@@ -111,7 +111,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="row column-right">
-                                <div class="panel panel-warning">
+                                <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs nav-justified">
                                             <li class="active"><a href="#">Tin mới nhất</a></li>
