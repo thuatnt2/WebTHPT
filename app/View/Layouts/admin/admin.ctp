@@ -15,6 +15,9 @@ and open the template in the editor.
 		echo $this->Html->css('admin/css/admin');
 
 		?>
+		<script type="text/javascript">
+			var base_url = '<?php echo $this->Html->webroot('/') ?>';
+        </script>
     </head>
     <body>
 		<?php echo $this->element('admin/header'); ?>
