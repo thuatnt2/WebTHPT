@@ -32,6 +32,9 @@ Router::connect('/', array('controller' => 'index', 'action' => 'index'));
  * ...and connect the rest of 'Pages' controller's urls.
  */
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+Router::connect(
+        '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'index', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
+);
 
 
 
