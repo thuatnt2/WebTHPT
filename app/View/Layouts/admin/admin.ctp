@@ -31,6 +31,7 @@ and open the template in the editor.
 		<?php
 		echo $this->Html->script('vendor/jquery-2.0.2.min');
 		echo $this->Html->script('admin/bootstrap');
+		echo $this->Html->script('admin/admin');
 
 		?>
     </body>
