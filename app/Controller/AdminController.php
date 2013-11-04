@@ -32,10 +32,10 @@ App::uses('AppController', 'Controller');
  */
 class AdminController extends AppController {
 
-	public $layout = 'admin/admin';
+    public $layout = 'admin/admin';
 
-	public function admin_index() {
-		
-	}
+    public function admin_index() {
+        
+    }
 
 }
