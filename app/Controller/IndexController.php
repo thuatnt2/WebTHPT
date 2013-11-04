@@ -15,9 +15,12 @@ class IndexController extends AppController {
     public function index() {
         $this->loadModel('Post');
         $this->Post->recursive = 0;
-        $action_events = $this->Post->find('all',array('conditions' => array('Post.category_id' => 2)));
-//        $this->log($action_events,'debug');
-        $this->set(compact('action_events'));
+        $actionEvents = $this->Post->find('all', array('conditions' => array('Post.category_id' => 2)));
+        $generalNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 3)));
+        $groupNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 5)));
+        $typicalFaces = $this->Post->find('all', array('conditions' => array('Post.category_id' => 6)));
+        $confidentials = $this->Post->find('all', array('conditions' => array('Post.category_id' => 7)));
+        $this->set(compact('actionEvents','generalNews','groupNews','typicalFaces','confidentials'));
     }
 
     /**
