@@ -32,7 +32,7 @@
                 <!--<end navbar>-->
                 <div id="content-bottom">
                     <div class="col-lg-9">
-                        aaas
+                        <?php echo $this->fetch('content') ?>
                     </div>
                     <div class="col-lg-3">
                         <div class="row column-right" style="padding-right: 5px;">
