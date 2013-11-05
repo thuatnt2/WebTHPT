@@ -33,6 +33,14 @@
 						</ul>
 					</li>
 					<li class="dropdown">
+						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Video<i class="caret"></i>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a href="/admin/videos">Danh sách video</a></li> 
+							<li><a href="/admin/them-video">Thêm mới video</a></li> 
+						</ul>
+					</li>
+					<li class="dropdown">
 						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Người dùng <i class="caret"></i>
 
 						</a>

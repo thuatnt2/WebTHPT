@@ -23,6 +23,7 @@ class CategoriesController extends AppController {
 		$this->paginate = array('limit' => $this->limit);
 		$categories =  $this->Paginator->paginate();
 		$this->set('categories',$categories);
+		$this->set('title_for_layout','Danh mục');
 	}
 
 	/**
@@ -51,7 +52,7 @@ class CategoriesController extends AppController {
 			$this->request->data['Category']['alias'] = $this->Common->vnit_change_title($this->request->data['Category']['name']);
 			//debug($this->request->data); exit();
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('The category has been saved.'));
+				$this->Session->setFlash('Lưu thành công','flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
@@ -59,6 +60,7 @@ class CategoriesController extends AppController {
 		}
 		$parentCategories = $this->Category->ParentCategory->find('list');
 		$this->set(compact('parentCategories'));
+		$this->set('title_for_layout','Thêm danh mục');
 	}
 
 	/**
@@ -75,7 +77,7 @@ class CategoriesController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->Category->id = $id;
 			if ($this->Category->save($this->request->data)) {
-				$this->Session->setFlash(__('The category has been saved.'));
+				$this->Session->setFlash('Lưu thành công','flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
@@ -86,6 +88,7 @@ class CategoriesController extends AppController {
 		}
 		$parentCategories = $this->Category->ParentCategory->find('list');
 		$this->set(compact('parentCategories'));
+		$this->set('title_for_layout','Sửa danh mục');
 	}
 
 	/**
@@ -102,9 +105,9 @@ class CategoriesController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Category->delete()) {
-			$this->Session->setFlash(__('The category has been deleted.'));
+			$this->Session->setFlash('Xóa thành công','flash_success');
 		} else {
-			$this->Session->setFlash(__('The category could not be deleted. Please, try again.'));
+			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại','flash_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}

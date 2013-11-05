@@ -63,8 +63,9 @@
 						</div>
 					</div>
 					<div class="form-actions">
-						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-primary', 'div' => false)) ?>
+						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
 					</div>
+					<?php echo $this->Form->hidden('thumbnail', array('id'=>'post-thumbnail'))?>
 				</fieldset>
 				<?php echo $this->Form->end(); ?>
 			</div>
