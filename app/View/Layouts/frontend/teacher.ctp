@@ -10,17 +10,18 @@
             'blog'
         ));
         ?>
+        <?php
+        echo $this->Html->script(array(
+            'vendor/jquery-2.0.2.min'))
+        ?>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div id="banner">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <?php echo $this->Html->image('frontend/logo.png', array('style="height:120px"')) ?>
-                        </div>
-                        <div class="col-lg-8">
-                            <?php echo $this->Html->image('frontend/bannerright.jpg', array('class="pull-right" style="height:120px",width="auto"')) ?>
+                        <div class="col-lg-12">
+                            <?php echo $this->Html->image('frontend/banner_new.jpg') ?>
                         </div>
                     </div>
                 </div>
@@ -46,7 +47,7 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Lịch ở đây</div>
                                 <div class="panel-body" id="calendar">
-                                    
+
                                 </div>
 
                             </div>
@@ -91,10 +92,6 @@
         'vendor/bootstrap.min',
     ));
     ?>
-    <script type="text/javascript">
-        $(function(){
-//            $('#calendar').datepicker();
-        });
-    </script>
+
 </body>
 </html>

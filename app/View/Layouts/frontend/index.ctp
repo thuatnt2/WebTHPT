@@ -9,6 +9,10 @@
             'style',
         ));
         ?>
+        <?php
+        echo $this->Html->script(array(
+            'vendor/jquery-2.0.2.min'))
+        ?>
     </head>
     <body>
         <div class="container">
@@ -18,7 +22,7 @@
                         <div class="col-lg-12">
                             <?php echo $this->Html->image('frontend/banner_new.jpg') ?>
                         </div>
-                      
+
                     </div>
                 </div>
                 <!--<begin navbar>-->
@@ -204,7 +208,6 @@
         </div> <!-- .container -->
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min',
             'vendor/bootstrap.min',
             'vendor/jquery.marquee',
             'vendor/jcarousellite_1.0.1c4',
