@@ -10,6 +10,10 @@
             'blog'
         ));
         ?>
+        <?php
+        echo $this->Html->script(array(
+            'vendor/jquery-2.0.2.min'))
+        ?>
     </head>
     <body>
         <div class="container">
@@ -46,7 +50,7 @@
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Lịch ở đây</div>
                                 <div class="panel-body" id="calendar">
-                                    
+
                                 </div>
 
                             </div>
@@ -91,10 +95,6 @@
         'vendor/bootstrap.min',
     ));
     ?>
-    <script type="text/javascript">
-        $(function(){
-//            $('#calendar').datepicker();
-        });
-    </script>
+
 </body>
 </html>

@@ -57,3 +57,13 @@
         </ul>
     </div><!-- /.navbar-collapse -->
 </nav>
+<script type="text/javascript">
+    $(function() {
+        $('li.dropdown').mouseover(function() {
+            $(this).addClass('open');
+        });
+        $('li.dropdown').mouseleave(function() {
+            $(this).removeClass('open');
+        });
+    });
+</script>
