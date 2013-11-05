@@ -36,8 +36,8 @@ class AppController extends Controller {
 
 	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Table','TvFck');
 	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth', 'Common',);
-
-
+	protected $limit = 20;
+			
     function beforeFilter() {
         if (isset($this->params['prefix']) && $this->params['prefix'] == 'admin') {
             $this->userAuth();
