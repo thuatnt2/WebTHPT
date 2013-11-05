@@ -18,31 +18,7 @@ class PostsController extends AppController {
 	public $components = array('Paginator');
 	public $layout = 'admin/admin';
 
-	/**
-	 * index method
-	 *
-	 * @return void
-	 */
-	public function index() {
-		$this->Post->recursive = 0;
-		$this->set('posts', $this->Paginator->paginate());
-	}
-
-	/**
-	 * view method
-	 *
-	 * @throws NotFoundException
-	 * @param string $id
-	 * @return void
-	 */
-	public function view($id = null) {
-		if (!$this->Post->exists($id)) {
-			throw new NotFoundException(__('Invalid post'));
-		}
-		$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
-		$this->set('post', $this->Post->find('first', $options));
-	}
-
+	
 	/**
 	 * admin_index method
 	 *
@@ -51,6 +27,7 @@ class PostsController extends AppController {
 	public function admin_index() {
 		$this->Post->recursive = 0;
 		$this->set('posts', $this->Paginator->paginate());
+		$this->set('title_for_layout', 'Danh sách bài viết');
 	}
 
 	/**
@@ -86,6 +63,7 @@ class PostsController extends AppController {
 		}
 		$categories = $this->Post->Category->find('list');
 		$this->set(compact('categories'));
+		$this->set('title_for_layout','Thêm bài viết');
 	}
 
 	/**
@@ -109,6 +87,7 @@ class PostsController extends AppController {
 		}
 		$categories = $this->Post->Category->find('list');
 		$this->set(compact('categories'));
+		$this->set('title_for_layout','Chỉnh sửa bài viết');
 	}
 
 	/**
@@ -125,9 +104,9 @@ class PostsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Post->delete()) {
-			$this->Session->setFlash(__('The post has been deleted.'));
+			$this->Session->setFlash('Xóa thành công','flash_success');
 		} else {
-			$this->Session->setFlash(__('The post could not be deleted. Please, try again.'));
+			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại','flash_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
