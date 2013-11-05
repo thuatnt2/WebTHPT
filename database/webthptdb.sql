@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2013-11-03 17:37:48
+Date: 2013-11-05 20:40:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,16 +23,20 @@ CREATE TABLE `categories` (
   `parent_id` int(11) DEFAULT '0',
   `name` varchar(255) CHARACTER SET utf8 NOT NULL,
   `alias` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `actived` tinyint(1) NOT NULL DEFAULT '1',
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   `ordering` int(11) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
+INSERT INTO categories VALUES ('2', null, 'Tin tức', 'tin-tuc', '1', null, '2013-11-04 09:36:19', '2013-11-04 09:36:19');
+INSERT INTO categories VALUES ('3', null, 'Hoạt động đoàn', 'hoat-dong-doan', '1', null, '2013-11-04 09:36:31', '2013-11-04 21:35:03');
+INSERT INTO categories VALUES ('4', null, 'Giới thiệu', 'gioi-thieu', '1', null, '2013-11-04 09:36:51', '2013-11-04 09:36:51');
+INSERT INTO categories VALUES ('5', null, 'Tin tức', '', '1', null, '2013-11-04 09:39:32', '2013-11-04 09:40:28');
 
 -- ----------------------------
 -- Table structure for `login_tokens`
@@ -47,12 +51,19 @@ CREATE TABLE `login_tokens` (
   `created` datetime NOT NULL,
   `expires` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_tokens
 -- ----------------------------
-INSERT INTO login_tokens VALUES ('1', '1', 'c275d47c3f16e03ebc407f3608b63c40', '2 weeks', '0', '2013-11-03 03:58:23', '2013-11-17 03:58:23');
+INSERT INTO login_tokens VALUES ('1', '1', 'c275d47c3f16e03ebc407f3608b63c40', '2 weeks', '1', '2013-11-03 03:58:23', '2013-11-17 03:58:23');
+INSERT INTO login_tokens VALUES ('2', '1', '7b1203f61943598fec0c7a705ffd3b06', '2 weeks', '1', '2013-11-03 09:11:15', '2013-11-17 09:11:15');
+INSERT INTO login_tokens VALUES ('3', '1', '7349e6f2a28f4337007965c3dc9354d6', '2 weeks', '0', '2013-11-04 08:52:26', '2013-11-18 08:52:26');
+INSERT INTO login_tokens VALUES ('4', '1', '5cd57aa8ac9b3eac969eceadbca81a0d', '2 weeks', '1', '2013-11-04 08:52:37', '2013-11-18 08:52:37');
+INSERT INTO login_tokens VALUES ('5', '1', '6a29dde943d0d059d0c31e31f44d49ac', '2 weeks', '1', '2013-11-04 10:23:43', '2013-11-18 10:23:43');
+INSERT INTO login_tokens VALUES ('6', '1', '479012ca27efcf8807ccc62f4c9087c9', '2 weeks', '1', '2013-11-04 10:24:07', '2013-11-18 10:24:07');
+INSERT INTO login_tokens VALUES ('7', '1', 'fdd55222bced0885eec48fabf99472f0', '2 weeks', '0', '2013-11-05 03:34:42', '2013-11-19 03:34:42');
+INSERT INTO login_tokens VALUES ('8', '1', '07e3b7690a5a955986d34bd8547f45c6', '2 weeks', '0', '2013-11-05 08:39:10', '2013-11-19 08:39:10');
 
 -- ----------------------------
 -- Table structure for `posts`
@@ -64,7 +75,7 @@ CREATE TABLE `posts` (
   `category_id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `alias` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `actived` int(1) NOT NULL DEFAULT '1',
+  `is_active` int(1) NOT NULL DEFAULT '1',
   `ordering` int(11) NOT NULL,
   `thumbnail` varchar(255) CHARACTER SET utf8 NOT NULL,
   `sumary` text CHARACTER SET utf8 NOT NULL,
