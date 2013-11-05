@@ -20,7 +20,7 @@
                 <div id="banner">
                     <div class="row">
                         <div class="col-lg-12">
-<?php echo $this->Html->image('frontend/banner_new.jpg') ?>
+                            <?php echo $this->Html->image('frontend/banner_new.jpg') ?>
                         </div>
 
                     </div>
@@ -166,8 +166,8 @@
 
                                         <div class="pull-right" style="margin-top: 10px">
                                             <?php echo $this->Html->image('frontend/facebook.png', array('alt="Facebook"')) ?>
-<?php echo $this->Html->image('frontend/google.png', array('alt="Google"')) ?>
-<?php echo $this->Html->image('frontend/tiwin.png', array('alt="Twitter"')) ?>
+                                            <?php echo $this->Html->image('frontend/google.png', array('alt="Google"')) ?>
+                                            <?php echo $this->Html->image('frontend/tiwin.png', array('alt="Twitter"')) ?>
                                         </div>
                                     </div>
                                 </div>
