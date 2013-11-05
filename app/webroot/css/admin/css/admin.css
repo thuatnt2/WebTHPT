@@ -209,3 +209,25 @@ body {
 .the-icons i:hover {
 	background-color: rgba(255,0,0,.25);
 }
+
+/** Post thumbnail
+------------------------*/
+
+div .post-thumnail{
+	width: 150px;
+	height: 150px;
+	background: white;
+}
+div .post-thumnail:hover{
+	cursor: pointer;
+}
+
+div .post-thumnail img{ 
+	width: 100%;
+	height: 100%;
+}
+/*textarea
+--------------------------*/
+textarea{
+	width: 90% !important;
+}
