@@ -10,7 +10,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="#">Thông tin cá nhân</a></li> 
 							<li><a href="#">Đổi mật khẩu</a></li> 
-							<li><a href="#">Đăng xuất</a></li> 
+                                                        <li><a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a></li> 
 						</ul>
 					</li>
 				</ul>
