@@ -36,7 +36,7 @@ Router::connect(
         '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'index', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
-
+Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

@@ -15,12 +15,10 @@
             <div class="row">
                 <div id="banner">
                     <div class="row">
-                        <div class="col-lg-4">
-                            <?php echo $this->Html->image('frontend/logo.png', array('style="height:120px"')) ?>
+                        <div class="col-lg-12">
+                            <?php echo $this->Html->image('frontend/banner_new.jpg') ?>
                         </div>
-                        <div class="col-lg-8">
-                            <?php echo $this->Html->image('frontend/bannerright.jpg', array('class="pull-right" style="height:120px",width="auto"')) ?>
-                        </div>
+                      
                     </div>
                 </div>
                 <!--<begin navbar>-->
