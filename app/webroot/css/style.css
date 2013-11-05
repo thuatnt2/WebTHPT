@@ -23,12 +23,13 @@ body {
     background-color: #E8E8E8;
 }
 
-#banner {
-    min-height: 120px;
-}
 .navbar {
     margin-bottom: 2px;
     border-radius: 0px;
+}
+.navbar-nav > li > a {
+/*    padding-top: 0px;
+padding-bottom: 0px;*/
 }
 .navbar-collapse {
     padding-left: 0px;
@@ -81,5 +82,5 @@ body {
     position: absolute;
     top: 50%;
     margin-top: 25px;
-    
+
 }
