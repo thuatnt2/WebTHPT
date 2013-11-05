@@ -32,6 +32,7 @@ class IndexController extends AppController {
      * @return void
      */
     public function view($id = null) {
+        $this->layout = 'frontend/detailArticle';
         $this->loadModel('Post');
         if (!$this->Post->exists($id)) {
             throw new NotFoundException(__('Invalid category'));
