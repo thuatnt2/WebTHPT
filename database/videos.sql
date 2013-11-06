@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2013-11-05 23:29:10
+Date: 2013-11-06 21:15:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,7 +21,9 @@ DROP TABLE IF EXISTS `videos`;
 CREATE TABLE `videos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) DEFAULT NULL,
+  `alias` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
+  `youtube_id` varchar(50) DEFAULT NULL,
   `is_active` tinyint(4) DEFAULT NULL,
   `description` text,
   `created` datetime DEFAULT NULL,
@@ -32,4 +34,5 @@ CREATE TABLE `videos` (
 -- ----------------------------
 -- Records of videos
 -- ----------------------------
-INSERT INTO videos VALUES ('2', 'somebody that i used to know', 'http://www.youtube.com/watch?v=8UVNT4wvIGY', null, 'somebody that i used to know', '2013-11-05 11:15:55', '2013-11-05 11:15:55');
+INSERT INTO videos VALUES ('1', 'somebody that i used to know', 'somebody-that-i-used-to-know', 'http://www.youtube.com/watch?v=8UVNT4wvIGY', '8UVNT4wvIGY', null, 'somebody that i used to know', '2013-11-06 01:01:48', '2013-11-06 01:01:48');
+INSERT INTO videos VALUES ('2', 'canon in d', 'canon-in-d', 'http://www.youtube.com/watch?v=jXC9tuumjiA', 'jXC9tuumjiA', null, 'canon in d', '2013-11-06 01:06:37', '2013-11-06 01:06:37');

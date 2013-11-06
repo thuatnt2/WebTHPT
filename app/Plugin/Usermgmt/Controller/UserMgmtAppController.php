@@ -19,7 +19,7 @@
 */
 class UserMgmtAppController extends AppController {
 	public $components = array('Session');
-	public  $layout = 'admin/admin';
+	public  $layout = 'admin/user';
 
 	public function beforeFilter() {
 		parent::beforeFilter();
