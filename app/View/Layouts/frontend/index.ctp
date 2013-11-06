@@ -96,8 +96,8 @@
                                         <ul class="nav nav-tabs">
                                             <li class="active"><a href="#tabs1-pane1" data-toggle="tab">Hoạt động sự kiện</a></li>
                                             <li><a href="#tabs1-pane2" data-toggle="tab">Tin tức chung</a></li>
-                                            <li><a href="#tabs1-pane3" data-toggle="tab">Đoàn thanh niên</a></li>
                                             <li><a href="#tabs1-pane4" data-toggle="tab">Gương mặt tiêu biểu</a></li>
+                                            <li><a href="#tabs1-pane3" data-toggle="tab">Blog giáo viên</a></li>
                                             <li><a href="#tabs1-pane5" data-toggle="tab">Tâm sự thầy trò</a></li>
                                         </ul>
                                     </div>
