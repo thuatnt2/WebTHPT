@@ -2,23 +2,31 @@
 	<div class="navbar-inner">
 		<div class="container-fluid">
 			<div class="nav-collapse collapse">
-				<a href="/" class="brand">Đến Website</a>
+				<a href="<?php echo $this->Html->url('/')?>" target="_blank" class="brand">Đến Website</a>
 				<a href="/dashboard" class="brand">Trang quản trị</a>
-				<ul class="nav pull-right">
-					<?php 
-						$user = $this->UserAuth->getUser();
-					?>
-					<li class="dropdown">
-						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?php echo $user['User']['first_name'] ?> <i class="caret"></i>
+				<?php
+				$user = $this->Session->read('UserAuth');
+				if (!empty($user)):
 
-						</a>
-						<ul class="dropdown-menu">
-							<li><a href="<?php echo $this->Html->url('/admin/thong-tin-ca-nhan/'.$user['User']['id'])?>">Thông tin cá nhân</a></li> 
-							<li><a href="#">Đổi mật khẩu</a></li> 
-							<li><a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a></li> 
-						</ul>
-					</li>
-				</ul>
+					?>
+					<ul class="nav pull-right">
+
+						<li class="dropdown">
+							<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?php echo $user['User']['first_name'] ?> <i class="caret"></i>
+
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="<?php echo $this->Html->url('/admin/thong-tin-ca-nhan/' . $user['User']['id']) ?>">Thông tin cá nhân</a></li> 
+								<li><a href="<?php echo Router::url('/admin/doi-mat-khau') ?>">Đổi mật khẩu</a></li> 
+								<li><a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a></li> 
+							</ul>
+						</li>
+					</ul>
+					<?php
+				endif;
+
+				?>
+
 				<ul class="nav">
 					<li class="dropdown">
 						<a href="#" data-toggle="dropdown" class="dropdown-toggle">Bài viết <b class="caret"></b>
@@ -46,7 +54,7 @@
 						</ul>
 					</li>
 					<?php
-					if ($this->UserAuth->isAdmin()):
+					if (isset($user['UserGroup']['id']) && $user['UserGroup']['id'] == ADMIN_GROUP_ID):
 
 						?>
 

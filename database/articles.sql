@@ -7,7 +7,7 @@ CREATE TABLE `articles` (
   `content` text NOT NULL,
   `created_at` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
-INSERT INTO `webthptdb`.`articles` ('user_id',`title`, `content`) 
+INSERT INTO `webthptdb`.`articles` (`user_id`,`title`, `content`) 
 VALUES ('2','Không biết tên là gì', 'Điều quan trọng là phải nhớ mục tiêu của bạn một cách thật rõ ràng, chính xác. Đường đi sẽ rõ ràng hơn, an toàn hơn nếu chúng ta biết đường của mình và những khó khăn sẽ gặp.');

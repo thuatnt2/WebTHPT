@@ -4,6 +4,7 @@
 			<div class="muted pull-left">Quản lí video</div>
 		</div>
 		<div class="block-content collapse in">
+			<?php echo $this->Session->flash()?>
 			<div class="span12">
 				<div class="dataTables_wrapper form-inline" role="grid">
 					<div  class="row">

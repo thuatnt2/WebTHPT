@@ -244,10 +244,11 @@ class UsersController extends UserMgmtAppController {
                 $user['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
                 $this->User->save($user, false);
                 $this->LoginToken->deleteAll(array('LoginToken.user_id' => $userId), false);
-                $this->Session->setFlash(__('Password changed successfully'));
+                $this->Session->setFlash('Bạn vừa cập nhật mật khẩu thành công','flash_success');
                 $this->redirect('/dashboard');
             }
         }
+		$this->set('title_for_layout','Đổi mật khẩu');
     }
 
     /**

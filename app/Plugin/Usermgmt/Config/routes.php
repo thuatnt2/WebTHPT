@@ -25,7 +25,7 @@ Router::connect('/logout', array('plugin' => 'usermgmt', 'controller' => 'users'
 Router::connect('/forgotPassword', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'forgotPassword'));
 Router::connect('/activatePassword/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'activatePassword'));
 Router::connect('/register', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'register'));
-Router::connect('/changePassword', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'changePassword'));
+Router::connect('/admin/doi-mat-khau', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'changePassword'));
 Router::connect('/changeUserPassword/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'changeUserPassword'));
 Router::connect('/admin/them-nguoi-dung', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'addUser'));
 Router::connect('/editUser/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'editUser'));

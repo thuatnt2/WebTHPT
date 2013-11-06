@@ -5,6 +5,7 @@
 		</div>
 		<div class="block-content collapse in">
 			<div class="row-fluid padd-bottom">
+				<?php echo $this->Session->flash()?>
 				<div class="span3">
 					<?php 
 					echo $this->Html->link($this->Html->image('admin/ql-baiviet-bg.png'),'/admin/danh-sach-bai-viet',array('escape'=>false,'class'=>'thumbnail'))
