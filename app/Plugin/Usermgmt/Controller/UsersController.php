@@ -49,8 +49,10 @@ class UsersController extends UserMgmtAppController {
      */
     public function index() {
         $this->User->unbindModel(array('hasMany' => array('LoginToken')));
-        $users = $this->User->find('all', array('order' => 'User.id desc'));
+		$this->paginate = array('order' => 'User.id desc');
+        $users = $this->paginate();
         $this->set('users', $users);
+		$this->set('title_for_layout','Danh sách người dùng');
     }
 
     /**
@@ -65,7 +67,7 @@ class UsersController extends UserMgmtAppController {
             $user = $this->User->read(null, $userId);
             $this->set('user', $user);
         } else {
-            $this->redirect('/allUsers');
+            $this->redirect('/admin/nguoi-dung');
         }
     }
 
@@ -270,11 +272,11 @@ class UsersController extends UserMgmtAppController {
                     $this->User->save($user, false);
                     $this->LoginToken->deleteAll(array('LoginToken.user_id' => $userId), false);
                     $this->Session->setFlash(__('Password for %s changed successfully', $name));
-                    $this->redirect('/allUsers');
+                    $this->redirect('/admin/nguoi-dung');
                 }
             }
         } else {
-            $this->redirect('/allUsers');
+            $this->redirect('/admin/nguoi-dung');
         }
     }
 
@@ -285,21 +287,21 @@ class UsersController extends UserMgmtAppController {
      * @return void
      */
     public function addUser() {
-        $userGroups = $this->UserGroup->getGroups();
-        $this->set('userGroups', $userGroups);
         if ($this->request->isPost()) {
             $this->User->set($this->data);
             if ($this->User->RegisterValidate()) {
                 $this->request->data['User']['email_verified'] = 1;
                 $this->request->data['User']['active'] = 1;
+				$this->request->data['User']['user_group_id'] = GUEST_GROUP_ID;
                 $salt = $this->UserAuth->makeSalt();
                 $this->request->data['User']['salt'] = $salt;
                 $this->request->data['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
                 $this->User->save($this->request->data, false);
-                $this->Session->setFlash(__('The user is successfully added'));
-                $this->redirect('/addUser');
+                $this->Session->setFlash('Lưu thành công ','flash_success');
+                $this->redirect('/admin/nguoi-dung');
             }
         }
+		$this->set('title_for_layout', 'Thêm người dùng');
     }
 
     /**
@@ -318,7 +320,7 @@ class UsersController extends UserMgmtAppController {
                 if ($this->User->RegisterValidate()) {
                     $this->User->save($this->request->data, false);
                     $this->Session->setFlash(__('The user is successfully updated'));
-                    $this->redirect('/allUsers');
+                    $this->redirect('/admin/nguoi-dung');
                 }
             } else {
                 $user = $this->User->read(null, $userId);
@@ -329,8 +331,9 @@ class UsersController extends UserMgmtAppController {
                 }
             }
         } else {
-            $this->redirect('/allUsers');
+            $this->redirect('/admin/nguoi-dung');
         }
+		$this->set('title_for_layout','Cập nhật thông tin tài khoản');
     }
 
     /**
@@ -348,9 +351,9 @@ class UsersController extends UserMgmtAppController {
                     $this->Session->setFlash(__('User is successfully deleted'));
                 }
             }
-            $this->redirect('/allUsers');
+            $this->redirect('/admin/nguoi-dung');
         } else {
-            $this->redirect('/allUsers');
+            $this->redirect('/admin/nguoi-dung');
         }
     }
 
@@ -386,7 +389,7 @@ class UsersController extends UserMgmtAppController {
                 $this->Session->setFlash(__('User is successfully deactivated'));
             }
         }
-        $this->redirect('/allUsers');
+        $this->redirect('/admin/nguoi-dung');
     }
 
     /**
@@ -404,7 +407,7 @@ class UsersController extends UserMgmtAppController {
             $this->User->save($user, false);
             $this->Session->setFlash(__('User email is successfully verified'));
         }
-        $this->redirect('/allUsers');
+        $this->redirect('/admin/nguoi-dung');
     }
 
     /**

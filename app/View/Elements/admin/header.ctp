@@ -5,14 +5,17 @@
 				<a href="/" class="brand">Đến Website</a>
 				<a href="/dashboard" class="brand">Trang quản trị</a>
 				<ul class="nav pull-right">
+					<?php 
+						$user = $this->UserAuth->getUser();
+					?>
 					<li class="dropdown">
-						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Vincent Gabriel <i class="caret"></i>
+						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> <?php echo $user['User']['first_name'] ?> <i class="caret"></i>
 
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Thông tin cá nhân</a></li> 
+							<li><a href="<?php echo $this->Html->url('/admin/thong-tin-ca-nhan/'.$user['User']['id'])?>">Thông tin cá nhân</a></li> 
 							<li><a href="#">Đổi mật khẩu</a></li> 
-                                                        <li><a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a></li> 
+							<li><a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a></li> 
 						</ul>
 					</li>
 				</ul>
@@ -42,13 +45,24 @@
 							<li><a href="/admin/them-video">Thêm mới video</a></li> 
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Người dùng <i class="caret"></i>
+					<?php
+					if ($this->UserAuth->isAdmin()):
 
-						</a>
-						<ul class="dropdown-menu">
-						</ul>
-					</li>
+						?>
+
+						<li class="dropdown">
+							<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Người dùng <i class="caret"></i>
+
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="/admin/nguoi-dung">Danh sách người dùng</a></li> 
+								<li><a href="/admin/them-nguoi-dung">Thêm mới người dùng</a></li> 
+							</ul>
+						</li>
+						<?php
+					endif;
+
+					?>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

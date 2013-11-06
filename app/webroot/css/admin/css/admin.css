@@ -232,12 +232,12 @@ textarea{
 	width: 90% !important;
 }
 
-/**Gird
+/**Error message
 ---------------------------*/
-div.grid-item {
+.error-message{
+	margin-left: 10px;
+	color: red;
 }
-div.grid-item img{
-}
-div.grid-item span{
-}
+
+
 

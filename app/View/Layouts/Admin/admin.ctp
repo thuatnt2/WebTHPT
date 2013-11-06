@@ -14,6 +14,8 @@ and open the template in the editor.
 		echo $this->Html->css('admin/css/bootstrap');
 		echo $this->Html->css('admin/css/admin');
 		echo $this->Html->css('admin/css/DT_bootstrap');
+		echo $this->Html->css('/usermgmt/css/umstyle');
+
 		?>
 		<script type="text/javascript">
 			var base_url = '<?php echo $this->Html->webroot('/') ?>';
