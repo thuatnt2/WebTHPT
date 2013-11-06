@@ -2,6 +2,8 @@
 	<div class="navbar-inner">
 		<div class="container-fluid">
 			<div class="nav-collapse collapse">
+				<a href="/" class="brand">Đến Website</a>
+				<a href="/dashboard" class="brand">Trang quản trị</a>
 				<ul class="nav pull-right">
 					<li class="dropdown">
 						<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown"> <i class="icon-user"></i> Vincent Gabriel <i class="caret"></i>

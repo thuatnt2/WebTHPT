@@ -17,6 +17,22 @@ class VideosController extends AppController {
 	 */
 	public $components = array('Paginator');
 	public $layout = 'admin/admin';
+	
+	public function index(){
+		$this->layout = 'frontend/detailArticle';
+		$this->paginate = array('limit' => $this->limit);
+		$videos = $this->Paginator->paginate();
+		$this->set('title_for_layout','Danh sách video');
+		$this->set('videos',$videos);
+	}
+	
+	public function view($id){
+		$this->layout = 'frontend/detailArticle';
+		$video = $this->Video->read(null, $id);
+		$this->set('title_for_layout','Xem video');
+		$this->set('video',$video);
+		
+	}
 
 	/**
 	 * admin_index method
@@ -52,6 +68,11 @@ class VideosController extends AppController {
 	 */
 	public function admin_add() {
 		if ($this->request->is('post')) {
+			$this->request->data['Video']['alias'] = $this->Common->vnit_change_title($this->request->data['Video']['title']);
+			$link = $this->request->data['Video']['link'];
+			$pos = strpos($link, 'v=');
+			$youtube_id  = substr($link, $pos+2);
+			$this->request->data['Video']['youtube_id'] = $youtube_id;
 			$this->Video->create();
 			if ($this->Video->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công','flash_success');

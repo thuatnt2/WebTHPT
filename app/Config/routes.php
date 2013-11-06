@@ -45,6 +45,18 @@ Router::connect(
     'pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 /**
+ * Frontend video
+ */
+Router::connect('/videos', array('controller' => 'videos', 'action' => 'index'));
+Router::connect(
+        '/xem-video/:id-:slug', array(
+    'controller' => 'videos',
+    'action' => 'view'
+        ), array(
+    'pass' => array('id', 'slug'), 'id' => '[0-9]+')
+);
+
+/**
  * Load all plugin routes. See the CakePlugin documentation on
  * how to customize the loading of plugin routes.
  */
