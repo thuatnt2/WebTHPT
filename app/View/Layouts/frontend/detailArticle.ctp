@@ -8,6 +8,9 @@
             'vendor/bootstrap.min',
             'style',
         ));
+        echo $this->Html->script(array(
+            'vendor/jquery-2.0.2.min',
+        ));
         ?>
     </head>
     <body>

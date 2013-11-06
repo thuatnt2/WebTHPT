@@ -93,3 +93,18 @@ padding-bottom: 0px;*/
     padding-bottom: 7px;
     padding-top: 7px;
 }
+.carousel-caption {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    left: 2%;
+    
+}
+.carousel-caption>a:hover {
+    text-decoration: none;
+}
+.carousel-caption>a h4 {
+    color: #FFF;
+}
+.thumbnail {
+    padding: 0px;
+}

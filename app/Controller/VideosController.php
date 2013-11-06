@@ -19,11 +19,12 @@ class VideosController extends AppController {
 	public $layout = 'admin/admin';
 	
 	public function index(){
-		$this->layout = 'frontend/detailArticle';
+		$this->layout = 'frontend/default';
 		$this->paginate = array('limit' => $this->limit);
 		$videos = $this->Paginator->paginate();
+                $videoDefault = $this->Video->find('first');
 		$this->set('title_for_layout','Danh sách video');
-		$this->set('videos',$videos);
+		$this->set(compact('videoDefault','videos'));
 	}
 	
 	public function view($id){
