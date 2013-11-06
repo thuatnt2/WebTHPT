@@ -9,10 +9,6 @@
             'style',
         ));
         ?>
-        <?php
-        echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min'))
-        ?>
     </head>
     <body>
         <div class="container">
@@ -30,78 +26,18 @@
                 echo $this->element('frontend/navbar');
                 ?>
                 <!--<end navbar>-->
-                <div id="content">
-                    <div id="content-top">
-                        <div class="col-lg-8">
-                            <!--<begin slider>-->
-                            <?php
-                            echo $this->element('frontend/slider');
-                            ?>
-                            <!--<end slider>-->
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="row column-right">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#">Thông báo</a></li>
-                                            <li><a href="#">Tin Học sinh</a></li>
-                                            <li><a href="#">Tin Giáo viên</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="panel-body">
-                                        <!--<begin event>-->
-                                        <?php
-                                        echo $this->element('frontend/event');
-                                        ?>
-                                        <!--<end event>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="content-middle">
-                        <div class="col-lg-8">
-                            <div class="row">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <div class="col-lg-2 col-lg-offset-0"> Danh ngôn</div>
-                                        <div class="col-lg-10">
-                                            <!--<begin quotations>-->
-                                            <?php
-                                            echo $this->element('frontend/quotations');
-                                            ?>
-                                            <!--<end quotations>-->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div> 
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="row column-right">
-                                <div class="input-group" id="form-search" >
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                                    </span>
-                                </div><!-- /input-group -->
-                            </div>
-                        </div>
-                    </div>
+                <div id="content" style="height: 1450px">
                     <div id="content-bottom">
                         <div class="col-lg-8">
                             <div class="row column-left">
+                                <ol class="breadcrumb">
+                                    <li><a href="#">Home</a></li>
+                                    <li><a href="#">Library</a></li>
+                                    <li class="active">Data</li>
+                                </ol>
                                 <div class="panel panel-primary" id="tab-content">
-                                    <div class="panel-heading">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tabs1-pane1" data-toggle="tab">Hoạt động sự kiện</a></li>
-                                            <li><a href="#tabs1-pane2" data-toggle="tab">Tin tức chung</a></li>
-                                            <li><a href="#tabs1-pane3" data-toggle="tab">Đoàn thanh niên</a></li>
-                                            <li><a href="#tabs1-pane4" data-toggle="tab">Gương mặt tiêu biểu</a></li>
-                                            <li><a href="#tabs1-pane5" data-toggle="tab">Tâm sự thầy trò</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="panel-body" style="height: 1363px;">
+                                    <div class="panel-body" style="height: 1360px;">
+
                                         <!--<begin information>-->
                                         <?php
                                         echo $this->fetch('content');
@@ -204,6 +140,7 @@
         </div> <!-- .container -->
         <?php
         echo $this->Html->script(array(
+            'vendor/jquery-2.0.2.min',
             'vendor/bootstrap.min',
             'vendor/jquery.marquee',
             'vendor/jcarousellite_1.0.1c4',
