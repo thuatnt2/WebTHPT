@@ -18,7 +18,6 @@ class PostsController extends AppController {
 	public $components = array('Paginator');
 	public $layout = 'admin/admin';
 
-	
 	/**
 	 * admin_index method
 	 *
@@ -66,11 +65,11 @@ class PostsController extends AppController {
 			'Category.name',
 			'Category.parent_id',
 		);
-		$conditions['And'] = array('Category.is_active'=>1,'Category.parent_id'=>null);
-		$this->Post->Category->unbindModel(array('hasMany'=>array('Post')));
-		$categories = $this->Post->Category->find('all',array('fields'=>$fields,'conditions'=>$conditions));
+		$conditions['And'] = array('Category.is_active' => 1, 'Category.parent_id' => null);
+		$this->Post->Category->unbindModel(array('hasMany' => array('Post')));
+		$categories = $this->Post->Category->find('all', array('fields' => $fields, 'conditions' => $conditions));
 		$this->set(compact('categories'));
-		$this->set('title_for_layout','Thêm bài viết');
+		$this->set('title_for_layout', 'Thêm bài viết');
 	}
 
 	/**
@@ -91,10 +90,20 @@ class PostsController extends AppController {
 			} else {
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
+		} else {
+			$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
+			$this->request->data = $this->Post->find('first', $options);
 		}
-		$categories = $this->Post->Category->find('list');
+		$fields = array(
+			'Category.id',
+			'Category.name',
+			'Category.parent_id',
+		);
+		$conditions['And'] = array('Category.is_active' => 1, 'Category.parent_id' => null);
+		$this->Post->Category->unbindModel(array('hasMany' => array('Post')));
+		$categories = $this->Post->Category->find('all', array('fields' => $fields, 'conditions' => $conditions));
 		$this->set(compact('categories'));
-		$this->set('title_for_layout','Chỉnh sửa bài viết');
+		$this->set('title_for_layout', 'Chỉnh sửa bài viết');
 	}
 
 	/**
@@ -111,21 +120,21 @@ class PostsController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Post->delete()) {
-			$this->Session->setFlash('Xóa thành công','flash_success');
+			$this->Session->setFlash('Xóa thành công', 'flash_success');
 		} else {
-			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại','flash_error');
+			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-	
-	public function posts($id){
+
+	public function posts($id) {
 		$this->loadModel('Category');
-		$category = $this->Category->read('name',$id);
+		$category = $this->Category->read('name', $id);
 		$this->layout = 'frontend/detailArticle';
-		$conditions['AND'] = array('Post.is_active'=>1,'Post.category_id'=>$id);
-		$posts = $this->Post->find('all',array('conditions'=>$conditions));
-		$this->set('posts',$posts);
-		$this->set('title_for_layout',$category['Category']['name']);
+		$conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $id);
+		$posts = $this->Post->find('all', array('conditions' => $conditions));
+		$this->set('posts', $posts);
+		$this->set('title_for_layout', $category['Category']['name']);
 	}
 
 }

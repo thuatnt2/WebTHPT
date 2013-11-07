@@ -7,8 +7,8 @@ function openKCFinder_singleFile(div) {
 			var img = new Image();
 			img.src = url;
 			img.onload = function() {
-				base_url_str = url.replace(base_url + 'app/webroot', '');
-				div.innerHTML = '<img id="img" src="' + base_url_str + '" />';				
+				base_url_str = url.replace(base_url + 'app/webroot/', '');
+				div.innerHTML = '<img id="img" src="'+'/' + base_url_str + '" />';				
 				//$("#image_path").val(base_url_str);
 				var thumbnail = document.getElementById('post-thumbnail');
 				thumbnail.value = base_url_str;
