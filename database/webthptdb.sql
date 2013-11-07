@@ -10,10 +10,29 @@ Target Server Type    : MYSQL
 Target Server Version : 50532
 File Encoding         : 65001
 
-Date: 2013-11-05 20:40:39
+Date: 2013-11-07 23:35:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+-- ----------------------------
+-- Table structure for `articles`
+-- ----------------------------
+DROP TABLE IF EXISTS `articles`;
+CREATE TABLE `articles` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `created_at` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of articles
+-- ----------------------------
+INSERT INTO articles VALUES ('1', '4', 'test 1', 'content1', '2013-11-06 17:13:09');
+INSERT INTO articles VALUES ('2', '4', 'test 2', 'test 2', '2013-11-06 17:13:18');
+
 -- ----------------------------
 -- Table structure for `categories`
 -- ----------------------------
@@ -28,15 +47,25 @@ CREATE TABLE `categories` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO categories VALUES ('2', null, 'Tin tức', 'tin-tuc', '1', null, '2013-11-04 09:36:19', '2013-11-04 09:36:19');
-INSERT INTO categories VALUES ('3', null, 'Hoạt động đoàn', 'hoat-dong-doan', '1', null, '2013-11-04 09:36:31', '2013-11-04 21:35:03');
-INSERT INTO categories VALUES ('4', null, 'Giới thiệu', 'gioi-thieu', '1', null, '2013-11-04 09:36:51', '2013-11-04 09:36:51');
-INSERT INTO categories VALUES ('5', null, 'Tin tức', '', '1', null, '2013-11-04 09:39:32', '2013-11-04 09:40:28');
+INSERT INTO categories VALUES ('1', null, 'Giới thiệu', 'gioi-thieu', '1', null, '2013-11-07 10:19:11', '2013-11-07 10:38:32');
+INSERT INTO categories VALUES ('2', null, 'Tin tức', 'tin-tuc', '1', null, '2013-11-07 10:19:22', '2013-11-07 10:19:22');
+INSERT INTO categories VALUES ('4', null, 'Tuyển sinh', 'tuyen-sinh', '1', null, '2013-11-07 10:19:47', '2013-11-07 10:19:47');
+INSERT INTO categories VALUES ('5', null, 'Tổ chức đoàn thể', 'to-chuc-doan-the', '1', null, '2013-11-07 10:20:00', '2013-11-07 10:20:00');
+INSERT INTO categories VALUES ('8', '1', 'Lịch sử phát triển', 'lich-su-phat-trien', '1', null, '2013-11-07 10:43:20', '2013-11-07 16:43:40');
+INSERT INTO categories VALUES ('9', '1', 'Sứ mệnh tầm nhìn', 'su-menh-tam-nhin', '1', null, '2013-11-07 10:43:59', '2013-11-07 10:43:59');
+INSERT INTO categories VALUES ('10', '1', 'Cơ cấu tổ chức', 'co-cau-to-chuc', '1', null, '2013-11-07 10:44:10', '2013-11-07 10:44:10');
+INSERT INTO categories VALUES ('11', '1', 'Cơ sở vật chất', 'co-so-vat-chat', '1', null, '2013-11-07 10:44:23', '2013-11-07 10:44:23');
+INSERT INTO categories VALUES ('12', '2', 'Bảng tin trường', 'bang-tin-truong', '1', null, '2013-11-07 10:45:00', '2013-11-07 10:45:00');
+INSERT INTO categories VALUES ('13', '2', 'Đoàn thanh niên', 'doan-thanh-nien', '1', null, '2013-11-07 10:45:17', '2013-11-07 10:45:17');
+INSERT INTO categories VALUES ('16', '4', 'Tuyển sinh khối 10', 'tuyen-sinh-khoi-10', '1', null, '2013-11-07 10:47:32', '2013-11-07 10:47:32');
+INSERT INTO categories VALUES ('17', '4', 'Tuyển sinh đại học', 'tuyen-sinh-dai-hoc', '1', null, '2013-11-07 10:47:42', '2013-11-07 10:47:42');
+INSERT INTO categories VALUES ('18', '5', 'Hội khuyến học', 'hoi-khuyen-hoc', '1', null, '2013-11-07 10:48:20', '2013-11-07 10:48:20');
+INSERT INTO categories VALUES ('19', '5', 'Hội phụ huynh', 'hoi-phu-huynh', '1', null, '2013-11-07 10:49:12', '2013-11-07 10:49:12');
 
 -- ----------------------------
 -- Table structure for `login_tokens`
@@ -51,19 +80,15 @@ CREATE TABLE `login_tokens` (
   `created` datetime NOT NULL,
   `expires` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of login_tokens
 -- ----------------------------
-INSERT INTO login_tokens VALUES ('1', '1', 'c275d47c3f16e03ebc407f3608b63c40', '2 weeks', '1', '2013-11-03 03:58:23', '2013-11-17 03:58:23');
-INSERT INTO login_tokens VALUES ('2', '1', '7b1203f61943598fec0c7a705ffd3b06', '2 weeks', '1', '2013-11-03 09:11:15', '2013-11-17 09:11:15');
-INSERT INTO login_tokens VALUES ('3', '1', '7349e6f2a28f4337007965c3dc9354d6', '2 weeks', '0', '2013-11-04 08:52:26', '2013-11-18 08:52:26');
-INSERT INTO login_tokens VALUES ('4', '1', '5cd57aa8ac9b3eac969eceadbca81a0d', '2 weeks', '1', '2013-11-04 08:52:37', '2013-11-18 08:52:37');
-INSERT INTO login_tokens VALUES ('5', '1', '6a29dde943d0d059d0c31e31f44d49ac', '2 weeks', '1', '2013-11-04 10:23:43', '2013-11-18 10:23:43');
-INSERT INTO login_tokens VALUES ('6', '1', '479012ca27efcf8807ccc62f4c9087c9', '2 weeks', '1', '2013-11-04 10:24:07', '2013-11-18 10:24:07');
-INSERT INTO login_tokens VALUES ('7', '1', 'fdd55222bced0885eec48fabf99472f0', '2 weeks', '0', '2013-11-05 03:34:42', '2013-11-19 03:34:42');
-INSERT INTO login_tokens VALUES ('8', '1', '07e3b7690a5a955986d34bd8547f45c6', '2 weeks', '0', '2013-11-05 08:39:10', '2013-11-19 08:39:10');
+INSERT INTO login_tokens VALUES ('18', '1', 'a480c3b0d250d678d093c5650880a327', '2 weeks', '0', '2013-11-07 07:59:36', '2013-11-21 07:59:36');
+INSERT INTO login_tokens VALUES ('17', '1', '327a70a1838da2b9024e21976fabae00', '2 weeks', '0', '2013-11-07 07:33:04', '2013-11-21 07:33:04');
+INSERT INTO login_tokens VALUES ('16', '1', 'd28b1b30e27a7f26b1921e09fb02372d', '2 weeks', '0', '2013-11-07 01:31:39', '2013-11-21 01:31:39');
+INSERT INTO login_tokens VALUES ('15', '1', 'b06a87d921d3bc509ad20e2fed01587b', '2 weeks', '1', '2013-11-06 18:30:37', '2013-11-20 18:30:37');
 
 -- ----------------------------
 -- Table structure for `posts`
@@ -83,11 +108,12 @@ CREATE TABLE `posts` (
   `created` date NOT NULL,
   `modified` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of posts
 -- ----------------------------
+INSERT INTO posts VALUES ('1', '0', '2', 'Test 1', 'test-1', '1', '0', '/img/images/Desert.jpg', 'Tóm tắt bài viết', '<p>\r\n	Nội dung b&agrave;i viết ở đ&acirc;y</p>\r\n', '2013-11-05', '2013-11-05');
 
 -- ----------------------------
 -- Table structure for `users`
@@ -96,27 +122,28 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_group_id` int(11) unsigned DEFAULT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `salt` text,
-  `email` varchar(100) DEFAULT NULL,
+  `username` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `salt` text CHARACTER SET latin1,
+  `email` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `first_name` varchar(100) DEFAULT NULL,
-  `last_name` varchar(100) DEFAULT NULL,
+  `last_name` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
   `email_verified` int(1) DEFAULT '0',
   `active` int(1) NOT NULL DEFAULT '0',
-  `ip_address` varchar(50) DEFAULT NULL,
+  `ip_address` varchar(50) CHARACTER SET latin1 DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`username`),
   KEY `mail` (`email`),
   KEY `users_FKIndex1` (`user_group_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO users VALUES ('1', '1', 'admin', '365caef7fccbdb1ee711f084be9317a7', '1e6d99570a4d37cc29b18c4a6b06e6ed', 'admin@admin.com', 'Admin', '', '1', '1', '', '2013-11-03 15:00:36', '2013-11-03 15:00:36');
+INSERT INTO users VALUES ('1', '1', 'admin', '73dd22a5352d9b6a6588fab0ab62b0cc', '0a05df7556534f914c51e5510177fa21', 'admin@admin.com', 'Admin', '', '1', '1', '', '2013-11-03 15:00:36', '2013-11-06 18:15:17');
+INSERT INTO users VALUES ('6', '3', 'lemaibk08', 'cd2a8881d4f310b0f03646396d56038e', '3466cab0e12097e4be82529e18aee72d', 'vienlm@ilucians.com', 'Lê Mai Viện', null, '1', '1', null, '2013-11-07 14:48:57', '2013-11-07 15:07:58');
 
 -- ----------------------------
 -- Table structure for `user_groups`
@@ -233,3 +260,27 @@ INSERT INTO user_group_permissions VALUES ('75', '3', 'Users', 'verifyEmail', '0
 INSERT INTO user_group_permissions VALUES ('76', '1', 'Users', 'activatePassword', '1');
 INSERT INTO user_group_permissions VALUES ('77', '2', 'Users', 'activatePassword', '1');
 INSERT INTO user_group_permissions VALUES ('78', '3', 'Users', 'activatePassword', '1');
+
+-- ----------------------------
+-- Table structure for `videos`
+-- ----------------------------
+DROP TABLE IF EXISTS `videos`;
+CREATE TABLE `videos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `alias` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `youtube_id` varchar(50) DEFAULT NULL,
+  `is_active` tinyint(4) DEFAULT NULL,
+  `description` text,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of videos
+-- ----------------------------
+INSERT INTO videos VALUES ('1', 'somebody that i used to know', 'somebody-that-i-used-to-know', 'http://www.youtube.com/watch?v=8UVNT4wvIGY', '8UVNT4wvIGY', null, 'somebody that i used to know', '2013-11-06 01:01:48', '2013-11-06 01:01:48');
+INSERT INTO videos VALUES ('2', 'canon in d', 'canon-in-d', 'http://www.youtube.com/watch?v=jXC9tuumjiA', 'jXC9tuumjiA', null, 'canon in d', '2013-11-06 01:06:37', '2013-11-06 01:06:37');
+INSERT INTO videos VALUES ('3', 'what makes you beautiful', 'what-makes-you-beautiful', 'http://www.youtube.com/watch?v=QJO3ROT-A4E', 'QJO3ROT-A4E', null, 'what makes you beautiful', '2013-11-06 12:20:01', '2013-11-06 12:20:01');
