@@ -76,7 +76,7 @@
                                 <?php
                                 echo $this->Html->link($user['User']['username'], array(
                                     'controller' => 'blogs',
-                                    'action' => 'view',
+                                    'action' => 'index',
                                     'id' => $user['User']['id'],
                                     'slug' => $user['User']['username'])
                                 )

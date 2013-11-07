@@ -5,19 +5,20 @@ App::uses('AppController', 'Controller');
 class BlogsController extends AppController {
 
     var $layout = 'frontend/blog';
-    var $uses = array('Article', 'User');
+    var $uses = array('Article', 'Usermgmt.User');
 
-    public function index() {
+    public function index($id) {
         $title_for_layout = "Blog giáo viên";
         $options = array(
             'conditions' => array(
-                'User.user_group_id' => 2
-            ),
-            'recursive' => -1
+                'User.user_group_id' => 2,
+                'User.id' => $id
+            )
         );
-        $users = $this->User->find('all', $options);
-        $this->log($users, 'debug');
-        $this->set(compact('title_for_layout', 'users'));
+        $result = $this->User->find('first', $options);
+        $user = $result['User'];
+        $articles = $result['Article'];
+        $this->set(compact('title_for_layout', 'user','articles'));
     }
 
     public function add() {
@@ -40,7 +41,6 @@ class BlogsController extends AppController {
         $articles = $this->Article->find('all', $options);
         $this->set(compact('articles'));
     }
-
 }
 
 ?>

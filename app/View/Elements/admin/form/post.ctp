@@ -19,7 +19,7 @@
 									<optgroup label="<?php echo $category['Category']['name'] ?>">
 										<?php foreach ($category['ChildCategory'] as $child):
 											?>
-											<option value="<?php echo $child['id'] ?>"><?php echo $child['name'] ?></option>
+											<option value="<?php echo $child['id'] ?>" <?php echo $this->request->data['Post']['category_id']==$child['id'] ?  'selected': '' ?>><?php echo $child['name'] ?></option>
 												<?php
 											endforeach;
 											?>
@@ -44,7 +44,7 @@
 							if (!empty($this->request->data['Post']['thumbnail'])) {
 
 								?>
-								<div class="img_news" onclick="openKCFinder_singleFile(this)"><img src="<?php echo $this->Html->webroot('/') . $this->request->data['Post']['thumbnail'] ?>"/></div>
+								<div class="thumbnail post-thumnail" onclick="openKCFinder_singleFile(this)"><img src="<?php echo $this->Html->webroot('/') . $this->request->data['Post']['thumbnail'] ?>"/></div>
 								<?php
 							} else {
 								echo $this->Html->tag('div', 'Click để chọn hình.', array('class' => 'thumbnail post-thumnail', 'onclick' => 'openKCFinder_singleFile(this)'));
