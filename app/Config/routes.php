@@ -40,7 +40,7 @@ Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'i
 Router::connect(
         '/blog/:id-:slug', array(
     'controller' => 'blogs',
-    'action' => 'view'
+    'action' => 'index'
         ), array(
     'pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
