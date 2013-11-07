@@ -9,7 +9,7 @@
 				<div class="dataTables_wrapper form-inline" role="grid">
 					<div  class="row">
 						<div class="span6">
-							<?php echo $this->Html->link('Đăng bài viết', $this->Html->url('/admin/them-danh-muc'), array('class' => 'btn btn-primary')) ?>
+							<?php echo $this->Html->link('Đăng bài viết', $this->Html->url('/admin/them-bai-viet'), array('class' => 'btn btn-primary')) ?>
 						</div>
 					</div>
 

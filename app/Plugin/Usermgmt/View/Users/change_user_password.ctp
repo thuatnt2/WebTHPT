@@ -18,45 +18,35 @@
 	along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 */
 ?>
-<div class="umtop">
-	<?php echo $this->Session->flash(); ?>
-	<?php echo $this->element('dashboard'); ?>
-	<div class="um_box_up"></div>
-	<div class="um_box_mid">
-		<div class="um_box_mid_content">
-			<div class="um_box_mid_content_top">
-				<span class="umstyle1"><?php echo __('Change Password for '); echo h($name); ?></span>
-				<span class="umstyle2" style="float:right"><?php echo $this->Html->link(__("Home",true),"/") ?></span>
-				<div style="clear:both"></div>
-			</div>
-			<div class="umhr"></div>
-			<div class="um_box_mid_content_mid" id="login">
-				<div class="um_box_mid_content_mid_left">
-					<?php echo $this->Form->create('User'); ?>
-					<div>
-						<div class="umstyle3"><?php echo __('Password');?></div>
-						<div class="umstyle4"><?php echo $this->Form->input("password" ,array("type"=>"password",'label' => false,'div' => false,'class'=>"umstyle5" ))?></div>
-						<div style="clear:both"></div>
+<div class="row">
+	<div class="block">
+		<div class="navbar navbar-inner block-header">
+			<div class="muted pull-left">Đổi mật khẩu </div>
+		</div>
+		<div class="block-content collapse in">
+			<div class="span12">
+				<?php echo $this->Form->create('User'); ?>
+				<fieldset>
+					<legend>Đổi mật khẩu cho cho <?php echo $name?></legend>
+					<div class="control-group">
+						<label>Nhập mật khẩu</label>
+						<div class="controls">
+							<?php echo $this->Form->input('password' ,array('type'=>'password','label' => false,'div' => false,'class'=>'input-xxlarge' ))?>
+						</div>
 					</div>
-					<div>
-						<div class="umstyle3"><?php echo __('Confirm Password');?></div>
-						<div class="umstyle4"><?php echo $this->Form->input("cpassword" ,array("type"=>"password",'label' => false,'div' => false,'class'=>"umstyle5" ))?></div>
-						<div style="clear:both"></div>
+					<div class="control-group">
+						<label>Nhập lại mật khẩu</label>
+						<div class="controls">
+							<?php echo $this->Form->input('cpassword', array("type" => "password",'class' => 'input-xxlarge', 'div' => false, 'label' => false)) ?>
+						</div>
 					</div>
-					<div>
-						<div class="umstyle3"></div>
-						<div class="umstyle4"><?php echo $this->Form->Submit(__('Change'));?></div>
-						<div style="clear:both"></div>
+					<div class="form-actions">
+						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
 					</div>
-					<?php echo $this->Form->end(); ?>
-				</div>
-				<div class="um_box_mid_content_mid_right" align="right"></div>
-				<div style="clear:both"></div>
+				</fieldset>
+				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>
 	</div>
-	<div class="um_box_down"></div>
+
 </div>
-<script>
-document.getElementById("UserPassword").focus();
-</script>

@@ -5,7 +5,7 @@
 		</div>
 		<div class="block-content collapse in">
 			<div class="span12">
-				<?php echo $this->Form->create('Post'); ?>
+				<?php echo $this->Form->create('Category'); ?>
 				<fieldset>
 					<legend>Thêm mới danh bài viết</legend>
 					<div class="control-group">
@@ -18,7 +18,7 @@
 								'class' => 'input-xxlarge',
 								'type' => 'select',
 								'options' => $parentCategories,
-								'empty' => '--Là danh mục cha--',
+								//'empty' => '--Là danh mục cha--',
 								'required' => false,
 							));
 
