@@ -25,6 +25,7 @@
 			<div class="muted pull-left">Danh sách người dùng</div>
 		</div>
 		<div class="block-content collapse in">
+			<?php echo $this->Session->flash();?>
 			<div class="span12">
 				<div class="dataTables_wrapper form-inline" role="grid">
 					<div  class="row">
@@ -66,13 +67,13 @@
 									echo "<td>";
 									//echo "<span class='icon'><a href='" . $this->Html->url('/viewUser/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/view.png' border='0' alt='View' title='View'></a></span>";
 									//echo "<span class='icon'><a href='" . $this->Html->url('/editUser/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/edit.png' border='0' alt='Edit' title='Edit'></a></span>";
-									//echo "<span class='icon'><a href='" . $this->Html->url('/changeUserPassword/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/password.png' border='0' alt='Change Password' title='Change Password'></a></span>";
+									echo "<span class='icon'><a href='" . $this->Html->url('/changeUserPassword/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/password.png' border='0' alt='Đổi mật khẩu' title='Đổi mật khẩu'></a></span>";
 									if ($row['User']['email_verified'] == 0) {
 										echo "<span class='icon'><a href='" . $this->Html->url('/usermgmt/users/verifyEmail/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/email-verify.png' border='0' alt='Verify Email' title='Verify Email'></a></span>";
 									}
 
 									if ($row['User']['id'] != 1 && $row['User']['username'] != 'Admin') {
-										echo $this->Form->postLink($this->Html->image($this->Html->url('/') . 'usermgmt/img/delete.png', array("alt" => __('Delete'), "title" => __('Delete'))), array('action' => 'deleteUser', $row['User']['id']), array('escape' => false, 'confirm' => __('Are you sure you want to delete this user?')));
+										echo $this->Form->postLink($this->Html->image($this->Html->url('/') . 'usermgmt/img/delete.png', array("alt" => 'Xóa người dùng', "title" => 'Xóa người dùng')), array('action' => 'deleteUser', $row['User']['id']), array('escape' => false, 'confirm' => __('Are you sure you want to delete this user?')));
 									}
 									echo "</td>";
 									echo "</tr>";

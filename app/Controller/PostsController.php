@@ -110,5 +110,15 @@ class PostsController extends AppController {
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
+	
+	public function posts($id){
+		$this->loadModel('Category');
+		$category = $this->Category->read('name',$id);
+		$this->layout = 'frontend/detailArticle';
+		$conditions['AND'] = array('Post.is_active'=>1,'Post.category_id'=>$id);
+		$posts = $this->Post->find('all',array('conditions'=>$conditions));
+		$this->set('posts',$posts);
+		$this->set('title_for_layout',$category['Category']['name']);
+	}
 
 }
