@@ -41,7 +41,6 @@ class BlogsController extends AppController {
         $articles = $this->Article->find('all', $options);
         $this->set(compact('articles'));
     }
-
 }
 
 ?>
