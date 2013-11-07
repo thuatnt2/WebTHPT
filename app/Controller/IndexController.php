@@ -6,6 +6,7 @@ class IndexController extends AppController {
 
     public $layout = 'frontend/index';
     public $components = array('Paginator');
+    public $uses = array('Usermgmt.User', 'Article');
 
     /**
      * index method
@@ -14,6 +15,7 @@ class IndexController extends AppController {
      */
     public function index() {
         $title_for_layout = "Trang chủ";
+        get_class($this->User);
         $this->loadModel('Post');
         $this->Post->recursive = 0;
         $actionEvents = $this->Post->find('all', array('conditions' => array('Post.category_id' => 2)));
@@ -21,14 +23,7 @@ class IndexController extends AppController {
         $groupNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 5)));
         $typicalFaces = $this->Post->find('all', array('conditions' => array('Post.category_id' => 6)));
         $confidentials = $this->Post->find('all', array('conditions' => array('Post.category_id' => 7)));
-
-        $this->loadModel('User');
-        $teachers = $this->User->find('all', array(
-            'conditions' => array('User.user_group_id' => 2),
-            'recursive' => 2
-                )
-        );
-        $this->log($teachers, 'debug');
+        $teachers = $this->User->find('all');
         $this->set(compact('teachers', 'actionEvents', 'generalNews', 'groupNews', 'typicalFaces', 'confidentials', 'title_for_layout'));
     }
 

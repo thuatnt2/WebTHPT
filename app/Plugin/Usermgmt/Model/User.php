@@ -29,6 +29,7 @@ class User extends UserMgmtAppModel {
      * @var array
      */
     var $belongsTo = array('Usermgmt.UserGroup');
+    public $primaryKey = 'id';
 
     /**
      * This model has following models

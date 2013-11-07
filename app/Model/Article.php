@@ -16,6 +16,7 @@ class Article extends AppModel {
      */
     public $displayField = 'title';
     public $primaryKey = 'id';
+
     /**
      * Validation rules
      *
@@ -63,7 +64,7 @@ class Article extends AppModel {
      */
     public $belongsTo = array(
         'User' => array(
-            'className' => 'Usermgmt.User',
+            'className' => 'User',
             'foreignKey' => 'user_id',
             'conditions' => '',
             'fields' => '',
