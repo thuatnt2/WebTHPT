@@ -61,7 +61,14 @@ class PostsController extends AppController {
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		}
-		$categories = $this->Post->Category->find('list');
+		$fields = array(
+			'Category.id',
+			'Category.name',
+			'Category.parent_id',
+		);
+		$conditions['And'] = array('Category.is_active'=>1,'Category.parent_id'=>null);
+		$this->Post->Category->unbindModel(array('hasMany'=>array('Post')));
+		$categories = $this->Post->Category->find('all',array('fields'=>$fields,'conditions'=>$conditions));
 		$this->set(compact('categories'));
 		$this->set('title_for_layout','Thêm bài viết');
 	}

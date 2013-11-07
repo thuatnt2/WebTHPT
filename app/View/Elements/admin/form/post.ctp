@@ -1,3 +1,4 @@
+<?php //debug($categories); ?>
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
@@ -11,17 +12,23 @@
 					<div class="control-group">
 						<label class="control-label">Chọn danh mục</label>
 						<div class="controls">
-							<?php
-							echo $this->Form->input('category_id', array(
-								'label' => false,
-								'div' => false,
-								'class' => 'input-xxlarge',
-								'type' => 'select',
-								'options' => $categories,
-								'required' => false,
-							));
+							<select name="data[Post][category_id]" class="input-xxlarge">
+								<?php
+								foreach ($categories as $category):
+									?>
+									<optgroup label="<?php echo $category['Category']['name'] ?>">
+										<?php foreach ($category['ChildCategory'] as $child):
+											?>
+											<option value="<?php echo $child['id'] ?>"><?php echo $child['name'] ?></option>
+												<?php
+											endforeach;
+											?>
+									</optgroup>
+									<?php
+								endforeach;
 
-							?>
+								?>
+							</select>
 						</div>
 					</div>
 					<div class="control-group">
@@ -65,7 +72,7 @@
 					<div class="form-actions">
 						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
 					</div>
-					<?php echo $this->Form->hidden('thumbnail', array('id'=>'post-thumbnail'))?>
+					<?php echo $this->Form->hidden('thumbnail', array('id' => 'post-thumbnail')) ?>
 				</fieldset>
 				<?php echo $this->Form->end(); ?>
 			</div>
