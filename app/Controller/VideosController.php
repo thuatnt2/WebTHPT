@@ -17,22 +17,25 @@ class VideosController extends AppController {
 	 */
 	public $components = array('Paginator');
 	public $layout = 'admin/admin';
-	
-	public function index(){
+
+	public function index() {
 		$this->layout = 'frontend/default';
 		$this->paginate = array('limit' => $this->limit);
 		$videos = $this->Paginator->paginate();
-                $videoDefault = $this->Video->find('first');
-		$this->set('title_for_layout','Danh sách video');
-		$this->set(compact('videoDefault','videos'));
+		$videoDefault = $videos[0];
+		unset($videos[0]);
+		$this->set('title_for_layout', 'Danh sách video');
+		$this->set(compact('videoDefault', 'videos'));
 	}
-	
-	public function view($id){
+
+	public function view($id) {
 		$this->layout = 'frontend/detailArticle';
-		$video = $this->Video->read(null, $id);
-		$this->set('title_for_layout','Xem video');
-		$this->set('video',$video);
-		
+		$videoDefault = $this->Video->read(null, $id);
+		$this->paginate = array('conditions'=>array('Video.id != '=>$id), 'limit' => $this->limit);
+		$videos = $this->Paginator->paginate();
+		$this->set('title_for_layout', 'Xem video');
+		$this->set('videos', $videos);
+		$this->set('videoDefault', $videoDefault);
 	}
 
 	/**
@@ -44,7 +47,7 @@ class VideosController extends AppController {
 		$this->Video->recursive = 0;
 		$this->paginate = array('limit' => $this->limit);
 		$this->set('videos', $this->Paginator->paginate());
-		$this->set('title_for_layout' , 'Danh sách videos');
+		$this->set('title_for_layout', 'Danh sách videos');
 	}
 
 	/**
@@ -72,17 +75,17 @@ class VideosController extends AppController {
 			$this->request->data['Video']['alias'] = $this->Common->vnit_change_title($this->request->data['Video']['title']);
 			$link = $this->request->data['Video']['link'];
 			$pos = strpos($link, 'v=');
-			$youtube_id  = substr($link, $pos+2);
+			$youtube_id = substr($link, $pos + 2);
 			$this->request->data['Video']['youtube_id'] = $youtube_id;
 			$this->Video->create();
 			if ($this->Video->save($this->request->data)) {
-				$this->Session->setFlash('Lưu thành công','flash_success');
+				$this->Session->setFlash('Lưu thành công', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại','flash_error');
+				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		}
-		$this->set('title_for_layout' , 'Thêm video');
+		$this->set('title_for_layout', 'Thêm video');
 	}
 
 	/**
@@ -98,16 +101,16 @@ class VideosController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->Video->save($this->request->data)) {
-				$this->Session->setFlash('Lưu thành công','flash_success');
+				$this->Session->setFlash('Lưu thành công', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại','flash_error');
+				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		} else {
 			$options = array('conditions' => array('Video.' . $this->Video->primaryKey => $id));
 			$this->request->data = $this->Video->find('first', $options);
 		}
-		$this->set('title_for_layout' , 'Chỉnh sửa video');
+		$this->set('title_for_layout', 'Chỉnh sửa video');
 	}
 
 	/**
@@ -124,14 +127,14 @@ class VideosController extends AppController {
 		}
 		$this->request->onlyAllow('post', 'delete');
 		if ($this->Video->delete()) {
-			$this->Session->setFlash('Xóa thành công','flash_success');
+			$this->Session->setFlash('Xóa thành công', 'flash_success');
 		} else {
-			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại','flash_error');
+			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
-	
-	public function admin_videoActive($id,$status){
+
+	public function admin_videoActive($id, $status) {
 		$this->Video->id = $id;
 		$this->Video->saveField('is_active', $status);
 		$this->redirect('index');
