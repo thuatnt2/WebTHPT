@@ -23,7 +23,11 @@ class IndexController extends AppController {
         $groupNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 5)));
         $typicalFaces = $this->Post->find('all', array('conditions' => array('Post.category_id' => 6)));
         $confidentials = $this->Post->find('all', array('conditions' => array('Post.category_id' => 7)));
-        $teachers = $this->User->find('all');
+        $teachers = $this->User->find('all', array(
+            'conditions' => array('User.user_group_id' => 2),
+            'recursive' => 2
+                )
+        );
         $this->set(compact('teachers', 'actionEvents', 'generalNews', 'groupNews', 'typicalFaces', 'confidentials', 'title_for_layout'));
     }
 

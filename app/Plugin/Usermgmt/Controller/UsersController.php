@@ -90,30 +90,31 @@ class UsersController extends UserMgmtAppController {
      * @return void
      */
     public function login() {
+		$this->layout = 'admin/login';
         if ($this->request->isPost()) {
             $this->User->set($this->data);
             if ($this->User->LoginValidate()) {
-                $email = $this->data['User']['email'];
+                $username = $this->data['User']['username'];
                 $password = $this->data['User']['password'];
 
-                $user = $this->User->findByUsername($email);
+                $user = $this->User->findByUsername($username);
                 if (empty($user)) {
-                    $user = $this->User->findByEmail($email);
+                    $user = $this->User->findByEmail($username);
                     if (empty($user)) {
-                        $this->Session->setFlash(__('Incorrect Email/Username or Password'));
+                        $this->Session->setFlash('Tên đăng nhập hoặc mật khẩu không đúng, vui lòng thử lại','flash_error');
                         return;
                     }
                 }
                 // check for inactive account
                 if ($user['User']['id'] != 1 and $user['User']['active'] == 0) {
-                    $this->Session->setFlash(__('Sorry your account is not active, please contact to Administrator'));
+                    $this->Session->setFlash('Tài khoản của bạn chưa được kích hoạt','flash_error');
                     return;
                 }
-                // check for verified account
-                if ($user['User']['id'] != 1 and $user['User']['email_verified'] == 0) {
-                    $this->Session->setFlash(__('Your registration has not been confirmed please verify your email or contact to Administrator'));
-                    return;
-                }
+//                // check for verified account
+//                if ($user['User']['id'] != 1 and $user['User']['email_verified'] == 0) {
+//                    $this->Session->setFlash(__('Your registration has not been confirmed please verify your email or contact to Administrator'));
+//                    return;
+//                }
                 if (empty($user['User']['salt'])) {
                     $hashed = md5($password);
                 } else {
@@ -145,7 +146,7 @@ class UsersController extends UserMgmtAppController {
 
                     $this->redirect($redirect);
                 } else {
-                    $this->Session->setFlash(__('Incorrect Email/Username or Password'));
+                    $this->Session->setFlash('Tên đăng nhập hoặc mật khẩu không đúng','flash_error');
                     return;
                 }
             }
@@ -244,10 +245,11 @@ class UsersController extends UserMgmtAppController {
                 $user['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
                 $this->User->save($user, false);
                 $this->LoginToken->deleteAll(array('LoginToken.user_id' => $userId), false);
-                $this->Session->setFlash(__('Password changed successfully'));
+                $this->Session->setFlash('Bạn vừa cập nhật mật khẩu thành công','flash_success');
                 $this->redirect('/dashboard');
             }
         }
+		$this->set('title_for_layout','Đổi mật khẩu');
     }
 
     /**

@@ -70,15 +70,15 @@ class User extends UserMgmtAppModel {
      */
     function LoginValidate() {
         $validate1 = array(
-            'email' => array(
+            'username' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter email or username')
+                    'message' => 'Bạn chưa điều tên đăng nhập')
             ),
             'password' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter password')
+                    'message' => 'Bạn chưa nhập mật khẩu')
             )
         );
         $this->validate = $validate1;
@@ -94,19 +94,19 @@ class User extends UserMgmtAppModel {
         $validate1 = array(
             "user_group_id" => array(
                 'rule' => array('comparison', '!=', 0),
-                'message' => 'Please select group'),
+                'message' => 'Chọn nhóm'),
             'username' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter username',
+                    'message' => 'Điền tên đăng nhập',
                     'last' => true),
                 'mustUnique' => array(
                     'rule' => 'isUnique',
-                    'message' => 'This username already taken',
+                    'message' => 'Tên đăng nhập này đã tồn tại, vui lòng chọn một tên khác',
                     'last' => true),
                 'mustBeLonger' => array(
                     'rule' => array('minLength', 4),
-                    'message' => 'Username must be greater than 3 characters',
+                    'message' => 'Tên đăng nhập phải lớn hơn 3 kí tự',
                     'last' => true),
             ),
             'first_name' => array(
@@ -118,45 +118,45 @@ class User extends UserMgmtAppModel {
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
                     'on' => 'create',
-                    'message' => 'Please enter last name')
+                    'message' => 'Nhập họ tên')
             ),
             'email' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter email',
+                    'message' => 'Bạn chưa nhập email',
                     'last' => true),
                 'mustBeEmail' => array(
                     'rule' => array('email'),
-                    'message' => 'Please enter valid email',
+                    'message' => 'Địa chỉ email không đúng, vui lòng nhập lại',
                     'last' => true),
                 'mustUnique' => array(
                     'rule' => 'isUnique',
-                    'message' => 'This email is already registered',
+                    'message' => 'Email này đã được đăng kí, vui lòng nhập email khác',
                 )
             ),
             'oldpassword' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter old password',
+                    'message' => 'Nhập mật khẩu cũ',
                     'last' => true),
                 'mustMatch' => array(
                     'rule' => array('verifyOldPass'),
-                    'message' => 'Please enter correct old password'),
+                    'message' => 'Mật khẩu cũ không chính xác'),
             ),
             'password' => array(
                 'mustNotEmpty' => array(
                     'rule' => 'notEmpty',
-                    'message' => 'Please enter password',
+                    'message' => 'Bạn chưa nhập mật khẩu',
                     'on' => 'create',
                     'last' => true),
                 'mustBeLonger' => array(
                     'rule' => array('minLength', 6),
-                    'message' => 'Password must be greater than 5 characters',
+                    'message' => 'Mật khẩu phải lớn hơn 5 kí tự',
                     'on' => 'create',
                     'last' => true),
                 'mustMatch' => array(
                     'rule' => array('verifies'),
-                    'message' => 'Both passwords must match'),
+                    'message' => 'Mật khẩu không khớp, vui lòng nhập lại'),
             //'on' => 'create'
             ),
             'captcha' => array(

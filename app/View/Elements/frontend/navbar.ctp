@@ -50,7 +50,7 @@
                 </ul>
             </li>
             <li><a href="#">Hình ảnh</a></li>
-            <li><a href="#">Video</a></li>
+            <li><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>
             <li><a href="#" style="padding-right:35px">Liên hệ</a></li>
         </ul>
     </div><!-- /.navbar-collapse -->

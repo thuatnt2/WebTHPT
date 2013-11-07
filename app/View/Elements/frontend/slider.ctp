@@ -13,26 +13,31 @@
             <div class="item active">
                 <?php echo $this->Html->image('slider/00.jpg', array('alt="00.jpg"')) ?>
                 <div class="carousel-caption">
+                    <a href="#" class="pull-left"><h4>aaaaaaaaaaaaaaa</h4></a>
                 </div>
             </div>
             <div class="item">
                 <?php echo $this->Html->image('slider/01.jpg', array('alt="01.jpg"')) ?>
                 <div class="carousel-caption">
+                    <a href="#" class="pull-left"><h4>bbbbbbbbbbbbbbbbb</h4></a>
                 </div>
             </div>
             <div class="item">
                 <?php echo $this->Html->image('slider/02.jpg', array('alt="02.jpg"')) ?>
                 <div class="carousel-caption">
+                    <a href="#" class="pull-left"><h4>cccccccccccccccccc</h4></a>
                 </div>
             </div>
             <div class="item">
                 <?php echo $this->Html->image('slider/03.jpg', array('alt="03.jpg"')) ?>
                 <div class="carousel-caption">
+                    <a href="#" class="pull-left"><h4>dddddddddđ</h4></a>
                 </div>
             </div>
             <div class="item">
                 <?php echo $this->Html->image('slider/04.jpg', array('alt="04.jpg"')) ?>
                 <div class="carousel-caption">
+                    <a href="#" class="pull-left"><h4>eeeeeeeeeeeeeeee</h4></a>
                 </div>
             </div>
         </div>
