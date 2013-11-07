@@ -136,5 +136,23 @@ class PostsController extends AppController {
 		$this->set('posts', $posts);
 		$this->set('title_for_layout', $category['Category']['name']);
 	}
+        /**
+        * Get the most Recent post
+        *
+        * @param int $limit The number of comments you want
+        * @return Array
+        **/
+       public function recent($limit = 7) {
+          if (!empty($this->request->params['requested'])) {
+                 $this->recursive = 1;
+                 $posts = array();
+                 $recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.modified ASC'));
+                 array_push($posts, $recent);
+                 $viewMost = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.view_count DESC'));
+                 $this->log($viewMost,'debug');
+                array_push($posts, $viewMost);
+                return $recent;
+          }
+       }
 
 }

@@ -22,7 +22,7 @@
 				if ($menu['Category']['parent_id'] == null):
 
 					?>
-					<li class="dropdown">
+					<li class="dropdown" id="<?php echo 'menu-id-'.$menu['Category']['id'] ?>">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['Category']['name'] ?><b class="caret"></b></a>
 						<?php if (count($menu['ChildCategory']) > 0):
 
