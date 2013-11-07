@@ -21,7 +21,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     vertical-align: baseline;
 }
 body {
@@ -347,8 +346,7 @@ a:hover {
 
 /* Header */
 .site-header {
-    padding: 24px 0;
-    padding: 1.714285714rem 0;
+  padding-top: 24px;
 }
 .site-header h1,
 .site-header h2 {
@@ -1350,4 +1348,7 @@ a.says {
     padding: 5px;
     background-color: rgb(227, 237, 244);
     border: 1px solid rgb(220, 220, 220);
+}
+#blog-calendar .ui-datepicker{
+    width: 100%;
 }
