@@ -22,7 +22,7 @@
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
-			<div class="muted pull-left">Quản lí bài viết</div>
+			<div class="muted pull-left">Đổi mật khẩu</div>
 		</div>
 		<div class="block-content collapse in">
 			<div class="span12">

@@ -35,6 +35,8 @@ class AdminController extends AppController {
     public $layout = 'admin/admin';
 
     public function admin_index() {
+		$isAdmin = $this->UserAuth->isAdmin();
+		$this->set('isAdmin',$isAdmin);
         $this->set('title_for_layout', 'Quản trị nội dung');
     }
 
