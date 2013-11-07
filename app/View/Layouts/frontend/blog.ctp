@@ -80,7 +80,7 @@
                         <div class='widget HTML' id='HTML1'>
                             <div class='widget-content'>
                                 <div id="user-infor" style="">    
-                                    <legend><b>Giới thiệu </b></legend>
+                                    <h2>Giới thiệu </h2>
                                     <div>
                                         <ul>
                                             <li>Họ tên: <?php echo $user['first_name'] . ' ' . $user['last_name'] ?></li>
@@ -101,14 +101,15 @@
                             <div class='widget-content popular-posts'>
                                 <ul>
                                     <li>
-                                        <div class='item-content'>
-                                            <div class='item-title'><a href='http://twentytwelve-btemplates.blogspot.com/2013/02/lorem-ipsum_964.html'>Lorem Ipsum</a></div>
-                                            <div class='item-snippet'>Download this and more Blogger Templates  at . For tutorials, tips and tricks about Blogger visit our Blog . &#187; A normal paragraph Ea eam lab...</div>
-                                        </div>
-                                        <div style='clear: both;'></div>
+                                        <a href="#">Bài 3</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bài 2</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Bài 2</a>
                                     </li>
                                 </ul>
-                                <div class='clear'></div>
 
                                 <div class='clear'></div>
                             </div>
@@ -118,21 +119,17 @@
                         <div class='widget-content list-label-widget-content'>
                             <ul>
                                 <li>
-                                    <a dir='ltr' href='http://twentytwelve-btemplates.blogspot.com/search/label/Lorem%201'>Lorem 1</a>
-                                    <span dir='ltr'>(3)</span>
+                                    Số lần truy cập : 10
                                 </li>
                                 <li>
-                                    <a dir='ltr' href='http://twentytwelve-btemplates.blogspot.com/search/label/Lorem%202'>Lorem 2</a>
-                                    <span dir='ltr'>(2)</span>
+                                    Tổng số bài viết: 15
                                 </li>
                                 <li>
-                                    <a dir='ltr' href='http://twentytwelve-btemplates.blogspot.com/search/label/Lorem%203'>Lorem 3</a>
-                                    <span dir='ltr'>(3)</span>
+                                    Bình luận : 76
                                 </li>
                             </ul>
                             <div class='clear'></div>
 
-                            <div class='clear'></div>
                         </div>
                     </div></div>
             </div><!-- #secondary -->
@@ -140,14 +137,24 @@
         <footer id='colophon' role='contentinfo'>
             <div class='site-info'>
                 <!-- you have not permission to remove this footer credits -->
-                Copyright &#169; 2012 <a href='http://twentytwelve-btemplates.blogspot.com/'>Twenty Twelve</a> | Powered by <a href='http://www.blogger.com/'>Blogger</a>
-                <br/>Design by <a href='http://wordpress.org/' target='_blank'>WordPress Team</a> | Blogger Template by <a href='http://newbloggerthemes.com/' target='_blank' title='Best Blogger Templates'>NewBloggerThemes.com</a>
-            </div><!-- .site-info -->
-        </footer><!-- #colophon -->
-    </div><!-- #page -->
-    <script type='text/javascript'>
-        $('#blog-calendar').datepicker({
-        });
-    </script>
-</body>
+                Copyright 2013 
+            </div>
+        </footer>
+        <script type='text/javascript'>
+            console.log(new Date('2013-11-07'));
+            $('#blog-calendar').datepicker({
+                monthNames: ['Tháng 1 / ', 'Tháng 2 / ', 'Tháng 3 / ', 'Tháng 4 / ', 'Tháng 5 / ', 'Tháng 6 / ',
+                    'Tháng 7 / ', 'Tháng 8 / ', 'Tháng 9 / ', 'Tháng 10 / ', 'Tháng 11 / ', 'Tháng 12 / '],
+                dateFormat: 'yy-mm-dd',
+                beforeShowDay: function(date) {
+    //                console.log(date);
+                    return [true];
+                },
+                onSelect: function(selectedDate) {
+                    console.log(selectedDate);
+                },
+                dayNamesMin: [ "CN", "Hai", "Ba", "Tư", "Năm", "Sáu", "Bảy" ]
+            });
+        </script>
+    </body>
 </html>
