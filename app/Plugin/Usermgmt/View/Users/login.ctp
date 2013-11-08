@@ -28,5 +28,5 @@
 	<?php echo $this->Form->input('remember', array('type' => 'checkbox', 'label' => false,'div'=>'false')) ?>
 	Ghi nhớ đăng nhập
 </label>
-<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+<button class="btn btn-large btn-primary" type="submit">Đăng nhập</button>
 <?php echo $this->Form->end(); ?>
