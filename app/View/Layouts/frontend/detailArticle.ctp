@@ -29,7 +29,7 @@
                 echo $this->element('frontend/navbar');
                 ?>
                 <!--<end navbar>-->
-                <div id="content" style="height: 1450px">
+                <div id="content">
                     <div id="content-bottom">
                         <div class="col-lg-8">
                             <div class="row column-left">
@@ -39,7 +39,7 @@
                                     <li class="active">Data</li>
                                 </ol>
                                 <div class="panel panel-primary" id="tab-content">
-                                    <div class="panel-body" style="height: 1360px;">
+                                    <div class="panel-body" style=" min-height: 1360px;">
 
                                         <!--<begin information>-->
                                         <?php
@@ -122,6 +122,7 @@
                     </div>
 
                 </div>
+                <div style="clear: both"></div>
                 <div id="footer">
                     <div class="col-lg-8">
                         <div class="footer-content">

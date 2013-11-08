@@ -21,7 +21,6 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
     vertical-align: baseline;
 }
 body {
@@ -322,11 +321,11 @@ a:hover {
 
 /* Page structure */
 .site {
+    padding-bottom: 50px !important;
     width:960px;
     background-color: #fff;
     padding: 0px 40px;
-    margin: 32px auto 48px;
-    margin-bottom: 48px;
+    margin: 32px auto 15px;
     -webkit-box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
     box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
     overflow:hidden;
@@ -347,8 +346,7 @@ a:hover {
 
 /* Header */
 .site-header {
-    padding: 24px 0;
-    padding: 1.714285714rem 0;
+  padding-top: 24px;
 }
 .site-header h1,
 .site-header h2 {
@@ -484,12 +482,8 @@ footer[role="contentinfo"] {
     line-height: 2;
     max-width: 960px;
     max-width: 68.571428571rem;
-    margin-top: 24px;
-    margin-top: 1.714285714rem;
     margin-left: auto;
     margin-right: auto;
-    padding: 24px 0;
-    padding: 1.714285714rem 0;
     text-align:center;
 }
 footer[role="contentinfo"] a {
@@ -1348,6 +1342,9 @@ a.says {
 }
 #user-infor {
     padding: 5px;
-    background-color: rgb(227, 237, 244);
+    background-color: rgb(228, 244, 255);
     border: 1px solid rgb(220, 220, 220);
+}
+#blog-calendar .ui-datepicker{
+    width: 100%;
 }

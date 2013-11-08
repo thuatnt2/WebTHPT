@@ -44,9 +44,9 @@
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#">Thông báo</a></li>
-                                            <li><a href="#">Tin Học sinh</a></li>
-                                            <li><a href="#">Tin Giáo viên</a></li>
+                                            <li class="active"><a href="#tabs0-pane1" data-toggle="tab">Thông báo</a></li>
+                                            <li><a href="#tabs0-pane2" data-toggle="tab">Tin Học sinh</a></li>
+                                            <li><a href="#tabs0-pane3" data-toggle="tab">Tin Giáo viên</a></li>
                                         </ul>
                                     </div>
                                     <div class="panel-body">
@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="content-middle">
+                    <div id="content-middle" style="display: none">
                         <div class="col-lg-8">
                             <div class="row">
                                 <div class="panel panel-default">
@@ -116,8 +116,8 @@
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
                                         <ul class="nav nav-tabs nav-justified">
-                                            <li class="active"><a href="#">Tin mới nhất</a></li>
-                                            <li><a href="#">Tin xem nhiều</a></li>
+                                            <li class="active"><a href="#tabs2-pane1" data-toggle="tab">Tin mới nhất</a></li>
+                                            <li><a href="#tabs2-pane2" data-toggle="tab">Tin xem nhiều</a></li>
                                         </ul>
                                     </div>
                                     <div class="panel-body">
@@ -130,11 +130,11 @@
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Thư viện video</div>
-                                    <?php echo $this->element('frontend/video')?>
+                                    <?php echo $this->element('frontend/video') ?>
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Thư viện ảnh</div>
-                                    <?php echo $this->element('frontend/photo')?>
+                                    <?php echo $this->element('frontend/photo') ?>
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Liên kết Website</div>
@@ -183,6 +183,7 @@
                     </div>
 
                 </div>
+                <div style="clear: both"></div>
                 <div id="footer">
                     <div class="col-lg-8">
                         <div class="footer-content">
@@ -213,16 +214,23 @@
         <script type="text/javascript">
                                                 $(document).ready(function() {
                                                     $('.carousel').carousel({
-                                                        interval: 5000,
+                                                        interval: 20000,
                                                         pause: 'hover',
                                                     });
-                                                    $(".jcarouse").jCarouselLite({
+                                                    $(".mostNews").jCarouselLite({
                                                         vertical: true,
                                                         hoverPause: true,
-                                                        visible: 3,
-                                                        auto: 500,
+                                                        visible: 2,
+                                                        auto: 5000,
                                                         speed: 1000
                                                     });
+//                                                    $(".moreNews").jCarouselLite({
+//                                                        vertical: true,
+//                                                        hoverPause: true,
+//                                                        visible: 2,
+//                                                        auto: 5000,
+//                                                        speed: 1000
+//                                                    });
                                                 });
         </script>
     </body>
