@@ -11,14 +11,16 @@
                                 <a name='3153877782348172298'></a>
                                 <header class='entry-header'>
                                     <h2 class='post-title entry-title'>
+                                        <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username'])) ?>
+                                        <?php $article_slug = $this->Common->vnit_change_string(Inflector::slug($article['title'])) ?>
                                         <?php
                                         echo $this->Html->link($article['title'], array(
                                             'controller' => 'blogs',
                                             'action' => 'viewArticle',
                                             'bloger_id' => $user['id'],
-                                            'slug' => $user['username'],
+                                            'slug' => $user_slug,
                                             'article_id' => $article['id'],
-                                            'article_title' => $article['title'])
+                                            'article_title' => $article_slug)
                                         )
                                         ?>
                                     </h2>
@@ -36,9 +38,9 @@
                                                 'controller' => 'blogs',
                                                 'action' => 'viewArticle',
                                                 'bloger_id' => $user['id'],
-                                                'slug' => $user['username'],
+                                                'slug' => $user_slug,
                                                 'article_id' => $article['id'],
-                                                'article_title' => $article['title'])
+                                                'article_title' => $article_slug)
                                             )
                                             ?>
                                         </div>
