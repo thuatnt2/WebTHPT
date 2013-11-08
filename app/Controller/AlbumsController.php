@@ -172,9 +172,12 @@ class AlbumsController extends AppController {
         $album_id = $this->request->data['album_id'];
         $photo_will_del = $this->Photo->read(null, $photo_id);
         if ($photo_will_del['Photo']['album_id'] == $album_id) {
-            $this->Photo->delete($photo_id);
-            $resp['success'] = true;
-            // Need to delete file
+            if ($this->Photo->delete($photo_id)) {
+                //Delete file after delete record
+                $path = WWW_ROOT . 'img/albums' . DS . $album_id . DS . $photo_will_del['Photo']['url'];
+                unlink($path);
+                $resp['success'] = true;
+            }
         }
         $this->response->body(json_encode($resp));
     }

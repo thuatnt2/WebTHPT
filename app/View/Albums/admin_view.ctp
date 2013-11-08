@@ -4,7 +4,6 @@
             <div class="muted pull-left">Quản lí albums</div>
         </div>
         <div class="block-content collapse in">
-            <?php echo $this->Session->flash() ?>
             <div class="albums view">
                 <h2><?php echo $album['Album']['name'] ?></h2>
                 <i>Ngày tạo: <?php echo $album['Album']['created_at'] ?></i>
@@ -92,12 +91,15 @@
             if (window.confirm('Bạn chắc chắn muốn xóa ảnh này ?')) {
                 $.ajax({
                     url: '<?php echo Router::url('/admin/album-anh/delete_photo') ?>',
-                    type: 'DELETE',
+                    type: 'POST',
                     data: {'album_id': '<?php echo $album['Album']['id'] ?>', 'photo_id': $(this).attr('photo_id')},
                     success: function(response) {
                         if (response['success']) {
                             parent.fadeOut(500, function() {
                                 $(this).remove();
+                                if ($('.photos-in-album .photo-box-warpper').length === 0) {
+                                    $('.photos-in-album').append('<p>Không có ảnh nào trong album này.</p>');
+                                }
                             });
                         }
                     },

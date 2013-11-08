@@ -30,12 +30,13 @@
                                 <div class='widget-content'>
                                     <ul>
                                         <li id='currentpage'>
+                                            <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username'])) ?>
                                             <?php
                                             echo $this->Html->link("Trang chủ", array(
                                                 'controller' => 'blogs',
                                                 'action' => 'index',
                                                 'bloger_id' => $user['id'],
-                                                'slug' => $user['username'])
+                                                'slug' => $user_slug)
                                             )
                                             ?>
                                         </li>
@@ -141,19 +142,29 @@
             </div>
         </footer>
         <script type='text/javascript'>
-            console.log(new Date('2013-11-07'));
+            var dates_have_post = <?php echo json_encode($dates_have_post) ?>;
+            $.each(dates_have_post, function(i, val) {
+                console.log(val);
+            })
             $('#blog-calendar').datepicker({
                 monthNames: ['Tháng 1 / ', 'Tháng 2 / ', 'Tháng 3 / ', 'Tháng 4 / ', 'Tháng 5 / ', 'Tháng 6 / ',
                     'Tháng 7 / ', 'Tháng 8 / ', 'Tháng 9 / ', 'Tháng 10 / ', 'Tháng 11 / ', 'Tháng 12 / '],
                 dateFormat: 'yy-mm-dd',
+                inline: true,
                 beforeShowDay: function(date) {
-    //                console.log(date);
-                    return [true];
+                    var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 00:00:00";
+                    $.each(dates_have_post, function(i, val) {
+                        var date_temp = new Date(val + " 00:00:00");                      
+                        if (date_temp.getTime() === (new Date(str)).getTime()) {
+                            return [false,'date-no-post'];
+                        } 
+                    });
+                    return [true, 'date-have-post'];
                 },
                 onSelect: function(selectedDate) {
                     console.log(selectedDate);
                 },
-                dayNamesMin: [ "CN", "Hai", "Ba", "Tư", "Năm", "Sáu", "Bảy" ]
+                dayNamesMin: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
             });
         </script>
     </body>
