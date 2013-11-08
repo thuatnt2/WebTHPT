@@ -63,7 +63,10 @@ Router::connect(
 		), array(
 	'pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
-
+/**
+ * Frontend album anh
+ */
+Router::connect('/album-anh', array('controller' => 'albums', 'action' => 'index'));
 
 /**
  * Frontend resource

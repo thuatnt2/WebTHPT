@@ -6,12 +6,18 @@
         <?php
         echo $this->Html->css(array(
             'vendor/bootstrap.min',
+            'vendor/jquery.fancybox',
+            'vendor/jquery.fancybox-buttons',
             'style',
         ));
         ?>
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min'
+            'vendor/jquery-2.0.2.min',
+            'vendor/jquery.fancybox.pack',
+            'vendor/jquery.mousewheel-3.0.6.pack',
+            'vendor/jquery.fancybox-buttons',
+            
         ));
         ?>
     </head>

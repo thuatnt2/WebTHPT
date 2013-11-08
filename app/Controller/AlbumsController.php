@@ -26,8 +26,8 @@ class AlbumsController extends AppController {
      * @return void
      */
     public function index() {
-//        $this->layout = 'admin/admin';
-        $this->Album->recursive = 0;
+        $this->layout = 'frontend/default';
+        $this->Album->recursive = 1;
         $this->set('albums', $this->Paginator->paginate());
     }
 
