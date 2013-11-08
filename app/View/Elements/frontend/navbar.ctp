@@ -17,6 +17,14 @@
                     <li><a href="#">Cơ sở vật chất</a></li>
                 </ul>
             </li>
+			<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài nguyên điện tử<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Giáo án điện tử</a></li>
+                    <li><a href="#">Sách điện tử</a></li>
+                    <li><a href="#">Bộ đề kiểm tra</a></li>
+                </ul>
+            </li>
 			<?php
 			foreach ($menus as $menu):
 				if ($menu['Category']['parent_id'] == null):
