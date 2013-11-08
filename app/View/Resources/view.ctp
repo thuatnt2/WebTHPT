@@ -1,7 +1,7 @@
 
 <h4><?php echo $resource['Resource']['title'] ?></h4>
 <p>Người đăng : <?php echo $resource['Resource']['user_create'] ?></p>
-<p>Ngày đăng : <?php echo date('d/m/Y',  strtotime($resource['Resource']['user_create'])) ?></p>
+<p>Ngày đăng : <?php echo date('d/m/Y',  strtotime($resource['Resource']['created'])) ?></p>
 <iframe width="100%" height="700" src="<?php echo $resource['Resource']['view_link'] ?>">
 
 </iframe>
