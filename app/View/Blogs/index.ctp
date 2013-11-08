@@ -31,7 +31,16 @@
                                             <?php echo $this->Text->truncate($article['content'], 500) ?>
                                         </p>
                                         <div style='float:right;padding-right:10px;margin-top:10px;'>
-                                            <a class='morer' href='http://twentytwelve-btemplates.blogspot.com/2013/02/lorem-ipsum_964.html'>Đọc thêm</a>
+                                            <?php
+                                            echo $this->Html->link('Đọc thêm', array(
+                                                'controller' => 'blogs',
+                                                'action' => 'viewArticle',
+                                                'bloger_id' => $user['id'],
+                                                'slug' => $user['username'],
+                                                'article_id' => $article['id'],
+                                                'article_title' => $article['title'])
+                                            )
+                                            ?>
                                         </div>
                                         <div style='clear: both;'></div>
                                     </div>

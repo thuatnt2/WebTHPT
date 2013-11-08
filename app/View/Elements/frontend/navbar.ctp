@@ -58,10 +58,7 @@
             <li><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>
             <li><a href="#" style="padding-right:35px">Liên hệ</a></li>
             <li>
-
             </li>
-
-
         </ul>
         <form>
             <div class="input-group" id="search-form-navbar">
