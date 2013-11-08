@@ -4,7 +4,6 @@
             <div class="muted pull-left">Quản lí albums</div>
         </div>
         <div class="block-content collapse in">
-            <?php echo $this->Session->flash() ?>
             <div class="albums view">
                 <h2><?php echo $album['Album']['name'] ?></h2>
                 <i>Ngày tạo: <?php echo $album['Album']['created_at'] ?></i>
@@ -13,10 +12,14 @@
                         <p>Không có ảnh nào trong album này.</p>
                     <?php } else { ?>
                         <?php foreach ($album['Photo'] as $photo) { ?>
-                            <div class="photo-box">
-                                <?php $url = 'albums/' . $album['Album']['id'] . '/' . $photo['url'] ?>
-
-                                <?php echo $this->Html->image($url) ?>
+                            <div class="photo-box-warpper">
+                                <div class="photo-box">
+                                    <?php $url = 'albums/' . $album['Album']['id'] . '/' . $photo['url'] ?>
+                                    <?php echo $this->Html->image($url) ?>
+                                </div>
+                                <span class="delete-btn-box" > 
+                                    <a style="display:none" photo_id="<?php echo $photo['id'] ?>" title="Xóa ảnh này"> <?php echo $this->Html->image('admin/delete.png') ?> </a>
+                                </span>
                             </div>
                         <?php } ?>
                     <?php } ?>
@@ -31,7 +34,6 @@
                                 <input class="input-large" class="photo_url" type="text" >
                                 <a class="btn select-file-btn" >Chọn ảnh</a>
                             </div>
-
                         </div>
                         <br />
                         <div style="text-align: center;width: 400px;">
@@ -71,13 +73,41 @@
             file_field.on('change', function() {
                 $(this).parent().children('input[type=text]').val(file_field.val());
             });
-
         });
         $('input.file').change(function() {
             $('.photo_url').val($(this).val());
         });
         $('#add_more_fiel_field').on('click', function() {
             $('#photo-fields').append($('#photo-field-sample-wrapper').html());
+        });
+        $('.photo-box-warpper').mouseover(function() {
+            $(this).children('.delete-btn-box').children('a').show();
+        });
+        $('.photo-box-warpper').mouseout(function() {
+            $(this).children('.delete-btn-box').children('a').hide();
+        });
+        $('.delete-btn-box a').on('click', function() {
+            var parent = $(this).parent().parent();
+            if (window.confirm('Bạn chắc chắn muốn xóa ảnh này ?')) {
+                $.ajax({
+                    url: '<?php echo Router::url('/admin/album-anh/delete_photo') ?>',
+                    type: 'POST',
+                    data: {'album_id': '<?php echo $album['Album']['id'] ?>', 'photo_id': $(this).attr('photo_id')},
+                    success: function(response) {
+                        if (response['success']) {
+                            parent.fadeOut(500, function() {
+                                $(this).remove();
+                                if ($('.photos-in-album .photo-box-warpper').length === 0) {
+                                    $('.photos-in-album').append('<p>Không có ảnh nào trong album này.</p>');
+                                }
+                            });
+                        }
+                    },
+                    error: function() {
+                        alert('Đã có lỗi xảy ra. Thao tác không thành công.');
+                    }
+                });
+            }
         });
     });
 

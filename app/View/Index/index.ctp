@@ -73,12 +73,13 @@
                     <?php foreach ($teachers as $user) : ?>
                         <tr>
                             <td>
+                                <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['User']['username'])) ?>
                                 <?php
                                 echo $this->Html->link($user['User']['username'], array(
                                     'controller' => 'blogs',
                                     'action' => 'index',
                                     'bloger_id' => $user['User']['id'],
-                                    'slug' => $user['User']['username'])
+                                    'slug' => $user_slug)
                                 )
                                 ?>
                             </td>

@@ -1348,3 +1348,9 @@ a.says {
 #blog-calendar .ui-datepicker{
     width: 100%;
 }
+.date-have-post {
+    background-color: greenyellow;
+}
+.date-no-post {
+      background-color: black;
+}

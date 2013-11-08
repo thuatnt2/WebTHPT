@@ -10,12 +10,22 @@ class BlogsController extends AppController {
     public function beforeFilter() {
         parent::beforeFilter();
         //Find blog owner
-        $user = $this->User->find('first', array(
-            'conditions' => array('User.id' => $this->request->params['bloger_id']),
-            'recursive' => -1
-                )
-        );
+        $user = $this->User->read(null, $this->request->params['bloger_id']);
         $this->set('user', $user['User']);
+
+        $options = array(
+            'conditions' => array('Article.user_id' => $user['User']['id']),
+            'fields' => array('created_at'),
+            'recursive' => -1);
+        $articles = $this->Article->find('all', $options);
+        $dates_have_post = array();
+        foreach ($articles as $article) {
+            $date = new DateTime($article['Article']['created_at']);
+            array_push($dates_have_post, $date->format('Y-m-d'));
+        }
+        $dates_have_post = array_unique($dates_have_post);
+        $this->log($dates_have_post, 'debug');
+        $this->set('dates_have_post',$dates_have_post);
     }
 
     public function index($bloger_id) {
@@ -27,7 +37,6 @@ class BlogsController extends AppController {
             )
         );
         $result = $this->User->find('first', $options);
-        $user = $result['User'];
         $articles = $result['Article'];
         $this->set(compact('title_for_layout', 'articles'));
     }
@@ -36,7 +45,6 @@ class BlogsController extends AppController {
 
         $article = $this->Article->read(null, $this->request->params['article_id']);
         $this->set(compact('article'));
-        $this->log($article, 'debug');
     }
 
     public function add() {
