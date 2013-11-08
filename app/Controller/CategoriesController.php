@@ -118,11 +118,14 @@ class CategoriesController extends AppController {
 		$this->redirect('/admin/danh-muc');
 	}
 
-	public function getMainMenu(){
-		$conditions['AND'] = array('Category.id !='=>1,'Category.is_active'=> 1);
-		$menus = $this->Category->find('all',array('conditions'=>$conditions));
+	public function getMainMenu() {
+		$conditions['AND'] = array('Category.id !=' => 1, 'Category.is_active' => 1);
+		$menus = $this->Category->find('all', array('conditions' => $conditions));
 		return $menus;
 	}
-	
-	
+
+	public function firstMenuItem() {
+		return $this->Category->read(null,1);
+	}
+
 }

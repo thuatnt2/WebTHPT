@@ -11,7 +11,7 @@ else:
                     'controller' => 'index',
                     'action' => 'view',
                     'id' => $row['Post']['id'],
-                    'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false));
+                    'slug' => $row['Post']['alias']), array('escape' => false));
                 ?>
             </h4>
             <?php echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"')) ?>
@@ -21,7 +21,7 @@ else:
                 'controller' => 'index',
                 'action' => 'view',
                 'id' => $row['Post']['id'],
-                'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('style' => "float: right", 'escape' => false));
+                'slug' => $row['Post']['alias']), array('style' => "float: right", 'escape' => false));
             ?>
         </div>
         <hr>

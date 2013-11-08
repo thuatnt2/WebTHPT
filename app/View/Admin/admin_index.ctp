@@ -20,7 +20,7 @@
 				</div>
 				<div class="span3">
 					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-video-bg.png'), '/admin/videos', array('escape' => false, 'class' => 'thumbnail'))
+					echo $this->Html->link($this->Html->image('admin/ql-tailieu-bg.png'), '/admin/tai-lieu', array('escape' => false, 'class' => 'thumbnail'))
 
 					?>
 				</div>
@@ -36,6 +36,21 @@
 				<?php endif;
 
 				?>
+			</div>
+			<div class="row-fluid padd-bottom">
+				<?php echo $this->Session->flash() ?>
+				<div class="span3">
+					<?php
+					echo $this->Html->link($this->Html->image('admin/ql-video-bg.png'), '/admin/video', array('escape' => false, 'class' => 'thumbnail'))
+
+					?>
+				</div>
+				<div class="span3">
+					<?php
+					echo $this->Html->link($this->Html->image('admin/ql-hinhanh-bg.png'), '/admin/album-anh', array('escape' => false, 'class' => 'thumbnail'))
+
+					?>
+				</div>
 			</div>
 		</div>
 	</div>

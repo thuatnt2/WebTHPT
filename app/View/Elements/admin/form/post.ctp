@@ -19,7 +19,7 @@
 									<optgroup label="<?php echo $category['Category']['name'] ?>">
 										<?php foreach ($category['ChildCategory'] as $child):
 											?>
-											<option value="<?php echo $child['id'] ?>" <?php echo $this->request->data['Post']['category_id']==$child['id'] ?  'selected': '' ?>><?php echo $child['name'] ?></option>
+											<option value="<?php echo $child['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id'])&&$this->request->data['Category']['category_id']==$child['id']) ?  'selected': '' ?>><?php echo $child['name'] ?></option>
 												<?php
 											endforeach;
 											?>

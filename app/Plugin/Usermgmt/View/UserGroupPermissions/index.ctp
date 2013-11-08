@@ -28,14 +28,14 @@ echo $this->Html->script('/usermgmt/js/umupdate');
 			<div class="um_box_mid_content_top">
 				<div class="umstyle1"  align="left" style="float:left"><?php echo __('User Group Permissions');?></div>
 				<div style="float:right">
-					<span  class="umstyle2"><?php __('Select Controller');?></span>  <?php echo $this->Form->input("controller",array('type'=>'select','div'=>false,'options'=>$allControllers,'selected'=>$c,'label'=>false,"onchange"=>"window.location='".SITE_URL."permissions/?c='+(this).value"))?>
+					<span  class="umstyle2"><?php __('Select Controller');?></span>  <?php echo $this->Form->input("controller",array('type'=>'select','div'=>false,'options'=>$allControllers,'selected'=>$c,'label'=>false,"onchange"=>"window.location='".$this->Html->url('/')."permissions/?c='+(this).value"))?>
 				</div>
 				<div style="clear:both"></div>
 			</div>
 			<div class="umhr"></div>
 			<div class="um_box_mid_content_mid" id="permissions">
 		<?php   if (!empty($controllers)) { ?>
-					<input type="hidden" id="BASE_URL" value="<?php echo SITE_URL?>">
+					<input type="hidden" id="BASE_URL" value="<?php echo $this->Html->url('/')?>">
 					<input type="hidden" id="groups" value="<?php echo $groups?>">
 					<table cellspacing="0" cellpadding="0" width="100%" border="0">
 						<thead>

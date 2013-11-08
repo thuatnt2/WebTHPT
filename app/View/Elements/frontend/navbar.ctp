@@ -7,15 +7,34 @@
 			//debug($menus);
 
 			?>
+			<?php
+			$firstMenuItem = $this->requestAction('categories/firstMenuItem');
+			//debug($firstMenuItem);
 
+			?>
             <li  class="dropdown">
-                <a href="#"  class="dropdown-toggle" data-toggle="dropdown">Giới thiệu <b class="caret"></b></a>
+                <a href="#"  class="dropdown-toggle" data-toggle="dropdown"><?php echo $firstMenuItem['Category']['name'] ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Lịch sử phát triển</a></li>
-                    <li><a href="#">Sứ mệnh tầm nhìn</a></li>
-                    <li><a href="#">Cơ cấu tổ chức</a></li>
-                    <li><a href="#">Cơ sở vật chất</a></li>
-                </ul>
+					<?php
+					foreach ($firstMenuItem['ChildCategory'] as $child):
+
+						?>
+						<li>
+							<?php
+							if ($child['is_tab'] != 1) {
+								echo $this->Html->link($child['name'], array(
+									'controller' => 'posts',
+									'action' => 'posts',
+									'id' => $child['id'],
+									'slug' => $child['alias']));
+							}
+
+							?>
+						</li>
+						<?php
+					endforeach;
+
+					?> </ul>
             </li>	
 			<?php
 			$resource_type = $this->requestAction('resources/getResourceType');
@@ -29,13 +48,16 @@
 					foreach ($resource_type as $k => $v):
 
 						?>
-					<li>
-						<?php echo $this->Html->link($v, array(
-							'controller'=>'resources',
-							'action'=>'listResources',
-							'id'=>$k,
-						)) ?>
-					</li>
+						<li>
+							<?php
+							echo $this->Html->link($v, array(
+								'controller' => 'resources',
+								'action' => 'listResources',
+								'id' => $k,
+							))
+
+							?>
+						</li>
 						<?php
 					endforeach;
 
