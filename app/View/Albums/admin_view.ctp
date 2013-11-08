@@ -65,9 +65,6 @@
             </div>
         </div>
     </div>
-    <div class="delete-photo-btn">
-        <span> <?php echo $this->Html->image('admin/delete.png') ?></span>
-    </div> 
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
