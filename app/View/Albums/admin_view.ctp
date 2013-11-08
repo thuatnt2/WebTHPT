@@ -7,6 +7,7 @@
             <div class="albums view">
                 <h2><?php echo $album['Album']['name'] ?></h2>
                 <i>Ngày tạo: <?php echo $album['Album']['created_at'] ?></i>
+                <br />
                 <div class="photos-in-album">
                     <?php if (count($album['Photo']) == 0) { ?>   
                         <p>Không có ảnh nào trong album này.</p>
@@ -17,8 +18,8 @@
                                     <?php $url = 'albums/' . $album['Album']['id'] . '/' . $photo['url'] ?>
                                     <?php echo $this->Html->image($url) ?>
                                 </div>
-                                <span class="delete-btn-box" > 
-                                    <a style="display:none" photo_id="<?php echo $photo['id'] ?>" title="Xóa ảnh này"> <?php echo $this->Html->image('admin/delete.png') ?> </a>
+                                <span class="delete-btn-box" style="display:none"  > 
+                                    <a photo_id="<?php echo $photo['id'] ?>" title="Xóa ảnh này"> <?php echo $this->Html->image('admin/delete.png') ?> </a>
                                 </span>
                             </div>
                         <?php } ?>
@@ -33,15 +34,12 @@
                                 <input accept="image/*" class="file" type="file" style="display:none" name="data[Photos][]">
                                 <input class="input-large" class="photo_url" type="text" >
                                 <a class="btn select-file-btn" >Chọn ảnh</a>
+                                <button type="button" class='btn btn-small btn-info' id='add_more_fiel_field'> + Thêm</button>
                             </div>
                         </div>
                         <br />
-                        <div style="text-align: center;width: 400px;">
-                            <button type="button" class='btn btn-small ' id='add_more_fiel_field'> + Thêm</button>
-                        </div> 
-                        <br />
                         <div style="text-align: center;width: 400px;border-top: 1px solid #eee;padding-top: 10px;">
-                            <button type="submit" class="btn btn-success"> Lưu </button>
+                            <button type="submit" class="btn btn-success"> Upload </button>
                         </div> 
                     </form>
 
@@ -71,7 +69,13 @@
             var file_field = $(this).parent().children('input[type=file]');
             file_field.trigger('click');
             file_field.on('change', function() {
-                $(this).parent().children('input[type=text]').val(file_field.val());
+                var file_path = file_field.val();
+                var startIndex = (file_path.indexOf('\\') >= 0 ? file_path.lastIndexOf('\\') : file_path.lastIndexOf('/'));
+                var filename = file_path.substring(startIndex);
+                if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+                    filename = filename.substring(1);
+                }
+                $(this).parent().children('input[type=text]').val(filename);
             });
         });
         $('input.file').change(function() {
@@ -81,10 +85,12 @@
             $('#photo-fields').append($('#photo-field-sample-wrapper').html());
         });
         $('.photo-box-warpper').mouseover(function() {
-            $(this).children('.delete-btn-box').children('a').show();
+            var pos = $(this).children('.photo-box').children('img').position();
+            $(this).children('.delete-btn-box').show();
+            $(this).children('.delete-btn-box').css({top: (pos['top']), left: pos['left']});
         });
         $('.photo-box-warpper').mouseout(function() {
-            $(this).children('.delete-btn-box').children('a').hide();
+           $(this).children('.delete-btn-box').hide();
         });
         $('.delete-btn-box a').on('click', function() {
             var parent = $(this).parent().parent();

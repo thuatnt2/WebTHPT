@@ -10,6 +10,7 @@
                     <legend><?php echo __('Tạo album ảnh mới'); ?></legend>
                     <?php
                     echo $this->Form->input('name', array('label' => 'Tiêu đề:'));
+//                    echo $this->Form->input('description', array('label' => 'Mô tả:'));
                     ?>
                 </fieldset>
                 <button class="btn btn-success" type="submit">Lưu</button>

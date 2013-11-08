@@ -1,7 +1,7 @@
 <?php
 
 App::uses('AppModel', 'Model');
-
+App::uses('Folder', 'Utility'); // for upload image
 /**
  * Album Model
  *
@@ -28,7 +28,8 @@ class Album extends AppModel {
     public $hasMany = array(
         'Photo' => array(
             'className' => 'Photo',
-            'foreignKey' => 'album_id'
+            'foreignKey' => 'album_id',
+            'dependent' => true
         )
     );
     public $validate = array(
@@ -58,5 +59,5 @@ class Album extends AppModel {
         parent::beforeSave($options);
         $this->data[$this->name]['created_at'] = date('Y-m-d H:i:s');
     }
-
+    
 }
