@@ -142,30 +142,36 @@
             </div>
         </footer>
         <script type='text/javascript'>
-            var dates_have_post = <?php echo json_encode($dates_have_post) ?>;
-            $.each(dates_have_post, function(i, val) {
-                console.log(val);
-            })
-            $('#blog-calendar').datepicker({
-                monthNames: ['Tháng 1 / ', 'Tháng 2 / ', 'Tháng 3 / ', 'Tháng 4 / ', 'Tháng 5 / ', 'Tháng 6 / ',
-                    'Tháng 7 / ', 'Tháng 8 / ', 'Tháng 9 / ', 'Tháng 10 / ', 'Tháng 11 / ', 'Tháng 12 / '],
-                dateFormat: 'yy-mm-dd',
-                inline: true,
-                beforeShowDay: function(date) {
-                    var str = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " 00:00:00";
-                    $.each(dates_have_post, function(i, val) {
-                        var date_temp = new Date(val + " 00:00:00");                      
-                        if (date_temp.getTime() === (new Date(str)).getTime()) {
-                            return [false,'date-no-post'];
-                        } 
-                    });
-                    return [true, 'date-have-post'];
-                },
-                onSelect: function(selectedDate) {
-                    console.log(selectedDate);
-                },
-                dayNamesMin: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+            $(document).ready(function() {
+
+                var dates_have_post = <?php echo json_encode($dates_have_post) ?>;
+                var datess = new Array();
+                var i = 0;
+                $.each(dates_have_post, function(i, val) {
+                    var date_temp = new Date("" + val + " 00:00:00");
+                    datess[i] = date_temp;
+                    i++;
+                });
+                $('#blog-calendar').datepicker({
+                    monthNames: ['Tháng 1 / ', 'Tháng 2 / ', 'Tháng 3 / ', 'Tháng 4 / ', 'Tháng 5 / ', 'Tháng 6 / ',
+                        'Tháng 7 / ', 'Tháng 8 / ', 'Tháng 9 / ', 'Tháng 10 / ', 'Tháng 11 / ', 'Tháng 12 / '],
+                    dateFormat: 'yy-mm-dd',
+                    beforeShowDay: function(date) {
+                        for (i = 0; i < datess.length; i++) {
+                            if (date === datess[i]) {
+                                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+                                return [true, 'date-have-post'];
+                            }
+                        }
+                        return [true];
+                    },
+                    onSelect: function(selectedDate) {
+                        console.log(selectedDate);
+                    },
+                    dayNamesMin: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
+                });
             });
+
         </script>
     </body>
 </html>

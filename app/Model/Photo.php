@@ -36,7 +36,7 @@ class Photo extends AppModel {
     public function afterDelete() {
         parent::afterDelete();
         //Delete file after delete record
-        $path = WWW_ROOT . 'img/albums' . DS . $this->data['Photo']['album_id'] . DS . $this->data['url'];
+        $path = WWW_ROOT . 'img/albums' . DS . $this->data['Photo']['album_id'] . DS . $this->data['Photo']['url'];
         unlink($path);
     }
 
