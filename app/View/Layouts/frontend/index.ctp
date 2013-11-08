@@ -214,7 +214,7 @@
         <script type="text/javascript">
                                                 $(document).ready(function() {
                                                     $('.carousel').carousel({
-                                                        interval: 5000,
+                                                        interval: 20000,
                                                         pause: 'hover',
                                                     });
                                                     $(".mostNews").jCarouselLite({
