@@ -16,11 +16,10 @@
                             <div class="photo-box-warpper">
                                 <div class="photo-box">
                                     <?php $url = 'albums/' . $album['Album']['id'] . '/' . $photo['url'] ?>
-
                                     <?php echo $this->Html->image($url) ?>
                                 </div>
                                 <span class="delete-btn-box" > 
-                                    <a style="display:none" title="Xóa ảnh này"> <?php echo $this->Html->image('admin/delete.png') ?> </a>
+                                    <a style="display:none" photo_id="<?php echo $photo['id'] ?>" title="Xóa ảnh này"> <?php echo $this->Html->image('admin/delete.png') ?> </a>
                                 </span>
                             </div>
                         <?php } ?>
@@ -85,19 +84,32 @@
         $('#add_more_fiel_field').on('click', function() {
             $('#photo-fields').append($('#photo-field-sample-wrapper').html());
         });
-
         $('.photo-box-warpper').mouseover(function() {
-            console.log('over');
             $(this).children('.delete-btn-box').children('a').show();
         });
         $('.photo-box-warpper').mouseout(function() {
             $(this).children('.delete-btn-box').children('a').hide();
         });
         $('.delete-btn-box a').on('click', function() {
-            console.log('delete');
+            var parent = $(this).parent().parent();
+            if (window.confirm('Bạn chắc chắn muốn xóa ảnh này ?')) {
+                $.ajax({
+                    url: '<?php echo Router::url('/admin/album-anh/delete_photo') ?>',
+                    type: 'DELETE',
+                    data: {'album_id': '<?php echo $album['Album']['id'] ?>', 'photo_id': $(this).attr('photo_id')},
+                    success: function(response) {
+                        if (response['success']) {
+                            parent.fadeOut(500, function() {
+                                $(this).remove();
+                            });
+                        }
+                    },
+                    error: function() {
+                        alert('Đã có lỗi xảy ra. Thao tác không thành công.');
+                    }
+                });
+            }
         });
-
-
     });
 
 </script>

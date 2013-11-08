@@ -163,4 +163,20 @@ class AlbumsController extends AppController {
         return $this->redirect(array('action' => 'index'));
     }
 
+    public function admin_deletePhoto() {
+        $this->autoRender = false;
+        $this->response->type('json');
+        $resp = array();
+        $resp['success'] = false;
+        $photo_id = $this->request->data['photo_id'];
+        $album_id = $this->request->data['album_id'];
+        $photo_will_del = $this->Photo->read(null, $photo_id);
+        if ($photo_will_del['Photo']['album_id'] == $album_id) {
+            $this->Photo->delete($photo_id);
+            $resp['success'] = true;
+            // Need to delete file
+        }
+        $this->response->body(json_encode($resp));
+    }
+
 }
