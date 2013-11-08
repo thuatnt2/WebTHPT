@@ -1,18 +1,24 @@
-<div class="albums form">
-<?php echo $this->Form->create('Album'); ?>
-	<fieldset>
-		<legend><?php echo __('Admin Add Album'); ?></legend>
-	<?php
-		echo $this->Form->input('name');
-		echo $this->Form->input('created_at');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit')); ?>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
+<div class="row-fluid">	
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="muted pull-left">Quản lí albums</div>
+        </div>
+        <div class="block-content collapse in">
+            <div class="albums form">
+                <?php echo $this->Form->create('Album'); ?>
+                <fieldset>
+                    <legend><?php echo __('Tạo album ảnh mới'); ?></legend>
+                    <?php
+                    echo $this->Form->input('name', array('label' => 'Tiêu đề:'));
+                    ?>
+                </fieldset>
+                <button class="btn btn-success" type="submit">Lưu</button>
+                <?php echo $this->Form->end(); ?>
+            </div>
+            <div class="actions">
+                <?php echo $this->Html->link(__('Danh sách Albums'), array('action' => 'index')); ?>
+            </div>
 
-		<li><?php echo $this->Html->link(__('List Albums'), array('action' => 'index')); ?></li>
-	</ul>
+        </div>
+    </div>
 </div>

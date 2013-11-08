@@ -25,11 +25,17 @@ class Album extends AppModel {
      *
      * @var array
      */
+    public $hasMany = array(
+        'Photo' => array(
+            'className' => 'Photo',
+            'foreignKey' => 'album_id'
+        )
+    );
     public $validate = array(
         'name' => array(
             'notEmpty' => array(
                 'rule' => array('notEmpty'),
-            //'message' => 'Your custom message here',
+                'message' => 'Không được để trống tiêu đề',
             //'allowEmpty' => false,
             //'required' => false,
             //'last' => false, // Stop validation after this rule
