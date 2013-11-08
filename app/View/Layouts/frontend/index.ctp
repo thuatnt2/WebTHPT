@@ -60,7 +60,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="content-middle">
+                    <div id="content-middle" style="display: none">
                         <div class="col-lg-8">
                             <div class="row">
                                 <div class="panel panel-default">
@@ -130,11 +130,11 @@
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Thư viện video</div>
-                                    <?php echo $this->element('frontend/video')?>
+                                    <?php echo $this->element('frontend/video') ?>
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Thư viện ảnh</div>
-                                    <?php echo $this->element('frontend/photo')?>
+                                    <?php echo $this->element('frontend/photo') ?>
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Liên kết Website</div>

@@ -125,10 +125,19 @@ ul.nav.nav-tabs li a {
     width: 100%;
     left: 0%;
     width: 99.7%;
-    bottom: 8px;
+    bottom: 0px;
     padding-left: 5px;
 }
 .carousel-caption a {
     padding: 5px 0 10px 0;
     color: #fff;
+}
+#search-form-navbar {
+    padding-top: 2px;
+    width: 200px;
+    float: right;
+    margin-right: 2px;
+}
+#search-form-navbar input {
+    height: 30px;
 }
