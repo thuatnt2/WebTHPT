@@ -139,7 +139,7 @@ class AlbumsController extends AppController {
             $this->Photo->create();
             $this->Photo->save($photo);
         }
-        $this->redirect($this->referer());
+        $this->redirect(Router::url('/admin/albums/view/' . $album_id));
     }
 
     /**
