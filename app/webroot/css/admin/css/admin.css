@@ -256,3 +256,16 @@ textarea{
     padding: 10px;
     border: 1px solid #eee;
 }
+.photo-box-warpper , .delete-btn-box {
+    display: inline-block;
+}
+.delete-btn-box {
+    position: relative;
+    top: -26px;
+    right: 24px;
+    cursor: pointer;
+}
+.photo-box-warpper {
+    height: 150px;
+    width: 150px;
+}
