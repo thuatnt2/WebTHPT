@@ -1,52 +1,78 @@
-<div class="resources index">
-	<h2><?php echo __('Resources'); ?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id'); ?></th>
-			<th><?php echo $this->Paginator->sort('title'); ?></th>
-			<th><?php echo $this->Paginator->sort('link'); ?></th>
-			<th><?php echo $this->Paginator->sort('view_link'); ?></th>
-			<th><?php echo $this->Paginator->sort('created'); ?></th>
-			<th><?php echo $this->Paginator->sort('modified'); ?></th>
-			<th><?php echo $this->Paginator->sort('user_created'); ?></th>
-			<th><?php echo $this->Paginator->sort('resource_category_id'); ?></th>
-			<th class="actions"><?php echo __('Actions'); ?></th>
-	</tr>
-	<?php foreach ($resources as $resource): ?>
-	<tr>
-		<td><?php echo h($resource['Resource']['id']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['title']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['link']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['view_link']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['created']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['modified']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['user_created']); ?>&nbsp;</td>
-		<td><?php echo h($resource['Resource']['resource_category_id']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $resource['Resource']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $resource['Resource']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $resource['Resource']['id']), null, __('Are you sure you want to delete # %s?', $resource['Resource']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
+<div class="row-fluid">	
+	<div class="block">
+		<div class="navbar navbar-inner block-header">
+			<div class="muted pull-left">Quản lí tài liệu</div>
+		</div>
+		<div class="block-content collapse in">
+			<?php echo $this->Session->flash()?>
+			<div class="span12">
+				<div class="dataTables_wrapper form-inline" role="grid">
+					<div  class="row">
+						<div class="span6">
+							<?php echo $this->Html->link('Thêm tài liệu', $this->Html->url('/admin/them-tai-lieu'), array('class' => 'btn btn-primary')) ?>
+						</div>
+					</div>
+
+					<?php
+					$stt = 1;
+
+					?>
+					<table class="table table-striped table-bordered dataTable">
+						<thead>
+							<tr>
+								<th>Thứ tự</th>
+								<th>Tiêu đề</th>
+								<th>Thể loại</th>
+								<th>Ngày tạo</th>
+								<th>Người tạo</th>
+								<th>Thao tác</th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+							//debug($resource_type[1]);
+							foreach ($resources as $row):
+
+								?>
+								<tr>
+									<td><?php echo $stt++ ?></td>
+									<td><?php echo $this->Html->link($row['Resource']['title'], $row['Resource']['link'],array('target'=>'_blank')); ?></td>
+									<td><?php echo $resource_type[$row['Resource']['resource_type']]?></td>
+									<td><?php echo date('d/m/Y',  strtotime($row['Resource']['created'])) ?></td>
+									<td><?php echo $row['Resource']['user_create'] ?></td>
+									<td>
+										<?php
+											echo $this->Html->link(
+													$this->Html->image('admin/edit.png'), array('action' => 'edit', $row['Resource']['id']), array('escape' => false));
+											echo $this->Form->postLink($this->Html->image('admin/delete.png'), array('action'=>'delete',$row['Resource']['id']), array('escape'=>false), 'Bạn có chắc chắn muốn xóa ???')
+										?>
+									</td>
+								</tr>
+								<?php
+							endforeach;
+
+							?>
+						</tbody>
+					</table>
+					<div class="row">
+						<div class="span6"></div>
+						<div class="span6">
+							<div class="dataTables_paginate paging_bootstrap pagination">
+								<ul>
+									<?php
+									echo $this->Paginator->prev('Trước', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
+									echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'currentClass' => 'active', 'tag' => 'li', 'first' => 1));
+									echo $this->Paginator->next('Tiếp', array('tag' => 'li', 'currentClass' => 'disabled'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
+
+									?>
+								</ul>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Resource'), array('action' => 'add')); ?></li>
-	</ul>
-</div>
+

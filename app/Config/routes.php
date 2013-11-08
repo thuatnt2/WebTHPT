@@ -33,36 +33,56 @@ Router::connect('/', array('controller' => 'index', 'action' => 'index'));
  */
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect(
-        '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'index', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/chi-tiet-bai-viet/:id-:slug', array('controller' => 'index', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
 Router::connect(
-        '/bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'posts'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'posts'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
 Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
 Router::connect(
-        '/blog/:bloger_id-:slug', array(
-    'controller' => 'blogs',
-    'action' => 'index'
-        ), array(
-    'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
+		'/blog/:bloger_id-:slug', array(
+	'controller' => 'blogs',
+	'action' => 'index'
+		), array(
+	'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
 );
 Router::connect(
-        '/blog/:bloger_id-:slug/bai-viet/:article_id-:article_title', array('controller' => 'blogs', 'action' => 'viewArticle'), array(
-    'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
+		'/blog/:bloger_id-:slug/bai-viet/:article_id-:article_title', array('controller' => 'blogs', 'action' => 'viewArticle'), array(
+	'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
 );
 /**
  * Frontend video
  */
 Router::connect('/videos', array('controller' => 'videos', 'action' => 'index'));
 Router::connect(
-        '/xem-video/:id-:slug', array(
-    'controller' => 'videos',
-    'action' => 'view'
-        ), array(
-    'pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/xem-video/:id-:slug', array(
+	'controller' => 'videos',
+	'action' => 'view'
+		), array(
+	'pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
+
+
+/**
+ * Frontend resource
+ */
+Router::connect(
+		'/tai-lieu/:id', array(
+	'controller' => 'resources',
+	'action' => 'listResources'
+		), array(
+	'pass' => array('id'), 'id' => '[0-9]+')
+);
+Router::connect(
+		'/xem-tai-lieu/:id-:slug', array(
+	'controller' => 'resources',
+	'action' => 'view'
+		), array(
+	'pass' => array('id', 'slug'), 'id' => '[0-9]+')
+);
+
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on

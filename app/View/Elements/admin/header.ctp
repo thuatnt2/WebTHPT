@@ -69,6 +69,9 @@
                     <li>
                         <a href="/admin/album-anh">Album ảnh</a>
                     </li>
+					<li>
+						<a href="<?php echo $this->Html->url('/').'admin/tai-lieu'?>">Tài liệu</a>
+					</li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

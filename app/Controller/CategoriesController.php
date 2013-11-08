@@ -119,7 +119,7 @@ class CategoriesController extends AppController {
 	}
 
 	public function getMainMenu(){
-		$conditions['AND'] = array('Category.id !='=>1,'Category.is_active'=> 1,'Category.is_tab' => false);
+		$conditions['AND'] = array('Category.id !='=>1,'Category.is_active'=> 1);
 		$menus = $this->Category->find('all',array('conditions'=>$conditions));
 		return $menus;
 	}

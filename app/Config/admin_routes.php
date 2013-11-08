@@ -13,4 +13,6 @@ Router::connect('/admin/videos', array('controller' => 'videos', 'action' => 'in
 Router::connect('/admin/them-video', array('controller' => 'videos', 'action' => 'add', 'admin' => true));
 Router::connect('/admin/album-anh', array('controller' => 'albums', 'action' => 'index', 'admin' => true));
 Router::connect('/admin/album-anh/upload', array('controller' => 'albums', 'action' => 'upload', 'admin' => true));
+Router::connect('/admin/them-tai-lieu', array('controller' => 'resources', 'action' => 'add', 'admin' => true));
+Router::connect('/admin/tai-lieu', array('controller' => 'resources', 'action' => 'index', 'admin' => true));
 ?>
