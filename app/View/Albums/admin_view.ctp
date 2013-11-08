@@ -27,7 +27,7 @@
                         <input type='hidden' name='data[album_id]' value='<?php echo $album['Album']['id'] ?>'>
                         <div id='photo-fields'>
                             <div class="photo-field">
-                                <input class="file" type="file" style="display:none" name="data[Photos][]">
+                                <input accept="image/*" class="file" type="file" style="display:none" name="data[Photos][]">
                                 <input class="input-large" class="photo_url" type="text" >
                                 <a class="btn select-file-btn" >Chọn ảnh</a>
                             </div>
@@ -48,7 +48,7 @@
             <div id="photo-field-sample-wrapper" style='display:none'>
                 <div class="photo-field">
                     <div style='clear:both'></div>
-                    <input class="file" type="file" style="display:none" name="data[Photos][]">
+                    <input accept="image/*" class="file" type="file" style="display:none" name="data[Photos][]">
                     <input class="input-large" class="photo_url" type="text" >
                     <a class="btn select-file-btn" >Chọn ảnh</a>
                 </div>
