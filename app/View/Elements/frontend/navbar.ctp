@@ -58,14 +58,16 @@
             <li><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>
             <li><a href="#" style="padding-right:35px">Liên hệ</a></li>
             <li>
-               
+
             </li>
-           
+
 
         </ul>
-          <div class="input-group" id="search-form-navbar">
-                    <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                </div>
+        <form>
+            <div class="input-group" id="search-form-navbar">
+                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+            </div>
+        </form>
     </div><!-- /.navbar-collapse -->
 </nav>
 <script type="text/javascript">
