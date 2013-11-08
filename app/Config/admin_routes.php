@@ -15,4 +15,6 @@ Router::connect('/admin/album-anh', array('controller' => 'albums', 'action' => 
 Router::connect('/admin/album-anh/upload', array('controller' => 'albums', 'action' => 'upload', 'admin' => true));
 Router::connect('/admin/them-tai-lieu', array('controller' => 'resources', 'action' => 'add', 'admin' => true));
 Router::connect('/admin/tai-lieu', array('controller' => 'resources', 'action' => 'index', 'admin' => true));
+
+Router::connect('/admin/album-anh/delete_photo', array('controller' => 'albums', 'action' => 'deletePhoto', 'admin' => true));
 ?>
