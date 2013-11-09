@@ -68,58 +68,53 @@
                         <?php echo $this->fetch('content') ?>
                     </div>
                 </div>
-                <div class='widget-area'>
-
-                    <div class='sidebartop section'>
-                        <div class='widget HTML' id='HTML1'>
-                            <div class='widget-content'>
-                                <div id="user-infor" style="">    
-                                    <h2>Giới thiệu </h2>
-                                    <div>
-                                        <ul>
-                                            <li>Họ tên: <?php echo $user['first_name'] . ' ' . $user['last_name'] ?></li>
-                                            <li>Khoa: CNTT</li>
-                                            <li>Danh ngôn: </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class='clear'></div>
-
-                        </div>
-                        <div class='widget HTML' id='HTML1'>
-                            <div class='widget-content'>
-                                <div id="blog-calendar">
-
+                <div class='sidebar'>
+                    <div class='sidebar-children'>
+                        <div class='widget-content'>
+                            <div id="user-infor" style="">    
+                                <h2>Giới thiệu </h2>
+                                <div>
+                                    <ul>
+                                        <li>Họ tên: <?php echo $user['first_name'] . ' ' . $user['last_name'] ?></li>
+                                        <li>Khoa: CNTT</li>
+                                        <li>Danh ngôn: </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class='clear'></div>
+
                         </div>
+                        <div class='clear'></div>
+                    </div>
+                    <div class='sidebar-children'>
+                        <div class='widget-content'>
+                            <div id="blog-calendar">
 
-
-                        <div class='widget PopularPosts' id='PopularPosts1'>
-                            <h2>Bài viết mới nhất</h2>
-                            <div class='widget-content popular-posts'>
-                                <ul>
-                                    <li>
-                                        <a href="#">Bài 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Bài 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Bài 2</a>
-                                    </li>
-                                </ul>
-
-                                <div class='clear'></div>
                             </div>
                         </div>
-                    </div><div class='widget Label' id='Label2'>
+                        <div class='clear'></div>
+                    </div>
+
+                    <div class='sidebar-children'>
+                        <h2>Bài viết mới nhất</h2>
+                        <div class='popular-posts'>
+                            <ul>
+                                <li>
+                                    <a href="#">Bài 3</a>
+                                </li>
+                                <li>
+                                    <a href="#">Bài 2</a>
+                                </li>
+                                <li>
+                                    <a href="#">Bài 2</a>
+                                </li>
+                            </ul>
+
+                            <div class='clear'></div>
+                        </div>
+                    </div>
+                    <div class='sidebar-children' >
                         <h2>Thống kê</h2>
-                        <div class='widget-content list-label-widget-content'>
+                        <div class=''>
                             <ul>
                                 <li>
                                     Số lần truy cập : 10

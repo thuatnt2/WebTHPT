@@ -666,7 +666,7 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 }
 .ui-datepicker table .ui-state-hover {
     /*background: #5F83B9;*/ 
-    color: #FFF; 
+    /*color: #FFF;*/ 
     font-weight: bold; 
     text-shadow: 0 1px 1px #234386;
     -webkit-box-shadow: 0 0px 0 rgba(255,255,255,0.6) inset; 

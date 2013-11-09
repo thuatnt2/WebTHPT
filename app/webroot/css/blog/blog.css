@@ -337,7 +337,7 @@ a:hover {
     margin: 24px 0 0;
     padding:0px;
 }
-.widget-area {
+.sidebar {
     float:right;
     margin: 24px 0 0;
     width:300px;
@@ -430,22 +430,22 @@ section[role="banner"] {
 }
 
 /* Sidebar */
-.widget-area .widget {
+.sidebar .widget {
     word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
     margin-bottom: 25px;
 }
-.widget-area .widget .widget-content {
+.sidebar .widget .widget-content {
     font-size: 13px;
 }
-.widget-area .widget h2 {
+.sidebar .widget h2 {
     margin-bottom: 5px;
 }
-.widget-area .widget p,
-.widget-area .widget li,
-.widget-area .widget .textwidget {
+.sidebar .widget p,
+.sidebar .widget li,
+.sidebar .widget .textwidget {
     font-size: 13px;
     line-height: 1.846153846;
     padding:3px 0px;
@@ -453,23 +453,23 @@ section[role="banner"] {
 .PopularPosts .widget-content ul li {
     padding:3px 0px;
 }
-.widget-area .widget p {
+.sidebar .widget p {
     margin-bottom: 24px;
     margin-bottom: 1.714285714rem;
 }
-.widget-area .textwidget ul {
+.sidebar .textwidget ul {
     list-style: disc outside;
     margin: 0 0 24px;
     margin: 0 0 1.714285714rem;
 }
-.widget-area .textwidget li {
+.sidebar .textwidget li {
     margin-left: 36px;
     margin-left: 2.571428571rem;
 }
-.widget-area .widget a {
+.sidebar .widget a {
     color: #777;
 }
-.widget-area .widget a:hover {
+.sidebar .widget a:hover {
     color: #21759b;
 }
 
@@ -928,7 +928,7 @@ label ~ span.required {
     border: 0;
     margin-bottom: 0;
 }
-.template-front-page .widget-area {
+.template-front-page .sidebar {
     clear: both;
     float: none;
     width: auto;
@@ -936,7 +936,7 @@ label ~ span.required {
     padding-top: 1.714285714rem;
     border-top: 1px solid #ededed;
 }
-.template-front-page .widget-area .widget li {
+.template-front-page .sidebar .widget li {
     margin: 8px 0 0;
     margin: 0.571428571rem 0 0;
     font-size: 13px;
@@ -945,13 +945,13 @@ label ~ span.required {
     list-style-type: square;
     list-style-position: inside;
 }
-.template-front-page .widget-area .widget li a {
+.template-front-page .sidebar .widget li a {
     color: #777;
 }
-.template-front-page .widget-area .widget li a:hover {
+.template-front-page .sidebar .widget li a:hover {
     color: #21759b;
 }
-.template-front-page .widget-area .widget_text img {
+.template-front-page .sidebar .widget_text img {
     float: left;
     margin: 8px 24px 8px 0;
     margin: 0.571428571rem 1.714285714rem 0.571428571rem 0;
@@ -961,7 +961,7 @@ label ~ span.required {
 /* =Widgets
 -------------------------------------------------------------- */
 
-.widget-area .widget ul ul {
+.sidebar .widget ul ul {
     margin-left: 12px;
     margin-left: 0.857142857rem;
 }
@@ -986,7 +986,7 @@ label ~ span.required {
     float: none;
     width: 100%;
 }
-.ie .widget-area {
+.ie .sidebar {
     float: right;
     width: 26.041666667%;
 }
@@ -1342,7 +1342,6 @@ a.says {
 }
 #user-infor {
     padding: 5px;
-    background-color: rgb(228, 244, 255);
     border: 1px solid rgb(220, 220, 220);
 }
 #blog-calendar .ui-datepicker{
@@ -1353,4 +1352,7 @@ a.says {
 }
 .date-no-post {
       background-color: black;
+}
+.sidebar .sidebar-children {
+    padding-bottom: 10px;
 }
