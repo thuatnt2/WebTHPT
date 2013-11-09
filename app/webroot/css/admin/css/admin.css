@@ -269,3 +269,6 @@ textarea{
 .photo-box-warpper {
     width: 150px;
 }
+.btn {
+    border-radius: 1px;
+}

@@ -41,7 +41,7 @@
 				<?php echo $this->Session->flash() ?>
 				<div class="span3">
 					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-video-bg.png'), '/admin/video', array('escape' => false, 'class' => 'thumbnail'))
+					echo $this->Html->link($this->Html->image('admin/ql-video-bg.png'), '/admin/videos', array('escape' => false, 'class' => 'thumbnail'))
 
 					?>
 				</div>

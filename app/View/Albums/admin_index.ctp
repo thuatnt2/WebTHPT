@@ -4,12 +4,13 @@
             <div class="muted pull-left">Quản lí albums</div>
         </div>
         <div class="block-content collapse in">
+            <?php echo $this->Session->flash() ?>
             <div class="albums index">
                 <table class="table table-bordered table-striped" cellpadding="0" cellspacing="0">
                     <tr>
                         <th>Tiêu đề</th>
                         <th>Ngày tạo</th>
-                        <th>Số lượng</th>
+                        <th>Số lượng ảnh</th>
                         <th>Thao tác</th>
                     </tr>
                     <?php foreach ($albums as $album): ?>
@@ -27,7 +28,7 @@
                 </table>
             </div>
             <div class="actions" style="text-align: center">
-                <a href="/admin/albums/add" class="btn btn-success">Tạo album mới</a>
+                <a href="/admin/albums/add" class="btn btn-primary">Tạo album mới</a>
             </div>
         </div>
     </div>

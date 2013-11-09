@@ -7,7 +7,7 @@
 			<div class="span12">
 				<?php echo $this->Form->create('Category'); ?>
 				<fieldset>
-					<legend>Thêm mới danh bài viết</legend>
+					<legend>Thêm mới danh mục</legend>
 					<div class="control-group">
 						<label class="control-label">Chọn danh mục cha</label>
 						<div class="controls">
@@ -33,8 +33,8 @@
 					</div>	
 
 
-					<div class="form-actions">
-						<?php echo $this->Form->submit('Nhập', array('class' => 'btn-large btn-primary', 'div' => false)) ?>
+					<div style="">
+						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-primary', 'div' => false)) ?>
 					</div>
 					<?php echo $this->Form->hidden('thumbnail', array('id' => 'post-thumbnail')) ?>
 				</fieldset>

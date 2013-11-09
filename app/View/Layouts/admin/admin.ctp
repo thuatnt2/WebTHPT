@@ -32,13 +32,11 @@ and open the template in the editor.
                 ?>
             </div>
         </div>
-
-
-<?php
-echo $this->Html->script('admin/bootstrap');
-echo $this->Html->script('admin/datatables/js/jquery.dataTables.min');
-echo $this->Html->script('admin/admin');
-echo $this->Html->script('admin/DT_bootstrap');
-?>
+        <?php
+        echo $this->Html->script('admin/bootstrap');
+        echo $this->Html->script('admin/datatables/js/jquery.dataTables.min');
+        echo $this->Html->script('admin/admin');
+        echo $this->Html->script('admin/DT_bootstrap');
+        ?>
     </body>
 </html>

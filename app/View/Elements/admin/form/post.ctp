@@ -56,7 +56,7 @@
 					<div class="control-group">
 						<label>Tóm tắt</label>
 						<div class="controls">
-							<?php echo $this->Form->input('sumary', array('div' => false, 'label' => false, 'class' => 'input-xxlarge textarea wysihtml5-editor')); ?>
+							<?php echo $this->Form->input('sumary', array('rows' => 3,'div' => false, 'label' => false, 'class' => 'input-xxlarge textarea wysihtml5-editor')); ?>
 						</div>
 					</div>
 					<div class="control-group">
@@ -65,12 +65,11 @@
 							<?php
 							echo $this->Form->input('content', array('div' => FALSE, 'label' => false, 'id' => 'full_text', 'class' => 'input-xxlarge textarea wysihtml5-editor'));
 							echo $this->TvFck->create('full_text', array('toolbar' => 'extra'), 'full_text');
-
 							?>
 						</div>
 					</div>
-					<div class="form-actions">
-						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
+					<div style="text-align: center">
+						<?php echo $this->Form->submit('Lưu', array('class' => 'btn btn-success', 'div' => false)) ?>
 					</div>
 					<?php echo $this->Form->hidden('thumbnail', array('id' => 'post-thumbnail')) ?>
 				</fieldset>

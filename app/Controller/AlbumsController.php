@@ -86,10 +86,10 @@ class AlbumsController extends AppController {
         if ($this->request->is('post')) {
             $this->Album->create();
             if ($this->Album->save($this->request->data)) {
-                $this->Session->setFlash(__('The album has been saved.'));
+                $this->Session->setFlash('Tạo Album thành công', 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The album could not be saved. Please, try again.'));
+                $this->Session->setFlash('Không thể tạo Album mới', 'flash_error');
             }
         }
     }
@@ -108,10 +108,10 @@ class AlbumsController extends AppController {
         }
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Album->save($this->request->data)) {
-                $this->Session->setFlash(__('The album has been saved.'));
+                 $this->Session->setFlash('Cập nhật Album thành công', 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             } else {
-                $this->Session->setFlash(__('The album could not be saved. Please, try again.'));
+                $this->Session->setFlash('Cập nhật Album thất bại', 'flash_error');
             }
         } else {
             $options = array('conditions' => array('Album.' . $this->Album->primaryKey => $id));
@@ -156,9 +156,9 @@ class AlbumsController extends AppController {
         }
         $this->request->onlyAllow('post', 'delete');
         if ($this->Album->delete()) {
-            $this->Session->setFlash(__('The album has been deleted.'));
+            $this->Session->setFlash('Đã xóa một Album', 'flash_success');
         } else {
-            $this->Session->setFlash(__('The album could not be deleted. Please, try again.'));
+           $this->Session->setFlash('Xóa Album không thành công', 'flash_eror');
         }
         return $this->redirect(array('action' => 'index'));
     }

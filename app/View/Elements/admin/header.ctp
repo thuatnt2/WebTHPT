@@ -2,8 +2,9 @@
     <div class="navbar-inner">
         <div class="container-fluid">
             <div class="nav-collapse collapse">
-                <a href="<?php echo $this->Html->url('/') ?>" target="_blank" class="brand">Đến Website</a>
-                <a href="/dashboard" class="brand">Trang quản trị</a>
+                <a href="<?php echo $this->Html->url('/') ?>" target="_blank" class="brand">Trang chủ</a> 
+                <a class="brand">|</a>
+                <a href="<?php echo Router::url('/dashboard')?>" class="brand">Trang quản trị</a>
                 <?php
                 $user = $this->Session->read('UserAuth');
                 if (!empty($user)):

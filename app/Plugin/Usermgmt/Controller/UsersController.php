@@ -161,7 +161,7 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function logout() {
 		$this->UserAuth->logout();
-		$this->Session->setFlash(__('You are successfully signed out'));
+                $this->Session->setFlash('Bạn đã đăng xuất thành công.', 'flash_success');
 		$this->redirect(LOGOUT_REDIRECT_URL);
 	}
 
@@ -245,7 +245,7 @@ class UsersController extends UserMgmtAppController {
 				$user['User']['password'] = $this->UserAuth->makePassword($this->request->data['User']['password'], $salt);
 				$this->User->save($user, false);
 				$this->LoginToken->deleteAll(array('LoginToken.user_id' => $userId), false);
-				$this->Session->setFlash('Bạn vừa cập nhật mật khẩu thành công', 'flash_success');
+				$this->Session->setFlash('Cập nhật mật khẩu thành công', 'flash_success');
 				$this->redirect('/dashboard');
 			}
 		}
