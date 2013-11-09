@@ -44,7 +44,7 @@
                                         <li><a href='#'>Giới thiệu</a></li>
                                         <li id="search-bar"> <aside class='widget widget_search' id='search-3'>
                                                 <form action='' id='searchform' method='get'>
-                                                    <div><label class='screen-reader-text' for='s'>Search for:</label>
+                                                    <div>
                                                         <input id='s' name='q' type='text' value=''/>
                                                         <input id='searchsubmit' type='submit' value='Tìm'/>
                                                     </div>
@@ -56,28 +56,21 @@
 
                                     <div class='clear'></div>
                                 </div>
-                            </div></div>
-                    </div>
-                </div><!-- #site-navigation -->
-            </header><!-- #masthead -->
-            <div class='wrapper' id='main'>
-                <div class='site-content' id='primary'>
-                    <div id='content' role='main'>
-                        <?php echo $this->fetch('content') ?>
-
-                    </div><!-- #content -->
-                </div><!-- #primary -->
-                <div class='widget-area' id='secondary' role='complementary'>
-
-                    <div class='sidebartop section' id='sidebartop'>
-                        <div class='widget HTML' id='HTML1'>
-                            <div class='widget-content'>
-                                <div id="blog-calendar">
-
-                                </div>
                             </div>
-                            <div class='clear'></div>
+
                         </div>
+                    </div>
+                </div>
+            </header>
+            <div class='wrapper'>
+                <div class='site-content'>
+                    <div id='content'>
+                        <?php echo $this->fetch('content') ?>
+                    </div>
+                </div>
+                <div class='widget-area'>
+
+                    <div class='sidebartop section'>
                         <div class='widget HTML' id='HTML1'>
                             <div class='widget-content'>
                                 <div id="user-infor" style="">    
@@ -96,6 +89,15 @@
                             <div class='clear'></div>
 
                         </div>
+                        <div class='widget HTML' id='HTML1'>
+                            <div class='widget-content'>
+                                <div id="blog-calendar">
+
+                                </div>
+                            </div>
+                            <div class='clear'></div>
+                        </div>
+
 
                         <div class='widget PopularPosts' id='PopularPosts1'>
                             <h2>Bài viết mới nhất</h2>
@@ -143,31 +145,49 @@
         </footer>
         <script type='text/javascript'>
             $(document).ready(function() {
-
                 var dates_have_post = <?php echo json_encode($dates_have_post) ?>;
-                var datess = new Array();
-                var i = 0;
-                $.each(dates_have_post, function(i, val) {
-                    var date_temp = new Date("" + val + " 00:00:00");
-                    datess[i] = date_temp;
-                    i++;
-                });
+                function filterArticleSender(date) {
+                    $.ajax({
+                        url: '/blog/filter_article_by_date',
+                        type: 'GET',
+                        data: {bloger_id: '<?php echo $user['id'] ?>', date: date},
+                        success: function(response) {
+                            var articles_list_container = $('#blog-index-wrapper');
+                            articles_list_container.fadeOut(300, function() {
+                                articles_list_container.html(response['html']).fadeIn(300);
+                            });
+                        },
+                        error: function() {
+                            alert('Có lỗi xảy ra. Thao tác không thành công.');
+                        }
+                    });
+                }
+                function filterArticleByDate(dateSelected) {
+                    for (i = 0; i < dates_have_post.length; i++) {
+                        if (dateSelected === dates_have_post[i]) {
+                            filterArticleSender(dateSelected);
+                        }
+                    }
+                }
+
                 $('#blog-calendar').datepicker({
                     monthNames: ['Tháng 1 / ', 'Tháng 2 / ', 'Tháng 3 / ', 'Tháng 4 / ', 'Tháng 5 / ', 'Tháng 6 / ',
                         'Tháng 7 / ', 'Tháng 8 / ', 'Tháng 9 / ', 'Tháng 10 / ', 'Tháng 11 / ', 'Tháng 12 / '],
                     dateFormat: 'yy-mm-dd',
                     beforeShowDay: function(date) {
-                        for (i = 0; i < datess.length; i++) {
-                            if (date === datess[i]) {
-                                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+                        var dateInStr = date.getFullYear() + '-';
+                        var month = date.getMonth() + 1;
+                        dateInStr += (month < 10 ? ('0' + month) : ('' + month)) + '-';
+                        var day = date.getDate();
+                        dateInStr += (day < 10 ? ('0' + day) : ('' + day));
+                        for (i = 0; i < dates_have_post.length; i++) {
+                            if (dateInStr === dates_have_post[i]) {
                                 return [true, 'date-have-post'];
                             }
                         }
                         return [true];
                     },
-                    onSelect: function(selectedDate) {
-                        console.log(selectedDate);
-                    },
+                    onSelect: filterArticleByDate,
                     dayNamesMin: ["CN", "T2", "T3", "T4", "T5", "T6", "T7"]
                 });
             });
