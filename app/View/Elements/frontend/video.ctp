@@ -1,25 +1,45 @@
-<div class="panel-body">
-    <iframe  src="http://youtube.com/embed/GYEXHBKr4tw" width="350" height="220" frameborder="0"></iframe>
-    <div class="col-lg-12">
-        <a class="text-center" href="#">Giới thiệu về trường THPT Tiểu la</a>
-    </div>
-    <div class="col-lg-4">
-        <div class="thunmail thunmail-1 pull-left"><a href="/content/nhat-13-clip-khoi-chuyen-trung">
-                <img src="http://img.youtube.com/vi/99e255g4taw/0.jpg" alt="See video" title="See video" width="85" height="70"></a>
-        </div>
-    </div>
-    <div class="col-lg-4">
-        <div class="thunmail thunmail-1 pull-left"><a href="/content/nhat-13-clip-khoi-chuyen-trung">
-                <img src="http://img.youtube.com/vi/99e255g4taw/0.jpg" alt="See video" title="See video" width="85" height="70"></a>
-        </div>
-    </div>
+<?php
+$videos = $this->requestAction('videos/recentVideo');
+//debug($videos);
 
-    <div class="col-lg-4">
-        <div class="thunmail thunmail-3"><a href="/content/nhat-13-clip-khoi-chuyen-hoa"><img src="http://img.youtube.com/vi/rt5cKkbSpp8/0.jpg" alt="See video" title="See video" width="85" height="70"></a></div>
+?>
+<div class="panel-body">
+    <iframe  src="http://youtube.com/embed/<?php echo $videos['Default']['Video']['youtube_id'] ?>" width="350" height="220" frameborder="0"></iframe>
+    <div class="col-lg-12">
+		<?php
+		echo $this->Html->link($videos['Default']['Video']['title'], array(
+			'action' => 'view',
+			'id' => $videos['Default']['Video']['id'],
+			'slug' => $videos['Default']['Video']['alias'],
+				), array('class' => 'text-center'))
+
+		?>
     </div>
+	<?php
+	for ($i = 0; $i < 3; $i++) {
+
+		?>
+
+		<div class="col-lg-4">
+			<div class="thunmail thunmail-1 pull-left">
+				<?php
+				echo $this->Html->link($this->Html->image('http://img.youtube.com/vi/' . $videos[$i]['Video']['youtube_id'] . '/0.jpg', array('class' => 'thumbnail','heigh'=>80,'width'=>75)), array(
+					'controller' => 'videos',
+					'action' => 'view',
+					'id' => $videos[$i]['Video']['id'],
+					'slug' => $videos[$i]['Video']['alias'],
+						), array('escape' => false))
+
+				?>
+			</div>
+		</div>
+		<?php
+	}
+
+	?>
     <br>
     <div class="col-lg-12">
-        <a href="/video" class="pull-right">
+        <a href="<?php echo $this->Html->url('/videos')?>" class="pull-right">
             [Xem thêm] 
         </a>
     </div>

@@ -178,5 +178,10 @@ class AlbumsController extends AppController {
         }
         $this->response->body(json_encode($resp));
     }
+	
+	public function recentAlbum(){
+		$album = $this->Album->find('first');
+		return $album;
+	}
 
 }

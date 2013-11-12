@@ -20,10 +20,10 @@ class VideosController extends AppController {
 
 	public function index() {
 		$this->layout = 'frontend/default';
-		$this->paginate = array('limit' => $this->limit);
+		$this->paginate = array('limit' => $this->limit,'conditions'=>array('Video.is_default'=>false));
 		$videos = $this->Paginator->paginate();
-		$videoDefault = $videos[0];
-		unset($videos[0]);
+		$videoDefault = $this->Video->find('first',array('conditions'=> array('Video.is_default'=>true)));
+		//debug($videoDefault); exit();
 		$this->set('title_for_layout', 'Danh sách video');
 		$this->set(compact('videoDefault', 'videos'));
 	}
@@ -31,7 +31,7 @@ class VideosController extends AppController {
 	public function view($id) {
 		$this->layout = 'frontend/detailArticle';
 		$videoDefault = $this->Video->read(null, $id);
-		$this->paginate = array('conditions'=>array('Video.id != '=>$id), 'limit' => $this->limit);
+		$this->paginate = array('conditions' => array('Video.id != ' => $id), 'limit' => $this->limit);
 		$videos = $this->Paginator->paginate();
 		$this->set('title_for_layout', 'Xem video');
 		$this->set('videos', $videos);
@@ -77,6 +77,7 @@ class VideosController extends AppController {
 			$pos = strpos($link, 'v=');
 			$youtube_id = substr($link, $pos + 2);
 			$this->request->data['Video']['youtube_id'] = $youtube_id;
+			$this->request->data['Video']['is_default'] = false;
 			$this->Video->create();
 			if ($this->Video->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công', 'flash_success');
@@ -137,6 +138,31 @@ class VideosController extends AppController {
 	public function admin_videoActive($id, $status) {
 		$this->Video->id = $id;
 		$this->Video->saveField('is_active', $status);
+		$this->redirect('index');
+	}
+
+	public function recentVideo() {
+		$default = $this->Video->find('first',array('conditions'=>array('Video.is_default'=>true)));
+		$videos =  $this->Video->find('all', array('limit' => 3,
+					//'fields' => array('Video.id', 'Video.title', 'Video.link'),
+						)
+		);
+		$videos['Default'] = $default;
+		return $videos;
+	}
+
+	public function admin_setDefault($id) {
+		$current = $this->Video->find('first', array('conditions' => array('Video.is_default' => true)));
+		if (!empty($current)) {
+			$this->Video->id = $current['Video']['id'];
+			$this->Video->saveField('is_default', false);
+			$this->Video->id = $id;
+			$this->Video->saveField('is_default', true);
+		} else {
+			$this->Video->id = $id;
+			$this->Video->saveField('is_default', true);
+		}
+		$this->Session->setFlash('Đặt thành công video làm mặc định','flash_success');
 		$this->redirect('index');
 	}
 

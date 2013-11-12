@@ -80,7 +80,7 @@ class PostsController extends AppController {
 	 * @return void
 	 */
 	public function admin_edit($id = null) {
-		if ($this->request->is('post')) {
+		if ($this->request->is('POST') || $this->request->is('PUT')) {
 			$this->Post->id = $id;
 			$this->Post->create();
 			$this->request->data['Post']['alias'] = $this->Common->vnit_change_title($this->request->data['Post']['title']);
@@ -136,23 +136,24 @@ class PostsController extends AppController {
 		$this->set('posts', $posts);
 		$this->set('title_for_layout', $category['Category']['name']);
 	}
-        /**
-        * Get the most Recent post
-        *
-        * @param int $limit The number of comments you want
-        * @return Array
-        **/
-       public function recent($limit = 7) {
-          if (!empty($this->request->params['requested'])) {
-                 $this->recursive = 1;
-                 $posts = array();
-                 $recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.modified ASC'));
-                 array_push($posts, $recent);
-                 $viewMost = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.view_count DESC'));
-                 $this->log($viewMost,'debug');
-                array_push($posts, $viewMost);
-                return $recent;
-          }
-       }
+
+	/**
+	 * Get the most Recent post
+	 *
+	 * @param int $limit The number of comments you want
+	 * @return Array
+	 * */
+	public function recent($limit = 7) {
+		if (!empty($this->request->params['requested'])) {
+			$this->recursive = 1;
+			$posts = array();
+			$recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.modified ASC'));
+			array_push($posts, $recent);
+			$viewMost = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.view_count DESC'));
+			$this->log($viewMost, 'debug');
+			array_push($posts, $viewMost);
+			return $recent;
+		}
+	}
 
 }

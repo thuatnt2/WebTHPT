@@ -1,4 +1,4 @@
-<?php //debug($categories); ?>
+<?php //debug($this->request->data); ?>
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
@@ -19,7 +19,7 @@
 									<optgroup label="<?php echo $category['Category']['name'] ?>">
 										<?php foreach ($category['ChildCategory'] as $child):
 											?>
-											<option value="<?php echo $child['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id'])&&$this->request->data['Category']['category_id']==$child['id']) ?  'selected': '' ?>><?php echo $child['name'] ?></option>
+											<option value="<?php echo $child['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id'])&&$this->request->data['Category']['id']==$child['id']) ?  'selected': '' ?>><?php echo $child['name'] ?></option>
 												<?php
 											endforeach;
 											?>

@@ -199,13 +199,6 @@
                             </p>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="footer-content">
-                            <p class="text-center">Website đươc thiết kế và xây dựng bởi Thuật Nguyễn<br/>
-                                Email: thuatnt2@gmail.com - ĐT: 01642906837
-                            </p>
-                        </div>
-                    </div>
 
                 </div>
             </div>
