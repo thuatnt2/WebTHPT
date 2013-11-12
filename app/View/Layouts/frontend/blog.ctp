@@ -6,7 +6,7 @@
         <?php echo $this->Html->css(array('blog/blog', 'blog/aristo')) ?>
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min', 'blog/jquery-ui-1.9.2.custom.min'))
+            'vendor/jquery-1.10.2.min', 'blog/jquery-ui-1.9.2.custom.min'))
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
