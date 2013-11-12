@@ -112,6 +112,7 @@
 
                 </ul>
             </li>
+            <li><?php echo $this->Html->link('Album ảnh', array('plugin' => null, 'controller' => 'albums', 'action' => 'index'), array('escape' => false)) ?></li>
             <li><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>
             <li><a href="#" style="padding-right:35px">Liên hệ</a></li>
             <li>
