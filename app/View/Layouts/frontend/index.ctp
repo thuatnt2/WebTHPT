@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+
         <title><?php echo $title_for_layout ?></title>
         <?php
         echo $this->Html->css(array(
@@ -11,8 +13,8 @@
         ?>
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min',
-            ))
+            'vendor/jquery-1.10.2.min',
+        ))
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -212,12 +214,13 @@
 //        echo $this->fetch('scriptBottom');
         ?>
         <script type="text/javascript">
-                                                $(document).ready(function() {
-                                                    $('.carousel').carousel({
-                                                        interval: 20000,
+
+                                                jQuery(document).ready(function() {
+                                                    jQuery('.carousel').carousel({
+                                                        interval: 2000,
                                                         pause: 'hover',
                                                     });
-                                                    $(".mostNews").jCarouselLite({
+                                                    jQuery(".mostNews").jCarouselLite({
                                                         vertical: true,
                                                         hoverPause: true,
                                                         visible: 2,

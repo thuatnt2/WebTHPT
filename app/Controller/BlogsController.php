@@ -7,6 +7,19 @@ class BlogsController extends AppController {
     var $layout = 'frontend/blog';
     var $uses = array('Article', 'Usermgmt.User');
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $options = array(
+            'conditions' => array('Article.user_id' => $this->request->params['bloger_id']),
+            'recursive' => -1,
+            'limit' => 2,
+            'order' => array('Article.created_at DESC')
+        );
+        
+        $recent_articles = $this->Article->find('all', $options);
+        $this->set(compact('recent_articles'));
+    }
+
     public function index($bloger_id) {
         $user = $this->User->read(null, $this->request->params['bloger_id']);
         $this->set('user', $user['User']);
@@ -82,7 +95,7 @@ class BlogsController extends AppController {
             ),
             'recursive' => -1
         );
-        
+
         $articles = $this->Article->find('all', $options);
         $this->set(compact('articles'));
         // Get result list in html

@@ -3,10 +3,10 @@
     <head>
         <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         <title>Blog giáo viên</title>
-        <?php echo $this->Html->css(array('blog/blog', 'blog/aristo')) ?>
+        <?php echo $this->Html->css(array('blog/aristo','blog/blog')) ?>
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min', 'blog/jquery-ui-1.9.2.custom.min'))
+            'vendor/jquery-1.10.2.min', 'blog/jquery-ui-1.9.2.custom.min'))
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,17 +19,33 @@
         <div class='site' id='page'>
             <header class='site-header' id='masthead'>
                 <div class='header section' id='header'><div class='widget Header' id='Header1'>
-                        <div id='header-inner'>
-                            <div class='titlewrapper'>
+                        <div id='header-inner' >
+                            <div class='titlewrapper' style="float:left">
                                 <h1 class='site-title'>
                                     <a href=''>Blog giáo viên</a>
                                 </h1>
-                            </div>
-                            <div class='descriptionwrapper'>
                                 <h2 class='site-description'>Không có gì quý hơn độc lập tự do</h2>
                             </div>
+
+                            <span class="login-blog-form" style="float:right"> 
+                                <?php $current_user = $this->Session->read('UserAuth'); ?>
+                                <?php if (!empty($current_user)): ?>
+                                    Chào mừng <a><?php echo $current_user['User']['first_name'] ?></a> , <a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a>
+                                <?php else: ?>
+                                    <?php echo $this->Form->create('User', array('url' => '/login', 'class' => 'form-signin')); ?>
+                                    <?php echo $this->Form->hidden('login_from_blog', array('value' => 1)) ?>
+                                    <?php echo $this->Form->input('username', array('placeholder' => 'Tên đăng nhập', 'label' => false, 'div' => false, 'class' => 'input-block-level')) ?>
+                                    <?php echo $this->Form->input('password', array('type' => 'password', 'placeholder' => 'Mật khẩu', 'label' => false, 'div' => false, 'class' => 'input-block-level')) ?>
+                                    <button class="button" type="submit">Đăng nhập</button>
+                                <?php endif; ?>
+                                <span style="color: rgb(185, 74, 72);">
+                                    <?php echo $this->Session->flash(); ?>
+                                </span>
+                            </span>
                         </div>
-                    </div></div>
+                    </div>
+                </div>
+                <div style="clear:both"> </div>
                 <div class='main-navigation' id='site-navigation' role='navigation'>
                     <div class='nav-menu'>
                         <div class='nbttopmenu section' id='nbttopmenu'><div class='widget PageList' id='PageList8'>
@@ -70,6 +86,7 @@
             </header>
             <div class='wrapper'>
                 <div class='site-content'>
+                    <?php echo $this->Session->flash(); ?>
                     <div id='content'>
                         <?php echo $this->fetch('content') ?>
                     </div>
@@ -104,15 +121,11 @@
                         <h2>Bài viết mới nhất</h2>
                         <div class='popular-posts'>
                             <ul>
+                                <?php foreach ($recent_articles as $art) :?>
                                 <li>
-                                    <a href="#">Bài 3</a>
+                                    <a href="#"><?php echo $art['Article']['title'] ?></a>
                                 </li>
-                                <li>
-                                    <a href="#">Bài 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Bài 2</a>
-                                </li>
+                                <?php endforeach; ?>
                             </ul>
 
                             <div class='clear'></div>

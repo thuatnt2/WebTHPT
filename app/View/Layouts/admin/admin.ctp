@@ -17,7 +17,7 @@ and open the template in the editor.
         echo $this->Html->css('/usermgmt/css/umstyle');
         ?>
         <?php
-        echo $this->Html->script('vendor/jquery-2.0.2.min');
+        echo $this->Html->script('vendor/jquery-1.10.2.min');
         ?>
         <script type="text/javascript">
             var base_url = '<?php echo $this->Html->webroot('/') ?>';

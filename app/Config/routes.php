@@ -93,6 +93,7 @@ Router::connect('/blog/filter_article_by_date', array(
     'action' => 'filterArticleByDate'
         )
 );
+//Router::connect('/blog/:bloger_id/login', array('controller' => ''));
 
 /**
  * Load all plugin routes. See the CakePlugin documentation on
