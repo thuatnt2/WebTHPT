@@ -6,7 +6,15 @@
                 <?php foreach ($posts as $row): ?>
                     <li style="overflow: hidden; float: none; height: 100px;">
                         <div class="col-lg-3">
-                            <?php echo $this->Html->image($row['Post']['thumbnail'], array('style="width:72px;height:70px;"')) ?>
+                            <?php
+                            if(isset($row['Post']['thumbnail']) && $row['Post']['thumbnail'] != null) {
+                                echo $this->Html->image($row['Post']['thumbnail'], array('style="width:72px;height:70px;"')) ;
+                            }
+                            else {
+                                echo $this->Html->image('frontend/no-images.jpg', array('style="width:72px;height:70px;border:1px solid"')) ;
+                            }
+                                
+                            ?>
                         </div>
                         <div class="col-lg-9 pull-left">
                             <?php
