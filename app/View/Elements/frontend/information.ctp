@@ -25,7 +25,7 @@
     </div>
     <div class="tab-pane" id="tabs2-pane2">
         <div class="moreNews" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; height: 336px;">
-            <p>aaaaaaaaaaaaaaaaaaa</p>
+            
         </div>
     </div>
 </div>

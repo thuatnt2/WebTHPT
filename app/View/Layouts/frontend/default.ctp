@@ -13,7 +13,7 @@
         ?>
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-2.0.2.min',
+            'vendor/jquery-1.10.2.min',
             'vendor/jquery.fancybox.pack',
             'vendor/jquery.mousewheel-3.0.6.pack',
             'vendor/jquery.fancybox-buttons',
