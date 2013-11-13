@@ -14,7 +14,14 @@ else:
                     'slug' => $row['Post']['alias']), array('escape' => false));
                 ?>
             </h4>
-            <?php echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"')) ?>
+            <?php 
+                if(isset($row['Post']['thumbnail']) && $row['Post']['thumbnail'] != null) {
+                    echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
+                }
+                else {
+                    echo $this->Html->image('frontend/no-images.jpg', array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
+                }
+            ?>
             <p><?php echo $row['Post']['sumary'] . '...' ?></p>
             <?php
             echo $this->Html->link('Xem thêm...', array(
@@ -25,6 +32,7 @@ else:
             ?>
         </div>
         <hr>
+        <div class="clearfix"></div>
         <?php
     endforeach;
 endif;
