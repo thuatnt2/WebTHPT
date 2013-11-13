@@ -7,56 +7,62 @@ class BlogsController extends AppController {
     var $layout = 'frontend/blog';
     var $uses = array('Article', 'Usermgmt.User');
 
-    private function __getRecentPost() {
+    private function __readyDataForLayout() {
         $options = array(
             'conditions' => array('Article.user_id' => $this->request->params['bloger_id']),
-            'recursive' => -1,
-            'limit' => 2,
-            'order' => array('Article.created_at DESC')
+            'order' => array('Article.created_at DESC'),
+            'recursive' => -1
         );
-        return $this->Article->find('all', $options);
-    }
+        $articles = $this->Article->find('all', $options);
 
-    private function __getDateHavePost($articles) {
+        $recent_articles = array_slice($articles, 0, 3);
+
         $dates_have_post = array();
 
         foreach ($articles as $article) {
             $date = new DateTime($article['Article']['created_at']);
             array_push($dates_have_post, $date->format('Y-m-d'));
         }
-        return array_unique($dates_have_post);
+        $dates_have_post = array_unique($dates_have_post);
+        $show_write_article_button = false;
+        $current_user = $this->Session->read('UserAuth');
+        if (!empty($current_user)) {
+            if ($current_user['User']['id'] == $this->request->params['bloger_id']) {
+                $show_write_article_button = true;
+            }
+        }
+
+        $user = $this->User->read(null, $this->request->params['bloger_id']);
+        $this->set('user', $user['User']);
+        $this->set(compact('recent_articles', 'dates_have_post', 'articles', 'show_write_article_button'));
     }
 
     public function index($bloger_id) {
-        $recent_articles = $this->__getRecentPost();
-
-        $user = $this->User->read(null, $this->request->params['bloger_id']);
-        $this->set('user', $user['User']);
+        $this->__readyDataForLayout();
         $title_for_layout = "Blog giáo viên";
-
-        $options = array(
-            'conditions' => array('Article.user_id' => $bloger_id),
-            'recursive' => -1
-        );
-        $articles = $this->Article->find('all', $options);
-        $dates_have_post = $this->__getDateHavePost($articles);
-        $this->set(compact('title_for_layout', 'articles', 'dates_have_post', 'recent_articles'));
+        $this->set(compact('title_for_layout'));
     }
 
     public function viewArticle($article_id) {
-        $recent_articles = $this->__getRecentPost();
-        $user = $this->User->read(null, $this->request->params['bloger_id']);
-        $this->set('user', $user['User']);
+        $this->__readyDataForLayout();
         $article = $this->Article->read(null, $this->request->params['article_id']);
+        $this->set(compact('article'));
+    }
 
-        $options = array(
-            'conditions' => array('Article.user_id' => $this->request->params['bloger_id']),
-            'recursive' => -1
-        );
-        $articles = $this->Article->find('all', $options);
-        $dates_have_post = $this->__getDateHavePost($articles);
-
-        $this->set(compact('article', 'recent_articles', 'dates_have_post'));
+    public function writeArticle() {
+        if ($this->request->is('get')) {
+            $this->__readyDataForLayout();
+        }
+        if ($this->request->is('post')) {
+            $this->redirect('/');
+//            $this->Article->create();
+//            if ($this->Article->save($this->request->data)) {
+//                $this->Session->setFlash(__('The article has been saved.'));
+//                return $this->redirect(array('controller' => 'blogs', 'action' => 'viewArticle', $this->Article->$id));
+//            } else {
+//                $this->Session->setFlash(__('The article could not be saved. Please, try again.'));
+//            }
+        }
     }
 
     public function add() {
