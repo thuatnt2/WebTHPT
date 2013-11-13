@@ -101,6 +101,7 @@ class VideosController extends AppController {
 			throw new NotFoundException(__('Invalid video'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			$this->Video->id = $id;
 			if ($this->Video->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công', 'flash_success');
 				return $this->redirect(array('action' => 'index'));

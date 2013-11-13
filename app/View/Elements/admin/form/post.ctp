@@ -44,7 +44,7 @@
 							if (!empty($this->request->data['Post']['thumbnail'])) {
 
 								?>
-								<div class="thumbnail post-thumnail" onclick="openKCFinder_singleFile(this)"><img src="<?php echo $this->Html->webroot('/') . $this->request->data['Post']['thumbnail'] ?>"/></div>
+								<div class="thumbnail post-thumnail" onclick="openKCFinder_singleFile(this)"><img src="<?php echo $this->request->data['Post']['thumbnail'] ?>"/></div>
 								<?php
 							} else {
 								echo $this->Html->tag('div', 'Click để chọn hình.', array('class' => 'thumbnail post-thumnail', 'onclick' => 'openKCFinder_singleFile(this)'));
