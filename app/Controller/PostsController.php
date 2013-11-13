@@ -80,9 +80,11 @@ class PostsController extends AppController {
 	 * @return void
 	 */
 	public function admin_edit($id = null) {
-		if ($this->request->is('POST') || $this->request->is('PUT')) {
+		if (!$this->Post->exists($id)) {
+			throw new NotFoundException(__('Invalid video'));
+		}
+		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->Post->id = $id;
-			$this->Post->create();
 			$this->request->data['Post']['alias'] = $this->Common->vnit_change_title($this->request->data['Post']['title']);
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công 1 bài viết mới', 'flash_success');
