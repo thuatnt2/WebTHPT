@@ -333,14 +333,14 @@ a:hover {
 }
 .site-content {
     float:left;
-    width:625px;
+    width:680px;
     margin: 24px 0 0;
     padding:0px;
 }
 .sidebar {
     float:right;
     margin: 24px 0 0;
-    width:300px;
+    width:240px;
     padding:0px;
 }
 
@@ -906,9 +906,6 @@ article.format-quote .entry-content blockquote {
     margin-right: 1.5rem;
 }
 
-.required {
-    color: red;
-}
 label ~ span.required {
     display: block;
     float: left;
@@ -1387,4 +1384,25 @@ a.says {
 }
 .login-blog-form button.close{
     display:none;
+}
+a.button {
+    text-decoration: none;
+}
+.login-blog-form {
+    text-align: center;
+}
+.login-blog-form p {
+
+    border-bottom: 1px solid rgb(238, 238, 238);
+    margin-bottom: 5px;
+}
+.article_form input[type=text] , .article_form textarea {
+    width: 100%;
+}
+.article_form div.submit {
+    margin-top: 5px;
+    text-align: center;
+}
+.article_form #cke_article_content {
+    width: 100% !important;
 }
