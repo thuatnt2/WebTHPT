@@ -7,20 +7,29 @@ class BlogsController extends AppController {
     var $layout = 'frontend/blog';
     var $uses = array('Article', 'Usermgmt.User');
 
-    public function beforeFilter() {
-        parent::beforeFilter();
+    private function __getRecentPost() {
         $options = array(
             'conditions' => array('Article.user_id' => $this->request->params['bloger_id']),
             'recursive' => -1,
             'limit' => 2,
             'order' => array('Article.created_at DESC')
         );
-        
-        $recent_articles = $this->Article->find('all', $options);
-        $this->set(compact('recent_articles'));
+        return $this->Article->find('all', $options);
+    }
+
+    private function __getDateHavePost($articles) {
+        $dates_have_post = array();
+
+        foreach ($articles as $article) {
+            $date = new DateTime($article['Article']['created_at']);
+            array_push($dates_have_post, $date->format('Y-m-d'));
+        }
+        return array_unique($dates_have_post);
     }
 
     public function index($bloger_id) {
+        $recent_articles = $this->__getRecentPost();
+
         $user = $this->User->read(null, $this->request->params['bloger_id']);
         $this->set('user', $user['User']);
         $title_for_layout = "Blog giáo viên";
@@ -30,20 +39,24 @@ class BlogsController extends AppController {
             'recursive' => -1
         );
         $articles = $this->Article->find('all', $options);
-        $dates_have_post = array();
-        foreach ($articles as $article) {
-            $date = new DateTime($article['Article']['created_at']);
-            array_push($dates_have_post, $date->format('Y-m-d'));
-        }
-        $dates_have_post = array_unique($dates_have_post);
-        $this->set(compact('title_for_layout', 'articles', 'dates_have_post'));
+        $dates_have_post = $this->__getDateHavePost($articles);
+        $this->set(compact('title_for_layout', 'articles', 'dates_have_post', 'recent_articles'));
     }
 
     public function viewArticle($article_id) {
+        $recent_articles = $this->__getRecentPost();
         $user = $this->User->read(null, $this->request->params['bloger_id']);
         $this->set('user', $user['User']);
         $article = $this->Article->read(null, $this->request->params['article_id']);
-        $this->set(compact('article'));
+
+        $options = array(
+            'conditions' => array('Article.user_id' => $this->request->params['bloger_id']),
+            'recursive' => -1
+        );
+        $articles = $this->Article->find('all', $options);
+        $dates_have_post = $this->__getDateHavePost($articles);
+
+        $this->set(compact('article', 'recent_articles', 'dates_have_post'));
     }
 
     public function add() {
@@ -74,7 +87,7 @@ class BlogsController extends AppController {
     public function filterArticleByDate() {
         $this->autoRender = false;
         $this->response->type('json');
-
+        $this->log($this->request->query, 'debug');
         $user_id = $this->request->query['bloger_id'];
         $date = $this->request->query['date'];
 

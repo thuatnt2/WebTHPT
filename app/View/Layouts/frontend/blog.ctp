@@ -3,7 +3,7 @@
     <head>
         <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         <title>Blog giáo viên</title>
-        <?php echo $this->Html->css(array('blog/aristo','blog/blog')) ?>
+        <?php echo $this->Html->css(array('blog/aristo', 'blog/blog')) ?>
         <?php
         echo $this->Html->script(array(
             'vendor/jquery-1.10.2.min', 'blog/jquery-ui-1.9.2.custom.min'))
@@ -30,7 +30,7 @@
                             <span class="login-blog-form" style="float:right"> 
                                 <?php $current_user = $this->Session->read('UserAuth'); ?>
                                 <?php if (!empty($current_user)): ?>
-                                    Chào mừng <a><?php echo $current_user['User']['first_name'] ?></a> , <a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a>
+                                    Chào mừng <a><?php echo $current_user['User']['first_name'] . ' ' . $current_user['User']['last_name'] ?></a> , <a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a>
                                 <?php else: ?>
                                     <?php echo $this->Form->create('User', array('url' => '/login', 'class' => 'form-signin')); ?>
                                     <?php echo $this->Form->hidden('login_from_blog', array('value' => 1)) ?>
@@ -87,7 +87,7 @@
             <div class='wrapper'>
                 <div class='site-content'>
                     <?php echo $this->Session->flash(); ?>
-                    <div id='content'>
+                    <div id='blog-content'>
                         <?php echo $this->fetch('content') ?>
                     </div>
                 </div>
@@ -121,10 +121,10 @@
                         <h2>Bài viết mới nhất</h2>
                         <div class='popular-posts'>
                             <ul>
-                                <?php foreach ($recent_articles as $art) :?>
-                                <li>
-                                    <a href="#"><?php echo $art['Article']['title'] ?></a>
-                                </li>
+                                <?php foreach ($recent_articles as $art) : ?>
+                                    <li>
+                                        <a href="#"><?php echo $art['Article']['title'] ?></a>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
 
@@ -166,7 +166,7 @@
                         type: 'GET',
                         data: {bloger_id: '<?php echo $user['id'] ?>', date: date},
                         success: function(response) {
-                            var articles_list_container = $('#blog-index-wrapper');
+                            var articles_list_container = $('#blog-content');
                             articles_list_container.fadeOut(300, function() {
                                 articles_list_container.html(response['html']).fadeIn(300);
                             });
