@@ -15,6 +15,7 @@ and open the template in the editor.
         echo $this->Html->css('admin/css/admin');
         echo $this->Html->css('admin/css/DT_bootstrap');
         echo $this->Html->css('/usermgmt/css/umstyle');
+        echo $this->Html->css('/js/admin/fancybox/jquery.fancybox');
         ?>
         <?php
         echo $this->Html->script('vendor/jquery-1.10.2.min');
@@ -32,9 +33,13 @@ and open the template in the editor.
                 ?>
             </div>
         </div>
+		<script type="text/javascript">
+                    var base_url = '<?php echo $this->Html->webroot('/')?>';
+        </script>
         <?php
         echo $this->Html->script('admin/bootstrap');
         echo $this->Html->script('admin/datatables/js/jquery.dataTables.min');
+        echo $this->Html->script('admin/fancybox/jquery.fancybox');
         echo $this->Html->script('admin/admin');
         echo $this->Html->script('admin/DT_bootstrap');
         ?>

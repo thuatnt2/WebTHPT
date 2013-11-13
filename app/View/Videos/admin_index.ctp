@@ -18,7 +18,7 @@
                             <tr>
                                 <th>Thứ tự</th>
                                 <th>Tiêu đề</th>
-								<th>Thao tác</th>
+								<th>Đặt mặc định</th>
                                 <th>Ngày đăng</th>
                                 <th>Thao tác</th>
                             </tr>
