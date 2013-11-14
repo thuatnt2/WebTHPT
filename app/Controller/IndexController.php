@@ -14,6 +14,7 @@ class IndexController extends AppController {
      * @return void
      */
     public function index() {
+        $this->set('current_menu_id', 0);
         $title_for_layout = "Trang chủ";
         get_class($this->User);
         $this->loadModel('Post');
