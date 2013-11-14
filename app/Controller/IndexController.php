@@ -42,7 +42,11 @@ class IndexController extends AppController {
             throw new NotFoundException(__('Invalid category'));
         }
         $options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
-        $this->set('article', $this->Post->find('first', $options));
+        $article =  $this->Post->find('first', $options);
+        $conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id']);
+        $options = array('conditions' => $conditions,'order' =>array('Post.modified' => 'DESC'),'limit' => 7);
+        $otherArticle = $this->Post->find('all', $options);
+        $this->set(compact('article','otherArticle'));
     }
 
 }

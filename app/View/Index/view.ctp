@@ -22,9 +22,17 @@
 <div>
     <h4 class="pull-left">Các tin đã đăng:</h4>
     <div class="clearfix"></div>
-    <div class="col-lg-12">1)&nbsp;&nbsp;<a href="#">11111111111111111111111111111111111111</a></div>
-    <div class="col-lg-12">2)&nbsp;&nbsp; <a href="#">22222222222222222222222222222222222222</a></div>
-    <div class="col-lg-12">3)&nbsp;&nbsp; <a href="#">33333333333333333333333333333333333333</a></div>
-    <div class="col-lg-12"> 4)&nbsp;&nbsp; <a href="#">44444444444444444444444444444444444444</a></div>
-    <div class="col-lg-12"> 5)&nbsp;&nbsp; <a href="#">555555555555555555555555555555555555555</a></div>
+    <?php $i = 1;?>
+    <?php foreach ($otherArticle as $row):?>
+    <div class="col-lg-12">
+<!--        1)&nbsp;&nbsp;<a href="#">11111111111111111111111111111111111111</a>-->
+          <?php
+            echo $i++.')&nbsp;&nbsp;'.$this->Html->link($row['Post']['title'], array(
+                'controller' => 'index',
+                'action' => 'view',
+                'id' => $row['Post']['id'],
+                'slug' => $row['Post']['alias']), array('escape' => false));
+            ?>
+    </div>
+    <?php endforeach;?>
 </div>

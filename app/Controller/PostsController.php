@@ -142,7 +142,6 @@ class PostsController extends AppController {
                     ),
                 );
                 $posts = $this->paginate();
-//		$posts = $this->Post->find('all', array('conditions' => $conditions,'order' => 'Post.created DESC'));
 		$this->set('posts', $posts);
 		$this->set('title_for_layout', $category['Category']['name']);
 	}
@@ -160,7 +159,7 @@ class PostsController extends AppController {
 			$recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.modified DESC'));
 			array_push($posts, $recent);
 			$viewMost = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.view_count DESC'));
-			$this->log($viewMost, 'debug');
+//			$this->log($viewMost, 'debug');
 			array_push($posts, $viewMost);
 			return $recent;
 		}
