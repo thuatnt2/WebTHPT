@@ -31,8 +31,8 @@ else:
                 'slug' => $row['Post']['alias']), array('style' => "float: right", 'escape' => false));
             ?>
         </div>
-        <hr>
         <div class="clearfix"></div>
+        <hr>
         <?php
     endforeach;
 endif;

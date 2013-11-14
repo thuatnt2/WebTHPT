@@ -13,6 +13,10 @@
 body {
     background: #3b3b3b;
 }
+hr {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 .container {
     background-color: #fff;
     height: 100%;
