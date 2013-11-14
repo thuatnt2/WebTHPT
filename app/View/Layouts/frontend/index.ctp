@@ -50,23 +50,39 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="row column-right">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a href="#tabs0-pane1" data-toggle="tab">Thông báo</a></li>
-                                            <li><a href="#tabs0-pane2" data-toggle="tab">Tin Học sinh</a></li>
-                                            <li><a href="#tabs0-pane3" data-toggle="tab">Tin Giáo viên</a></li>
-                                        </ul>
+                                <form class="form-horizontal">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-warning" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                        </span>
                                     </div>
-                                    <div class="panel-body">
-                                        <!--<begin event>-->
-                                        <?php
-                                        echo $this->element('frontend/event');
-                                        ?>
-                                        <!--<end event>-->
+				</form>
+                                <div style="clear: both"></div>
+                                <div class="col-lg-6"  id="portal-col-left">
+                                    <div class="row" >
+                                        <?php echo $this->Html->image('frontend/lichcongtacthangmoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                        <?php echo $this->Html->image('frontend/hoidaptructuyenmoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                        <?php echo $this->Html->image('frontend/congbotructuyenvbccmoi.png', array('alt="lichcongtacthangmoi"')) ?>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="col-lg-6" id="portal-col-right">
+                                    <div class="row">
+                                        <?php echo $this->Html->image('frontend/lichcongtactuanmoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                        <?php echo $this->Html->image('frontend/hoidaptructuyenmoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                        <?php echo $this->Html->image('frontend/dieuchinhtructuyenvbccmoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12" id="office-online">
+                                    <div class="row">
+                                           <?php echo $this->Html->image('frontend/oofficemoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                    </div>
+                                </div>
+                                 <div class="col-lg-12" id="search-examination-result">
+                                    <div class="row">
+                                           <?php echo $this->Html->image('frontend/tracuudiemthimoi.png', array('alt="lichcongtacthangmoi"')) ?>
+                                    </div>
+                                </div>
                         </div>
                     </div>
                     <div id="content-middle" style="display: none">
