@@ -1,5 +1,5 @@
 <?php
-$first = $articles[0];
+$first = $posts[0];
 ?>
 <div class="newest-article"> 
     <div class="head"> 

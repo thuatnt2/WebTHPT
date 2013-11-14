@@ -1,4 +1,4 @@
-<?php foreach ($articles as $article) { ?>
+<?php foreach ($posts as $article) { ?>
     <article>
         <header class='entry-header'>
             <h2 class='post-title entry-title'>
@@ -18,7 +18,7 @@
         </header>
         <div class='post-header-line-1'></div>
         <div class='post-body entry-content'>
-            <div id='summary3153877782348172298'>
+            <div id='summary'>
                 <p>
                     <?php echo $this->Text->truncate($article['Article']['content'], 500) ?>
                 </p>

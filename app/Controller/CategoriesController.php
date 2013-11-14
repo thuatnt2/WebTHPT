@@ -125,7 +125,12 @@ class CategoriesController extends AppController {
 	}
 
 	public function firstMenuItem() {
-		return $this->Category->read(null,1);
+		$this->Category->unbindModel(array('hasMany'=>array('Post','ChildCategory')));
+		$menu = $this->Category->read('name',1);
+		$this->loadModel('Post');
+		$posts = $this->Post->find('all',array('fields'=>array('Post.id','Post.title','Post.alias'),'conditions'=>array('Post.category_id'=>1)));
+		$menu['posts'] = $posts;
+		return $menu;
 	}
 
 }

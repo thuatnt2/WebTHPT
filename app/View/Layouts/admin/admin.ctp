@@ -32,6 +32,9 @@ and open the template in the editor.
                 ?>
             </div>
         </div>
+		<script type="text/javascript">
+                    var base_url = '<?php echo $this->Html->webroot('/')?>';
+        </script>
         <?php
         echo $this->Html->script('admin/bootstrap');
         echo $this->Html->script('admin/datatables/js/jquery.dataTables.min');

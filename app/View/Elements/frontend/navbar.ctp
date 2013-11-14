@@ -16,18 +16,16 @@
                 <a href="#"  class="dropdown-toggle" data-toggle="dropdown"><?php echo $firstMenuItem['Category']['name'] ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
 					<?php
-					foreach ($firstMenuItem['ChildCategory'] as $child):
+					foreach ($firstMenuItem['posts'] as $post):
 
 						?>
 						<li>
 							<?php
-							if ($child['is_tab'] != 1) {
-								echo $this->Html->link($child['name'], array(
-									'controller' => 'posts',
-									'action' => 'posts',
-									'id' => $child['id'],
-									'slug' => $child['alias']));
-							}
+								echo $this->Html->link($post['Post']['title'], array(
+									'controller' => 'index',
+									'action' => 'view',
+									'id' => $post['Post']['id'],
+									'slug' => $post['Post']['alias']));
 
 							?>
 						</li>
