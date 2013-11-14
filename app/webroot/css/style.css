@@ -145,3 +145,7 @@ ul.nav.nav-tabs li a {
 #search-form-navbar input {
     height: 30px;
 }
+.pagination .active>a, .pagination a:hover {
+    color: #fff;
+    background-color: #2fa4e7;
+}

@@ -134,7 +134,15 @@ class PostsController extends AppController {
 		$category = $this->Category->read('name', $id);
 		$this->layout = 'frontend/detailArticle';
 		$conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $id);
-		$posts = $this->Post->find('all', array('conditions' => $conditions));
+                $this->paginate = array(
+                    'limit' => 10,
+                    'conditions' => $conditions,
+                    'order' => array(
+                        'Post.modified' => 'DESC'
+                    ),
+                );
+                $posts = $this->paginate();
+//		$posts = $this->Post->find('all', array('conditions' => $conditions,'order' => 'Post.created DESC'));
 		$this->set('posts', $posts);
 		$this->set('title_for_layout', $category['Category']['name']);
 	}
@@ -149,7 +157,7 @@ class PostsController extends AppController {
 		if (!empty($this->request->params['requested'])) {
 			$this->recursive = 1;
 			$posts = array();
-			$recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.modified ASC'));
+			$recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.modified DESC'));
 			array_push($posts, $recent);
 			$viewMost = $this->Post->find('all', array('limit' => $limit, 'order' => 'Post.view_count DESC'));
 			$this->log($viewMost, 'debug');
