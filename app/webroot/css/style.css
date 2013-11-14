@@ -149,3 +149,15 @@ ul.nav.nav-tabs li a {
     color: #fff;
     background-color: #2fa4e7;
 }
+#portal-col-left img,#portal-col-right img{
+    margin: 2px;
+    padding: 1px;
+    border: solid 1px #E1E1E1;
+}
+#search-examination-result img,#office-online img {
+    height: 50px;
+    width: 347px;
+    margin: 2px;
+    padding: 1px;
+    border: solid 1px #E1E1E1;
+}
