@@ -7,7 +7,6 @@
             <?php echo $this->Session->flash() ?>
             <div class="span12">
                 <div class="dataTables_wrapper form-inline" role="grid">
-
                     <?php
                     $columns = array(
                         'Post.title' => 'Tiêu đề',

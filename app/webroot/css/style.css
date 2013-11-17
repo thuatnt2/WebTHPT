@@ -109,6 +109,9 @@ hr {
 .carousel-caption>a h4 {
     color: #FFF;
 }
+.carousel-inner img {
+    width: 100%;
+}
 .thumbnail {
     padding: 0px;
 }
@@ -160,4 +163,8 @@ ul.nav.nav-tabs li a {
     margin: 2px;
     padding: 1px;
     border: solid 1px #E1E1E1;
+}
+.albums-preview img {
+    width: 100%;
+    height: 100%;
 }

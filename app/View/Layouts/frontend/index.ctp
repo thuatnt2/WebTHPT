@@ -41,14 +41,14 @@
                 <!--<end navbar>-->
                 <div id="content">
                     <div id="content-top">
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <!--<begin slider>-->
                             <?php
                             echo $this->element('frontend/slider');
                             ?>
                             <!--<end slider>-->
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="row column-right">
                                 <form class="form-horizontal">
                                     <div class="input-group">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                     <div id="content-middle" style="display: none">
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <div class="row">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -102,7 +102,7 @@
                                 </div>
                             </div> 
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="row column-right">
                                 <div class="input-group" id="form-search" >
                                     <input type="text" class="form-control" placeholder="Tìm kiếm...">
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div id="content-bottom">
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <div class="row column-left">
                                 <div class="panel panel-primary" id="tab-content">
                                     <div class="panel-heading">
@@ -136,7 +136,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="row column-right">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
@@ -157,7 +157,7 @@
                                     <div class="panel-heading">Thư viện video</div>
                                     <?php echo $this->element('frontend/video') ?>
                                 </div>
-                                <div class="panel panel-primary">
+                                <div class="panel panel-primary albums-preview">
                                     <div class="panel-heading">Thư viện ảnh</div>
                                     <?php echo $this->element('frontend/photo') ?>
                                 </div>
