@@ -96,13 +96,9 @@ class UsersController extends UserMgmtAppController {
             $redirect_url = "";
             if (isset($this->request->data['User']['continue_url'])) {
                 $redirect_url = Router::url($this->request->data['User']['continue_url']);
-            } else {
-                if ($user['User']['user_group_id'] == 1) {
-                    $redirect_url = Router::url('/admin');
-                } else {
-                    $redirect_url = Router::url('/');
-                }
             }
+
+
             $this->User->set($this->data);
             if ($this->User->LoginValidate()) {
                 $username = $this->data['User']['username'];
@@ -145,16 +141,21 @@ class UsersController extends UserMgmtAppController {
                     }
                     $OriginAfterLogin = $this->Session->read('Usermgmt.OriginAfterLogin');
                     $this->Session->delete('Usermgmt.OriginAfterLogin');
-
-
+                    if ($user['User']['user_group_id'] == 1) {
+                        $redirect_url = Router::url('/admin');
+                    } else {
+                        if (!isset($this->request->data['User']['continue_url'])) {
+                            $redirect_url = Router::url('/');
+                        }
+                    }
 //                    $redirect = (!empty($OriginAfterLogin)) ? $OriginAfterLogin : $redirect_url;
 
                     $this->redirect($redirect_url);
                 } else {
 
                     $this->Session->setFlash('Tên đăng nhập hoặc mật khẩu không đúng', 'flash_error');
-                  
-                      $this->redirect($redirect_url);
+
+                    $this->redirect($redirect_url);
 //                    return;
                 }
             }

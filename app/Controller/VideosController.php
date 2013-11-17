@@ -19,7 +19,7 @@ class VideosController extends AppController {
 	public $layout = 'admin/admin';
 
 	public function index() {
-		$this->layout = 'frontend/default';
+		$this->layout = 'frontend/detailArticle';
 		$this->paginate = array('limit' => $this->limit,'conditions'=>array('Video.is_default'=>false));
 		$videos = $this->Paginator->paginate();
 		$videoDefault = $this->Video->find('first',array('conditions'=> array('Video.is_default'=>true)));
