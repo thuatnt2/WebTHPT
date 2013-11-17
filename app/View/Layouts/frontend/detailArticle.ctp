@@ -57,21 +57,6 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="row column-right">
-                                <div class="panel panel-primary">
-                                    <div class="panel-heading">
-                                        <ul class="nav nav-tabs nav-justified">
-                                            <li class="active"><a href="#">Tin mới nhất</a></li>
-                                            <li><a href="#">Tin xem nhiều</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="panel-body">
-                                        <!--<begin information>-->
-                                        <?php
-                                        echo $this->element('frontend/information');
-                                        ?>
-                                        <!--<end information>-->
-                                    </div>
-                                </div>
                                 <div class="panel panel-primary ">
                                     <div class="panel-heading">Thư viện video</div>
                                     <?php echo $this->element('frontend/video')?>

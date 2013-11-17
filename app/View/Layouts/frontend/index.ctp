@@ -80,7 +80,7 @@
 
                             </div>
                         </div>
-                   
+
                         <div style="clear:both"> </div>
                         <div id="content-bottom">
                             <div class="col-lg-9">
@@ -167,7 +167,7 @@
                     <div id="footer">
                         <div class="col-lg-8">
                             <div class="footer-content">
-                                <p class="text-center"><span style="font-weight: bold">TRANG THÔNG TIN ĐIỆN TỬ TRƯỜNG TRUNG HỌC PHỔ THÔNGTIỂU LA</span><br>
+                                <p class="text-center"><span style="font-weight: bold;text-transform: uppercase">TRANG THÔNG TIN ĐIỆN TỬ TRƯỜNG TRUNG HỌC PHỔ THÔNG TIỂU LA</span><br>
                                     Địa chỉ: 01 Vũ Văn Dũng, Huyện Thăng Bình, Tỉnh Quảng Nam<br/>  Điện thoại: 0511.3944844 - Fax: 0511.3944936
                                 </p>
                             </div>
@@ -182,30 +182,23 @@
                 'vendor/jquery.marquee',
                 'vendor/jcarousellite_1.0.1c4',
             ));
-//        echo $this->fetch('scriptBottom');
             ?>
             <script type="text/javascript">
-
-                                                    jQuery(document).ready(function() {
-                                                        jQuery('.carousel').carousel({
-                                                            interval: 2000,
-                                                            pause: 'hover',
-                                                        });
-                                                        jQuery(".mostNews").jCarouselLite({
-                                                            vertical: true,
-                                                            hoverPause: true,
-                                                            visible: 2,
-                                                            auto: 5000,
-                                                            speed: 1000
-                                                        });
-                                                        //                                                    $(".moreNews").jCarouselLite({
-                                                        //                                                        vertical: true,
-                                                        //                                                        hoverPause: true,
-                                                        //                                                        visible: 2,
-                                                        //                                                        auto: 5000,
-                                                        //                                                        speed: 1000
-                                                        //                                                    });
-                                                    });
+                                                    jQuery(document).ready(
+                                                            function() {
+                                                                jQuery('.carousel').carousel({
+                                                                    interval: 2000,
+                                                                    pause: 'hover',
+                                                                });
+                                                                jQuery(".mostNews").jCarouselLite({
+                                                                    vertical: true,
+                                                                    hoverPause: true,
+                                                                    visible: 2,
+                                                                    auto: 5000,
+                                                                    speed: 1000
+                                                                });
+                                                            }
+                                                    );
             </script>
     </body>
 </html>

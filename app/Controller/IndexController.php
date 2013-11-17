@@ -44,10 +44,11 @@ class IndexController extends AppController {
         }
         $options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
         $article =  $this->Post->find('first', $options);
+         $current_menu_id = $article['Post']['category_id'];
         $conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id']);
         $options = array('conditions' => $conditions,'order' =>array('Post.modified' => 'DESC'),'limit' => 7);
         $otherArticle = $this->Post->find('all', $options);
-        $this->set(compact('article','otherArticle'));
+        $this->set(compact('article','otherArticle','current_menu_id'));
     }
 
 }

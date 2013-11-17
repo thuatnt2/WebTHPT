@@ -2,7 +2,8 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
             <li class="<?php echo ($current_menu_id == 0 ? 'active' : '') ?>"><a href="<?php echo Router::url('/') ?>">
-                    <span class="glyphicon glyphicon-home"></span>&nbspTrang Chủ</a></li>
+                    <span class="glyphicon glyphicon-home"></span>&nbspTrang Chủ</a>
+            </li>
             <?php
             $menus = $this->requestAction('categories/getMainMenu');
 //			debug($menus);
@@ -11,7 +12,7 @@
             $firstMenuItem = $this->requestAction('categories/firstMenuItem');
             //debug($firstMenuItem);
             ?>
-            <li  class="dropdown">
+            <li  class="dropdown <?php echo ($current_menu_id == 1 ? 'active' : '') ?>">
                 <a href="#"  class="dropdown-toggle" data-toggle="dropdown"><?php echo $firstMenuItem['Category']['name'] ?> <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <?php
@@ -35,7 +36,7 @@
             $resource_type = $this->requestAction('resources/getResourceType');
             //debug($resource_type);
             ?>
-            <li class="dropdown">
+            <li class="dropdown ">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài nguyên điện tử <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <?php
