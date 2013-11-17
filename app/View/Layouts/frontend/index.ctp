@@ -80,34 +80,8 @@
 
                             </div>
                         </div>
-                        <div id="content-middle" style="display: none">
-                            <div class="col-lg-9">
-                                <div class="row">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">
-                                            <div class="col-lg-2 col-lg-offset-0"> Danh ngôn</div>
-                                            <div class="col-lg-10">
-                                                <!--<begin quotations>-->
-                                                <?php
-                                                echo $this->element('frontend/quotations');
-                                                ?>
-                                                <!--<end quotations>-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> 
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="row column-right">
-                                    <div class="input-group" id="form-search" >
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-primary" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                                        </span>
-                                    </div><!-- /input-group -->
-                                </div>
-                            </div>
-                        </div>
+                   
+                        <div style="clear:both"> </div>
                         <div id="content-bottom">
                             <div class="col-lg-9">
                                 <div class="row column-left">
