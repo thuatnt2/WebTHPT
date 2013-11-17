@@ -56,7 +56,7 @@
 
                                 <?php else: ?>
                                     <?php echo $this->Form->create('User', array('url' => '/login', 'class' => 'form-signin')); ?>
-                                    <?php echo $this->Form->hidden('login_from_blog', array('value' => 1)) ?>
+                                    <?php echo $this->Form->hidden('continue_url', array('value' => $blog_url)) ?>
                                     <?php echo $this->Form->input('username', array('placeholder' => 'Tên đăng nhập', 'label' => false, 'div' => false)) ?>
                                     <?php echo $this->Form->input('password', array('type' => 'password', 'placeholder' => 'Mật khẩu', 'label' => false, 'div' => false)) ?>
                                     <button class="btn btn-small" type="submit">Đăng nhập</button>

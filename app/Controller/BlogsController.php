@@ -58,7 +58,7 @@ class BlogsController extends AppController {
                         'controller' => 'blogs',
                         'action' => 'index',
                         'bloger_id' => $user['User']['id'],
-                        'slug' => 'lht'
+                        'slug' => $this->Common->vnit_change_title($user['User']['first_name'])
             ));
             if ($this->Article->save($this->request->data)) {
 //                $this->Session->setFlash(__('Đăng bài viết thành công!'));

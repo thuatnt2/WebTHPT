@@ -92,7 +92,17 @@ class UsersController extends UserMgmtAppController {
     public function login() {
         $this->layout = 'admin/login';
         if ($this->request->isPost()) {
-            $this->log($this->referer(), 'debug');
+            //Check user permission to redirect, only admin goto /admin
+            $redirect_url = "";
+            if (isset($this->request->data['User']['continue_url'])) {
+                $redirect_url = Router::url($this->request->data['User']['continue_url']);
+            } else {
+                if ($user['User']['user_group_id'] == 1) {
+                    $redirect_url = Router::url('/admin');
+                } else {
+                    $redirect_url = Router::url('/');
+                }
+            }
             $this->User->set($this->data);
             if ($this->User->LoginValidate()) {
                 $username = $this->data['User']['username'];
@@ -135,26 +145,16 @@ class UsersController extends UserMgmtAppController {
                     }
                     $OriginAfterLogin = $this->Session->read('Usermgmt.OriginAfterLogin');
                     $this->Session->delete('Usermgmt.OriginAfterLogin');
-                    //Check user permission to redirect, only admin goto /admin
-                    $redirect_url = "";
-                    if (isset($this->request->data['User']['login_from_blog'])) {
-                        $redirect_url = Router::url($this->referer());
-                    } else {
-                        if ($user['User']['user_group_id'] == 1) {
-                            $redirect_url = Router::url('/admin');
-                        } else {
-                            $redirect_url = Router::url('/');
-                        }
-                    }
 
-                    $redirect = (!empty($OriginAfterLogin)) ? $OriginAfterLogin : $redirect_url;
 
-                    $this->redirect($redirect);
+//                    $redirect = (!empty($OriginAfterLogin)) ? $OriginAfterLogin : $redirect_url;
+
+                    $this->redirect($redirect_url);
                 } else {
+
                     $this->Session->setFlash('Tên đăng nhập hoặc mật khẩu không đúng', 'flash_error');
-                    if (isset($this->request->data['User']['login_from_blog'])) {
-                        $this->redirect($this->referer());
-                    }
+                  
+                      $this->redirect($redirect_url);
 //                    return;
                 }
             }
