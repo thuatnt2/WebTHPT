@@ -1437,3 +1437,9 @@ article .article-header h1{
 #user-infor ul li {
     padding: 5px 0;
 }
+.login-blog-form input {
+    width: 135px;
+    height: 15px;
+    font-size: 13px;
+    margin-bottom: 0px;
+}

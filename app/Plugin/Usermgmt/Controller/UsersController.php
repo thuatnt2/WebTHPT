@@ -169,8 +169,16 @@ class UsersController extends UserMgmtAppController {
      */
     public function logout() {
         $this->UserAuth->logout();
-        $this->Session->setFlash('Bạn đã đăng xuất thành công.', 'flash_success');
-        $this->redirect(LOGOUT_REDIRECT_URL);
+
+        $this->log($this->request, 'debug');
+        $redirect_url = '';
+        if (isset($this->request->query['continue_url'])) {
+            $redirect_url = $this->request->query['continue_url'];
+        } else {
+            $this->Session->setFlash('Bạn đã đăng xuất thành công.', 'flash_success');
+            $redirect_url = LOGOUT_REDIRECT_URL;
+        }
+        $this->redirect($redirect_url);
     }
 
     /**

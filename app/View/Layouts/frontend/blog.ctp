@@ -22,20 +22,29 @@
                         <div id='header-inner' >
                             <div class='titlewrapper' style="float:left">
                                 <h1 class='site-title'>
-                                    <a href=''>Blog giáo viên</a>
+                                    <a href='/'>Blog giáo viên</a>
                                 </h1>
                                 <h2 class='site-description'>Học, học nữa, học mãi</h2>
                             </div>
 
                             <span class="login-blog-form" style="float:right"> 
                                 <?php $current_user = $this->Session->read('UserAuth'); ?>
+                                <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username'])) ?>
+                                <?php $blog_url = Router::url(
+                                       array(
+                                            'controller' => 'blogs',
+                                            'action' => 'index',
+                                            'bloger_id' => $user['id'],
+                                            'slug' => $user_slug
+                                                )
+                                        ) ?>
                                 <?php if (!empty($current_user)): ?>
-                                    <p>Chào mừng <a><?php echo $current_user['User']['first_name'] . ' ' . $current_user['User']['last_name'] ?></a> , <a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a>
+                                    <p>Chào mừng <a><?php echo $current_user['User']['first_name'] . ' ' . $current_user['User']['last_name'] ?></a> , 
+                                        <a href="<?php echo Router::url('/logout?' . 'continue_url='. $blog_url) ?>">Đăng xuất</a>
                                     </p>
                                     <?php if ($current_user_is_owner): ?>
-                                        <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username'])) ?>
                                         <?php
-                                        echo $this->Html->link('Đăng bài', array(
+                                        echo $this->Html->link('Đăng bài',  array(
                                             'controller' => 'blogs',
                                             'action' => 'writeArticle',
                                             'bloger_id' => $user['id'],
@@ -48,9 +57,9 @@
                                 <?php else: ?>
                                     <?php echo $this->Form->create('User', array('url' => '/login', 'class' => 'form-signin')); ?>
                                     <?php echo $this->Form->hidden('login_from_blog', array('value' => 1)) ?>
-                                    <?php echo $this->Form->input('username', array('placeholder' => 'Tên đăng nhập', 'label' => false, 'div' => false, 'class' => 'input-block-level')) ?>
-                                    <?php echo $this->Form->input('password', array('type' => 'password', 'placeholder' => 'Mật khẩu', 'label' => false, 'div' => false, 'class' => 'input-block-level')) ?>
-                                    <button class="button" type="submit">Đăng nhập</button>
+                                    <?php echo $this->Form->input('username', array('placeholder' => 'Tên đăng nhập', 'label' => false, 'div' => false)) ?>
+                                    <?php echo $this->Form->input('password', array('type' => 'password', 'placeholder' => 'Mật khẩu', 'label' => false, 'div' => false)) ?>
+                                    <button class="btn btn-small" type="submit">Đăng nhập</button>
                                     <span style="color: rgb(185, 74, 72);">
                                         <?php echo $this->Session->flash(); ?>
                                     </span>
