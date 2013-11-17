@@ -37,7 +37,7 @@
                 <!--<end navbar>-->
                 <div id="content">
                     <div id="content-bottom">
-                        <div class="col-lg-8">
+                        <div class="col-lg-9">
                             <div class="row column-left">
                                 <ol class="breadcrumb">
                                     <li><a href="#">Home</a></li>
@@ -46,7 +46,6 @@
                                 </ol>
                                 <div class="panel panel-primary" id="tab-content">
                                     <div class="panel-body" style=" min-height: 1360px;">
-
                                         <!--<begin information>-->
                                         <?php
                                         echo $this->fetch('content');
@@ -56,7 +55,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-3">
                             <div class="row column-right">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
@@ -73,11 +72,11 @@
                                         <!--<end information>-->
                                     </div>
                                 </div>
-                                <div class="panel panel-primary">
+                                <div class="panel panel-primary ">
                                     <div class="panel-heading">Thư viện video</div>
                                     <?php echo $this->element('frontend/video')?>
                                 </div>
-                                <div class="panel panel-primary">
+                                <div class="panel panel-primary albums-preview">
                                     <div class="panel-heading">Thư viện ảnh</div>
                                     <?php echo $this->element('frontend/photo')?>
                                 </div>
