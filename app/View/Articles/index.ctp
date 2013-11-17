@@ -9,7 +9,7 @@
 			<th><?php echo $this->Paginator->sort('created_at'); ?></th>
 			<th class="actions"><?php echo __('Actions'); ?></th>
 	</tr>
-	<?php foreach ($articles as $article): ?>
+	<?php foreach ($posts as $article): ?>
 	<tr>
 		<td><?php echo h($article['Article']['id']); ?>&nbsp;</td>
 		<td>

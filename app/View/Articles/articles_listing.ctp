@@ -1,4 +1,4 @@
-<?php foreach ($articles as $article) { ?>
+<?php foreach ($posts as $article) { ?>
     <article>
         <header class='entry-header'>
             <h2 class='post-title entry-title'>

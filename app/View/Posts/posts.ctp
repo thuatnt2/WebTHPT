@@ -16,10 +16,10 @@ else:
             </h4>
             <?php 
                 if(isset($row['Post']['thumbnail']) && $row['Post']['thumbnail'] != null) {
-                    echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
+                    echo $this->Html->image($row['Post']['thumbnail'], array('style="width:120px;height:80px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
                 }
                 else {
-                    echo $this->Html->image('frontend/no-images.jpg', array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
+                    echo $this->Html->image('frontend/no-images.jpg', array('style="width:120px;height:80px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
                 }
             ?>
             <p><?php echo $row['Post']['sumary'] . '...' ?></p>
@@ -31,9 +31,18 @@ else:
                 'slug' => $row['Post']['alias']), array('style' => "float: right", 'escape' => false));
             ?>
         </div>
-        <hr>
         <div class="clearfix"></div>
+        <hr>
         <?php
     endforeach;
+    ?>
+    <ul class="pagination pagination-sm">
+        <?php
+            echo $this->Paginator->prev('Trước', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
+            echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'currentClass' => 'active', 'tag' => 'li', 'first' => 1));
+            echo $this->Paginator->next('Tiếp', array('tag' => 'li', 'currentClass' => 'disabled'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
+        ?>
+    </ul>
+<?php
 endif;
 ?>

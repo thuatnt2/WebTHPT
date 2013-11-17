@@ -272,3 +272,43 @@ textarea{
 .btn {
     border-radius: 1px;
 }
+
+.fancybox-header {
+    color: green;
+    margin-top: 7px;
+    text-align: center;
+    border-bottom: 1px solid;
+    font-size: 18px;
+    font-weight: bold;
+}
+table.admindata{
+    margin: 20px;
+    min-width: 900px;
+}
+table.admindata th{
+    border-bottom: 1px solid #DDDDDD;
+    font-size: 15px;
+    font-weight: bold;
+}
+table.admindata tr{
+    background: white;
+    cursor: pointer;
+}
+
+
+table.admindata tr td{
+    padding: 6px 0px 6px 0px;
+    font-size: 14px;
+}
+table.admindata tr.fancybox-row-0{
+    background: #F3F3F3;
+}
+table.admindata tr:hover{
+    text-decoration: underline;
+}
+.error-message{
+	color: red;
+	margin-left: 10px !important;
+	margin-top: 5px !important;
+	font-size: 15px;
+}
