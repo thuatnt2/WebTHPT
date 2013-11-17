@@ -1422,3 +1422,18 @@ a.says {
 body {
     background: url('/img/blog/body_bg.gif');
 }
+body h2 {
+    font-size: 22px;
+}
+body h1 {
+    font-size: 30px;
+}
+article header h2 {
+    color: black !important;
+}
+article .article-header h1{
+    margin-bottom: 15px;
+}
+#user-infor ul li {
+    padding: 5px 0;
+}

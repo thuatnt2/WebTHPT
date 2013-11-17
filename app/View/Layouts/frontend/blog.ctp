@@ -155,10 +155,10 @@
                                     Số lần truy cập : 10
                                 </li>
                                 <li>
-                                    Tổng số bài viết: 15
+                                    Tổng số bài viết: <?php echo count($articles) ?>
                                 </li>
                                 <li>
-                                    Bình luận : 76
+                                    Bình luận : 0
                                 </li>
                             </ul>
                             <div class='clear'></div>
