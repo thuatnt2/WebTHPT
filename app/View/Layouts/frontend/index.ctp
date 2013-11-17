@@ -50,14 +50,17 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="row column-right">
-                                <form class="form-horizontal">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-warning" type="button"><span class="glyphicon glyphicon-search"></span></button>
-                                        </span>
-                                    </div>
-                                </form>
+                                <div id="search-bar"> 
+                                    <form class="form-horizontal">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-warning" type="button"><span class="glyphicon glyphicon-search"></span></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+
                                 <div style="clear: both"></div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">
@@ -130,7 +133,7 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="row column-right">
-                                
+
                                     <div class="panel panel-primary">
                                         <div class="panel-heading">Thư viện video</div>
                                         <?php echo $this->element('frontend/video') ?>
@@ -221,13 +224,13 @@
                                                             auto: 5000,
                                                             speed: 1000
                                                         });
-    //                                                    $(".moreNews").jCarouselLite({
-    //                                                        vertical: true,
-    //                                                        hoverPause: true,
-    //                                                        visible: 2,
-    //                                                        auto: 5000,
-    //                                                        speed: 1000
-    //                                                    });
+                                                        //                                                    $(".moreNews").jCarouselLite({
+                                                        //                                                        vertical: true,
+                                                        //                                                        hoverPause: true,
+                                                        //                                                        visible: 2,
+                                                        //                                                        auto: 5000,
+                                                        //                                                        speed: 1000
+                                                        //                                                    });
                                                     });
             </script>
     </body>

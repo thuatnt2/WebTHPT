@@ -174,3 +174,12 @@ ul.nav.nav-tabs li a {
 #banner img {
     width: 100%;
 }
+.panel-primary>.panel-heading {
+    background-image: -webkit-linear-gradient(rgb(84, 180, 235),rgb(47, 164, 231) 60%,rgb(29, 156, 229));
+}
+#search-bar {
+    margin-bottom: 2px;
+}
+.panel-primary {
+    border-color: rgb(202, 218, 230);
+}

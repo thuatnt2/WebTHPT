@@ -1,7 +1,7 @@
 <?php $posts = $this->requestAction('posts/recent'); ?>
 <div class="tab-content">
-    <div class="tab-pane active" id="tabs2-pane1">
-        <div class="mostNews" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; height: 190px;">
+    <div class="tab-pane active" id="tabs2-pane1" style="height: 180px;">
+        <div class="mostNews" style="visibility: visible;  position: relative; z-index: 2; left: 5px; ">
             <ul style="margin: 0px; padding: 0px; position: relative; list-style-type: none; z-index: 1; height: 1008px; top: -560px;">
                 <?php foreach ($posts as $row): ?>
                     <li style="overflow: hidden; float: none; height: 100px;">
@@ -32,7 +32,7 @@
         </div>
     </div>
     <div class="tab-pane" id="tabs2-pane2">
-        <div class="moreNews" style="visibility: visible; overflow: hidden; position: relative; z-index: 2; left: 0px; height: 200px;">
+        <div class="moreNews" style="visibility: visible; position: relative; z-index: 2; left: 0px; height: 180px;">
             
         </div>
     </div>
