@@ -3,7 +3,7 @@
     <head>
         <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
         <title>Blog giáo viên</title>
-        <?php echo $this->Html->css(array('blog/aristo', 'blog/blog')) ?>
+        <?php echo $this->Html->css(array('blog/aristo','vendor/bootstrap-2.3.2', 'blog/blog')) ?>
         <?php
         echo $this->Html->script(array(
             'vendor/jquery-1.10.2.min', 'blog/jquery-ui-1.9.2.custom.min'))
@@ -32,7 +32,7 @@
                                 <?php if (!empty($current_user)): ?>
                                     <p>Chào mừng <a><?php echo $current_user['User']['first_name'] . ' ' . $current_user['User']['last_name'] ?></a> , <a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a>
                                     </p>
-                                    <?php if ($show_write_article_button): ?>
+                                    <?php if ($current_user_id_owner): ?>
                                         <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username'])) ?>
                                         <?php
                                         echo $this->Html->link('Đăng bài', array(
@@ -51,10 +51,11 @@
                                     <?php echo $this->Form->input('username', array('placeholder' => 'Tên đăng nhập', 'label' => false, 'div' => false, 'class' => 'input-block-level')) ?>
                                     <?php echo $this->Form->input('password', array('type' => 'password', 'placeholder' => 'Mật khẩu', 'label' => false, 'div' => false, 'class' => 'input-block-level')) ?>
                                     <button class="button" type="submit">Đăng nhập</button>
+                                    <span style="color: rgb(185, 74, 72);">
+                                        <?php echo $this->Session->flash(); ?>
+                                    </span>
                                 <?php endif; ?>
-                                <span style="color: rgb(185, 74, 72);">
-                                    <?php echo $this->Session->flash(); ?>
-                                </span>
+
                             </span>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
                     </div></div>
             </div><!-- #secondary -->
         </div><!-- #main .wrapper -->
-        <footer id='colophon' role='contentinfo'>
+        <footer>
             <div class='site-info'>
                 <!-- you have not permission to remove this footer credits -->
                 Copyright 2013 

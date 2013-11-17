@@ -16,7 +16,6 @@
                 ?>
             </h2>
         </header>
-        <div class='post-header-line-1'></div>
         <div class='post-body entry-content'>
             <div id='summary'>
                 <p>
@@ -37,10 +36,40 @@
                 <div style='clear: both;'></div>
             </div>
         </div>
-        <footer class='entry-meta'>
-            <?php $date = new DateTime($article['Article']['created_at']); ?>
-            Đăng ngày:  <?php echo $date->format('d/m/Y') ?> 
-        </footer>
+        <div class="article-footer">
+            <p>            
+                <?php $date = new DateTime($article['Article']['created_at']); ?>
+                <?php echo "Đăng ngày: " . $date->format('d/m/Y') ?>
+            </p>
+            <span class="article-actions" style="display: none">
+                <ul>
+                    <li>
+                        <a href="#" class="btn btn-small btn-warning">Xóa</a>
+
+                    </li>
+                    <li>
+                        <a href="#"  class="btn btn-small btn-success">Sửa</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
     </article>
     <div style='clear: both;'></div>
 <?php } ?>
+
+<?php if ($current_user_id_owner): ?>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('article').mouseenter(function() {
+                console.log('hover');
+                $(this).find('.article-actions').fadeIn(150);
+            });
+            $('article').mouseleave(function() {
+                console.log('hover');
+                $(this).find('.article-actions').fadeOut(150);
+            });
+        });
+    </script> 
+
+<?php endif; ?>
+

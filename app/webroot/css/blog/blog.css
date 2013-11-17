@@ -529,14 +529,7 @@ footer[role="contentinfo"] a:hover {
     line-height: 1.846153846;
     color: #777;
 }
-.comments-link a,
-.entry-meta a {
-    color: #777;
-}
-.comments-link a:hover,
-.entry-meta a:hover {
-    color: #21759b;
-}
+
 article.sticky .featured-post {
     border-top: 4px double #ededed;
     border-bottom: 4px double #ededed;
@@ -1353,6 +1346,7 @@ a.says {
 .sidebar .sidebar-children {
     padding-bottom: 10px;
 }
+/*
 .button {
     padding: 6px 10px;
     padding: 0.428571429rem 0.714285714rem;
@@ -1382,11 +1376,9 @@ a.says {
     background-image: -o-linear-gradient(top, #f9f9f9, #ebebeb);
     background-image: linear-gradient(top, #f9f9f9, #ebebeb);
 }
+*/
 .login-blog-form button.close{
     display:none;
-}
-a.button {
-    text-decoration: none;
 }
 .login-blog-form {
     text-align: center;
@@ -1405,4 +1397,20 @@ a.button {
 }
 .article_form #cke_article_content {
     width: 100% !important;
+}
+.article-footer p  {
+    display: inline;
+}
+.article-actions ul {
+    display: inline-block;
+}
+.article-actions ul li {
+    display: inline;
+}
+.btn {
+    border-radius: 1px !important;
+}
+.article-footer {
+    height: 10px;
+    font-size: 0.9em;
 }

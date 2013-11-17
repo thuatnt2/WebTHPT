@@ -24,17 +24,17 @@ class BlogsController extends AppController {
             array_push($dates_have_post, $date->format('Y-m-d'));
         }
         $dates_have_post = array_unique($dates_have_post);
-        $show_write_article_button = false;
+        $current_user_id_owner = false;
         $current_user = $this->Session->read('UserAuth');
         if (!empty($current_user)) {
             if ($current_user['User']['id'] == $this->request->params['bloger_id']) {
-                $show_write_article_button = true;
+                $current_user_id_owner = true;
             }
         }
 
         $user = $this->User->read(null, $this->request->params['bloger_id']);
         $this->set('user', $user['User']);
-        $this->set(compact('recent_articles', 'dates_have_post', 'articles', 'show_write_article_button'));
+        $this->set(compact('recent_articles', 'dates_have_post', 'articles', 'current_user_id_owner'));
     }
 
     public function index($bloger_id) {
@@ -54,26 +54,20 @@ class BlogsController extends AppController {
             $this->__readyDataForLayout();
         }
         if ($this->request->is('post')) {
-            $this->redirect('/');
-//            $this->Article->create();
-//            if ($this->Article->save($this->request->data)) {
-//                $this->Session->setFlash(__('The article has been saved.'));
-//                return $this->redirect(array('controller' => 'blogs', 'action' => 'viewArticle', $this->Article->$id));
-//            } else {
-//                $this->Session->setFlash(__('The article could not be saved. Please, try again.'));
-//            }
-        }
-    }
-
-    public function add() {
-        if ($this->request->is('post')) {
+            $user = $this->User->read(null, $this->request->data['Article']['user_id']);
             $this->Article->create();
+            $blog_url = Router::url(array(
+                        'controller' => 'blogs',
+                        'action' => 'index',
+                        'bloger_id' => $user['User']['id'],
+                        'slug' => 'lht'
+            ));
             if ($this->Article->save($this->request->data)) {
-                $this->Session->setFlash(__('The article has been saved.'));
-                return $this->redirect(array('action' => 'index'));
+//                $this->Session->setFlash(__('Đăng bài viết thành công!'));
             } else {
-                $this->Session->setFlash(__('The article could not be saved. Please, try again.'));
+                $this->Session->setFlash(__('Đã có lỗi xảy ra, tạo bài viết không thành công!'));
             }
+            $this->redirect($blog_url);
         }
     }
 
