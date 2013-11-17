@@ -24,17 +24,15 @@ class BlogsController extends AppController {
             array_push($dates_have_post, $date->format('Y-m-d'));
         }
         $dates_have_post = array_unique($dates_have_post);
-        $current_user_id_owner = false;
+        $current_user_is_owner = false;
         $current_user = $this->Session->read('UserAuth');
-        if (!empty($current_user)) {
-            if ($current_user['User']['id'] == $this->request->params['bloger_id']) {
-                $current_user_id_owner = true;
-            }
+        if (!empty($current_user) && ($current_user['User']['id'] == $this->request->params['bloger_id'])) {
+            $current_user_is_owner = true;
         }
 
         $user = $this->User->read(null, $this->request->params['bloger_id']);
         $this->set('user', $user['User']);
-        $this->set(compact('recent_articles', 'dates_have_post', 'articles', 'current_user_id_owner'));
+        $this->set(compact('recent_articles', 'dates_have_post', 'articles', 'current_user_is_owner'));
     }
 
     public function index($bloger_id) {
@@ -71,7 +69,21 @@ class BlogsController extends AppController {
         }
     }
 
-    //Get articles with user_ud = $id
+    public function deleteArticle() {
+        $this->autoRender = false;
+        $this->response->type('json');
+        $response = array();
+        $article = $this->Article->read(null, $this->request->data['article_id']);
+        $current_user = $this->Session->read('UserAuth');
+        if (!empty($current_user) && ($current_user['User']['id'] == $article['User']['id'])) {
+            $this->Article->delete($this->request->data['article_id']);
+        } else {
+            
+        }
+        $this->response->body(json_encode($response));
+    }
+
+//Get articles with user_ud = $id
     public function view($id) {
         $options = array(
             'conditions' => array('Article.user_id' => $id)
@@ -85,6 +97,11 @@ class BlogsController extends AppController {
      * query: bloger_id, date
      */
     public function filterArticleByDate() {
+        $current_user = $this->Session->read('UserAuth');
+        $current_user_is_owner = false;
+        if (!empty($current_user) && ($current_user['User']['id'] == $this->request->params['bloger_id'])) {
+            $current_user_is_owner = true;
+        }
         $this->autoRender = false;
         $this->response->type('json');
         $this->log($this->request->query, 'debug');
@@ -96,7 +113,7 @@ class BlogsController extends AppController {
 
         $resp = array();
 
-        // This's a simple trick :)
+// This's a simple trick :)
         $from_date = $date . ' 00:00:00';
         $to_date = $date . ' 23:59:59';
 
@@ -110,8 +127,8 @@ class BlogsController extends AppController {
         );
 
         $articles = $this->Article->find('all', $options);
-        $this->set(compact('articles'));
-        // Get result list in html
+        $this->set(compact('articles','current_user_is_owner'));
+// Get result list in html
         $view = new View($this, false);
         $html = $view->render('/Articles/articles_listing');
         $resp['html'] = $html;

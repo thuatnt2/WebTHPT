@@ -24,7 +24,7 @@
                                 <h1 class='site-title'>
                                     <a href=''>Blog giáo viên</a>
                                 </h1>
-                                <h2 class='site-description'>Không có gì quý hơn độc lập tự do</h2>
+                                <h2 class='site-description'>Học, học nữa, học mãi</h2>
                             </div>
 
                             <span class="login-blog-form" style="float:right"> 
@@ -32,7 +32,7 @@
                                 <?php if (!empty($current_user)): ?>
                                     <p>Chào mừng <a><?php echo $current_user['User']['first_name'] . ' ' . $current_user['User']['last_name'] ?></a> , <a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a>
                                     </p>
-                                    <?php if ($current_user_id_owner): ?>
+                                    <?php if ($current_user_is_owner): ?>
                                         <?php $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username'])) ?>
                                         <?php
                                         echo $this->Html->link('Đăng bài', array(
@@ -40,7 +40,7 @@
                                             'action' => 'writeArticle',
                                             'bloger_id' => $user['id'],
                                             'slug' => $user_slug
-                                                ), array('class' => 'button')
+                                                ), array('class' => 'btn btn-small')
                                         )
                                         ?>
                                     <?php endif; ?>
@@ -82,8 +82,8 @@
                                         <li id="search-bar"> <aside class='widget widget_search' id='search-3'>
                                                 <form action='' id='searchform' method='get'>
                                                     <div>
-                                                        <input id='s' name='q' type='text' value=''/>
-                                                        <input id='searchsubmit' type='submit' value='Tìm'/>
+                                                        <input id='s' name='q' type='text' class="input-medium" value=''/>
+                                                        <button id='search_submit_btn' type='submit' class="btn">Tìm</button>
                                                     </div>
                                                 </form>
                                             </aside>

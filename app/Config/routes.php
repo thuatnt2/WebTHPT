@@ -53,8 +53,12 @@ Router::connect(
     'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
 );
 Router::connect(
-        '/blog/:bloger_id-:slug/bai_moi', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
+        '/blog/:bloger_id-:slug/bai-viet', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
     'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
+);
+
+Router::connect(
+        '/blog/xoa_bai', array('controller' => 'blogs', 'action' => 'deleteArticle', '[method]' => 'POST')
 );
 /**
  * Frontend video

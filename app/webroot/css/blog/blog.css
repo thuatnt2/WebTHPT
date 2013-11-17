@@ -1414,3 +1414,11 @@ a.says {
     height: 10px;
     font-size: 0.9em;
 }
+
+#search-bar input {
+    height: 15px;
+    margin-bottom: 1px;
+}
+body {
+    background: url('/img/blog/body_bg.gif');
+}

@@ -1,4 +1,4 @@
-<?php foreach ($posts as $article) { ?>
+<?php foreach ($articles as $article) { ?>
     <article>
         <header class='entry-header'>
             <h2 class='post-title entry-title'>
@@ -44,11 +44,10 @@
             <span class="article-actions" style="display: none">
                 <ul>
                     <li>
-                        <a href="#" class="btn btn-small btn-warning">Xóa</a>
-
+                        <a href="#" data-article-id="<?php echo $article['Article']['id'] ?>" data-url ="<?php echo Router::url('/blog/xoa_bai') ?>" class="btn btn-small btn-warning delete_article_lk">Xóa</a>
                     </li>
                     <li>
-                        <a href="#"  class="btn btn-small btn-success">Sửa</a>
+                        <a href="#" class="btn btn-small btn-success edit_article_lk" data-article-id="<?php echo $article['Article']['id'] ?>">Sửa</a>
                     </li>
                 </ul>
             </span>
@@ -57,17 +56,35 @@
     <div style='clear: both;'></div>
 <?php } ?>
 
-<?php if ($current_user_id_owner): ?>
+<?php if ($current_user_is_owner): ?>
     <script type="text/javascript">
         $(document).ready(function() {
             $('article').mouseenter(function() {
-                console.log('hover');
                 $(this).find('.article-actions').fadeIn(150);
             });
             $('article').mouseleave(function() {
-                console.log('hover');
                 $(this).find('.article-actions').fadeOut(150);
             });
+            $('.delete_article_lk').on('click', function() {
+                var parent = $(this).closest('article');
+                if (confirm('Bạn chắc chắn muốn xóa bài này ?')) {
+                    $.ajax({
+                        url: $(this).attr('data-url'),
+                        type: 'POST',
+                        data: {article_id: $(this).attr('data-article-id')},
+                        success: function() {
+                            console.log('success')
+                            parent.fadeOut(500, function() {
+                                $(this).remove();
+                            })
+                        }
+
+                    });
+                }
+                return false;
+            });
+
+
         });
     </script> 
 
