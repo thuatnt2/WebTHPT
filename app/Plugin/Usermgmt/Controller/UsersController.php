@@ -424,7 +424,7 @@ class UsersController extends UserMgmtAppController {
             $user['User']['id'] = $userId;
             $user['User']['email_verified'] = 1;
             $this->User->save($user, false);
-            $this->Session->setFlash(__('User email is successfully verified'));
+            $this->Session->setFlash(__('Đã kích hoạt tài khoản thành công.'), 'flash_success');
         }
         $this->redirect('/admin/nguoi-dung');
     }

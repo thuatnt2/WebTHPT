@@ -8,6 +8,12 @@ Router::connect('/dashboard', array('controller' => 'admin', 'action' => 'index'
 Router::connect('/admin/danh-muc', array('controller' => 'categories', 'action' => 'index', 'admin' => true));
 Router::connect('/admin/them-danh-muc', array('controller' => 'categories', 'action' => 'add', 'admin' => true));
 Router::connect('/admin/danh-sach-bai-viet', array('controller' => 'posts', 'action' => 'index', 'admin' => true));
+Router::connect('/admin/danh-sach-bai-viet/page:id', array(
+    'controller' => 'posts', 
+    'action' => 'index',
+    'admin' => true),
+        array('pass' => array('id'))
+        );
 Router::connect('/admin/them-bai-viet', array('controller' => 'posts', 'action' => 'add', 'admin' => true));
 Router::connect('/admin/videos', array('controller' => 'videos', 'action' => 'index', 'admin' => true));
 Router::connect('/admin/them-video', array('controller' => 'videos', 'action' => 'add', 'admin' => true));

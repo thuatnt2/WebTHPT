@@ -25,6 +25,7 @@ class PostsController extends AppController {
      */
     public function admin_index() {
         $this->Post->recursive = 0;
+        
         $this->set('posts', $this->Paginator->paginate());
         $this->set('title_for_layout', 'Danh sách bài viết');
     }
