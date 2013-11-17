@@ -29,7 +29,7 @@
                 <div id="banner">
                     <div class="row">
                         <div class="col-lg-12">
-                            <?php echo $this->Html->image('frontend/banner_new.jpg') ?>
+                            <?php echo $this->Html->image('frontend/bannermoi.jpg') ?>
                         </div>
 
                     </div>
