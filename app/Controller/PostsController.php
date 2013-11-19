@@ -131,9 +131,7 @@ class PostsController extends AppController {
     }
 
     public function posts($id) {
-        $this->log('zo day', 'debug');
         $this->loadModel('Category');
-
         $category = $this->Category->read(null, $id);
         $this->layout = 'frontend/detailArticle';
         $conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $id);
@@ -150,7 +148,32 @@ class PostsController extends AppController {
         $this->set('title_for_layout', $category['Category']['name']);
         $this->set('current_menu_id', $current_menu_id);
     }
-
+     /**
+     * view method
+     *
+     * @throws NotFoundException
+     * @param string $id
+     * @return void
+     */
+    public function view($id = null) {
+        $this->layout = 'frontend/detailArticle';
+        if (!$this->Post->exists($id)) {
+            throw new NotFoundException(__('Invalid category'));
+        }
+        $options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
+        $article =  $this->Post->find('first', $options);
+        $current_menu_id = $article['Post']['category_id'];
+        $conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id'],'Post.' . $this->Post->primaryKey.' !=' => $id);
+        $this->paginate = array(
+            'limit' => 5,
+            'conditions' => $conditions,
+            'order' => array(
+                'Post.modified' => 'DESC'
+            ),
+        );
+        $otherArticle = $this->paginate();
+        $this->set(compact('article','otherArticle','current_menu_id'));
+    }
     /**
      * Get the most Recent post
      *

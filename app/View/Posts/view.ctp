@@ -27,7 +27,7 @@
     <div class="col-lg-12">
           <?php
             echo $i++.')&nbsp;&nbsp;'.$this->Html->link($row['Post']['title'], array(
-                'controller' => 'index',
+                'controller' => 'posts',
                 'action' => 'view',
                 'id' => $row['Post']['id'],
                 'slug' => $row['Post']['alias']), array('escape' => false));

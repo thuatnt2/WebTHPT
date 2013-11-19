@@ -8,7 +8,7 @@ else:
             <h4 class="">
                 <?php
                 echo $this->Html->link($row['Post']['title'], array(
-                    'controller' => 'index',
+                    'controller' => 'posts',
                     'action' => 'view',
                     'id' => $row['Post']['id'],
                     'slug' => $row['Post']['alias']), array('escape' => false));
@@ -25,7 +25,7 @@ else:
             <p><?php echo $row['Post']['sumary'] . '...' ?></p>
             <?php
             echo $this->Html->link('Xem thêm...', array(
-                'controller' => 'index',
+                'controller' => 'posts',
                 'action' => 'view',
                 'id' => $row['Post']['id'],
                 'slug' => $row['Post']['alias']), array('style' => "float: right", 'escape' => false));

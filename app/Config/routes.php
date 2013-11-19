@@ -33,7 +33,7 @@ Router::connect('/', array('controller' => 'index', 'action' => 'index'));
  */
 Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect(
-        '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'index', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
+        '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
 Router::connect(

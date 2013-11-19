@@ -37,18 +37,26 @@ class IndexController extends AppController {
      * @return void
      */
     public function view($id = null) {
-        $this->layout = 'frontend/detailArticle';
-        $this->loadModel('Post');
-        if (!$this->Post->exists($id)) {
-            throw new NotFoundException(__('Invalid category'));
-        }
-        $options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
-        $article =  $this->Post->find('first', $options);
-         $current_menu_id = $article['Post']['category_id'];
-        $conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id']);
-        $options = array('conditions' => $conditions,'order' =>array('Post.modified' => 'DESC'),'limit' => 7);
-        $otherArticle = $this->Post->find('all', $options);
-        $this->set(compact('article','otherArticle','current_menu_id'));
+//        $this->layout = 'frontend/detailArticle';
+//        $this->loadModel('Post');
+//        if (!$this->Post->exists($id)) {
+//            throw new NotFoundException(__('Invalid category'));
+//        }
+//        $options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
+//        $article =  $this->Post->find('first', $options);
+//        $current_menu_id = $article['Post']['category_id'];
+//        $conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id'],'Post.' . $this->Post->primaryKey.' !=' => $id);
+////        $options = array('conditions' => $conditions,'order' =>array('Post.modified' => 'DESC'));
+////        $otherArticle = $this->Post->find('all', $options);
+//        $this->paginate = array(
+//            'limit' => 5,
+//            'conditions' => $conditions,
+//            'order' => array(
+//                'Post.modified' => 'DESC'
+//            ),
+//        );
+//        $otherArticle = $this->paginate();
+//        $this->set(compact('article','otherArticle','current_menu_id'));
     }
 
 }
