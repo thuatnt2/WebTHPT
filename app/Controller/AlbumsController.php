@@ -28,6 +28,7 @@ class AlbumsController extends AppController {
     public function index() {
         $this->layout = 'frontend/detailArticle';
         $this->Album->recursive = 1;
+//        $current_menu_id = 
         $this->set('albums', $this->Paginator->paginate());
     }
 

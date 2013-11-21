@@ -1,23 +1,13 @@
-<div class="row">
-    <ol class="breadcrumb">
-        <li class="active">Album ảnh</li>
-    </ol>
-    <div class="panel panel-primary">
-        <!--<div class="panel-heading">Thống kê</div>-->
-        <div class="panel-body">
-            <?php foreach ($albums as $row): ?>
-                <h4><?php echo $row['Album']['name'] ?></h4>
-                <p style="font-size: 0.85em" ><?php echo '(Ngày đăng: ' . $row['Album']['created_at'] . ')' ?></p>
-                <?php foreach ($row['Photo'] as $key => $value): ?>
-                    <a href="<?php echo 'img/albums/' . $value['album_id'] . '/' . $value['url'] ?>" class="fancybox-buttons"data-fancybox-group="<?php echo 'album-'.$value['album_id']?>"  rel="gallery" title="<?php echo $row['Album']['name'] ?>">
-                        <?php echo $this->Html->image('albums/' . $value['album_id'] . '/' . $value['url'], array('alt="Facebook" width="85" height="65"')) ?>
-                    </a>
-                <?php endforeach; ?>
+<?php foreach ($albums as $row): ?>
+    <h4><?php echo $row['Album']['name'] ?></h4>
+    <p style="font-size: 0.85em" ><?php echo '(Ngày đăng: ' . $row['Album']['created_at'] . ')' ?></p>
+    <?php foreach ($row['Photo'] as $key => $value): ?>
+        <a href="<?php echo 'img/albums/' . $value['album_id'] . '/' . $value['url'] ?>" class="fancybox-buttons"data-fancybox-group="<?php echo 'album-' . $value['album_id'] ?>"  rel="gallery" title="<?php echo $row['Album']['name'] ?>">
+            <?php echo $this->Html->image('albums/' . $value['album_id'] . '/' . $value['url'], array('alt="Facebook" width="85" height="65"')) ?>
+        </a>
+    <?php endforeach; ?>
 
-            <?php endforeach; ?>
-        </div>
-    </div>
-</div>
+<?php endforeach; ?>
 <script>
     $(document).ready(function() {
         $('.fancybox-buttons').fancybox({

@@ -26,7 +26,7 @@
     <?php foreach ($otherArticle as $row):?>
     <div class="col-lg-12">
           <?php
-            echo $i++.')&nbsp;&nbsp;'.$this->Html->link($row['Post']['title'], array(
+            echo '&bull;&nbsp;'.$this->Html->link($row['Post']['title'], array(
                 'controller' => 'posts',
                 'action' => 'view',
                 'id' => $row['Post']['id'],
