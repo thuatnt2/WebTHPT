@@ -30,7 +30,7 @@ Router::connect('/changeUserPassword/*', array('plugin' => 'usermgmt', 'controll
 Router::connect('/admin/them-nguoi-dung', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'addUser'));
 Router::connect('/editUser/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'editUser'));
 Router::connect('/deleteUser/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'deleteUser'));
-Router::connect('/admin/thong-tin-ca-nhan/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'viewUser'));
+Router::connect('/admin/thong-tin-ca-nhan/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'editUser'));
 Router::connect('/userVerification/*', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'userVerification'));
 Router::connect('/admin/nguoi-dung', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'index'));
 //Router::connect('/dashboard', array('plugin' => 'usermgmt', 'controller' => 'users', 'action' => 'dashboard'));

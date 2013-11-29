@@ -13,7 +13,10 @@
 					$stt = 1;
 
 					?>
-                    <table class="table table-striped table-bordered dataTable">
+					<div class="actions" style="text-align: center; margin-bottom: 20px">
+						<a href="/admin/videos/add" class="btn btn-primary">Thêm video</a>
+					</div>
+                    <table class="table-data table table-striped table-bordered dataTable">
                         <thead>
                             <tr>
                                 <th>Thứ tự</th>
@@ -37,45 +40,26 @@
 
 										?></td>
 									<td><?php
-									if ($row['Video']['is_default'] == false)
-										echo $this->Html->link('Đặt làm mặc định', array('action' => 'setDefault', $row['Video']['id']))
+										if ($row['Video']['is_default'] == false)
+											echo $this->Html->link('Đặt làm mặc định', array('action' => 'setDefault', $row['Video']['id']))
 
 											?></td>
 									<td><?php echo date('d/m/Y', strtotime($row['Video']['created'])) ?></td>
 									<td>
-	<?php
-	echo $this->Html->link(
-			$this->Html->image('admin/edit.png'), array('action' => 'edit', $row['Video']['id']), array('escape' => false));
-	echo $this->Form->postLink($this->Html->image('admin/delete.png'), array('action' => 'delete', $row['Video']['id']), array('escape' => false), 'Bạn có chắc chắn muốn xóa ???')
+										<?php
+										echo $this->Html->link(
+												$this->Html->image('admin/edit.png'), array('action' => 'edit', $row['Video']['id']), array('escape' => false));
+										echo $this->Form->postLink($this->Html->image('admin/delete.png'), array('action' => 'delete', $row['Video']['id']), array('escape' => false), 'Bạn có chắc chắn muốn xóa ???')
 
-	?>
+										?>
 									</td>
 								</tr>
-	<?php
-endforeach;
+								<?php
+							endforeach;
 
-?>
+							?>
                         </tbody>
                     </table>
-                    <div class="row">
-                        <div class="span6"></div>
-                        <div class="span6">
-                            <div class="dataTables_paginate paging_bootstrap pagination">
-                                <ul>
-<?php
-echo $this->Paginator->prev('Trước', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
-echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'currentClass' => 'active', 'tag' => 'li', 'first' => 1));
-echo $this->Paginator->next('Tiếp', array('tag' => 'li', 'currentClass' => 'disabled'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
-
-?>
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div  class="row" style="text-align: center">
-<?php echo $this->Html->link('Thêm video', $this->Html->url('/admin/them-video'), array('class' => 'btn btn-primary')) ?>
-                    </div>
                 </div>
             </div>
         </div>

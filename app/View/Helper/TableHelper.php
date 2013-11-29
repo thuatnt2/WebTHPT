@@ -82,7 +82,7 @@ class TableHelper extends AppHelper {
 	public function render($data_provider, $columns, $options = array()) {
 		$this->_init($options);
 		$this->_initColumns($columns);
-		$output = '<table class = "table table-striped table-bordered dataTable">';
+		$output = '<table class = "table-data table table-striped table-bordered dataTable">';
 		$output.= $this->_generateHeader($columns);
 		$index = ($this->_page - 1) * $this->_limit;
 		foreach ($data_provider as $data) {

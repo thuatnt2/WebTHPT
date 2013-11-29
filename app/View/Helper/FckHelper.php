@@ -7,11 +7,11 @@ class FckHelper extends AppHelper {
 /**
 * creates an fckeditor textarea
 *
-* @param array $namepair – used to build textarea name for views, array('Model', 'fieldname')
-* @param stirng $basepath – base path of project/system
+* @param array $namepair ï¿½ used to build textarea name for views, array('Model', 'fieldname')
+* @param stirng $basepath ï¿½ base path of project/system
 * @param string $content
 */
-function fckeditor($namepair = array(), $basepath = ”, $content = ”){
+function fckeditor($namepair = array(), $basepath = '', $content = ''){
 $editor_name = 'data';
 foreach ($namepair as $name){
 $editor_name .= "[" . $name . "]";
