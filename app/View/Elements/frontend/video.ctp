@@ -4,7 +4,7 @@ $videos = $this->requestAction('videos/recentVideo');
 
 ?>
 <div class="panel-body">
-    <iframe  src="http://youtube.com/embed/<?php echo $videos['Default']['Video']['youtube_id'] ?>" width="100%" height="220" frameborder="0"></iframe>
+    <iframe  src="http://youtube.com/embed/<?php echo $videos['Default']['Video']['youtube_id'] ?>" width="100%" height="160" frameborder="0"></iframe>
     <div class="col-lg-12">
 		<?php
 		echo $this->Html->link($videos['Default']['Video']['title'], array(
