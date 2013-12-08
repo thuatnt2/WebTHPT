@@ -20,7 +20,7 @@ class IndexController extends AppController {
         $this->loadModel('Post');
         $this->Post->recursive = 0;
         $actionEvents = $this->Post->find('all', array('conditions' => array('Post.category_id' => 2)));
-        $generalNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 3)));
+        $generalNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 12)));
         $groupNews = $this->Post->find('all', array('conditions' => array('Post.category_id' => 5)));
         $typicalFaces = $this->Post->find('all', array('conditions' => array('Post.category_id' => 6)));
         $confidentials = $this->Post->find('all', array('conditions' => array('Post.category_id' => 7)));

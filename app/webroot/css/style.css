@@ -266,3 +266,11 @@ ul.nav.nav-tabs li a {
     text-transform: uppercase;
     padding-bottom: 10px;
 }
+.new-preview{
+    min-height: 175px;
+}
+.thumbnail-new {
+    width: 200px;
+    padding-right: 5px;
+    float: left;
+}
