@@ -11,7 +11,9 @@
     background-image: 
 }*/
 body {
-    background: #3b3b3b;
+    background: url(/img/frontend/body_bg.png);
+    margin-top: 8px;
+    font-family: "Tahoma",Helvetica,Arial,sans-serif;
 }
 hr {
     margin-top: 0px;
@@ -167,10 +169,16 @@ ul.nav.nav-tabs li a {
     height: 100%;
 }
 .container {
-    margin: auto 70px;
+    /*margin: auto 70px;*/
+    margin: auto 115px;
 }
-#banner img {
-    width: 100%;
+.container #content-wrapper {
+    padding: 0 5px;
+}
+#right-sidebar {
+    padding-left: 5px;
+    padding-right: 0px;
+
 }
 .panel-primary>.panel-heading {
     background-image: -webkit-linear-gradient(rgb(84, 180, 235),rgb(47, 164, 231) 60%,rgb(29, 156, 229));
@@ -187,6 +195,7 @@ ul.nav.nav-tabs li a {
     width: 100%;
     height: 100%;
 }
+/*
 #sub-navbar {
     padding: 5px;
     overflow-y: hidden;
@@ -196,11 +205,11 @@ ul.nav.nav-tabs li a {
     display: inline;
     height: 40px;
     border: 1px solid rgb(218, 218, 218);
-    margin-left: 15px;
+    margin-left: 10px;
 }
 
 #sub-navbar div:first-line {
-   margin-left: 5px; 
+    margin-left: 5px; 
 }
 #sub-navbar a {
     color: black;
@@ -211,4 +220,49 @@ ul.nav.nav-tabs li a {
 }
 #sub-navbar a:hover {
     color:rgb(47, 164, 231);
+}
+*/
+#banner  {
+    height: 150px;
+}
+#banner #logo {
+    margin: 5px 0px 5px 25px;
+}
+#banner #school-name ,#banner #school-name #bottom h2{
+    font-weight: bold;
+}
+#banner #school-name #bottom h2 {
+    margin-top: 10px;
+}
+#school-name #top {
+    padding-top: 25px;
+    padding-left: 35px;
+    min-width: 280px;
+    color: #293577;
+}
+#banner #school-name {
+    padding-left: 0px;
+}
+#banner #school-name #bottom h2 {
+    font-size: 30px;
+    color: rgb(204, 17, 37);
+    text-shadow: 0 -1px rgb(228, 237, 246), 
+        1px 0 rgb(255, 255, 255), 
+        0 1px rgb(245, 247, 248),
+        -1px 0 rgb(218, 226, 233);
+}
+#banner-pics {
+}
+#portal-links ul{
+    list-style: none;
+    padding-left: 5px;
+    line-height: 33px;
+}
+#portal-links ul li a {
+    font-weight: bold;
+}
+#right-sidebar .panel-primary .panel-heading, #portal-links .panel-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-bottom: 10px;
 }

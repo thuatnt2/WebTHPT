@@ -13,7 +13,7 @@
         ?>
         <?php
         echo $this->Html->script(array(
-            'vendor/jquery-1.10.2.min',
+            'vendor/jquery-1.10.2.min'
         ))
         ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -25,13 +25,19 @@
     </head>
     <body>
         <div class="container">
-            <div class="row">
+            <div class="row" id="content-wrapper">
                 <div id="banner">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <?php echo $this->Html->image('frontend/bannermoi.jpg') ?>
+                        <div class="col-lg-2" id="logo">
+                            <?php echo $this->Html->image('logo.png') ?>
+                        </div >
+                        <div class="col-lg-5" id="school-name">
+                            <div id="top"><span>SỞ GIÁO DỤC VÀ ĐÀO TẠO QUẢNG NAM</span></div>
+                            <div id="bottom"><h2>TRƯỜNG THPT TIỂU LA</h2></div>
                         </div>
-
+                        <div class="col-lg-5" id="banner-pics">
+                            <?php // echo $this->Html->image('frontend/bannerright.jpg') ?> 
+                        </div>
                     </div>
                 </div>
                 <!--<begin navbar>-->
@@ -39,41 +45,6 @@
                 echo $this->element('frontend/navbar');
                 ?>
                 <!--<end navbar>-->
-                <div id="sub-navbar"> 
-                    <a href="#">
-                        <div class="col-lg-2">
-
-                            <img src="/img/submenu/calendar.png"/>
-                            Thời Khóa Biểu
-
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="col-lg-2">
-                            <img src="/img/submenu/lichcongtac.png"/>
-                            Lịch Công Tác
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="col-lg-2">
-                            <img src="/img/submenu/tracuu.png"/>
-                            Tra Cứu Điểm
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="col-lg-3">
-                            <img src="/img/submenu/vanphong.png"/>
-                            Văn Phòng Trực Tuyến
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="col-lg-2">
-                            <img src="/img/submenu/hoidap.png"/>
-                            Hỏi Đáp
-                        </div>
-                    </a>
-                </div>
-
                 <div id="content">
                     <div id="content-top">
                         <div class="col-lg-9">
@@ -97,19 +68,39 @@
                                 </div>
 
                                 <div style="clear: both"></div>
-                                <div class="panel panel-primary">
+                                <div class="panel panel-primary" id="portal-links">
                                     <div class="panel-heading">
-                                        <ul class="nav nav-tabs nav-justified">
-                                            <li class="active"><a href="#tabs2-pane1" data-toggle="tab">Tin mới nhất</a></li>
-                                            <li><a href="#tabs2-pane2" data-toggle="tab">Tin xem nhiều</a></li>
-                                        </ul>
+                                        LIÊN KẾT PORTAL MỚI
                                     </div>
-                                    <div class="panel-body">
-                                        <!--<begin information>-->
-                                        <?php
-                                        echo $this->element('frontend/information');
-                                        ?>
-                                        <!--<end information>-->
+                                    <div class="panel-body" >
+                                        <ul>
+                                            <li>
+                                                <a href="#">
+                                                    <img src="/img/submenu/calendar.png"/>
+                                                    Thời Khóa Biểu
+                                                </a>
+                                            </li><li>
+                                                <a href="#">
+                                                    <img src="/img/submenu/lichcongtac.png"/>
+                                                    Lịch Công Tác
+                                                </a>
+                                            </li><li>
+                                                <a href="#">
+                                                    <img src="/img/submenu/tracuu.png"/>
+                                                    Tra Cứu Điểm
+                                                </a>
+                                            </li><li>
+                                                <a href="#">
+                                                    <img src="/img/submenu/vanphong.png"/>
+                                                    Văn Phòng Trực Tuyến
+                                                </a>
+                                            </li><li>
+                                                <a href="#">
+                                                    <img src="/img/submenu/hoidap.png"/>
+                                                    Hỏi Đáp
+                                                </a>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div> 
 
@@ -140,7 +131,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3">
+                            <div class="col-lg-3"  id="right-sidebar">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Thư viện video</div>
                                     <?php echo $this->element('frontend/video') ?>
