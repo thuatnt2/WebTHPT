@@ -6,30 +6,22 @@
             </li>
             <?php
             $menus = $this->requestAction('categories/getMainMenu');
-//			debug($menus);
             ?>
-            <?php
-            $firstMenuItem = $this->requestAction('categories/firstMenuItem');
-            //debug($firstMenuItem);
-            ?>
-            <li  class="dropdown <?php echo ($current_menu_id == 1 ? 'active' : '') ?>">
-                <a href="#"  class="dropdown-toggle" data-toggle="dropdown"><?php echo $firstMenuItem['Category']['name'] ?> <b class="caret"></b></a>
+            <li class="dropdown <?php echo ($current_menu_id == 1 ? 'active' : '') ?>">
+                <a href="#"  class="dropdown-toggle" data-toggle="dropdown">Giới thiệu<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <?php
-                    foreach ($firstMenuItem['posts'] as $post):
-                        ?>
-                        <li>
-                            <?php
-                            echo $this->Html->link($post['Post']['title'], array(
-                                'controller' => 'index',
-                                'action' => 'view',
-                                'id' => $post['Post']['id'],
-                                'slug' => $post['Post']['alias']));
-                            ?>
-                        </li>
-                        <?php
-                    endforeach;
-                    ?> 
+                    <li>
+                        <a href="<?php echo Router::url(array('controller' => 'pages', 'action' => 'view', 'page_name' => 'lich-su-phat-trien')) ?>">Lịch sử phát triển</a>
+                    </li>
+                      <li>
+                        <a href="<?php echo Router::url(array('controller' => 'pages', 'action' => 'view', 'page_name' => 'su-menh-tam-nhin')) ?>">Sứ mệnh tầm nhìn</a>
+                    </li>
+                      <li>
+                        <a href="<?php echo Router::url(array('controller' => 'pages', 'action' => 'view', 'page_name' => 'co-cau-to-chuc')) ?>">Cơ cấu tổ chức</a>
+                    </li>
+                      <li>
+                        <a href="<?php echo Router::url(array('controller' => 'pages', 'action' => 'view', 'page_name' => 'co-so-vat-chat')) ?>">Lịch sử phát triển</a>
+                    </li>
                 </ul>
             </li>	
             <?php
@@ -99,15 +91,9 @@
             </li>
             <li><?php echo $this->Html->link('Album ảnh', array('plugin' => null, 'controller' => 'albums', 'action' => 'index'), array('escape' => false)) ?></li>
             <li><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>
-            <!--<li><a href="#" style="padding-right:35px">Liên hệ</a></li>-->
             <li>
             </li>
         </ul>
-        <!--        <form>
-                                <div class="input-group" id="search-form-navbar">
-                                        <input type="text" class="form-control" placeholder="Tìm kiếm...">
-                                </div>
-                        </form>-->
     </div><!-- /.navbar-collapse -->
 </nav>
 <script type="text/javascript">

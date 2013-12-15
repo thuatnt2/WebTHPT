@@ -267,7 +267,8 @@ ul.nav.nav-tabs li a {
     padding-bottom: 10px;
 }
 .new-preview{
-    min-height: 175px;
+    min-height: 200px;
+    padding: 2px 4px 2px 4px;
 }
 .thumbnail-new {
     width: 200px;

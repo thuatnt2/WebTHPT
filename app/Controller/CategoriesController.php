@@ -133,5 +133,10 @@ class CategoriesController extends AppController {
         $menu['posts'] = $posts;
         return $menu;
     }
+    // Xem các bài viết trong danh mục
+    public function view($category_id) {
+          $this->loadModel('Post');
+          
+    }
 
 }

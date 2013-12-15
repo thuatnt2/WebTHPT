@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Static content controller.
  *
@@ -31,48 +32,94 @@ App::uses('AppController', 'Controller');
  */
 class PagesController extends AppController {
 
-/**
- * This controller does not use a model
- *
- * @var array
- */
-	public $uses = array();
+    /**
+     * This controller does not use a model
+     *
+     * @var array
+     */
+    public $uses = array();
 
-/**
- * Displays a view
- *
- * @param mixed What page to display
- * @return void
- * @throws NotFoundException When the view file could not be found
- *	or MissingViewException in debug mode.
- */
-	public function display() {
-		$path = func_get_args();
+    /**
+     * Displays a view
+     *
+     * @param mixed What page to display
+     * @return void
+     * @throws NotFoundException When the view file could not be found
+     * 	or MissingViewException in debug mode.
+     */
+    public function beforeFilter() {
+        parent::beforeFilter();
+    }
 
-		$count = count($path);
-		if (!$count) {
-			return $this->redirect('/');
-		}
-		$page = $subpage = $title_for_layout = null;
+    public function display() {
+        $path = func_get_args();
 
-		if (!empty($path[0])) {
-			$page = $path[0];
-		}
-		if (!empty($path[1])) {
-			$subpage = $path[1];
-		}
-		if (!empty($path[$count - 1])) {
-			$title_for_layout = Inflector::humanize($path[$count - 1]);
-		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
+        $count = count($path);
+        if (!$count) {
+            return $this->redirect('/');
+        }
+        $page = $subpage = $title_for_layout = null;
 
-		try {
-			$this->render(implode('/', $path));
-		} catch (MissingViewException $e) {
-			if (Configure::read('debug')) {
-				throw $e;
-			}
-			throw new NotFoundException();
-		}
-	}
+        if (!empty($path[0])) {
+            $page = $path[0];
+        }
+        if (!empty($path[1])) {
+            $subpage = $path[1];
+        }
+        if (!empty($path[$count - 1])) {
+            $title_for_layout = Inflector::humanize($path[$count - 1]);
+        }
+        $this->set(compact('page', 'subpage', 'title_for_layout'));
+
+        try {
+            $this->render(implode('/', $path));
+        } catch (MissingViewException $e) {
+            if (Configure::read('debug')) {
+                throw $e;
+            }
+            throw new NotFoundException();
+        }
+    }
+
+    // Cho menu giới thiệu
+    public function getIntroductionMenu() {
+        $this->loadModel('Page');
+    }
+
+    // Xem trang tinh: 
+    // GET: /gioi-thieu/[lich-su-phat-trien, su-menh-tam-nhin, co-cau-to-chuc, co-so-vat-chat]
+    public function view($page_name) {
+        $options = array('conditions' => array(
+                'Page.name' => $page_name
+        ));
+        $page = $this->Page->find('first', $options);
+        $this->set(compact('page'));
+    }
+
+    public function admin_manage() {
+        $this->layout = 'admin/admin';
+        $pages = $this->Page->find('all');
+        $this->set(compact('pages'));
+    }
+
+    public function admin_edit() {
+        if ($this->request->is('post') || $this->request->is('put')) {
+            if ($this->Page->save($this->request->data)) {
+                $this->Session->setFlash(__('Lưu thành công.'));
+                return $this->redirect(array('action' => 'manage'));
+            } else {
+                $this->Session->setFlash(__('Lưu không thành công.'));
+            }
+        } else {
+            $this->layout = 'admin/admin';
+            $page_name = $this->request->params['page_name'];
+            $options = array('conditions' => array(
+                    'Page.name' => $page_name
+            ));
+            $this->request->data = $this->Page->find('first', $options);
+            $page = $this->Page->find('first', $options);
+            $this->set(compact('page'));
+        }
+    }
+
 }

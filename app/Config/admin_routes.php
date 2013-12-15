@@ -9,11 +9,10 @@ Router::connect('/admin/danh-muc', array('controller' => 'categories', 'action' 
 Router::connect('/admin/them-danh-muc', array('controller' => 'categories', 'action' => 'add', 'admin' => true));
 Router::connect('/admin/danh-sach-bai-viet', array('controller' => 'posts', 'action' => 'index', 'admin' => true));
 Router::connect('/admin/danh-sach-bai-viet/page:id', array(
-    'controller' => 'posts', 
+    'controller' => 'posts',
     'action' => 'index',
-    'admin' => true),
-        array('pass' => array('id'))
-        );
+    'admin' => true), array('pass' => array('id'))
+);
 Router::connect('/admin/them-bai-viet', array('controller' => 'posts', 'action' => 'add', 'admin' => true));
 Router::connect('/admin/videos', array('controller' => 'videos', 'action' => 'index', 'admin' => true));
 Router::connect('/admin/them-video', array('controller' => 'videos', 'action' => 'add', 'admin' => true));
@@ -25,4 +24,7 @@ Router::connect('/admin/menu', array('controller' => 'menus', 'action' => 'index
 Router::connect('/admin/them-menu', array('controller' => 'menus', 'action' => 'add', 'admin' => true));
 
 Router::connect('/admin/album-anh/delete_photo', array('controller' => 'albums', 'action' => 'deletePhoto', 'admin' => true));
-?>
+
+Router::connect('/admin/trang-gioi-thieu', array('controller' => 'pages', 'action' => 'manage', 'admin' => true));
+Router::connect('/admin/trang-gioi-thieu/:page_name/edit', array('controller' => 'pages', 'action' => 'edit', 'admin' => true), array('pass' => 'page_name')
+);

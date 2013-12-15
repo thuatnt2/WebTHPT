@@ -31,7 +31,7 @@ Router::connect('/', array('controller' => 'index', 'action' => 'index'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
-Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+//Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect(
         '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
@@ -40,6 +40,23 @@ Router::connect(
         '/bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'posts'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
+// Routes for pages controller
+// /gioi-thieu/su-menh-tam-nhin
+Router::connect(
+        '/gioi-thieu/:page_name', array('controller' => 'pages', 'action' => 'view'), array('pass' => array('page_name'))
+);
+
+
+// Route for view all post in a category
+Router::connect(
+        '/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
+    'pass' => array('category_name','post_id', 'slug'),
+    'post_id' => '[0-9]+'
+        )
+);
+
+
+// Routes for blogs
 Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
 Router::connect(
         '/blog/:bloger_id-:slug', array(
@@ -60,6 +77,7 @@ Router::connect(
 Router::connect(
         '/blog/xoa_bai', array('controller' => 'blogs', 'action' => 'deleteArticle', '[method]' => 'POST')
 );
+// End Routes for blogs
 /**
  * Frontend video
  */

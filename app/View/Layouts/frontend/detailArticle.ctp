@@ -39,11 +39,6 @@
                     <div id="content-bottom">
                         <div class="col-lg-9">
                             <div class="row column-left">
-                                <ol class="breadcrumb">
-                                    <li><a href="#">Home</a></li>
-                                    <li><a href="#">Library</a></li>
-                                    <li class="active">Data</li>
-                                </ol>
                                 <div class="panel panel-primary" id="tab-content">
                                     <div class="panel-body" style=" min-height: 1360px;">
                                         <!--<begin information>-->
