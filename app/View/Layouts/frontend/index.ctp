@@ -121,7 +121,7 @@
                                                 <li><a href="#tabs1-pane5" data-toggle="tab">Tâm sự thầy trò</a></li>
                                             </ul>
                                         </div>
-                                        <div class="panel-body" style="height: 1363px;">
+                                        <div class="panel-body" style="">
                                             <!--<begin information>-->
                                             <?php
                                             echo $this->fetch('content');

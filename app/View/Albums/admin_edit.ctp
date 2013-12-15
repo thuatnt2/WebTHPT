@@ -3,6 +3,7 @@
         <div class="navbar navbar-inner block-header">
             <div class="muted pull-left">Quản lí albums</div>
         </div>
+        
         <div class="block-content collapse in">
             <?php echo $this->Session->flash() ?>
             <div class="albums form">
@@ -25,11 +26,11 @@
             <div class="actions">
                 <h3><?php echo __('Actions'); ?></h3>
                 <ul>
-
                     <li><?php echo $this->Form->postLink('Xóa Album này', array('action' => 'delete', $this->Form->value('Album.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('Album.id'))); ?></li>
                     <li><?php echo $this->Html->link('Danh sách Album', array('action' => 'index')); ?></li>
                 </ul>
             </div>
         </div>
+        
     </div>
 </div>

@@ -271,6 +271,7 @@ ul.nav.nav-tabs li a {
 }
 .thumbnail-new {
     width: 200px;
+    max-height: 128px;
     padding-right: 5px;
     float: left;
 }
