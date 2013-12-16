@@ -1,4 +1,4 @@
-<?php //debug($this->request->data);  ?>
+<?php //debug($this->request->data);      ?>
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
@@ -23,11 +23,14 @@
 									} else {
 
 										?><optgroup label="<?php echo $category['Category']['name'] ?>">
-											<?php foreach ($category['ChildCategory'] as $child):
+											<?php
+											foreach ($category['ChildCategory'] as $child):
+												if (in_array($child['id'], $categoryAllow)):
 
-												?>
-												<option value="<?php echo $child['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id']) && $this->request->data['Category']['id'] == $child['id']) ? 'selected' : '' ?>><?php echo $child['name'] ?></option>
-												<?php
+													?>
+													<option value="<?php echo $child['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id']) && $this->request->data['Category']['id'] == $child['id']) ? 'selected' : '' ?>><?php echo $child['name'] ?></option>
+													<?php
+												endif;
 											endforeach;
 
 											?>
@@ -37,17 +40,17 @@
 
 									?>
 
-	<?php
-endforeach;
+									<?php
+								endforeach;
 
-?>
+								?>
 							</select>
 						</div>
 					</div>
 					<div class="control-group">
 						<label>Tiêu đề</label>
 						<div class="controls">
-<?php echo $this->Form->input('title', array('class' => 'input-xxlarge', 'div' => false, 'label' => false)) ?>
+							<?php echo $this->Form->input('title', array('class' => 'input-xxlarge', 'div' => false, 'label' => false)) ?>
 						</div>
 					</div>
 					<div class="control-group">
@@ -69,25 +72,25 @@ endforeach;
 					<div class="control-group">
 						<label>Tóm tắt</label>
 						<div class="controls">
-<?php echo $this->Form->input('sumary', array('rows' => 3, 'div' => false, 'label' => false, 'class' => 'input-xxlarge textarea wysihtml5-editor')); ?>
+							<?php echo $this->Form->input('sumary', array('rows' => 3, 'div' => false, 'label' => false, 'class' => 'input-xxlarge textarea wysihtml5-editor')); ?>
 						</div>
 					</div>
 					<div class="control-group">
 						<label>Nội dung</label>
 						<div class="controls">
-<?php
-echo $this->Form->input('content', array('div' => FALSE, 'label' => false, 'id' => 'full_text', 'class' => 'input-xxlarge textarea wysihtml5-editor'));
-echo $this->TvFck->create('full_text', array('toolbar' => 'extra'), 'full_text');
+							<?php
+							echo $this->Form->input('content', array('div' => FALSE, 'label' => false, 'id' => 'full_text', 'class' => 'input-xxlarge textarea wysihtml5-editor'));
+							echo $this->TvFck->create('full_text', array('toolbar' => 'extra'), 'full_text');
 
-?>
+							?>
 						</div>
 					</div>
 					<div style="text-align: center">
-<?php echo $this->Form->submit('Lưu', array('class' => 'btn btn-success', 'div' => false)) ?>
+						<?php echo $this->Form->submit('Lưu', array('class' => 'btn btn-success', 'div' => false)) ?>
 					</div>
-<?php echo $this->Form->hidden('thumbnail', array('id' => 'post-thumbnail')) ?>
+					<?php echo $this->Form->hidden('thumbnail', array('id' => 'post-thumbnail')) ?>
 				</fieldset>
-<?php echo $this->Form->end(); ?>
+				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>
 	</div>

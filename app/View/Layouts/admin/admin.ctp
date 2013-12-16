@@ -37,6 +37,7 @@ and open the template in the editor.
         echo $this->Html->script('admin/bootstrap');
         echo $this->Html->script('admin/datatables/js/jquery.dataTables.min');
         echo $this->Html->script('admin/DT_bootstrap');
+		echo $this->fetch('scriptBottom');
         echo $this->Html->script('admin/admin');
         ?>
     </body>

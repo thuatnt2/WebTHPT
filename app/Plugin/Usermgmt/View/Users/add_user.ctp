@@ -29,39 +29,68 @@
 				<?php echo $this->Form->create('User', array('action' => 'addUser')); ?>
 				<fieldset>
 					<legend>Nhập thông tin người dùng</legend>
+					<div class="row">
+						<div class="span5">
+							<div class="control-group">
+								<label>Tên đăng nhập</label>
+								<div class="controls">
+									<?php echo $this->Form->input("username", array('label' => false, 'div' => false, 'class' => 'input-xlarge')) ?>
+								</div>
+							</div>
 
-					<div class="control-group">
-						<label>Tên đăng nhập</label>
-						<div class="controls">
-							<?php echo $this->Form->input("username", array('label' => false, 'div' => false, 'class' => 'input-xxlarge')) ?>
-						</div>
-					</div>
+							<div class="control-group">
+								<label>Họ tên</label>
+								<div class="controls">
+									<?php echo $this->Form->input("first_name", array('label' => false, 'div' => false, 'class' => 'input-xlarge')) ?>
+								</div>
+							</div>
 
-					<div class="control-group">
-						<label>Họ tên</label>
-						<div class="controls">
-							<?php echo $this->Form->input("first_name", array('label' => false, 'div' => false, 'class' => 'input-xxlarge')) ?>
-						</div>
-					</div>
+							<div class="control-group">
+								<label>Địa chỉ email</label>
+								<div class="controls">
+									<?php echo $this->Form->input("email", array('label' => false, 'div' => false, 'class' => 'input-xlarge')) ?>
+								</div>
+							</div>
 
-					<div class="control-group">
-						<label>Địa chỉ email</label>
-						<div class="controls">
-							<?php echo $this->Form->input("email", array('label' => false, 'div' => false, 'class' => 'input-xxlarge')) ?>
+							<div class="control-group">
+								<label>Mật khẩu</label>
+								<div class="controls">
+									<?php echo $this->Form->input("password", array("type" => "password", 'label' => false, 'div' => false, 'class' => "input-xlarge")) ?>
+								</div>
+							</div>
+							<div class="control-group">
+								<label>Nhập lại mật khẩu</label>
+								<div class="controls">
+									<?php echo $this->Form->input("cpassword", array("type" => "password", 'label' => false, 'div' => false, 'class' => "input-xlarge")) ?>
+								</div>
+							</div>
 						</div>
-					</div>
+						<div class="span5">
+							<div class="control-group checkbox-group">
+								<label class="control-label">Chọn danh mục được phép đăng</label>
+								<div class="checkbox">
+									<?php //debug($categories) ?>
+									<?php foreach ($categories as $category) : ?>
+										<div class="root-category">
+											<label class="label-root-category">
+												<input type="checkbox"/>
+												<?php echo $category['Category']['name'] ?>
+											</label>
+											<div class="child-category">
+												<?php foreach ($category['ChildCategory'] as $child): ?>
+													<label>
+														<input type="checkbox" name="data[Category][]" value="<?php echo $child['id'] ?>"/>
+														<?php echo $child['name'] ?>
+													</label>
+												<?php endforeach; ?>
+											</div>
 
-					<div class="control-group">
-						<label>Mật khẩu</label>
-						<div class="controls">
-							<?php echo $this->Form->input("password", array("type" => "password", 'label' => false, 'div' => false, 'class' => "input-xxlarge")) ?>
-						</div>
-					</div>
-					<div class="control-group">
-						<label>Nhập lại mật khẩu</label>
-						<div class="controls">
-							<?php echo $this->Form->input("cpassword", array("type" => "password", 'label' => false, 'div' => false, 'class' => "input-xxlarge")) ?>
-						</div>
+										</div>
+									<?php endforeach; ?>
+
+								</div>
+							</div>
+						</div>	
 					</div>
 					<div class="form-actions">
 						<?php echo $this->Form->submit('Thêm người dùng', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
@@ -71,5 +100,5 @@
 			</div>
 		</div>
 	</div>
-
 </div>
+<?php echo $this->Html->script('admin/add-user', array('block' => 'scriptBottom')) ?>

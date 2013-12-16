@@ -315,3 +315,14 @@ table.admindata tr:hover{
 .container {
 	width: 1100px !important;
 }
+
+.checkbox-group{
+	border: 1px #ccc solid;
+	padding: 10px;
+}
+label.label-root-category {
+	font-weight: bold;
+}
+.child-category label{
+	margin-left: 20px;
+}
