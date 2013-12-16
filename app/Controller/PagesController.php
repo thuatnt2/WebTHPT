@@ -80,7 +80,6 @@ class PagesController extends AppController {
             throw new NotFoundException();
         }
     }
-
     // Cho menu giới thiệu
     public function getIntroductionMenu() {
         $this->loadModel('Page');

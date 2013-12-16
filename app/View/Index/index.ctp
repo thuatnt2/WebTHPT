@@ -44,21 +44,29 @@
                         <?php
                         echo $this->Html->link($row['Post']['title'], array(
                             'controller' => 'posts',
-                            'action' => 'posts',
+                            'action' => 'view',
                             'id' => $row['Post']['id'],
                             'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false));
                         ?>
                     </h4>
-                    <?php echo $this->Html->image( $row['Post']['thumbnail'] . '', array('class' => 'thumbnail-new')) ?>
+                     <?php 
+                    if(isset($row['Post']['thumbnail']) && $row['Post']['thumbnail'] != null) {
+                        echo $this->Html->image($row['Post']['thumbnail'], array('style="width:120px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
+                    }
+                    else {
+                        echo $this->Html->image('frontend/no-images.jpg', array('style="width:120px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
+                    }
+                    ?>
                     <p><?php echo $row['Post']['sumary'] . '...' ?></p>
                     <?php
                     echo $this->Html->link('Xem thêm...', array(
                         'controller' => 'posts',
-                        'action' => 'posts',
+                        'action' => 'view',
                         'id' => $row['Post']['id'],
                         'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('style' => "float: right", 'escape' => false));
                     ?>
                 </div>
+               <div class="clearfix"></div>
                 <hr>
             <?php endforeach; ?>
             <?php
