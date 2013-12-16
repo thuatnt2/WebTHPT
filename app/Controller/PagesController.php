@@ -89,6 +89,7 @@ class PagesController extends AppController {
     // Xem trang tinh: 
     // GET: /gioi-thieu/[lich-su-phat-trien, su-menh-tam-nhin, co-cau-to-chuc, co-so-vat-chat]
     public function view($page_name) {
+        $this->layout = 'frontend/detailArticle';
         $options = array('conditions' => array(
                 'Page.name' => $page_name
         ));
