@@ -49,7 +49,7 @@ Router::connect(
 
 // Route for view all post in a category
 Router::connect(
-        '/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
+        '/bai-viet/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
     'pass' => array('category_name','post_id', 'slug'),
     'post_id' => '[0-9]+'
         )
@@ -58,6 +58,7 @@ Router::connect(
 
 // Routes for blogs
 Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
+
 Router::connect(
         '/blog/:bloger_id-:slug', array(
     'controller' => 'blogs',

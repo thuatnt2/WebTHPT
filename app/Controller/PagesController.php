@@ -86,16 +86,6 @@ class PagesController extends AppController {
         $this->loadModel('Page');
     }
 
-    // Xem trang tinh: 
-    // GET: /gioi-thieu/[lich-su-phat-trien, su-menh-tam-nhin, co-cau-to-chuc, co-so-vat-chat]
-    public function view($page_name) {
-        $options = array('conditions' => array(
-                'Page.name' => $page_name
-        ));
-        $page = $this->Page->find('first', $options);
-        $this->set(compact('page'));
-    }
-
     public function admin_manage() {
         $this->layout = 'admin/admin';
         $pages = $this->Page->find('all');
