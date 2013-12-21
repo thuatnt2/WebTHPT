@@ -5,19 +5,17 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 
         <title><?php echo $title_for_layout ?></title>
-		<?php
-		echo $this->Html->css(array(
-			'vendor/bootstrap.min',
-			'style',
-		));
-
-		?>
-		<?php
-		echo $this->Html->script(array(
-			'vendor/jquery-1.10.2.min'
-		))
-
-		?>
+        <?php
+        echo $this->Html->css(array(
+            'vendor/bootstrap.min',
+            'style',
+        ));
+        ?>
+        <?php
+        echo $this->Html->script(array(
+            'vendor/jquery-1.10.2.min'
+        ))
+        ?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -28,34 +26,21 @@
     <body>
         <div class="container">
             <div class="row" id="content-wrapper">
-                <div id="banner">
-                    <div class="row">
-                        <div class="col-lg-2" id="logo">
-							<?php echo $this->Html->image('logo.png') ?>
-                        </div >
-                        <div class="col-lg-5" id="school-name">
-                            <div id="top"><span>SỞ GIÁO DỤC VÀ ĐÀO TẠO QUẢNG NAM</span></div>
-                            <div id="bottom"><h2>TRƯỜNG THPT TIỂU LA</h2></div>
-                        </div>
-                        <div class="col-lg-5" id="banner-pics">
-							<?php // echo $this->Html->image('frontend/bannerright.jpg')  ?> 
-                        </div>
-                    </div>
-                </div>
+                <?php
+                echo $this->element('frontend/banner');
+                ?>
                 <!--<begin navbar>-->
-				<?php
-				echo $this->element('frontend/navbar');
-
-				?>
+                <?php
+                echo $this->element('frontend/navbar');
+                ?>
                 <!--<end navbar>-->
                 <div id="content">
                     <div id="content-top">
                         <div class="col-lg-9">
                             <!--<begin slider>-->
-							<?php
-							echo $this->element('frontend/slider');
-
-							?>
+                            <?php
+                            echo $this->element('frontend/slider');
+                            ?>
                             <!--<end slider>-->
                         </div>
                         <div class="col-lg-3">
@@ -79,14 +64,13 @@
                                     <div class="panel-body" >
                                         <ul>
                                             <li>
-												<?php
-												echo $this->Html->link(
-														$this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
-													'controller' => 'schedules',
-													'action' => 'listSchedules',
-														), array('escape' => false));
-
-												?>                                               
+                                                <?php
+                                                echo $this->Html->link(
+                                                        $this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
+                                                    'controller' => 'schedules',
+                                                    'action' => 'listSchedules',
+                                                        ), array('escape' => false))
+                                                ?>                                               
                                             </li><li>
                                                 <a href="#">
                                                     <img src="/img/submenu/lichcongtac.png"/>
@@ -131,10 +115,9 @@
                                         </div>
                                         <div class="panel-body" style="">
                                             <!--<begin information>-->
-											<?php
-											echo $this->fetch('content');
-
-											?>
+                                            <?php
+                                            echo $this->fetch('content');
+                                            ?>
                                             <!--<end information>-->
                                         </div>
                                     </div>
@@ -143,11 +126,11 @@
                             <div class="col-lg-3"  id="right-sidebar">
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Thư viện video</div>
-									<?php echo $this->element('frontend/video') ?>
+                                    <?php echo $this->element('frontend/video') ?>
                                 </div>
                                 <div class="panel panel-primary albums-preview">
                                     <div class="panel-heading">Thư viện ảnh</div>
-									<?php echo $this->element('frontend/photo') ?>
+                                    <?php echo $this->element('frontend/photo') ?>
                                 </div>
                                 <div class="panel panel-primary">
                                     <div class="panel-heading">Liên kết Website</div>
@@ -174,9 +157,9 @@
                                         </div>
 
                                         <div class="pull-right" style="margin-top: 10px">
-											<?php echo $this->Html->image('frontend/facebook.png', array('alt="Facebook"')) ?>
-											<?php echo $this->Html->image('frontend/google.png', array('alt="Google"')) ?>
-											<?php echo $this->Html->image('frontend/tiwin.png', array('alt="Twitter"')) ?>
+                                            <?php echo $this->Html->image('frontend/facebook.png', array('alt="Facebook"')) ?>
+                                            <?php echo $this->Html->image('frontend/google.png', array('alt="Google"')) ?>
+                                            <?php echo $this->Html->image('frontend/tiwin.png', array('alt="Twitter"')) ?>
                                         </div>
                                     </div>
                                 </div>
@@ -209,30 +192,29 @@
                 </div>
             </div>
         </div> <!-- .container -->
-		<?php
-		echo $this->Html->script(array(
-			'vendor/bootstrap.min',
-			'vendor/jquery.marquee',
-			'vendor/jcarousellite_1.0.1c4',
-		));
-
-		?>
+        <?php
+        echo $this->Html->script(array(
+            'vendor/bootstrap.min',
+            'vendor/jquery.marquee',
+            'vendor/jcarousellite_1.0.1c4',
+        ));
+        ?>
         <script type="text/javascript">
-			jQuery(document).ready(
-					function() {
-						jQuery('.carousel').carousel({
-							interval: 2000,
-							pause: 'hover',
-						});
-						jQuery(".mostNews").jCarouselLite({
-							vertical: true,
-							hoverPause: true,
-							visible: 2,
-							auto: 5000,
-							speed: 1000
-						});
-					}
-			);
+                                                jQuery(document).ready(
+                                                        function() {
+                                                            jQuery('.carousel').carousel({
+                                                                interval: 2000,
+                                                                pause: 'hover',
+                                                            });
+                                                            jQuery(".mostNews").jCarouselLite({
+                                                                vertical: true,
+                                                                hoverPause: true,
+                                                                visible: 2,
+                                                                auto: 5000,
+                                                                speed: 1000
+                                                            });
+                                                        }
+                                                );
         </script>
     </body>
 </html>

@@ -276,3 +276,22 @@ ul.nav.nav-tabs li a {
     padding-right: 5px;
     float: left;
 }
+.schedule-page-wrapper {
+    padding: 5px;
+}
+.schedules-list-wrapper ul.schedules-list {
+    list-style: disc;
+}
+.schedules-list-wrapper ul.schedules-list li {
+    line-height: 30px;
+    font-size: 17px;
+}
+.schedules-list-wrapper ul.schedules-list li .date-posted {
+  font-style: italic;
+  font-size: 14px;
+  color: rgb(112, 112, 112);
+}
+.schedule-page-wrapper .schedule-title {
+    font-size: 30px;
+    color: rgb(21, 122, 181);
+}

@@ -123,7 +123,7 @@ Router::connect(
 		)
 );
 Router::connect(
-		'/xem-thoi-khoa-bieu/:id', array(
+		'/xem-thoi-khoa-bieu/:id-:slug', array(
 	'controller' => 'schedules',
 	'action' => 'view'
 		), array(
