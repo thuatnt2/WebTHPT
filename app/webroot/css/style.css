@@ -295,3 +295,10 @@ ul.nav.nav-tabs li a {
     font-size: 30px;
     color: rgb(21, 122, 181);
 }
+.panel.statistics ul {
+    padding-left: 15px;
+}
+#hit-counter {
+    height: 15px;
+    margin-bottom: 1px;
+}
