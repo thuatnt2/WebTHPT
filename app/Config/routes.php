@@ -33,26 +33,26 @@ Router::connect('/', array('controller' => 'index', 'action' => 'index'));
  */
 //Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 Router::connect(
-        '/chi-tiet-bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/chi-tiet-bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'view'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
 Router::connect(
-        '/bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'posts'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/bai-viet/:id-:slug', array('controller' => 'posts', 'action' => 'posts'), array('pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 
 // Routes for pages controller
 // /gioi-thieu/su-menh-tam-nhin
 Router::connect(
-        '/gioi-thieu/:page_name', array('controller' => 'pages', 'action' => 'view'), array('pass' => array('page_name'))
+		'/gioi-thieu/:page_name', array('controller' => 'pages', 'action' => 'view'), array('pass' => array('page_name'))
 );
 
 
 // Route for view all post in a category
 Router::connect(
-        '/bai-viet/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
-    'pass' => array('category_name','post_id', 'slug'),
-    'post_id' => '[0-9]+'
-        )
+		'/bai-viet/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
+	'pass' => array('category_name', 'post_id', 'slug'),
+	'post_id' => '[0-9]+'
+		)
 );
 
 
@@ -60,23 +60,23 @@ Router::connect(
 Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
 
 Router::connect(
-        '/blog/:bloger_id-:slug', array(
-    'controller' => 'blogs',
-    'action' => 'index'
-        ), array(
-    'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
+		'/blog/:bloger_id-:slug', array(
+	'controller' => 'blogs',
+	'action' => 'index'
+		), array(
+	'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
 );
 Router::connect(
-        '/blog/:bloger_id-:slug/bai-viet/:article_id-:article_title', array('controller' => 'blogs', 'action' => 'viewArticle'), array(
-    'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
+		'/blog/:bloger_id-:slug/bai-viet/:article_id-:article_title', array('controller' => 'blogs', 'action' => 'viewArticle'), array(
+	'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
 );
 Router::connect(
-        '/blog/:bloger_id-:slug/bai-viet', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
-    'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
+		'/blog/:bloger_id-:slug/bai-viet', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
+	'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
 );
 
 Router::connect(
-        '/blog/xoa_bai', array('controller' => 'blogs', 'action' => 'deleteArticle', '[method]' => 'POST')
+		'/blog/xoa_bai', array('controller' => 'blogs', 'action' => 'deleteArticle', '[method]' => 'POST')
 );
 // End Routes for blogs
 /**
@@ -84,11 +84,11 @@ Router::connect(
  */
 Router::connect('/videos', array('controller' => 'videos', 'action' => 'index'));
 Router::connect(
-        '/xem-video/:id-:slug', array(
-    'controller' => 'videos',
-    'action' => 'view'
-        ), array(
-    'pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/xem-video/:id-:slug', array(
+	'controller' => 'videos',
+	'action' => 'view'
+		), array(
+	'pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
 /**
  * Frontend album anh
@@ -99,26 +99,43 @@ Router::connect('/album-anh', array('controller' => 'albums', 'action' => 'index
  * Frontend resource
  */
 Router::connect(
-        '/tai-lieu/:id', array(
-    'controller' => 'resources',
-    'action' => 'listResources'
-        ), array(
-    'pass' => array('id'), 'id' => '[0-9]+')
+		'/tai-lieu/:id', array(
+	'controller' => 'resources',
+	'action' => 'listResources'
+		), array(
+	'pass' => array('id'), 'id' => '[0-9]+')
 );
 Router::connect(
-        '/xem-tai-lieu/:id-:slug', array(
-    'controller' => 'resources',
-    'action' => 'view'
-        ), array(
-    'pass' => array('id', 'slug'), 'id' => '[0-9]+')
+		'/xem-tai-lieu/:id-:slug', array(
+	'controller' => 'resources',
+	'action' => 'view'
+		), array(
+	'pass' => array('id', 'slug'), 'id' => '[0-9]+')
+);
+
+/**
+ * Frontend Schedule
+ */
+Router::connect(
+		'/thoi-khoa-bieu/*', array(
+	'controller' => 'schedules',
+	'action' => 'listSchedules'
+		)
+);
+Router::connect(
+		'/xem-thoi-khoa-bieu/:id', array(
+	'controller' => 'schedules',
+	'action' => 'view'
+		), array(
+	'pass' => array('id'), 'id' => '[0-9]+')
 );
 /**
  * Frontend Blog
  */
 Router::connect('/blog/filter_article_by_date', array(
-    'controller' => 'blogs',
-    'action' => 'filterArticleByDate'
-        )
+	'controller' => 'blogs',
+	'action' => 'filterArticleByDate'
+		)
 );
 //Router::connect('/blog/:bloger_id/login', array('controller' => ''));
 

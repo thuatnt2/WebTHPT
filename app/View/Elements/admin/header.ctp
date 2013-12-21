@@ -63,10 +63,6 @@
                     <li>
                         <a href="<?php echo $this->Html->url('/') . 'admin/tai-lieu' ?>">Tài liệu</a>
                     </li>
-					<li>
-                        <a href="/admin/trang-gioi-thieu">Trang giới thiệu</a>
-                    </li>
-
 					<?php
 					if (isset($user['UserGroup']['id']) && $user['UserGroup']['id'] == ADMIN_GROUP_ID):
 

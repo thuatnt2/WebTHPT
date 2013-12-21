@@ -41,7 +41,7 @@ class SchedulesController extends AppController {
 		if (!$this->Schedule->exists($id)) {
 			throw new NotFoundException(__('Invalid resource'));
 		}
-		$options = array('conditions' => array('Resource.' . $this->Schedule->primaryKey => $id));
+		$options = array('conditions' => array('Schedule.' . $this->Schedule->primaryKey => $id));
 		$this->set('resource', $this->Schedule->find('first', $options));
 	}
 
@@ -88,11 +88,6 @@ class SchedulesController extends AppController {
 			} else {
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
-		} else {
-			$options = array('conditions' => array('Resource.' . $this->Schedule->primaryKey => $id));
-			$this->request->data = $this->Schedule->find('first', $options);
-			$this->set('resource_types', $this->Schedule->ScheduleType->find('list'));
-			$this->set('file_icons', $this->Schedule->file_icons);
 		}
 	}
 
@@ -109,10 +104,10 @@ class SchedulesController extends AppController {
 			throw new NotFoundException(__('Invalid resource'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		$resource = $this->Schedule->read(null, $id);
+		$schedule = $this->Schedule->read(null, $id);
 		if ($this->Schedule->delete()) {
-			unlink($resource['Schedule']['file_absolute_path']);
-			$this->Session->setFlash('Đã xóa tài liệu ' . $resource['Schedule']['title'], 'flash_success');
+			unlink($schedule['Schedule']['file_absolute_path']);
+			$this->Session->setFlash('Đã xóa tài liệu ' . $schedule['Schedule']['title'], 'flash_success');
 		} else {
 			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 		}
@@ -125,9 +120,13 @@ class SchedulesController extends AppController {
 	 * @return json result of uploading
 	 */
 	public function admin_upload() {
+		Configure::load('my_configs');
 		$this->layout = null;
 		$this->autoRender = false;
-		$path = WWW_ROOT . DS . 'schedules';
+		$baseUrl = Configure::read('base.url');
+		$this->layout = null;
+		$this->autoRender = false;
+		$path = WWW_ROOT . 'schedules';
 		if (!is_dir($path)) {
 			mkdir($path);
 		}
@@ -145,8 +144,7 @@ class SchedulesController extends AppController {
 			$result['status'] = 1;
 			$result['file_name'] = $fileName;
 			$result['message'] = 'Upload tài liệu thành công';
-			$webPath = str_ireplace(WWW_ROOT, '', $path);
-			$result['file_path'] = '/' . $webPath . '/' . $fileName;
+			$result['file_path'] = $baseUrl . 'schedules/' . $fileName;
 			$result['file_absolute_path'] = $path . DS . $fileName;
 			$result['file_size'] = ($this->request->data['Schedule']['file']['size'] / 1000000) . ' MB';
 		} else {
@@ -168,23 +166,19 @@ class SchedulesController extends AppController {
 		return json_encode(array('status' => 1));
 	}
 
-	public function listResources($id) {
+	public function listSchedules($page = null) {
+
 		$this->layout = 'frontend/detailArticle';
-		$conditions = array('Resource.resource_type' => $id);
-		$this->set('resources', $this->Schedule->find('all', array('conditions' => $conditions)));
-		$resource_type = $this->Schedule->resource_type;
-		$this->set('title_for_layout', 'Tài liệu - ' . $resource_type[$id]);
+		$this->paginate = array('limit' => 20);
+		$this->set('schedules', $this->Paginator->paginate());
+		$this->set('title_for_layout', 'Thời khóa biểu');
 	}
 
 	public function view($id) {
 		$this->layout = 'frontend/detailArticle';
 		$this->set('title_for_layout', 'Xem tài liệu');
-		$resource = $this->Schedule->read(null, $id);
-		$resource_type = $resource['Schedule']['resource_type'];
-		$conditions['AND'] = array('Resource.resource_type' => $resource_type, 'Resource.id !=' => $id);
-		$resources = $this->Schedule->find('all', array('conditions' => $conditions));
-		$this->set('resource', $resource);
-		$this->set('resources', $resources);
+		$schedule = $this->Schedule->read(null, $id);
+		$this->set('schedule', $schedule);
 	}
 
 }
