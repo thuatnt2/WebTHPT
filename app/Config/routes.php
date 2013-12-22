@@ -99,19 +99,20 @@ Router::connect('/album-anh', array('controller' => 'albums', 'action' => 'index
  * Frontend resource
  */
 Router::connect(
-		'/tai-lieu/:id', array(
-	'controller' => 'resources',
-	'action' => 'listResources'
-		), array(
-	'pass' => array('id'), 'id' => '[0-9]+')
-);
-Router::connect(
 		'/xem-tai-lieu/:id-:slug', array(
 	'controller' => 'resources',
 	'action' => 'view'
 		), array(
 	'pass' => array('id', 'slug'), 'id' => '[0-9]+')
 );
+Router::connect(
+		'/tai-lieu/:id', array(
+	'controller' => 'resources',
+	'action' => 'listResources'
+		), array(
+	'pass' => array('id'), 'id' => '[0-9]+')
+);
+
 
 /**
  * Frontend Schedule

@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default" role="navigation">
     <div class="collapse navbar-collapse navbar-ex1-collapse">
         <ul class="nav navbar-nav">
-            <li class="<?php echo ($current_menu_id == 0 ? 'active' : '') ?>"><a href="<?php echo Router::url('/') ?>">
+            <li class="<?php echo (($current_menu_id == 0) && (!isset($current_menu_is_resource) ) ? 'active' : '') ?>"><a href="<?php echo Router::url('/') ?>">
                     <span class="glyphicon glyphicon-home"></span>&nbspTrang Chủ</a>
             </li>
             <?php
@@ -34,10 +34,9 @@
             </li>        
             <?php
             $resource_type = $this->requestAction('resources/getResourceType');
-//debug($resource_type);
             ?>
-            <li class="dropdown ">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tài nguyên điện tử <b class="caret"></b></a>
+            <li class="dropdown <?php echo (isset($current_menu_is_resource)? 'active' : '') ?>">
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tài nguyên điện tử <b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <?php
                     foreach ($resource_type as $k => $v):
