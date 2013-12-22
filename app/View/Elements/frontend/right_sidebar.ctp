@@ -43,7 +43,7 @@
         <div class="panel-body">
             <ul>
                 <li>Đang online: 
-                    <a href='#' id='lnolt_'>
+                    <a href='#' id='lnolt_' class="user-online-counter">
                         <script language='JavaScript' src='http://blogutils.net/olct/online.php?site=webthpt-thuatnguyen.rhcloud.com&interval=600'></script>
                     </a>
                 </li>

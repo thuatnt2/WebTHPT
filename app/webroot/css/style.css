@@ -302,3 +302,12 @@ ul.nav.nav-tabs li a {
     height: 15px;
     margin-bottom: 1px;
 }
+.user-online-counter {
+    color: #000;
+    font-weight: bold;
+}
+.user-online-counter:hover {
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+}
