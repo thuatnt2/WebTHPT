@@ -306,6 +306,7 @@ class UsersController extends UserMgmtAppController {
 	 */
 	public function addUser() {
 		if ($this->request->isPost()) {
+			//var_dump($this->request->data); exit();
 			$this->User->set($this->data);
 			if ($this->User->RegisterValidate()) {
 				$this->request->data['User']['email_verified'] = 1;
@@ -346,11 +347,29 @@ class UsersController extends UserMgmtAppController {
 		if (!empty($userId)) {
 			$userGroups = $this->UserGroup->getGroups();
 			$this->set('userGroups', $userGroups);
-			if ($this->request->isPut()) {
+			if ($this->request->isPost()) {
+				//var_dump($this->request->data); exit();
 				$this->User->set($this->data);
 				if ($this->User->RegisterValidate()) {
+					$this->User->bindModel(array('hasAndBelongsToMany' => array(
+							'Category' => array(
+								'joinTable' => 'user_categories',
+								'foreignKey' => 'user_id',
+								'associationForeignKey' => 'category_id',
+							),
+					)));
+					$this->loadModel('UserCategory');
+					$this->UserCategory->deleteAll(array('UserCategory.user_id' => $userId));
+					$this->request->data['User']['id'] = $userId;
 					$this->User->save($this->request->data, false);
-					$this->Session->setFlash(__('The user is successfully updated'));
+					$data = array();
+					foreach ($this->request->data['Category'] as $k) {
+						$data['UserCategory']['user_id'] = $userId;
+						$data['UserCategory']['category_id'] = $k;
+						$this->UserCategory->create();
+						$this->UserCategory->save($data);
+					}
+					$this->Session->setFlash('Sửa thành công','flash_success');
 					$this->redirect('/admin/nguoi-dung');
 				}
 			} else {
@@ -364,6 +383,18 @@ class UsersController extends UserMgmtAppController {
 		} else {
 			$this->redirect('/admin/nguoi-dung');
 		}
+		$this->loadModel('Category');
+		$this->Category->recursive = 1;
+		$this->Category->unbindModel(array('hasMany' => array('Post')));
+		$categories = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null)));
+		$this->loadModel('UserCategory');
+		$categoriesAllow = $this->UserCategory->find('all', array('fields' => array('UserCategory.category_id'), 'conditions' => array('UserCategory.user_id' => $userId)));
+		$allow = array();
+		foreach ($categoriesAllow as $k) {
+			array_push($allow, $k['UserCategory']['category_id']);
+		}
+		$this->set('allow', $allow);
+		$this->set('categories', $categories);
 		$this->set('title_for_layout', 'Cập nhật thông tin tài khoản');
 	}
 
@@ -378,8 +409,10 @@ class UsersController extends UserMgmtAppController {
 		if (!empty($userId)) {
 			if ($this->request->isPost()) {
 				if ($this->User->delete($userId, false)) {
+					$this->loadModel('UserCategory');
+					$this->UserCategory->deleteAll(array('UserCategory.user_id' => $userId));
 					$this->LoginToken->deleteAll(array('LoginToken.user_id' => $userId), false);
-					$this->Session->setFlash(__('User is successfully deleted'));
+					$this->Session->setFlash('Xóa người dùng thành công','flash_success');
 				}
 			}
 			$this->redirect('/admin/nguoi-dung');

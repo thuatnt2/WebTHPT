@@ -8,7 +8,7 @@
 			<div class="span12">
 				<div class="dataTables_wrapper form-inline" role="grid">
 					<div  class="row">
-						<div class="span6">
+						<div class="actions" style="margin-bottom: 20px">
 							<?php echo $this->Html->link('Nhập thời khóa biểu', array('action' => 'add'), array('class' => 'btn btn-primary')); ?>
 						</div>
 					</div>

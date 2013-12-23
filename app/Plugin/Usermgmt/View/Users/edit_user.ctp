@@ -22,42 +22,60 @@
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
-			<div class="muted pull-left">Cập nhật thông tin cá nhân</div>
+			<div class="muted pull-left">Quản lí bài viết</div>
 		</div>
 		<div class="block-content collapse in">
 			<div class="span12">
-				<?php echo $this->Form->create('User'); ?>
+				<?php echo $this->Form->create('User', array('action' => 'editUser')); ?>
 				<fieldset>
 					<legend>Nhập thông tin người dùng</legend>
-					<?php echo $this->Form->input("id", array('type' => 'hidden', 'label' => false, 'div' => false)) ?>
-					<div class="control-group">
-						<label>Tên đăng nhập</label>
-						<div class="controls">
-							<?php echo $this->Form->input("username", array('label' => false, 'div' => false, 'class' => 'input-xxlarge')) ?>
-						</div>
-					</div>
+					<div class="row">
+						<div class="span5">
+							<div class="control-group checkbox-group">
+								<label class="control-label">Chọn danh mục được phép đăng</label>
+								<div class="checkbox">
+									<?php //debug($categories) ?>
+									<?php foreach ($categories as $category) : ?>
+										<div class="root-category">
+											<label class="label-root-category">
+												<input type="checkbox"/>
+												<?php echo $category['Category']['name'] ?>
+											</label>
+											<div class="child-category">
+												<?php foreach ($category['ChildCategory'] as $child): ?>
+													<label>
+														<input
+															type="checkbox" 
+															name="data[Category][]"
+															value="<?php echo $child['id'] ?>"
+															<?php if (in_array($child['id'], $allow)):
 
-					<div class="control-group">
-						<label>Họ tên</label>
-						<div class="controls">
-							<?php echo $this->Form->input("first_name", array('label' => false, 'div' => false, 'class' => 'input-xxlarge')) ?>
-						</div>
-					</div>
+																?>
+																checked="checked"
+																<?php
+															endif;
 
-					<div class="control-group">
-						<label>Địa chỉ email</label>
-						<div class="controls">
-							<?php echo $this->Form->input("email", array('label' => false, 'div' => false, 'class' => 'input-xxlarge')) ?>
-						</div>
+															?>
+															/>
+															<?php echo $child['name'] ?>
+													</label>
+												<?php endforeach; ?>
+											</div>
+
+										</div>
+									<?php endforeach; ?>
+
+								</div>
+							</div>
+						</div>	
 					</div>
 					<div class="form-actions">
-						<?php echo $this->Form->submit('Cập nhật thông tin', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
+						<?php echo $this->Form->submit('Đồng ý', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>
 					</div>
-
 				</fieldset>
 				<?php echo $this->Form->end(); ?>
 			</div>
 		</div>
 	</div>
-
 </div>
+<?php echo $this->Html->script('admin/add-user', array('block' => 'scriptBottom')) ?>

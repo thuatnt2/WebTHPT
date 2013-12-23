@@ -1,7 +1,9 @@
 
 <div class="row">
     <ol class="breadcrumb">
-        <li><a href="#">Video</a></li>
+		<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
+        <li><?php echo $this->Html->link('Video',array('controller'=>'videos','action'=>'index')); ?></li>
+		<li><?php echo $videoDefault['Video']['title']?></li>
     </ol>
     <div class="panel panel-primary" id="tab-content">
         <div class="panel-body" style="height: 1360px;">

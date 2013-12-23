@@ -4,11 +4,11 @@
             <div class="muted pull-left">Quản lí danh mục</div>
         </div>
         <div class="block-content collapse in">
-			<?php echo $this->Session->flash() ?>
             <div class="span12">
-				<div class="actions" style="text-align: center; margin-bottom: 20px">
+				<div class="actions" style="margin-bottom: 20px">
 					<a href="/admin/categories/add" class="btn btn-primary">Thêm danh mục</a>
 				</div>
+				<?php echo $this->Session->flash() ?>
 				<table class="table-data table table-striped table-bordered dataTable" >
 					<thead>
 						<tr>

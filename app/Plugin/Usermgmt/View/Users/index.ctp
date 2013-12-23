@@ -24,15 +24,15 @@
 		<div class="navbar navbar-inner block-header">
 			<div class="muted pull-left">Danh sách người dùng</div>
 		</div>
-		<div class="block-content collapse in">
-			<?php echo $this->Session->flash();?>
+		<div class="block-content collapse in">			
 			<div class="span12">
 				<div class="dataTables_wrapper form-inline" role="grid">
 					<div  class="row">
-						<div class="span6">
+						<div class="actions" style="margin-bottom: 20px">
 							<?php echo $this->Html->link('Thêm người dùng', $this->Html->url('/admin/them-nguoi-dung'), array('class' => 'btn btn-primary')) ?>
 						</div>
 					</div>
+					<?php echo $this->Session->flash();?>
 					<table class="table table-striped table-bordered dataTable" >
 						<thead>
 							<tr>
@@ -40,7 +40,6 @@
 								<th>Họ tên</th>
 								<th>Tên đăng nhập</th>
 								<th>Email</th>
-								<th>Trạng thái</th>
 								<th>Ngày tạo</th>
 								<th>Thao tác</th>
 							</tr>
@@ -56,22 +55,11 @@
 									echo "<td>" . h($row['User']['first_name']) . " " . h($row['User']['last_name']) . "</td>";
 									echo "<td>" . h($row['User']['username']) . "</td>";
 									echo "<td>" . h($row['User']['email']) . "</td>";
-									echo "<td>";
-									if ($row['User']['active'] == 0) {
-										echo "<span class='icon'><a href='" . $this->Html->url('/usermgmt/users/makeActiveInactive/' . $row['User']['id'] . '/1') . "'><img src='" . $this->Html->url('/') . "usermgmt/img/dis-approve.png' border='0' alt='Make Active' title='Make Active'></a></span>";
-									} else {
-										echo "<span class='icon'><a href='" . $this->Html->url('/usermgmt/users/makeActiveInactive/' . $row['User']['id'] . '/0') . "'><img src='" . $this->Html->url('/') . "usermgmt/img/approve.png' border='0' alt='Make Inactive' title='Make Inactive'></a></span>";
-									}
-									echo"</td>";
 									echo "<td>" . date('d/m/Y', strtotime($row['User']['created'])) . "</td>";
 									echo "<td>";
 									//echo "<span class='icon'><a href='" . $this->Html->url('/viewUser/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/view.png' border='0' alt='View' title='View'></a></span>";
-									//echo "<span class='icon'><a href='" . $this->Html->url('/editUser/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/edit.png' border='0' alt='Edit' title='Edit'></a></span>";
+									echo "<span class='icon'><a href='" . $this->Html->url('/editUser/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/edit.png' border='0' alt='Edit' title='Edit'></a></span>";
 									echo "<span class='icon'><a href='" . $this->Html->url('/changeUserPassword/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/password.png' border='0' alt='Đổi mật khẩu' title='Đổi mật khẩu'></a></span>";
-//									if ($row['User']['email_verified'] == 0) {
-//										echo "<span class='icon'><a href='" . $this->Html->url('/usermgmt/users/verifyEmail/' . $row['User']['id']) . "'><img src='" . $this->Html->url('/') . "usermgmt/img/email-verify.png' border='0' alt='Verify Email' title='Verify Email'></a></span>";
-//									}
-
 									if ($row['User']['id'] != 1 && $row['User']['username'] != 'Admin') {
 										echo $this->Form->postLink($this->Html->image($this->Html->url('/') . 'usermgmt/img/delete.png', array("alt" => 'Xóa người dùng', "title" => 'Xóa người dùng')), array('action' => 'deleteUser', $row['User']['id']), array('escape' => false, 'confirm' => __('Are you sure you want to delete this user?')));
 									}

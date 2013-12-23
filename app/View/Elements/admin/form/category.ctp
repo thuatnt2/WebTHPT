@@ -4,7 +4,7 @@
 			<div class="muted pull-left">Quản lí bài viết</div>
 		</div>
 		<div class="block-content collapse in">
-			<div class="span12">
+			<div class="span6">
 				<?php echo $this->Form->create('Category'); ?>
 				<fieldset>
 					<legend>Thêm mới danh mục</legend>
@@ -32,6 +32,18 @@
 						</div>
 					</div>	
 
+					<div class="control-group checkbox-group">
+						<label>Ai được quyền đăng bài vào danh mục này ?</label>
+						<div class="checkbox">
+							<?php foreach ($users as $user): ?>
+								<label>
+									<input type="checkbox" value="<?php echo $user['User']['id'] ?>" name="data[User][]"/>
+									<?php echo $user['User']['first_name'] ?>
+								</label>
+							<?php endforeach; ?>
+
+						</div>
+					</div>	
 
 					<div style="">
 						<?php echo $this->Form->submit('Nhập', array('class' => 'btn btn-primary', 'div' => false)) ?>

@@ -1,3 +1,7 @@
+<ol class="breadcrumb">
+	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
+	<li>Album ảnh</li>
+</ol>
 <?php foreach ($albums as $row): ?>
     <h4><?php echo $row['Album']['name'] ?></h4>
     <p style="font-size: 0.85em" ><?php echo '(Ngày đăng: ' . $row['Album']['created_at'] . ')' ?></p>

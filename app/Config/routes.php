@@ -41,12 +41,6 @@ Router::connect(
 );
 
 // Routes for pages controller
-// /gioi-thieu/su-menh-tam-nhin
-Router::connect(
-		'/gioi-thieu/:page_name', array('controller' => 'pages', 'action' => 'view'), array('pass' => array('page_name'))
-);
-
-
 // Route for view all post in a category
 Router::connect(
 		'/bai-viet/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
@@ -57,7 +51,7 @@ Router::connect(
 
 
 // Routes for blogs
-Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
+Router::connect('/blog-giao-vien/*', array('controller' => 'blogs', 'action' => 'index'));
 
 Router::connect(
 		'/blog/:bloger_id-:slug', array(
