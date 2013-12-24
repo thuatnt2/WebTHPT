@@ -6,18 +6,19 @@
 		<?php
 		echo $this->Html->css(array(
 			'vendor/bootstrap.min',
-			'vendor/jquery.fancybox',
-			'vendor/jquery.fancybox-buttons',
+			//'vendor/jquery.fancybox',
+			//'vendor/jquery.fancybox-buttons',
 			'style',
 		));
+		echo $this->fetch('headCss');
 
 		?>
 		<?php
 		echo $this->Html->script(array(
 			'vendor/jquery-1.10.2.min',
-			'vendor/jquery.fancybox.pack',
-			'vendor/jquery.mousewheel-3.0.6.pack',
-			'vendor/jquery.fancybox-buttons',
+				//'vendor/jquery.fancybox.pack',
+				//'vendor/jquery.mousewheel-3.0.6.pack',
+				//'vendor/jquery.fancybox-buttons',
 		));
 
 		?>
@@ -94,11 +95,11 @@
             </div> <!-- .container -->
 			<?php
 			echo $this->Html->script(array(
-				'vendor/bootstrap.min',
+				//'vendor/bootstrap.min',
 				'vendor/jquery.marquee',
 				'vendor/jcarousellite_1.0.1c4',
 			));
-//        echo $this->fetch('scriptBottom');
+			echo $this->fetch('scriptBottom');
 
 			?>
             <script type="text/javascript">

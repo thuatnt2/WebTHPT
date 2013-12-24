@@ -8,6 +8,7 @@
 			'vendor/bootstrap.min',
 			'style',
 		));
+		echo $this->fetch('headerCss');
 		echo $this->Html->script(array(
 			'vendor/jquery-1.10.2.min',
 		));
@@ -67,29 +68,8 @@
             </div>
         </div> <!-- .container -->
 		<?php
-		echo $this->Html->script(array(
-			'vendor/bootstrap.min',
-			'vendor/jquery.marquee',
-			'vendor/jcarousellite_1.0.1c4',
-		));
-//        echo $this->fetch('scriptBottom');
+		echo $this->fetch('scriptBottom');
 
 		?>
-        <script type="text/javascript">
-			$(document).ready(function() {
-				$('.carousel').carousel({
-					interval: 5000,
-					pause: 'hover',
-				});
-				$(".jcarouse").jCarouselLite({
-					vertical: true,
-					hoverPause: true,
-					visible: 3,
-					auto: 500,
-					speed: 1000
-				});
-			});
-        </script>
-		
     </body>
 </html>

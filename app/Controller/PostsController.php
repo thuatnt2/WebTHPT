@@ -149,7 +149,7 @@ class PostsController extends AppController {
 		$category = $this->Category->read(null, $id);
 		$conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $id);
 		$this->paginate = array(
-			'limit' => 10,
+			'limit' => 8,
 			'conditions' => $conditions,
 			'order' => array(
 				'Post.modified' => 'DESC'
@@ -184,7 +184,8 @@ class PostsController extends AppController {
 		$current_menu_id = $article['Post']['category_id'];
 		$conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id'], 'Post.' . $this->Post->primaryKey . ' !=' => $id);
 		$otherArticle = $this->Post->find('all',array('conditions'=>$conditions,'limit'=>5));
-		$this->set(compact('article', 'otherArticle', 'current_menu_id','category'));
+		$title_for_layout = $article['Post']['title'];
+		$this->set(compact('article', 'otherArticle', 'current_menu_id','category','title_for_layout'));
 	}
 
 	/**

@@ -1,8 +1,9 @@
-<?php// var_dump($category) ?>
 <ol class="breadcrumb">
 	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
-	<li><?php echo $category['ParentCategory']['name'] ?></li>
-	<li><?php echo  $category['Category']['name']	?>
+	<?php if (!empty($category['ParentCategory']['name'])): ?>
+		<li><?php echo $category['ParentCategory']['name'] ?></li>
+	<?php endif; ?>
+	<li><?php echo $category['Category']['name'] ?>
 	</li>	
 </ol>
 <?php
