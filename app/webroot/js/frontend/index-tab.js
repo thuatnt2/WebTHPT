@@ -30,30 +30,35 @@ $.ajax({
 
 //load ajax content for news tab when click
 $("#tab-news").on('click', function() {
-	$.ajax({
-		dataType: "html",
-		evalScripts: true,
-		url: 'posts/allPosts',
-		cache: true,
-		success: function(data, textStatus) {
-			$("#tabs-news-content").html(data);
-			confidentialValidate();
-		},
-	});
+	if ($("#tabs-news-content").html().trim() === '') {
+		$.ajax({
+			dataType: "html",
+			evalScripts: true,
+			url: 'posts/allPosts',
+			cache: true,
+			success: function(data, textStatus) {
+				$("#tabs-news-content").html(data);
+				confidentialValidate();
+			},
+		});
+	}
 });
 //load ajax content for confidential tab
 $("#tab-confidential").on('click', function() {
-	$("#list-confidentials").html('');
-	$.ajax({
-		dataType: "html",
-		evalScripts: true,
-		url: 'confidentials/index',
-		cache: true,
-		success: function(data, textStatus) {
-			$("#list-confidentials").html(data);
-			confidentialValidate();
-		},
-	});
+	console.log($("#list-confidentials").html());
+	if ($("#list-confidentials").html().trim() === '') {
+		$.ajax({
+			dataType: "html",
+			evalScripts: true,
+			url: 'confidentials/index',
+			cache: true,
+			success: function(data, textStatus) {
+				$("#list-confidentials").html(data);
+				confidentialValidate();
+			},
+		});
+	}
+
 
 });
 $("body").on('click', '#btn-add-confidential', function() {
