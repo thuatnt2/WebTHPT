@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li>Lượt truy cập: 
-                    <img id="hit-counter"src="http://www.reliablecounter.com/count.php?page=webthpt-thuatnguyen.rhcloud.com&digit=style/plain/10/&reloads=1"></a>
+                    <img id="hit-counter"src="http://www.reliablecounter.com/count.php?page=webthpt-thuatnguyen.rhcloud.com&digit=style/plain/10/&reloads=1">
                 </li>
             </ul>
 

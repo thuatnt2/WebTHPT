@@ -1,1 +1,2 @@
-<?php echo $this->element('admin/form/resource');?>
+<?php echo $this->element('admin/form/resource');
+ ?>
