@@ -24,7 +24,7 @@ Router::connect('/admin/menu', array('controller' => 'menus', 'action' => 'index
 Router::connect('/admin/them-menu', array('controller' => 'menus', 'action' => 'add', 'admin' => true));
 
 Router::connect('/admin/album-anh/delete_photo', array('controller' => 'albums', 'action' => 'deletePhoto', 'admin' => true));
-
+Router::connect('/admin/albums/tao-slide-album', array('controller' => 'albums', 'action' => 'createSlideAlbum', 'admin' => true));
 Router::connect('/admin/trang-gioi-thieu', array('controller' => 'pages', 'action' => 'manage', 'admin' => true));
 Router::connect('/admin/trang-gioi-thieu/:page_name/edit', array('controller' => 'pages', 'action' => 'edit', 'admin' => true), array('pass' => 'page_name')
 );

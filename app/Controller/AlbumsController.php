@@ -56,8 +56,8 @@ class AlbumsController extends AppController {
         $this->layout = 'admin/admin';
         $this->Album->recursive = 1;
         $albums = $this->Album->find('all');
-        $this->set('albums', $albums);
-        $this->log($albums, 'debug');
+        $existsSlideAlbum = $this->Album->existsSlideAlbum();
+        $this->set(compact('albums', 'existsSlideAlbum'));
     }
 
     /**
@@ -109,7 +109,7 @@ class AlbumsController extends AppController {
         }
         if ($this->request->is(array('post', 'put'))) {
             if ($this->Album->save($this->request->data)) {
-                 $this->Session->setFlash('Cập nhật Album thành công', 'flash_success');
+                $this->Session->setFlash('Cập nhật Album thành công', 'flash_success');
                 return $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash('Cập nhật Album thất bại', 'flash_error');
@@ -157,9 +157,21 @@ class AlbumsController extends AppController {
         }
         $this->request->onlyAllow('post', 'delete');
         if ($this->Album->delete()) {
+           $photos =  $this->Photo->find('all', array(
+               'conditions' => array(
+                   'Photo.album_id' => $id
+               ),
+               'recursive' => -1,
+               'fields' => array('id')
+           ));
+           foreach ($photos as $photo) {
+               $this->Photo->delete($photo['Photo']['id']);
+           }
+            
+            
             $this->Session->setFlash('Đã xóa một Album', 'flash_success');
         } else {
-           $this->Session->setFlash('Xóa Album không thành công', 'flash_eror');
+            $this->Session->setFlash('Xóa Album không thành công', 'flash_eror');
         }
         return $this->redirect(array('action' => 'index'));
     }
@@ -179,10 +191,27 @@ class AlbumsController extends AppController {
         }
         $this->response->body(json_encode($resp));
     }
-	
-	public function recentAlbum(){
-		$album = $this->Album->find('first');
-		return $album;
-	}
+
+    public function recentAlbum() {
+        $album = $this->Album->find('first');
+        return $album;
+    }
+
+    // Tạo album cho slide
+    public function admin_createSlideAlbum() {
+        if ($this->request->is('post')) {
+            $this->autoRender = false;
+            $this->autoLayout = false;
+            $this->response->type('json');
+            $this->Album->createSlideAlbum();
+        } else {
+            
+        }
+    }
+
+    // Lấy path các ảnh trong slide album
+    public function photosSlide() {
+        return $this->Album->findSlideAlbum();
+    }
 
 }

@@ -16,7 +16,7 @@ class Photo extends AppModel {
      */
     public $displayField = 'title';
 
-    //The Associations below have been created with all possible keys, those that are not needed can be removed
+//The Associations below have been created with all possible keys, those that are not needed can be removed
 
     /**
      * belongsTo associations
@@ -33,11 +33,18 @@ class Photo extends AppModel {
         )
     );
 
-    public function afterDelete() {
-        parent::afterDelete();
-        //Delete file after delete record
+    public function beforeDelete($cascade = true) {
+        parent::beforeDelete($cascade);
+        // Xóa file ảnh sau khi xóa record. Có thể phát sinh lỗi bởi ko đủ quyền.
         $path = WWW_ROOT . 'img/albums' . DS . $this->data['Photo']['album_id'] . DS . $this->data['Photo']['url'];
-        unlink($path);
+        chown($path, 0777);
+        try {
+            unlink($path);
+        } catch (Exception $exc) {
+            return false;
+        }
+        return true;
     }
 
 }
+
