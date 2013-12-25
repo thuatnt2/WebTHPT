@@ -62,6 +62,7 @@ $("#tab-confidential").on('click', function() {
 
 });
 $("body").on('click', '#btn-add-confidential', function() {
+	$("html, body").animate({ scrollTop: $(document).height()-200 }, "slow");
 	$("#confidential-content").show(500);
 });
 $("body").on('click', '#btn-confidential-cancel', function() {

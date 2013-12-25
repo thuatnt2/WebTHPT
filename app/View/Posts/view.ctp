@@ -1,8 +1,8 @@
 <ol class="breadcrumb">
 	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
-	<?php if(!empty($category['ParentCategory']['name'])):?>
-	<li><?php echo $category['ParentCategory']['name'] ?></li>
-	<?php endif?>
+	<?php if (!empty($category['ParentCategory']['name'])): ?>
+		<li><?php echo $category['ParentCategory']['name'] ?></li>
+	<?php endif ?>
 	<li><?php
 		echo $this->Html->link($category['Category']['name'], array(
 			'controller' => 'posts',
@@ -34,19 +34,21 @@
 </p>
 <br>
 <div>
-    <h4 class="pull-left">Các tin khác:</h4>
-    <div class="clearfix"></div>
-	<?php $i = 1; ?>
-	<?php foreach ($otherArticle as $row): ?>
-		<div class="col-lg-12">
-			<?php
-			echo '&bull;&nbsp;' . $this->Html->link($row['Post']['title'], array(
-				'controller' => 'posts',
-				'action' => 'view',
-				'id' => $row['Post']['id'],
-				'slug' => $row['Post']['alias']), array('escape' => false));
+	<?php if (!empty($otherArticle)): ?>
+		<h4 class="pull-left">Các tin khác:</h4>
+	    <div class="clearfix"></div>
+		<?php $i = 1; ?>
+		<?php foreach ($otherArticle as $row): ?>
+			<div class="col-lg-12">
+				<?php
+				echo '&bull;&nbsp;' . $this->Html->link($row['Post']['title'], array(
+					'controller' => 'posts',
+					'action' => 'view',
+					'id' => $row['Post']['id'],
+					'slug' => $row['Post']['alias']), array('escape' => false));
 
-			?>
-		</div>
-	<?php endforeach; ?>
+				?>
+			</div>
+		<?php endforeach; ?>
+	<?php endif; ?>
 </div>

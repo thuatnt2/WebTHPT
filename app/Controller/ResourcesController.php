@@ -28,8 +28,7 @@ class ResourcesController extends AppController {
 	 */
 	public function admin_index() {
 		$this->Resource->recursive = 0;
-		$this->paginate = array('limit' => $this->limit);
-		$this->set('resources', $this->Paginator->paginate());
+		$this->set('resources', $this->Resource->find('all'));
 		$this->set('title_for_layout', 'Tài liệu');
 		$this->set('resource_type', $this->Resource->resource_type);
 	}
@@ -145,10 +144,18 @@ class ResourcesController extends AppController {
 		}
 		$conditions = array('Resource.resource_type' => $id);
 		$this->paginate = array('conditions' => $conditions, 'limit' => $this->limit);
-		$this->set('resources', $this->Paginator->paginate());
+		$resources = $this->Paginator->paginate();
+		$this->set('resources', $resources);
 		$resource_type = $this->Resource->resource_type;
-		$this->set('title_for_layout', 'Tài liệu - ' . $resource_type[$id]);
-		$this->set('resource_type', $resource_type[$id]);
+		if (!empty($resources)) {
+			$this->set('title_for_layout', 'Tài liệu - ' . $resource_type[$id]);
+			$this->set('resource_type', $resource_type[$id]);
+		}
+		else{
+			$this->set('title_for_layout', 'Không có tài liệu nào');
+			$this->set('resource_type', $id);
+		}
+
 
 		// Xac dinh menu hien hanh la Tai Nguyen Dien tu. Vi Resource ko phai la category.
 		// Bad code !
@@ -165,7 +172,7 @@ class ResourcesController extends AppController {
 		$resources = $this->Resource->find('all', array('conditions' => $conditions));
 		$this->set('resource', $resource);
 		$this->set('resources', $resources);
-		$this->set('resource_type',$this->Resource->resource_type[$resource_type]);
+		$this->set('resource_type', $this->Resource->resource_type[$resource_type]);
 	}
 
 }

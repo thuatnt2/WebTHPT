@@ -24,7 +24,7 @@ class VideosController extends AppController {
 			$this->layout = 'frontend/detailArticle';
 		}
 		$this->paginate = array('limit' => $this->limit, 'conditions' => array('Video.is_default' => false));
-		$videos = $this->Paginator->paginate();
+		$videos = $this->Video->find('all');
 		$this->set('title_for_layout', 'Danh sách video');
 		$this->set(compact('videoDefault', 'videos'));
 	}
