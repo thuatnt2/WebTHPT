@@ -1,31 +1,29 @@
-<button type="button" id="btn-add-confidential" class="btn btn-primary">Đăng tâm sự</button>
-<div id="confidential-content" style="display: none">
-	<form class="form-horizontal" role="form">
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-				<input type="email" class="form-control input-sm" name="data[Confidential][email]" placeholder="Nhập email">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Tiêu đề</label>
-			<div class="col-sm-10">
-				<input type="text" class="form-control input-sm" name="data[Confidential][title]"  placeholder="Nhập tiêu đề">
-			</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-2 control-label">Nội dung</label>
-			<div class="col-sm-10">
-				<textarea class="form-control" name="data[Confidential][content]" rows="10"></textarea>
-			</div>
-		</div>
-		<div class="form-group">
-			<div class="form-actions col-lg-offset-2 col-lg-3">
-				<button class="btn btn-danger">Hủy</button>
-				<button class="btn btn-primary">Đồng ý</button>
-			</div>
-		</div>
-
-	</form>
-
+<div class="panel panel-default">
+	<ul class="list-group">
+		<?php foreach ($confidentials as $confidential): ?>
+			<li class="list-group-item">
+				<h4><?php echo $confidential['Confidential']['title']; ?>
+					<p>
+						<small>
+							<?php echo $confidential['Confidential']['email']; ?>
+							<span> - <?php echo date('d/m/Y h:i:s ', strtotime($confidential['Confidential']['modified'])); ?></span>
+						</small>
+					</p>
+				</h4>
+				<?php echo $confidential['Confidential']['content']; ?>
+			</li>
+		<?php endforeach; ?>
+	</ul>
 </div>
+<ul class="pagination pagination-sm" style="margin-left: 20px">
+	<?php
+	$this->Paginator->options(array(
+		'update' => '#list-confidentials',
+		'evalScripts' => true
+	));
+	echo $this->Paginator->prev('Trước', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
+	echo $this->Paginator->numbers(array('separator' => '', 'currentTag' => 'a', 'currentClass' => 'active', 'tag' => 'li', 'first' => 1));
+	echo $this->Paginator->next('Tiếp', array('tag' => 'li', 'currentClass' => 'disabled'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
+	?>
+</ul>
+<?php echo $this->Js->writeBuffer(); ?>

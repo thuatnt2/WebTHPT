@@ -73,7 +73,7 @@ class ConfidentialsController extends AppController {
 		}
 		$conditions['AND'] = array('Confidential.is_active' => 1);
 		$this->paginate = array(
-			'limit' => 8,
+			'limit' => 5,
 			'conditions' => $conditions,
 			'order' => array(
 				'Confidential.modified' => 'DESC'
@@ -81,6 +81,34 @@ class ConfidentialsController extends AppController {
 		);
 		$confidentials = $this->paginate();
 		$this->set('confidentials', $confidentials);
+	}
+
+	/*
+	 * Add confidential 
+	 */
+
+	public function add() {
+		$this->layout = false;
+		$this->autoRender = false;
+		$result = array();
+		$result['status'] = 0;
+		$result['message'] = 'Đã có lỗi xảy ra, vui lòng thử lại';
+		$this->request->data['Confidential']['is_active'] = false;
+		$this->Confidential->set($this->request->data);
+		if ($this->Confidential->validates()) {
+			$this->Confidential->create();
+			if ($this->Confidential->save($this->request->data)) {
+				$result['status'] = 1;
+				$result['message'] = 'Bài đăng của bạn đã được gửi đi, đang chờ Admin kiểm duyệt';
+			}
+		} else {
+			$errors = $this->Confidential->validationErrors;
+			foreach ($errors as $k => $v) {
+				$result['message'] = $v[0];
+				break;
+			}
+		}
+		return json_encode($result);
 	}
 
 	/**

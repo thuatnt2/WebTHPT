@@ -2,7 +2,7 @@
 	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
 	<li>Tài nguyên điện tử</li>
 	<li><?php echo $resource_type; ?></li>
-	<li><?php echo  $resource['Resource']['title'] ?></li>
+	<li><?php echo $resource['Resource']['title'] ?></li>
 </ol>
 <div class="list-page-wrapper"> 
 	<div class="text-center"> 
@@ -10,10 +10,10 @@
     </div>
 	<p>Người đăng : <?php echo $resource['Resource']['user_create'] ?></p>
 	<p>Ngày đăng : <?php echo date('d/m/Y', strtotime($resource['Resource']['created'])) ?></p>
-	<iframe width="100%" height="700" src="<?php echo $resource['Resource']['view_link'] ?>">
+<!--	<iframe width="100%" height="700" src="<?php echo $resource['Resource']['view_link'] ?>">
 
-	</iframe>
-
+	</iframe>-->
+	<iframe src="http://docs.google.com/viewer?url=<?php echo $resource['Resource']['view_link'] ?>&embedded=true" width="100%" height="980" style="border: none;"></iframe>
 	<h5>Các tài liệu liên quan</h5>
 	<div class="list-wrapper"> 
 		<ul class="list">

@@ -1,87 +1,8 @@
 <div class="tab-content">
-    <div class="tab-pane" id="tabs1-pane1">
-		<?php if (isset($actionEvents)): ?>
-			<?php foreach ($actionEvents as $row): ?>
-				<div>
-					<div style="padding:2px 4px 2px 4px">
-						<h4 class="">
-							<?php
-							echo $this->Html->link($row['Post']['title'], array(
-								'controller' => 'posts',
-								'action' => 'posts',
-								'id' => $row['Post']['id'],
-								'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false));
-
-							?>
-						</h4>
-						<?php echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"')) ?>
-						<p><?php echo $row['Post']['sumary'] . '...' ?></p>
-						<?php
-						echo $this->Html->link('Xem thêm...', array(
-							'controller' => 'posts',
-							'action' => 'posts',
-							'id' => $row['Post']['id'],
-							'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false));
-
-						?>
-					</div>
-					<hr />
-
-				</div>
-				<br />
-				<div style="clear:both"></div>
-
-			<?php endforeach; ?>
-			<?php
-		else:
-			echo "<p>Không có bài đăng</p>";
-		endif;
-
-		?>
+    <div class="tab-pane active" id="tabs-news-content">
+		
     </div>
-    <div class="tab-pane active" id="tabs1-pane2">
-		<?php if (isset($generalNews) && $generalNews != null): ?>
-			<?php foreach ($generalNews as $row): ?>
-				<div style="padding:2px 4px 2px 4px"  class="new-preview">
-					<h4 class="">
-						<?php
-						echo $this->Html->link($row['Post']['title'], array(
-							'controller' => 'posts',
-							'action' => 'view',
-							'id' => $row['Post']['id'],
-							'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false));
-
-						?>
-					</h4>
-					<?php
-					if (isset($row['Post']['thumbnail']) && $row['Post']['thumbnail'] != null) {
-						echo $this->Html->image($row['Post']['thumbnail'], array('style="width:120px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
-					} else {
-						echo $this->Html->image('frontend/no-images.jpg', array('style="width:120px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"'));
-					}
-
-					?>
-					<p><?php echo $row['Post']['sumary'] . '...' ?></p>
-					<?php
-					echo $this->Html->link('Xem thêm...', array(
-						'controller' => 'posts',
-						'action' => 'view',
-						'id' => $row['Post']['id'],
-						'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('style' => "float: right", 'escape' => false));
-
-					?>
-				</div>
-				<div class="clearfix"></div>
-				<hr>
-			<?php endforeach; ?>
-			<?php
-		else:
-			echo "<p>Không có bài đăng</p>";
-		endif;
-
-		?>
-    </div>
-    <div class="tab-pane" id="tabs1-pane3">
+    <div class="tab-pane" id="tabs-blog">
         <div class="users-list">
             <table class="table table-bordered table-striped table-hover">
                 <thead>
@@ -114,65 +35,57 @@
 					<?php endforeach; ?>
                 </tbody>
             </table>
-
-
-
         </div>
     </div>
-    <div class="tab-pane" id="tabs1-pane4">
-		<?php if (isset($typicalFaces) && $typicalFaces != null): ?>
-			<?php foreach ($typicalFaces as $row) { ?>
-				<div style="padding:2px 4px 2px 4px">
-					<?php
-					$link = Router::url(array(
-								'controller' => 'index',
-								'action' => 'view',
-								'id' => $row['Post']['id'],
-								'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false))
-
-					?>
-					<h4 class="">
-						<a href="<?php echo $link ?>"><?php echo $row['Post']['title'] ?></a>
-					</h4>
-					<?php echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"')) ?>
-					<p><?php echo $row['Post']['sumary'] . '...' ?></p>
-					<a href="<?php echo $link ?>">Xem thêm</a>
-				</div>
-				<hr>
-			<?php } ?>
-			<?php
-		else:
-			echo "<p>Không có bài đăng trong mục này.</p>";
-		endif;
-
-		?>
-    </div>
     <div class="tab-pane" id="tab-confidential-content">
-		<?php if (isset($confidentials) && count($confidentials)): ?>
-			<?php foreach ($confidentials as $row) { ?>
-				<div style="padding:2px 4px 2px 4px">
-					<?php
-					$link = Router::url(array(
-								'controller' => 'index',
-								'action' => 'view',
-								'id' => $row['Post']['id'],
-								'slug' => $this->Common->vnit_change_string(Inflector::slug($row['Post']['title']))), array('escape' => false))
+		<div id="list-confidentials">
 
-					?>
-					<h4 class="">
-						<a href="<?php echo $link ?>"><?php echo $row['Post']['title'] ?></a>
-					</h4>
-					<?php echo $this->Html->image($row['Post']['thumbnail'], array('style="width:150px;height:100px;margin:3px 5px 3px 5px;border: 1px solid #eee;float: left"')) ?>
-					<p><?php echo $row['Post']['sumary'] . '...' ?></p>
-					<a href="<?php echo $link ?>">Xem thêm</a>
+		</div>		
+		<div id="form-confidential-wrap">
+			<hr>
+			<button type="button" id="btn-add-confidential" class="btn btn-primary">Đăng tâm sự</button>
+			<div id="confidential-alert">
+				<div class="alert alert-danger alert-dismissable" style="display: none">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<span class="alert-content"></span>
 				</div>
-				<hr>
-			<?php } ?>
-			<?php
-		else:
-			echo "<p>Không có bài đăng trong mục này.</p>";
-		endif;
+				<div class="alert alert-success alert-dismissable" style="display: none">
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+					<span class="alert-content"></span>
+				</div>
+			</div>
+			<div id="confidential-content" style="display: none">
+				<form class="form-horizontal" method="POST" id="form-confidential" role="form">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-10">
+							<input type="email" class="form-control input-sm" name="data[Confidential][email]" placeholder="Nhập email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Tiêu đề</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control input-sm" name="data[Confidential][title]"  placeholder="Nhập tiêu đề">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Nội dung</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" id="confidential-editor" name="data[Confidential][content]" rows="10"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="form-actions col-lg-offset-2 col-lg-3">
+							<button id="btn-confidential-cancel" class="btn btn-danger" type="button">Hủy</button>
+							<button id="btn-confidential-submit" type="button" class="btn btn-primary">Đồng ý</button>
+						</div>
+					</div>
+				</form>
+			</div>
 
-		?>
+		</div>
     </div>
 </div>
+<?php echo $this->Html->script('vendor/jquery.validate.min', array('block' => 'scriptBottom')); ?>
+<?php echo $this->Html->script('tinymce/tinymce.min', array('block' => 'scriptBottom')); ?>
+<?php echo $this->Html->script('frontend/index-tab', array('block' => 'scriptBottom')); ?>

@@ -1,11 +1,3 @@
-<ol class="breadcrumb">
-	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
-	<?php if (!empty($category['ParentCategory']['name'])): ?>
-		<li><?php echo $category['ParentCategory']['name'] ?></li>
-	<?php endif; ?>
-	<li><?php echo $category['Category']['name'] ?>
-	</li>	
-</ol>
 <?php
 if (empty($posts)):
 	echo 'Nội dung đang cập nhật . . .';
@@ -51,7 +43,7 @@ else:
 	<ul class="pagination pagination-sm">
 		<?php
 		$this->Paginator->options(array(
-			'update' => '#layout-content',
+			'update' => '#tabs-news-content',
 			'evalScripts' => true
 		));
 		echo $this->Paginator->prev('Trước', array('tag' => 'li'), null, array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'));
