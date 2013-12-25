@@ -286,10 +286,15 @@ ul.nav.nav-tabs li a {
     line-height: 30px;
     font-size: 17px;
 }
+.schedules-list-wrapper ul.schedules-list li .date-posted {
+    font-style: italic;
+    font-size: 14px;
+    color: rgb(112, 112, 112);
+} 
 .list-wrapper ul.list li .date-posted {
-	font-style: italic;
-	font-size: 14px;
-	color: rgb(112, 112, 112);
+    font-style: italic;
+    font-size: 14px;
+    color: rgb(112, 112, 112);
 }
 .list-page-wrapper .item-title {
     font-size: 30px;
