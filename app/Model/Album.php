@@ -105,7 +105,7 @@ class Album extends AppModel {
         // Tạo Album
         $this->data[$this->name] = array(
             'name' => 'Ảnh cho slide',
-            'description' => 'Album ảnh sẽ được hiển thị ở trang chủ. Khởi tạo mặc định sẽ lấy các ảnh trong thư mục ../webroot/img/slide_photos. Chú ý: kích thước ảnh nên là 800x300.',
+            'description' => 'Album này sẽ được hiển thị ở trang chủ. Mặc định sẽ lấy các ảnh trong thư mục \'slide_photos\' khi khởi tạo. Chú ý: kích thước ảnh nên là 800x300.',
             'for_slide' => 1
         );
         $slide_album = $this->save();

@@ -168,7 +168,6 @@ class AlbumsController extends AppController {
                $this->Photo->delete($photo['Photo']['id']);
            }
             
-            
             $this->Session->setFlash('Đã xóa một Album', 'flash_success');
         } else {
             $this->Session->setFlash('Xóa Album không thành công', 'flash_eror');
@@ -204,6 +203,7 @@ class AlbumsController extends AppController {
             $this->autoLayout = false;
             $this->response->type('json');
             $this->Album->createSlideAlbum();
+            $this->response->body(json_encode(array('success' => true)));
         } else {
             
         }

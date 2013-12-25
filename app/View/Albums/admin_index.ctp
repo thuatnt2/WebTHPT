@@ -42,16 +42,18 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#btn-create-slide-album').on('click', function() {
-            $.ajax({
-                url: $(this).attr('data-url'),
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    console.log('success');
-                    location.reload();
-                }
-            });
-            return false;
+            if (confirm('Bạn chắc chắn muốn tiếp tục?')) {
+                $.ajax({
+                    url: $(this).attr('data-url'),
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function(response) {
+                        console.log('success');
+                        location.reload();
+                    }
+                });
+                return false;
+            }
         });
     });
 </script> 
