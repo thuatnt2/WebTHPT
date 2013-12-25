@@ -5,17 +5,19 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 
         <title><?php echo $title_for_layout ?></title>
-        <?php
-        echo $this->Html->css(array(
-            'vendor/bootstrap.min',
-            'style',
-        ));
-        ?>
-        <?php
-        echo $this->Html->script(array(
-            'vendor/jquery-1.10.2.min'
-        ))
-        ?>
+		<?php
+		echo $this->Html->css(array(
+			'vendor/bootstrap.min',
+			'style',
+		));
+
+		?>
+		<?php
+		echo $this->Html->script(array(
+			'vendor/jquery-1.10.2.min'
+		))
+
+		?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -26,21 +28,24 @@
     <body>
         <div class="container">
             <div class="row" id="content-wrapper">
-                <?php
-                echo $this->element('frontend/banner');
-                ?>
+				<?php
+				echo $this->element('frontend/banner');
+
+				?>
                 <!--<begin navbar>-->
-                <?php
-                echo $this->element('frontend/navbar');
-                ?>
+				<?php
+				echo $this->element('frontend/navbar');
+
+				?>
                 <!--<end navbar>-->
                 <div id="content">
                     <div id="content-top">
                         <div class="col-lg-9">
                             <!--<begin slider>-->
-                            <?php
-                            echo $this->element('frontend/slider');
-                            ?>
+							<?php
+							echo $this->element('frontend/slider');
+
+							?>
                             <!--<end slider>-->
                         </div>
                         <div class="col-lg-3">
@@ -64,13 +69,14 @@
                                     <div class="panel-body" >
                                         <ul>
                                             <li>
-                                                <?php
-                                                echo $this->Html->link(
-                                                        $this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
-                                                    'controller' => 'schedules',
-                                                    'action' => 'listSchedules',
-                                                        ), array('escape' => false))
-                                                ?>                                               
+												<?php
+												echo $this->Html->link(
+														$this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
+													'controller' => 'schedules',
+													'action' => 'listSchedules',
+														), array('escape' => false))
+
+												?>                                               
                                             </li><li>
                                                 <a href="#">
                                                     <img src="/img/submenu/lichcongtac.png"/>
@@ -106,24 +112,23 @@
                                     <div class="panel panel-primary" id="tab-content">
                                         <div class="panel-heading">
                                             <ul class="nav nav-tabs">
-                                                <li class="active"><a href="#tabs1-pane2" data-toggle="tab">Tin tức chung</a></li>
-                                                <li><a href="#tabs1-pane1" data-toggle="tab">Hoạt động sự kiện</a></li>
-                                                <li><a href="#tabs1-pane4" data-toggle="tab">Gương mặt tiêu biểu</a></li>
-                                                <li><a href="#tabs1-pane3" data-toggle="tab">Blog giáo viên</a></li>
-                                                <li><a href="#tabs1-pane5" data-toggle="tab">Tâm sự thầy trò</a></li>
+                                                <li class="active"><a href="#tabs-news-content" id="tab-news" data-toggle="tab">Tin tức chung</a></li>
+                                                <li><a href="#tabs-blog" data-toggle="tab">Blog giáo viên</a></li>
+                                                <li><a href="#tab-confidential-content" id="tab-confidential" data-toggle="tab">Tâm sự thầy trò</a></li>
                                             </ul>
                                         </div>
                                         <div class="panel-body" style="">
                                             <!--<begin information>-->
-                                            <?php
-                                            echo $this->fetch('content');
-                                            ?>
+											<?php
+											echo $this->fetch('content');
+
+											?>
                                             <!--<end information>-->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <?php echo $this->element('frontend/right_sidebar') ?>
+							<?php echo $this->element('frontend/right_sidebar') ?>
                         </div>
                     </div>
 
@@ -141,29 +146,13 @@
                 </div>
             </div>
         </div> <!-- .container -->
-        <?php
-        echo $this->Html->script(array(
-            'vendor/bootstrap.min',
-            'vendor/jquery.marquee',
-            'vendor/jcarousellite_1.0.1c4',
-        ));
-        ?>
-        <script type="text/javascript">
-                                                jQuery(document).ready(
-                                                        function() {
-                                                            jQuery('.carousel').carousel({
-                                                                interval: 2000,
-                                                                pause: 'hover',
-                                                            });
-                                                            jQuery(".mostNews").jCarouselLite({
-                                                                vertical: true,
-                                                                hoverPause: true,
-                                                                visible: 2,
-                                                                auto: 5000,
-                                                                speed: 1000
-                                                            });
-                                                        }
-                                                );
-        </script>
+		<?php
+		echo $this->Html->script(array(
+			'vendor/bootstrap.min',
+		));
+		echo $this->fetch('scriptBottom');
+
+		?>
+
     </body>
 </html>

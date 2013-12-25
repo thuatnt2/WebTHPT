@@ -9,7 +9,6 @@ App::uses('AppController', 'Controller');
  * @property PaginatorComponent $Paginator
  */
 class VideosController extends AppController {
-
 	/**
 	 * Components
 	 *
@@ -19,11 +18,13 @@ class VideosController extends AppController {
 	public $layout = 'admin/admin';
 
 	public function index() {
-		$this->layout = 'frontend/detailArticle';
-		$this->paginate = array('limit' => $this->limit,'conditions'=>array('Video.is_default'=>false));
+		if ($this->request->isAjax) {
+			$this->layout = null;
+		} else {
+			$this->layout = 'frontend/detailArticle';
+		}
+		$this->paginate = array('limit' => $this->limit, 'conditions' => array('Video.is_default' => false));
 		$videos = $this->Paginator->paginate();
-		$videoDefault = $this->Video->find('first',array('conditions'=> array('Video.is_default'=>true)));
-		//debug($videoDefault); exit();
 		$this->set('title_for_layout', 'Danh sách video');
 		$this->set(compact('videoDefault', 'videos'));
 	}
@@ -143,10 +144,10 @@ class VideosController extends AppController {
 	}
 
 	public function recentVideo() {
-		$default = $this->Video->find('first',array('conditions'=>array('Video.is_default'=>true)));
-		$videos =  $this->Video->find('all', array('limit' => 3,
-					//'fields' => array('Video.id', 'Video.title', 'Video.link'),
-						)
+		$default = $this->Video->find('first', array('conditions' => array('Video.is_default' => true)));
+		$videos = $this->Video->find('all', array('limit' => 3,
+				//'fields' => array('Video.id', 'Video.title', 'Video.link'),
+				)
 		);
 		$videos['Default'] = $default;
 		return $videos;
@@ -163,7 +164,7 @@ class VideosController extends AppController {
 			$this->Video->id = $id;
 			$this->Video->saveField('is_default', true);
 		}
-		$this->Session->setFlash('Đặt thành công video làm mặc định','flash_success');
+		$this->Session->setFlash('Đặt thành công video làm mặc định', 'flash_success');
 		$this->redirect('index');
 	}
 

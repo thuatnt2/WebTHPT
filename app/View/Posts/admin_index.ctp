@@ -6,7 +6,7 @@
         <div class="block-content collapse in">
 			<?php echo $this->Session->flash() ?>
             <div class="span12">
-				<div class="actions" style="text-align: center; margin-bottom: 20px">
+				<div class="actions" style="margin-bottom: 20px">
 					<a href="/admin/posts/add" class="btn btn-primary">Đăng bài viết</a>
 				</div>
 				<table class="table-data table table-striped table-bordered dataTable" >

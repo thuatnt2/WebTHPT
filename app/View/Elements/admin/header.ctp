@@ -29,34 +29,12 @@
 				?>
 
                 <ul class="nav">
-                    <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Bài viết <b class="caret"></b>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin/danh-sach-bai-viet">Danh sách bài viết</a></li> 
-                            <li><a href="/admin/them-bai-viet">Thêm mới bài viết</a></li> 
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Danh mục <i class="caret"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin/danh-muc">Danh sách danh mục</a></li> 
-                            <li><a href="/admin/them-danh-muc">Thêm mới danh mục</a></li> 
-                        </ul>
-                    </li>
+					<li><a href="/admin/danh-sach-bai-viet">Bài viết</a></li> 
+                    <li><a href="/admin/danh-muc">Danh mục</a></li>
 					<li>
 						<a href="/admin/schedules">Thời khóa biểu</a>
 					</li>
-                    <li class="dropdown">
-                        <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Video<i class="caret"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/admin/videos">Danh sách video</a></li> 
-                            <li><a href="/admin/them-video">Thêm mới video</a></li> 
-                        </ul>
-                    </li>
+                    <li><a href="/admin/videos">Video</a></li> 
 					<li>
                         <a href="/admin/album-anh">Album ảnh</a>
                     </li>
@@ -68,14 +46,7 @@
 
 						?>
 
-						<li class="dropdown">
-							<a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Người dùng <i class="caret"></i>
-							</a>
-							<ul class="dropdown-menu">
-								<li><a href="/admin/nguoi-dung">Danh sách người dùng</a></li> 
-								<li><a href="/admin/them-nguoi-dung">Thêm mới người dùng</a></li> 
-							</ul>
-						</li>
+						<li><a href="/admin/nguoi-dung">Danh sách người dùng</a></li> 
 						<?php
 					endif;
 

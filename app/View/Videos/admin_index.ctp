@@ -13,7 +13,7 @@
 					$stt = 1;
 
 					?>
-					<div class="actions" style="text-align: center; margin-bottom: 20px">
+					<div class="actions" style="margin-bottom: 20px">
 						<a href="/admin/videos/add" class="btn btn-primary">Thêm video</a>
 					</div>
                     <table class="table-data table table-striped table-bordered dataTable">

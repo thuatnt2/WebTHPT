@@ -1,6 +1,11 @@
-<div class="schedule-page-wrapper"> 
+<ol class="breadcrumb">
+	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
+	<li><?php echo $this->Html->link('Thời khóa biểu', array('controller' => 'schedules', 'action' => 'listSchedules')) ?></li>
+	<li><?php echo $schedule['Schedule']['title'] ?></li>
+</ol>
+<div class="list-page-wrapper"> 
     <div class="text-center"> 
-        <p class="schedule-title"><?php echo $schedule['Schedule']['title'] ?></p>
+        <p class="item-title"><?php echo $schedule['Schedule']['title'] ?></p>
     </div>
     <p>Đăng bởi : <?php echo $schedule['Schedule']['user_create'] ?></p>
     <p>Ngày đăng : <?php echo date('d/m/Y', strtotime($schedule['Schedule']['created'])) ?></p>

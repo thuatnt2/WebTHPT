@@ -41,12 +41,6 @@ Router::connect(
 );
 
 // Routes for pages controller
-// /gioi-thieu/su-menh-tam-nhin
-Router::connect(
-		'/gioi-thieu/:page_name', array('controller' => 'pages', 'action' => 'view'), array('pass' => array('page_name'))
-);
-
-
 // Route for view all post in a category
 Router::connect(
 		'/bai-viet/:category_name/:post_id-:slug', array('controller' => 'categories', 'action' => 'view'), array(
@@ -60,23 +54,23 @@ Router::connect(
 Router::connect('/blog-giao-vien', array('controller' => 'blogs', 'action' => 'index'));
 
 Router::connect(
-		'/blog/:bloger_id-:slug', array(
-	'controller' => 'blogs',
-	'action' => 'index'
-		), array(
-	'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
+        '/blog/:bloger_id-:slug', array(
+    'controller' => 'blogs',
+    'action' => 'index'
+        ), array(
+    'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
 );
 Router::connect(
-		'/blog/:bloger_id-:slug/bai-viet/:article_id-:article_title', array('controller' => 'blogs', 'action' => 'viewArticle'), array(
-	'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
+        '/blog/:bloger_id-:slug/bai-viet/:article_id-:article_title', array('controller' => 'blogs', 'action' => 'viewArticle'), array(
+    'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
 );
 Router::connect(
-		'/blog/:bloger_id-:slug/bai-viet', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
-	'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
+        '/blog/:bloger_id-:slug/bai-viet', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
+    'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
 );
 
 Router::connect(
-		'/blog/xoa_bai', array('controller' => 'blogs', 'action' => 'deleteArticle', '[method]' => 'POST')
+        '/blog/xoa_bai', array('controller' => 'blogs', 'action' => 'deleteArticle', '[method]' => 'POST')
 );
 // End Routes for blogs
 /**

@@ -3,15 +3,17 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><?php echo $title_for_layout ?></title>
-        <?php
-        echo $this->Html->css(array(
-            'vendor/bootstrap.min',
-            'style',
-        ));
-        echo $this->Html->script(array(
-            'vendor/jquery-1.10.2.min',
-        ));
-        ?>
+		<?php
+		echo $this->Html->css(array(
+			'vendor/bootstrap.min',
+			'style',
+		));
+		echo $this->fetch('headerCss');
+		echo $this->Html->script(array(
+			'vendor/jquery-1.10.2.min',
+		));
+
+		?>
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -22,30 +24,33 @@
     <body>
         <div class="container">
             <div class="row">
-                <?php
-                echo $this->element('frontend/banner');
-                ?>
+				<?php
+				echo $this->element('frontend/banner');
+
+				?>
                 <!--<begin navbar>-->
-                <?php
-                echo $this->element('frontend/navbar');
-                ?>
+				<?php
+				echo $this->element('frontend/navbar');
+
+				?>
                 <!--<end navbar>-->
                 <div id="content">
                     <div id="content-bottom">
                         <div class="col-lg-9">
                             <div class="row column-left">
                                 <div class="panel panel-primary" id="tab-content">
-                                    <div class="panel-body">
+                                    <div class="panel-body" id="layout-content">
                                         <!--<begin information>-->
-                                        <?php
-                                        echo $this->fetch('content');
-                                        ?>
+										<?php
+										echo $this->fetch('content');
+
+										?>
                                         <!--<end information>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <?php echo $this->element('frontend/right_sidebar') ?>
+						<?php echo $this->element('frontend/right_sidebar') ?>
                     </div>
 
                 </div>
@@ -62,28 +67,9 @@
                 </div>
             </div>
         </div> <!-- .container -->
-        <?php
-        echo $this->Html->script(array(
-            'vendor/bootstrap.min',
-            'vendor/jquery.marquee',
-            'vendor/jcarousellite_1.0.1c4',
-        ));
-//        echo $this->fetch('scriptBottom');
-        ?>
-        <script type="text/javascript">
-                                                $(document).ready(function() {
-                                                    $('.carousel').carousel({
-                                                        interval: 5000,
-                                                        pause: 'hover',
-                                                    });
-                                                    $(".jcarouse").jCarouselLite({
-                                                        vertical: true,
-                                                        hoverPause: true,
-                                                        visible: 3,
-                                                        auto: 500,
-                                                        speed: 1000
-                                                    });
-                                                });
-        </script>
+		<?php
+		echo $this->fetch('scriptBottom');
+
+		?>
     </body>
 </html>

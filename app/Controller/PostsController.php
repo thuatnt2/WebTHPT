@@ -53,6 +53,7 @@ class PostsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Post->create();
 			$this->request->data['Post']['alias'] = $this->Common->vnit_change_title($this->request->data['Post']['title']);
+			$this->request->data['Post']['is_active'] = 1;
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công 1 bài viết mới', 'flash_success');
 				$this->redirect(array('action' => 'index'));
@@ -137,12 +138,18 @@ class PostsController extends AppController {
 	}
 
 	public function posts($id) {
+		if ($this->request->isAjax) {
+			$this->layout = null;
+		} else {
+			$this->layout = 'frontend/detailArticle';
+		}
 		$this->loadModel('Category');
+		$this->Category->recursive = 1;
+		$this->Category->unbindModel(array('hasMany' => array('Post')));
 		$category = $this->Category->read(null, $id);
-		$this->layout = 'frontend/detailArticle';
 		$conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $id);
 		$this->paginate = array(
-			'limit' => 10,
+			'limit' => 8,
 			'conditions' => $conditions,
 			'order' => array(
 				'Post.modified' => 'DESC'
@@ -153,6 +160,14 @@ class PostsController extends AppController {
 		$this->set('posts', $posts);
 		$this->set('title_for_layout', $category['Category']['name']);
 		$this->set('current_menu_id', $current_menu_id);
+		$this->set('category', $category);
+	}
+
+	public function allPosts() {
+		$this->layout = null;
+		$this->paginate = array('limit' => 8);
+		$posts = $this->paginate();
+		$this->set(compact('posts'));
 	}
 
 	/**
@@ -169,17 +184,15 @@ class PostsController extends AppController {
 		}
 		$options = array('conditions' => array('Post.' . $this->Post->primaryKey => $id));
 		$article = $this->Post->find('first', $options);
+		$this->loadModel('Category');
+		$this->Category->recursive = 1;
+		$this->Category->unbindModel(array('hasMany' => array('Post')));
+		$category = $this->Category->read(null, $article['Post']['category_id']);
 		$current_menu_id = $article['Post']['category_id'];
 		$conditions['AND'] = array('Post.is_active' => 1, 'Post.category_id' => $article['Post']['category_id'], 'Post.' . $this->Post->primaryKey . ' !=' => $id);
-		$this->paginate = array(
-			'limit' => 5,
-			'conditions' => $conditions,
-			'order' => array(
-				'Post.modified' => 'DESC'
-			),
-		);
-		$otherArticle = $this->paginate();
-		$this->set(compact('article', 'otherArticle', 'current_menu_id'));
+		$otherArticle = $this->Post->find('all', array('conditions' => $conditions, 'limit' => 5));
+		$title_for_layout = $article['Post']['title'];
+		$this->set(compact('article', 'otherArticle', 'current_menu_id', 'category', 'title_for_layout'));
 	}
 
 	/**

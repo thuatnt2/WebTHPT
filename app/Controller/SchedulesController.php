@@ -135,7 +135,7 @@ class SchedulesController extends AppController {
 		$result['status'] = 0;
 		if ($this->Schedule->validates(array('fieldList' => array('file')))) {
 			$fileName = $this->request->data['Schedule']['file']['name'];
-			$fileName = time() . '_' . $fileName;
+			$fileName = time() . '_' . $this->Common->vnit_change_title($fileName);
 			move_uploaded_file($this->request->data['Schedule']['file']['tmp_name'], $path . DS . $fileName);
 			$extArr = explode('.', $fileName);
 			$ext = array_pop($extArr);
@@ -166,17 +166,20 @@ class SchedulesController extends AppController {
 		return json_encode(array('status' => 1));
 	}
 
-	public function listSchedules($page = null) {
-
-		$this->layout = 'frontend/detailArticle';
-		$this->paginate = array('limit' => 20);
+	public function listSchedules() {
+		if ($this->request->isAjax) {
+			$this->layout = null;
+		} else {
+			$this->layout = 'frontend/detailArticle';
+		}
+		$this->paginate = array('limit' => $this->limit);
 		$this->set('schedules', $this->Paginator->paginate());
 		$this->set('title_for_layout', 'Thời khóa biểu');
 	}
 
 	public function view($id) {
 		$this->layout = 'frontend/detailArticle';
-		$this->set('title_for_layout', 'Xem tài liệu');
+		$this->set('title_for_layout', 'Xem thời khóa biểu');
 		$schedule = $this->Schedule->read(null, $id);
 		$this->set('schedule', $schedule);
 	}

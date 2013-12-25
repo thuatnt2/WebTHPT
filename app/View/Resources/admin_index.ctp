@@ -10,8 +10,8 @@
 				$stt = 1;
 
 				?>
-				<div class="actions" style="text-align: center; margin-bottom: 20px">
-					<a href="/admin/resources/add" class="btn btn-primary">Tạo album mới</a>
+				<div class="actions" style="margin-bottom: 20px">
+					<a href="/admin/resources/add" class="btn btn-primary">Thêm tài liệu</a>
 				</div>
 				<table class="table-data table table-striped table-bordered dataTable">
 					<thead>
