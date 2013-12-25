@@ -6,7 +6,7 @@
 					<p>
 						<small>
 							<?php echo $confidential['Confidential']['email']; ?>
-							<span> - <?php echo date('d/m/Y h:i:s ', strtotime($confidential['Confidential']['modified'])); ?></span>
+							<span> - <?php echo date('d/m/Y H:i:s ', strtotime($confidential['Confidential']['modified'])); ?></span>
 						</small>
 					</p>
 				</h4>

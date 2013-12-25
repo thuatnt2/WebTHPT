@@ -25,7 +25,7 @@ class PostsController extends AppController {
 	public function admin_index() {
 		$this->Post->recursive = 0;
 
-		$this->set('posts', $this->Paginator->paginate());
+		$this->set('posts', $this->Post->find('all'));
 		$this->set('title_for_layout', 'Danh sách bài viết');
 	}
 
@@ -165,7 +165,7 @@ class PostsController extends AppController {
 
 	public function allPosts() {
 		$this->layout = null;
-		$this->paginate = array('limit' => 8);
+		$this->paginate = array('limit' => 8,'maxLimit' => 40);
 		$posts = $this->paginate();
 		$this->set(compact('posts'));
 	}

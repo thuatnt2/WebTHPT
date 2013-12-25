@@ -14,7 +14,7 @@
 
 	</iframe>-->
 	<iframe src="http://docs.google.com/viewer?url=<?php echo $resource['Resource']['view_link'] ?>&embedded=true" width="100%" height="980" style="border: none;"></iframe>
-	<h5>Các tài liệu liên quan</h5>
+	<h4>Các tài liệu liên quan</h4>
 	<div class="list-wrapper"> 
 		<ul class="list">
 			<?php

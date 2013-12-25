@@ -23,10 +23,9 @@ class ConfidentialsController extends AppController {
 	 * @return void
 	 */
 	public function admin_index() {
-		$this->Post->recursive = 0;
-
-		$this->set('posts', $this->Paginator->paginate());
-		$this->set('title_for_layout', 'Danh sách bài viết');
+		$this->paginate = array('order'=>'created DESC');
+		$this->set('confidentials', $this->Paginator->paginate());
+		$this->set('title_for_layout', 'Tâm sự thầy trò');
 	}
 
 	/**
@@ -37,11 +36,27 @@ class ConfidentialsController extends AppController {
 	 * @return void
 	 */
 	public function admin_view($id = null) {
-		if (!$this->Post->exists($id)) {
+		if (!$this->Confidential->exists($id)) {
 			throw new NotFoundException(__('Invalid post'));
 		}
-		$options = array('conditions' => array('Confidential.' . $this->Post->primaryKey => $id));
-		$this->set('post', $this->Post->find('first', $options));
+		$options = array('conditions' => array('Confidential.' . $this->Confidential->primaryKey => $id));
+		$this->set('confidential', $this->Confidential->find('first', $options));
+	}
+
+	public function admin_makeActive($id) {
+		$this->Confidential->id = $id;
+		$confidential = $this->Confidential->read(array('id', 'title'), $id);
+		$this->Confidential->saveField('is_active', 1);
+		$this->Session->setFlash('Bài viết "' . $confidential['Confidential']['title'] . '" đã được hiển thị trên trang web','flash_success');
+		$this->redirect(array('action'=>'index'));
+	}
+
+	public function admin_makeUnactive($id) {
+		$this->Confidential->id = $id;
+		$confidential = $this->Confidential->read(array('id', 'title'), $id);
+		$this->Confidential->saveField('is_active', 0);
+		$this->Session->setFlash('Bài viết "' . $confidential['Confidential']['title'] . '" đã được ẩn khỏi trang web','flash_success');
+		$this->redirect(array('action'=>'index'));
 	}
 
 	/**
@@ -52,13 +67,15 @@ class ConfidentialsController extends AppController {
 	 * @return void
 	 */
 	public function admin_delete($id = null) {
-		$this->Post->id = $id;
-		if (!$this->Post->exists()) {
+		$this->Confidential->id = $id;
+		if (!$this->Confidential->exists()) {
 			throw new NotFoundException(__('Invalid post'));
 		}
 		$this->request->onlyAllow('post', 'delete');
-		if ($this->Post->delete()) {
-			$this->Session->setFlash('Xóa thành công', 'flash_success');
+		$confidential = $this->Confidential->read(array('id', 'title'), $id);
+		$this->Confidential->saveField('is_active', 0);
+		if ($this->Confidential->delete()) {
+			$this->Session->setFlash('Xóa thành công bài viết "'.$confidential['Confidential']['title'].'"', 'flash_success');
 		} else {
 			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 		}
@@ -74,6 +91,7 @@ class ConfidentialsController extends AppController {
 		$conditions['AND'] = array('Confidential.is_active' => 1);
 		$this->paginate = array(
 			'limit' => 5,
+			'maxLimit' => 50,
 			'conditions' => $conditions,
 			'order' => array(
 				'Confidential.modified' => 'DESC'
@@ -120,18 +138,18 @@ class ConfidentialsController extends AppController {
 	 */
 	public function view($id = null) {
 		$this->layout = 'frontend/detailArticle';
-		if (!$this->Post->exists($id)) {
+		if (!$this->Confidential->exists($id)) {
 			throw new NotFoundException(__('Invalid category'));
 		}
-		$options = array('conditions' => array('Confidential.' . $this->Post->primaryKey => $id));
-		$article = $this->Post->find('first', $options);
+		$options = array('conditions' => array('Confidential.' . $this->Confidential->primaryKey => $id));
+		$article = $this->Confidential->find('first', $options);
 		$this->loadModel('Category');
 		$this->Category->recursive = 1;
 		$this->Category->unbindModel(array('hasMany' => array('Post')));
 		$category = $this->Category->read(null, $article['Post']['category_id']);
 		$current_menu_id = $article['Post']['category_id'];
-		$conditions['AND'] = array('Confidential.is_active' => 1, 'Confidential.category_id' => $article['Post']['category_id'], 'Confidential.' . $this->Post->primaryKey . ' !=' => $id);
-		$otherArticle = $this->Post->find('all', array('conditions' => $conditions, 'limit' => 5));
+		$conditions['AND'] = array('Confidential.is_active' => 1, 'Confidential.category_id' => $article['Post']['category_id'], 'Confidential.' . $this->Confidential->primaryKey . ' !=' => $id);
+		$otherArticle = $this->Confidential->find('all', array('conditions' => $conditions, 'limit' => 5));
 		$title_for_layout = $article['Post']['title'];
 		$this->set(compact('article', 'otherArticle', 'current_menu_id', 'category', 'title_for_layout'));
 	}
@@ -146,9 +164,9 @@ class ConfidentialsController extends AppController {
 		if (!empty($this->request->params['requested'])) {
 			$this->recursive = 1;
 			$posts = array();
-			$recent = $this->Post->find('all', array('limit' => $limit, 'order' => 'Confidential.modified DESC'));
+			$recent = $this->Confidential->find('all', array('limit' => $limit, 'order' => 'Confidential.modified DESC'));
 			array_push($posts, $recent);
-			$viewMost = $this->Post->find('all', array('limit' => $limit, 'order' => 'Confidential.view_count DESC'));
+			$viewMost = $this->Confidential->find('all', array('limit' => $limit, 'order' => 'Confidential.view_count DESC'));
 //			$this->log($viewMost, 'debug');
 			array_push($posts, $viewMost);
 			return $recent;

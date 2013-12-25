@@ -24,8 +24,7 @@ class SchedulesController extends AppController {
 	 */
 	public function admin_index() {
 		$this->Schedule->recursive = 0;
-		$this->paginate = array('limit' => $this->limit, 'fields' => null);
-		$this->set('resources', $this->Paginator->paginate());
+		$this->set('resources', $this->Schedule->find('all'));
 		$this->set('title_for_layout', 'Tài liệu');
 		$this->set('resource_type', $this->Schedule->resource_type);
 	}

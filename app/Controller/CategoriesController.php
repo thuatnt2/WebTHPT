@@ -19,8 +19,7 @@ class CategoriesController extends AppController {
 
 	public function admin_index() {
 		$this->Category->recursive = 0;
-		$this->paginate = array('limit' => $this->limit);
-		$categories = $this->Paginator->paginate();
+		$categories = $this->Category->find('all');
 		$this->set('categories', $categories);
 		$this->set('title_for_layout', 'Danh mục');
 	}
@@ -54,7 +53,7 @@ class CategoriesController extends AppController {
 			if ($category) {
 				$this->loadModel('UserCategory');
 				$data = array();
-				foreach ($this->request->data['User'] as $k){
+				foreach ($this->request->data['User'] as $k) {
 					$data['UserCategory']['user_id'] = $k;
 					$data['UserCategory']['category_id'] = $category['Category']['id'];
 					$this->UserCategory->create();
@@ -66,12 +65,12 @@ class CategoriesController extends AppController {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
 			}
 		}
-		$conditions['AND'] = array('parent_id' => null,'id !='=>1);
+		$conditions['AND'] = array('parent_id' => null, 'id !=' => 1);
 		$parentCategories = $this->Category->ParentCategory->find('list', array('conditions' => $conditions));
 		$this->loadModel('Usermgmt.User');
-		$this->User->unbindModel(array('hasMany'=>array('Article','LoginToken')));
-		$users = $this->User->find('all',array('fields'=>array('User.id','User.username','User.first_name')));
-		$this->set(compact('parentCategories','users'));
+		$this->User->unbindModel(array('hasMany' => array('Article', 'LoginToken')));
+		$users = $this->User->find('all', array('fields' => array('User.id', 'User.username', 'User.first_name')));
+		$this->set(compact('parentCategories', 'users'));
 		$this->set('title_for_layout', 'Thêm danh mục');
 	}
 
@@ -88,7 +87,17 @@ class CategoriesController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->Category->id = $id;
-			if ($this->Category->save($this->request->data)) {
+			$category = $this->Category->save($this->request->data);
+			if ($category) {
+				$this->loadModel('UserCategory');
+				$this->UserCategory->deleteAll(array('UserCategory.category_id' => $id));
+				$data = array();
+				foreach ($this->request->data['User'] as $k) {
+					$data['UserCategory']['user_id'] = $k;
+					$data['UserCategory']['category_id'] = $category['Category']['id'];
+					$this->UserCategory->create();
+					$this->UserCategory->save($data);
+				}
 				$this->Session->setFlash('Lưu thành công', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -98,9 +107,13 @@ class CategoriesController extends AppController {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 			$this->request->data = $this->Category->find('first', $options);
 		}
-		$parentCategories = $this->Category->ParentCategory->find('list');
-		$this->set(compact('parentCategories'));
-		$this->set('title_for_layout', 'Sửa danh mục');
+		$conditions['AND'] = array('parent_id' => null, 'id !=' => 1);
+		$parentCategories = $this->Category->ParentCategory->find('list', array('conditions' => $conditions));
+		$this->loadModel('Usermgmt.User');
+		$this->User->unbindModel(array('hasMany' => array('Article', 'LoginToken')));
+		$users = $this->User->find('all', array('fields' => array('User.id', 'User.username', 'User.first_name')));
+		$this->set(compact('parentCategories', 'users'));
+		$this->set('title_for_layout', 'Thêm danh mục');
 	}
 
 	/**
@@ -123,6 +136,8 @@ class CategoriesController extends AppController {
 			return $this->redirect(array('action' => 'index'));
 		}
 		if ($this->Category->delete()) {
+			$this->loadModel('UserCategory');
+			$this->UserCategory->deleteAll(array('UserCategory.category_id' => $id));
 			$this->Session->setFlash('Xóa thành công', 'flash_success');
 		} else {
 			$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');

@@ -29,7 +29,7 @@ class AlbumsController extends AppController {
         $this->layout = 'frontend/detailArticle';
         $this->Album->recursive = 1;
 //        $current_menu_id = 
-        $this->set('albums', $this->Paginator->paginate());
+        $this->set('albums', $this->Album->find('all'));
     }
 
     /**

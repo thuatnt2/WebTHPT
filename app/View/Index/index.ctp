@@ -38,11 +38,11 @@
         </div>
     </div>
     <div class="tab-pane" id="tab-confidential-content">
+		<button type="button" id="btn-add-confidential" class="btn btn-primary">Đăng tâm sự</button>
 		<div id="list-confidentials">
 
 		</div>		
 		<div id="form-confidential-wrap">
-			<hr>
 			<button type="button" id="btn-add-confidential" class="btn btn-primary">Đăng tâm sự</button>
 			<div id="confidential-alert">
 				<div class="alert alert-danger alert-dismissable" style="display: none">
@@ -76,8 +76,8 @@
 					</div>
 					<div class="form-group">
 						<div class="form-actions col-lg-offset-2 col-lg-3">
-							<button id="btn-confidential-cancel" class="btn btn-danger" type="button">Hủy</button>
-							<button id="btn-confidential-submit" type="button" class="btn btn-primary">Đồng ý</button>
+							<button id="btn-confidential-cancel" class="btn btn-danger btn-sm" type="button">Hủy</button>
+							<button id="btn-confidential-submit" type="button" class="btn btn-primary btn-sm">Đồng ý</button>
 						</div>
 					</div>
 				</form>
