@@ -45,12 +45,6 @@ hr {
     left: 93%;
     bottom: 0px;
 }
-#content {
-    /*height: 1800px;*/
-    margin: 0px 2px 0px 2px;
-
-}
-
 
 .panel-heading {
     padding: 10px 15px 0px;
@@ -172,9 +166,7 @@ ul.nav.nav-tabs li a {
     /*margin: auto 70px;*/
     margin: auto 115px;
 }
-.container #content-wrapper {
-    padding: 0 5px;
-}
+
 #right-sidebar {
     padding-left: 5px;
     padding-right: 0px;
@@ -224,34 +216,14 @@ ul.nav.nav-tabs li a {
 */
 #banner  {
     height: 150px;
+    /*background: url('/img/frontend/banner.png') no-repeat;*/
 }
-#banner #logo {
-    margin: 5px 0px 5px 25px;
+#banner img {
+    width: 100%;
 }
-#banner #school-name ,#banner #school-name #bottom h2{
-    font-weight: bold;
-}
-#banner #school-name #bottom h2 {
-    margin-top: 10px;
-}
-#school-name #top {
-    padding-top: 25px;
-    padding-left: 35px;
-    min-width: 280px;
-    color: #293577;
-}
-#banner #school-name {
-    padding-left: 0px;
-}
-#banner #school-name #bottom h2 {
-    font-size: 30px;
-    color: rgb(204, 17, 37);
-    text-shadow: 0 -1px rgb(228, 237, 246), 
-        1px 0 rgb(255, 255, 255), 
-        0 1px rgb(245, 247, 248),
-        -1px 0 rgb(218, 226, 233);
-}
-#banner-pics {
+
+#content {
+    padding: 0 2px;
 }
 #portal-links ul{
     list-style: none;
