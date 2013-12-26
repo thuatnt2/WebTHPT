@@ -7,6 +7,11 @@
             <div class="albums view">
                 <h2><?php echo $album['Album']['name'] ?></h2>
                 <i>Ngày tạo: <?php echo $album['Album']['created_at'] ?></i>
+                <?php if ($album['Album']['for_slide']) { ?>
+                    <h4 class="text-warning">
+                        <?php echo $album['Album']['description'] ?> 
+                    </h4>
+                <?php } ?>
                 <br />
                 <div class="photos-in-album">
                     <?php if (count($album['Photo']) == 0) { ?>   
@@ -90,7 +95,7 @@
             $(this).children('.delete-btn-box').css({top: (pos['top']), left: pos['left']});
         });
         $('.photo-box-warpper').mouseout(function() {
-           $(this).children('.delete-btn-box').hide();
+            $(this).children('.delete-btn-box').hide();
         });
         $('.delete-btn-box a').on('click', function() {
             var parent = $(this).parent().parent();
