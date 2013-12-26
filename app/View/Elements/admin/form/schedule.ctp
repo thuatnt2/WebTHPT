@@ -81,5 +81,5 @@
 <?php echo $this->Html->script('admin/upload/vendor/jquery.ui.widget', array('block' => 'scriptBottom')); ?>
 <?php echo $this->Html->script('admin/upload/jquery.iframe-transport', array('block' => 'scriptBottom')); ?>
 <?php echo $this->Html->script('admin/upload/jquery.fileupload', array('block' => 'scriptBottom')); ?>
-<?php echo $this->Html->script('http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js', array('block' => 'scriptBottom')); ?>
+<?php echo $this->Html->script('vendor/jquery.validate.min.js', array('block' => 'scriptBottom')); ?>
 <?php echo $this->Html->script('admin/schedule', array('block' => 'scriptBottom')); ?>

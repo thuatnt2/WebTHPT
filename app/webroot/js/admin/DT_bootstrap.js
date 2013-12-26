@@ -4,7 +4,9 @@ $.extend(true, $.fn.dataTable.defaults, {
 	"sPaginationType": "bootstrap",
 	"oLanguage": {
 		"sLengthMenu": "_MENU_ records per page"
-	}
+	},
+	"aLengthMenu": [30, 50, 60, 90],
+	"iDisplayLength": 30,
 });
 
 
@@ -45,8 +47,8 @@ $.extend($.fn.dataTableExt.oPagination, {
 
 			$(nPaging).addClass('pagination').append(
 					'<ul>' +
-					'<li class="prev disabled"><a href="#">&larr; ' + oLang.sPrevious + '</a></li>' +
-					'<li class="next disabled"><a href="#">' + oLang.sNext + ' &rarr; </a></li>' +
+					'<li class="prev disabled"><a href="#">&larr; ' + 'Trang trước' + '</a></li>' +
+					'<li class="next disabled"><a href="#">' + 'Trang sau' + ' &rarr; </a></li>' +
 					'</ul>'
 					);
 			var els = $('a', nPaging);
@@ -84,10 +86,10 @@ $.extend($.fn.dataTableExt.oPagination, {
 					$('<li ' + sClass + '><a href="#">' + j + '</a></li>')
 							.insertBefore($('li:last', an[i])[0])
 							.bind('click', function(e) {
-						e.preventDefault();
-						oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;
-						fnDraw(oSettings);
-					});
+								e.preventDefault();
+								oSettings._iDisplayStart = (parseInt($('a', this).text(), 10) - 1) * oPaging.iLength;
+								fnDraw(oSettings);
+							});
 				}
 
 				// Add / remove disabled classes from the static elements
@@ -152,7 +154,12 @@ $(document).ready(function() {
 		"sDom": "<'row'<'span6'l><'span6'f>r>t<'row'<'span6'i><'span6'p>>",
 		"sPaginationType": "bootstrap",
 		"oLanguage": {
-			"sLengthMenu": "_MENU_ records per page"
+			"sLengthMenu": "_MENU_ dòng mỗi trang",
+			"sInfo": "Hiển thị _START_ đến _END_ trong tổng số _TOTAL_ mục",
+			 "sNext": "Trang sau",
+			 "sPrevious": "Trang trước",
+			  "sInfoFiltered": "",
+			  "sEmptyTable": "Không có dữ liệu",
 		}
 	});
 });

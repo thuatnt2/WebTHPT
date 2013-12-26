@@ -17,7 +17,6 @@
 
 							</a>
 							<ul class="dropdown-menu">
-								<li><a href="<?php echo $this->Html->url('/admin/thong-tin-ca-nhan/' . $user['User']['id']) ?>">Thông tin cá nhân</a></li> 
 								<li><a href="<?php echo Router::url('/admin/doi-mat-khau') ?>">Đổi mật khẩu</a></li> 
 								<li><a href="<?php echo Router::url('/logout') ?>">Đăng xuất</a></li> 
 							</ul>

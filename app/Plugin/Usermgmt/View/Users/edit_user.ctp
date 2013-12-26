@@ -37,10 +37,18 @@
 									<?php //debug($categories) ?>
 									<?php foreach ($categories as $category) : ?>
 										<div class="root-category">
-											<label class="label-root-category">
-												<input type="checkbox"/>
-												<?php echo $category['Category']['name'] ?>
-											</label>
+											<?php if ($category['Category']['id'] == 1): ?>
+												<label class="label-root-category">
+													<input type="checkbox" name="data[Category][]" value="1" <?php if (in_array(1, $allow)) echo 'checked="checked"' ?>/>
+													<?php echo $category['Category']['name'] ?>
+												</label>
+											<?php else: ?>
+												<label class="label-root-category">
+													<input type="checkbox"/>
+													<?php echo $category['Category']['name'] ?>
+												</label>
+											<?php endif; ?>
+
 											<div class="child-category">
 												<?php foreach ($category['ChildCategory'] as $child): ?>
 													<label>

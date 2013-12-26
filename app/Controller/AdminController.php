@@ -39,5 +39,10 @@ class AdminController extends AppController {
         $this->set('isAdmin', $isAdmin);
         $this->set('title_for_layout', 'Quản trị nội dung');
     }
+	public function admin_config() {
+		$this->loadModel('Link');
+		$this->set('links',$this->Link->find('all'));
+		$this->set('linkTypes',$this->Link->linkTypes);		
+	}
 
 }

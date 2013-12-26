@@ -3,20 +3,33 @@
         <div class="navbar navbar-inner block-header">
             <div class="muted pull-left">Quản lí bài viết</div>
         </div>
-        <div class="block-content collapse in">
-			<?php echo $this->Session->flash() ?>
+        <div class="block-content collapse in">			
             <div class="span12">
-				<div class="actions" style="margin-bottom: 20px">
-					<a href="/admin/posts/add" class="btn btn-primary">Đăng bài viết</a>
+				<div class="row-fluid">
+					<div class="span5">
+						<form method="GET" id="admin-form-posts-filter">
+							<select name="filter" id="admin-posts-filter">
+								<option value="mine" <?php echo $filter == 'mine' ? 'selected':''?>>Chỉ những bài do tôi đăng</option>
+								<option value="all" <?php echo $filter == 'all' ? 'selected':''?>>Tất cả bài viết</option>
+							</select>
+						</form>
+					</div>
+					<div class="span7">
+						<div class="actions">
+							<a href="/admin/posts/add" class="btn btn-primary">Đăng bài viết</a>
+						</div>
+					</div>
 				</div>
+				<hr>
+				<?php echo $this->Session->flash() ?>
 				<table class="table-data table table-striped table-bordered dataTable" >
 					<thead>
 						<tr>
 							<th>TT</th>
-							<th>Tên bài viết</th>
+							<th width="50%">Tên bài viết</th>
 							<th>Danh mục</th>
-							<th>Trạng thái</th>
-							<th>Ngày tạo</th>
+							<th>Người đăng</th>
+							<th>Ngày đăng</th>
 							<th>Thao tác</th>
 						</tr>
 					</thead>
@@ -29,28 +42,28 @@
 							?>
 							<tr>
 								<td><?php echo $stt++ ?></td>
-								<td><?php echo $row['Post']['title'] ?></td>
+								<td><?php
+									echo $this->Html->link($row['Post']['title'], array(
+										'controller' => 'posts',
+										'action' => 'view',
+										'id' => $row['Post']['id'],
+										'slug' => $row['Post']['alias'],
+										'admin' => false), array('escape' => false, 'target' => '_blank'));
+
+									?></td>
 								<td><?php echo $row['Category']['name'] ?></td>
-								<td>
-									<?php
-									if ($row['Post']['is_active'] == 0) {
-										echo "<span class='icon'><a href='" . $this->Html->url('/categories/makeActive/' . $row['Post']['id'] . '/1') . "'><img src='" . $this->Html->url('/') . "img/admin/dis-approve.png' border='0'></a></span>";
-									} else {
-										echo "<span class='icon'><a href='" . $this->Html->url('/categories/makeActive/' . $row['Post']['id'] . '/0') . "'><img src='" . $this->Html->url('/') . "img/admin/approve.png' border='0'></a></span>";
-									}
-
-									?>
-
-								</td>
+								<td><?php echo $row['User']['first_name'] ?></td>
 								<td>
 									<?php echo date('d/m/Y', strtotime($row['Post']['created'])) ?>
 								</td>
 								<td>
 									<?php
-									echo $this->Html->link($this->Html->image('admin/edit.png'), array('action' => 'edit', $row['Post']['id']), array('escape' => false));
-									echo $this->Form->postLink(
-											$this->Html->image('admin/delete.png'), array('action' => 'delete', $row['Post']['id']), array('escape' => false), 'Bạn có chắc chắn muốn xóa ?'
-									);
+									if ($row['User']['id'] == $user_id || $user_id == ADMIN_GROUP_ID) {
+										echo $this->Html->link($this->Html->image('admin/edit.png'), array('action' => 'edit', $row['Post']['id']), array('escape' => false, 'title' => 'Chỉnh sửa bài viết'));
+										echo $this->Form->postLink(
+												$this->Html->image('admin/delete.png'), array('action' => 'delete', $row['Post']['id']), array('escape' => false, 'title' => 'Xóa bài viết'), 'Bạn có chắc chắn muốn xóa ?'
+										);
+									}
 
 									?>
 

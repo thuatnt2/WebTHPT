@@ -32,7 +32,7 @@ class VideosController extends AppController {
 	public function view($id) {
 		$this->layout = 'frontend/detailArticle';
 		$videoDefault = $this->Video->read(null, $id);
-		$this->paginate = array('conditions' => array('Video.id != ' => $id), 'limit' => $this->limit);
+		$this->paginate = array('conditions' => array('Video.id != ' => $id), 'limit' =>20);
 		$videos = $this->Paginator->paginate();
 		$this->set('title_for_layout', 'Xem video');
 		$this->set('videos', $videos);

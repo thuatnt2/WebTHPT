@@ -4,7 +4,6 @@
 			<div class="muted pull-left">Quản lí tài liệu</div>
 		</div>
 		<div class="block-content collapse in">
-			<?php echo $this->Session->flash() ?>
 			<div class="span12">
 				<?php
 				$stt = 1;
@@ -13,6 +12,7 @@
 				<div class="actions" style="margin-bottom: 20px">
 					<a href="/admin/resources/add" class="btn btn-primary">Thêm tài liệu</a>
 				</div>
+				<?php echo $this->Session->flash() ?>
 				<table class="table-data table table-striped table-bordered dataTable">
 					<thead>
 						<tr>

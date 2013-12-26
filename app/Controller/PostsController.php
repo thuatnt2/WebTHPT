@@ -24,9 +24,27 @@ class PostsController extends AppController {
 	 */
 	public function admin_index() {
 		$this->Post->recursive = 0;
-
-		$this->set('posts', $this->Post->find('all'));
+		$user_id = $this->UserAuth->getUserId();
+		$filter = $user_id == ADMIN_GROUP_ID ? 'all' : 'mine';
+		if (!empty($this->request->query['filter'])) {
+			$filter = $this->request->query['filter'];
+		}
+		$conditions = $filter == 'all' ? null : array('Post.user_id' => $user_id);
+		$fields = array(
+			'Post.id',
+			'Post.title',
+			'Post.alias',
+			'Post.created',
+			'Post.modified',
+			'User.first_name',
+			'User.id',
+			'Category.id',
+			'Category.name',
+		);
+		$this->set('posts', $this->Post->find('all', array('order' => 'Post.created DESC', 'fields' => $fields, 'conditions' => $conditions)));
 		$this->set('title_for_layout', 'Danh sách bài viết');
+		$this->set('filter', $filter);
+		$this->set('user_id', $user_id);
 	}
 
 	/**
@@ -54,6 +72,8 @@ class PostsController extends AppController {
 			$this->Post->create();
 			$this->request->data['Post']['alias'] = $this->Common->vnit_change_title($this->request->data['Post']['title']);
 			$this->request->data['Post']['is_active'] = 1;
+			$user_id = $this->UserAuth->getUserId();
+			$this->request->data['Post']['user_id'] = $user_id;
 			if ($this->Post->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công 1 bài viết mới', 'flash_success');
 				$this->redirect(array('action' => 'index'));
@@ -112,7 +132,14 @@ class PostsController extends AppController {
 		$conditions['And'] = array('Category.is_active' => 1, 'Category.parent_id' => null);
 		$this->Post->Category->unbindModel(array('hasMany' => array('Post')));
 		$categories = $this->Post->Category->find('all', array('fields' => $fields, 'conditions' => $conditions));
-		$this->set(compact('categories'));
+		$this->loadModel('UserCategory');
+		$user_id = $this->UserAuth->getUserId();
+		$user_categories = $this->UserCategory->find('all', array('conditions' => array('UserCategory.user_id' => $user_id), 'fields' => array('category_id')));
+		$categoryAllow = array();
+		foreach ($user_categories as $k) {
+			array_push($categoryAllow, $k['UserCategory']['category_id']);
+		}
+		$this->set(compact('categories', 'categoryAllow'));
 		$this->set('title_for_layout', 'Chỉnh sửa bài viết');
 	}
 
@@ -165,7 +192,7 @@ class PostsController extends AppController {
 
 	public function allPosts() {
 		$this->layout = null;
-		$this->paginate = array('limit' => 8,'maxLimit' => 40);
+		$this->paginate = array('limit' => 8, 'maxLimit' => 40);
 		$posts = $this->paginate();
 		$this->set(compact('posts'));
 	}

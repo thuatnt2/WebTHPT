@@ -60,6 +60,7 @@ class SchedulesController extends AppController {
 				$this->Session->setFlash('Lưu thành công tài liệu', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
+				unlink($this->request->data['Schedule']['file_absolute_path']);
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		}
@@ -134,7 +135,7 @@ class SchedulesController extends AppController {
 		$result['status'] = 0;
 		if ($this->Schedule->validates(array('fieldList' => array('file')))) {
 			$fileName = $this->request->data['Schedule']['file']['name'];
-			$fileName = time() . '_' . $this->Common->vnit_change_title($fileName);
+			$fileName = time() . '_' . ($fileName);
 			move_uploaded_file($this->request->data['Schedule']['file']['tmp_name'], $path . DS . $fileName);
 			$extArr = explode('.', $fileName);
 			$ext = array_pop($extArr);

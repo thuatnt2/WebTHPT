@@ -1,4 +1,4 @@
-<?php //debug($this->request->data);      ?>
+<?php //debug($this->request->data);         ?>
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
@@ -15,7 +15,7 @@
 							<select name="data[Post][category_id]" class="input-xxlarge">
 								<?php
 								foreach ($categories as $category):
-									if ($category['Category']['id'] == 1) {
+									if ($category['Category']['id'] == 1 && in_array(1, $categoryAllow)) {
 
 										?>
 										<option value="<?php echo $category['Category']['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id']) && $this->request->data['Category']['id'] == $category['Category']['id']) ? 'selected' : '' ?>><?php echo $category['Category']['name'] ?></option>
@@ -72,7 +72,7 @@
 					<div class="control-group">
 						<label>Tóm tắt</label>
 						<div class="controls">
-							<?php echo $this->Form->input('sumary', array('rows' => 3, 'div' => false, 'label' => false, 'class' => 'input-xxlarge textarea wysihtml5-editor')); ?>
+							<?php echo $this->Form->input('sumary', array('rows' => 6, 'div' => false, 'label' => false, 'class' => 'input-xxlarge textarea wysihtml5-editor')); ?>
 						</div>
 					</div>
 					<div class="control-group">
@@ -80,7 +80,7 @@
 						<div class="controls">
 							<?php
 							echo $this->Form->input('content', array('div' => FALSE, 'label' => false, 'id' => 'full_text', 'class' => 'input-xxlarge textarea wysihtml5-editor'));
-							echo $this->TvFck->create('full_text', array('toolbar' => 'extra'), 'full_text');
+							echo $this->TvFck->create('full_text', array('toolbar' => 'extra', 'height' => '550px'), 'full_text');
 
 							?>
 						</div>
