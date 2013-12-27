@@ -1,3 +1,8 @@
+<?php
+$modules = $this->requestAction('admin/admin/getBackendMenu');
+$controller = $this->request['controller'];
+
+?>
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
         <div class="container-fluid">
@@ -27,31 +32,23 @@
 
 				?>
                 <ul class="nav">
-                    <li><a href="/admin/danh-sach-bai-viet">Bài viết</a></li>
-                    <li><a href="/admin/danh-muc">Danh mục</a></li>
-                    <li>
-                        <a href="/admin/schedules">Lịch làm việc</a>
-                    </li>
-                    <li><a href="/admin/videos">Video</a></li> 
-                    <li>
-                        <a href="/admin/album-anh">Album ảnh</a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $this->Html->url('/') . 'admin/tai-lieu' ?>">Tài liệu</a>
-                    </li>
+					<li><a href="/admin/danh-sach-bai-viet">Bài viết</a></li>
+					<?php foreach ($modules as $module): ?>
+						<li class="<?php echo $controller == $module['controller'] ? 'active' : '' ?>"><?php echo $this->Html->link($module['title'], array('controller' => $module['controller'])) ?></li>
+					<?php endforeach; ?>
 					<?php
 					if (isset($user['UserGroup']['id']) && $user['UserGroup']['id'] == ADMIN_GROUP_ID):
 
 						?>
-
 						<li><a href="/admin/nguoi-dung">Người dùng</a></li> 
+						<li>
+	                        <a href="<?php echo $this->Html->url('/admin/cau-hinh-site') ?>">Cấu hình trang web</a>
+	                    </li>   
 						<?php
 					endif;
 
 					?>
-                    <li>
-                        <a href="<?php echo $this->Html->url('/admin/cau-hinh-site') ?>">Cấu hình trang web</a>
-                    </li>                      
+
 
                 </ul>
             </div>

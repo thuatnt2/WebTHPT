@@ -31,35 +31,34 @@ App::uses('AppController', 'Controller');
  * @link http://book.cakephp.org/2.0/en/controllers/pages-controller.html
  */
 class AdminController extends AppController {
+	public $layout = 'admin/admin';
 
-    public $layout = 'admin/admin';
+	public function admin_index() {
+		$isAdmin = $this->UserAuth->isAdmin();
+		$this->set('isAdmin', $isAdmin);
+		$this->set('title_for_layout', 'Quản trị nội dung');
+	}
 
-    public function admin_index() {
-        $isAdmin = $this->UserAuth->isAdmin();
-        $this->set('isAdmin', $isAdmin);
-        $this->set('title_for_layout', 'Quản trị nội dung');
-    }
+	public function admin_config() {
+		$this->loadModel('Link');
+		$this->set('links', $this->Link->find('all'));
+		$this->set('linkTypes', $this->Link->linkTypes);
+	}
 
-    public function admin_config() {
-        $this->loadModel('Link');
-        $this->set('links', $this->Link->find('all'));
-        $this->set('linkTypes', $this->Link->linkTypes);
-    }
-	
-	public function getBackendMenu(){
+	public function admin_getBackendMenu() {
 		$this->loadModel('UserModule');
 		$modules = $this->UserModule->modules;
 		$userId = $this->UserAuth->getUserId();
-		if(!$this->UserAuth->isAdmin()){
-			$modulesAllowIds = $this->UserModule->find('all',array('fields'=>array('UserModule.module_id','conditions'=>array('UserModule.user_id'=>$userId))));
+		if (!$this->UserAuth->isAdmin()) {
+			$modulesAllowIds = $this->UserModule->find('all', array('fields' => array('UserModule.module_id', 'conditions' => array('UserModule.user_id' => $userId))));
 			$modulesTmp = $modules;
 			foreach ($modulesTmp as $k => $v) {
-				if(!in_array($k, $modules)){
+				if (!in_array($k, $modules)) {
 					unset($modules[$k]);
 				}
 			}
 		}
+		return $modules;
 	}
-	
 
 }
