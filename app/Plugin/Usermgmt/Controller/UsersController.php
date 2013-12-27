@@ -327,12 +327,13 @@ class UsersController extends UserMgmtAppController {
 				$this->redirect('/admin/nguoi-dung');
 			}
 		}
+		$modules = $this->User->modules;
 		$this->loadModel('Category');
 		$this->Category->recursive = 1;
 		$this->Category->unbindModel(array('hasMany' => array('Post')));
 		$categories = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null)));
-		//debug($category);exit();
 		$this->set('categories', $categories);
+		$this->set('modules', $modules);
 		$this->set('title_for_layout', 'Thêm người dùng');
 	}
 
@@ -369,7 +370,7 @@ class UsersController extends UserMgmtAppController {
 						$this->UserCategory->create();
 						$this->UserCategory->save($data);
 					}
-					$this->Session->setFlash('Sửa thành công','flash_success');
+					$this->Session->setFlash('Sửa thành công', 'flash_success');
 					$this->redirect('/admin/nguoi-dung');
 				}
 			} else {
@@ -412,7 +413,7 @@ class UsersController extends UserMgmtAppController {
 					$this->loadModel('UserCategory');
 					$this->UserCategory->deleteAll(array('UserCategory.user_id' => $userId));
 					$this->LoginToken->deleteAll(array('LoginToken.user_id' => $userId), false);
-					$this->Session->setFlash('Xóa người dùng thành công','flash_success');
+					$this->Session->setFlash('Xóa người dùng thành công', 'flash_success');
 				}
 			}
 			$this->redirect('/admin/nguoi-dung');

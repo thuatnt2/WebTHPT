@@ -86,19 +86,22 @@ class CategoriesController extends AppController {
 			throw new NotFoundException(__('Invalid category'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
+			//var_dump($this->request->data);exit();
 			$this->Category->id = $id;
 			$category = $this->Category->save($this->request->data);
 			if ($category) {
-				$this->loadModel('UserCategory');
-				$this->UserCategory->deleteAll(array('UserCategory.category_id' => $id));
-				$data = array();
-				foreach ($this->request->data['User'] as $k) {
-					$data['UserCategory']['user_id'] = $k;
-					$data['UserCategory']['category_id'] = $category['Category']['id'];
-					$this->UserCategory->create();
-					$this->UserCategory->save($data);
+				if (!empty($this->request->data['User'])) {
+					$this->loadModel('UserCategory');
+					$this->UserCategory->deleteAll(array('UserCategory.category_id' => $id));
+					$data = array();
+					foreach ($this->request->data['User'] as $k) {
+						$data['UserCategory']['user_id'] = $k;
+						$data['UserCategory']['category_id'] = $id;
+						$this->UserCategory->create();
+						$this->UserCategory->save($data);
+					}
 				}
-				$this->Session->setFlash('Lưu thành công', 'flash_success');
+				$this->Session->setFlash('Lưu thành công danh mục "' . $category['Category']['name'] . '"', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
@@ -106,14 +109,21 @@ class CategoriesController extends AppController {
 		} else {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 			$this->request->data = $this->Category->find('first', $options);
+			$conditions['AND'] = array('parent_id' => null, 'id !=' => 1);
+			$parentCategories = $this->Category->ParentCategory->find('list', array('conditions' => $conditions));
+			$this->loadModel('Usermgmt.User');
+			$this->User->unbindModel(array('hasMany' => array('Article', 'LoginToken')));
+			$users = $this->User->find('all', array('fields' => array('User.id', 'User.username', 'User.first_name')));
+			$this->loadModel('UserCategory');
+			$usersAllow = array();
+			$dataAllow = $this->UserCategory->find('all', array('fields' => 'UserCategory.user_id', 'conditions' => array('UserCategory.category_id' => $id)));
+			foreach ($dataAllow as $k) {
+				array_push($usersAllow, $k['UserCategory']['user_id']);
+			}
+			$this->set(compact('parentCategories', 'users'));
+			$this->set('title_for_layout', 'Sửa danh mục');
+			$this->set('usersAllow', $usersAllow);
 		}
-		$conditions['AND'] = array('parent_id' => null, 'id !=' => 1);
-		$parentCategories = $this->Category->ParentCategory->find('list', array('conditions' => $conditions));
-		$this->loadModel('Usermgmt.User');
-		$this->User->unbindModel(array('hasMany' => array('Article', 'LoginToken')));
-		$users = $this->User->find('all', array('fields' => array('User.id', 'User.username', 'User.first_name')));
-		$this->set(compact('parentCategories', 'users'));
-		$this->set('title_for_layout', 'Thêm danh mục');
 	}
 
 	/**

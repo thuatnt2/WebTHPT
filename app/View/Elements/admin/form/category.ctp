@@ -8,25 +8,23 @@
 				<?php echo $this->Form->create('Category'); ?>
 				<fieldset>
 					<legend>Nhập thông tin danh mục</legend>
-					<?php if (!empty($this->request->data)): ?>
-						<div class="control-group">
-							<label class="control-label">Chọn danh mục cha</label>
-							<div class="controls">
-								<?php
-								echo $this->Form->input('parent_id', array(
-									'label' => false,
-									'div' => false,
-									'class' => 'input-xxlarge',
-									'type' => 'select',
-									'options' => $parentCategories,
-									//'empty' => '--Là danh mục cha--',
-									'required' => false,
-								));
+					<div class="control-group">
+						<label class="control-label">Chọn danh mục cha</label>
+						<div class="controls">
+							<?php
+							echo $this->Form->input('parent_id', array(
+								'label' => false,
+								'div' => false,
+								'class' => 'input-xxlarge',
+								'type' => 'select',
+								'options' => $parentCategories,
+								//'empty' => '--Là danh mục cha--',
+								'required' => false,
+							));
 
-								?>
-							</div>
+							?>
 						</div>
-					<?php endif; ?>
+					</div>
 					<div class="control-group">
 						<label>Tên danh mục</label>
 						<div class="controls">
@@ -46,7 +44,7 @@
 								<?php endforeach; ?>
 
 							</div>
-						</div>	
+						</div>
 					<?php endif; ?>
 
 					<div style="">

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application model for Cake.
  *
@@ -20,7 +21,6 @@
  * @since         CakePHP(tm) v 0.2.9
  * @license       http://www.opensource.org/licenses/mit-license.php MIT License
  */
-
 App::uses('Model', 'Model');
 
 /**
@@ -32,4 +32,12 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+	public $modules = array(
+		1 => array('controller' => 'categories', 'title' => 'Danh mục'),
+		2 => array('controller' => 'schedules', 'title' => 'Lịch làm việc'),
+		3 => array('controller' => 'videos', 'title' => 'Video'),
+		3 => array('controller' => 'albums', 'title' => 'Album ảnh'),
+		5 => array('controller' => 'resources', 'title' => 'Tài liệu'),
+	);
+
 }

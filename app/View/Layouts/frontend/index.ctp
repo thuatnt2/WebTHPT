@@ -3,7 +3,6 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
-
         <title><?php echo $title_for_layout ?></title>
 		<?php
 		echo $this->Html->css(array(
@@ -44,7 +43,6 @@
                             <!--<begin slider>-->
 							<?php
 							echo $this->element('frontend/slider');
-
 							?>
                             <!--<end slider>-->
                         </div>

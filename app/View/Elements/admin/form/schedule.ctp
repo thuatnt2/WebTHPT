@@ -1,13 +1,17 @@
 <div class="row-fluid">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
-			<div class="muted pull-left">Quản lí tài liệu</div>
+			<div class="muted pull-left">Quản lí lịch làm việc</div>
 		</div>
 		<div class="block-content collapse in">
 			<div class="span12">
 				<?php echo $this->Form->create('Schedule'); ?>
 				<fieldset>
-					<legend>Thêm mới thời khóa biểu</legend>
+					<legend>Thêm mới lịch công tác</legend>
+					<div class="alert alert-warning">
+						<button data-dismiss="alert" class="close">×</button>
+						<strong>Chú ý : </strong>Chỉ cho phép upload các file pdf, word và excel với các định dạng "pdf, doc, docx, xls, xlsx"
+					</div>
 					<div class="control-group">
 						<label class="control-label">Tiêu đề</label>
 						<div class="controls">
@@ -22,6 +26,23 @@
 							?>	
 						</div>
 					</div>
+					<div class="control-group">
+						<label class="control-label">Thể loại</label>
+						<div class="controls">
+							<?php
+							echo $this->Form->input('type', array(
+								'type' => 'select',
+								'options' => $scheduleTypes,
+								'label' => false,
+								'div' => false,
+								'class' => 'input-xxlarge',
+								'required' => false,
+							));
+
+							?>	
+						</div>
+					</div>
+
 				</fieldset>
 				<?php
 				echo $this->Form->hidden('file_path');
