@@ -13,11 +13,11 @@ class TvFckHelper extends AppHelper {
 
     var $helpers = array('Html', 'Form', 'Js');
 
-    function create($fieldName,$options=array(),$id_replace='') {
+    function create($fieldName, $options = array(), $id_replace = '') {
         // Mặc định nếu ko định nghĩa chọn toolbar loại nào sẽ sử dụng loại simple
         // Mặc định nếu ko định nghĩa chọn ngôn ngữ nào loại nào sẽ sử dụng ngôn ngữ tiếng việt
-        $options+=array('toolbar' => 'simple','language'=>'vi');
-        
+        $options+=array('toolbar' => 'simple', 'language' => 'vi');
+
         //định nghĩa trước một số kiểu toolbar trước
 
         switch ($options['toolbar']) {
@@ -46,13 +46,14 @@ class TvFckHelper extends AppHelper {
             default:
                 $options['toolbar'] = array(array('Preview', 'Bold', 'Italic', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink', 'Smiley', 'SpecialChar'), array('FontSize', 'TextColor', 'BGColor'), array('RemoveFormat'));
         }
-        
-        require_once WWW_ROOT.DS.'js'.DS.'ckeditor'.DS.'ckeditor.php'; 
-        $CKEditor = new CKEditor(); 
-        $CKEditor->basePath = $this->webroot.'js/ckeditor/';
-        $CKEditor->config=$options;  
+
+        require_once WWW_ROOT . DS . 'js' . DS . 'ckeditor' . DS . 'ckeditor.php';
+        $CKEditor = new CKEditor();
+        $CKEditor->basePath = $this->webroot . 'js/ckeditor/';
+        $CKEditor->config = $options;
         //$attributes = $this->Form->_initInputField($fieldName, array());
         //return $CKEditor->editor($fieldName,$value);
+        $CKEditor->config['height'] = 800;
         return $CKEditor->replace($id_replace);
         //return $CKEditor->replace($attributes['id'],$options);
         //$attributes = $this->Form->_initInputField($fieldName, array());

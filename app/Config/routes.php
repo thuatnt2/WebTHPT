@@ -88,7 +88,7 @@ Router::connect(
  * Frontend album anh
  */
 Router::connect('/album-anh', array('controller' => 'albums', 'action' => 'index'));
-
+Router::connect('/lien-he', array('controller' => 'pages', 'action' => 'contact'));
 /**
  * Frontend resource
  */
