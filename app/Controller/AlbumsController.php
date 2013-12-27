@@ -29,7 +29,7 @@ class AlbumsController extends AppController {
         $this->layout = 'frontend/detailArticle';
         $this->Album->recursive = 1;
 //        $current_menu_id = 
-        $this->set('albums', $this->Album->find('all'));
+        $this->set('albums', $this->Album->find('all',array('order'=>'Album.created_at DESC')));
     }
 
     /**
@@ -55,7 +55,7 @@ class AlbumsController extends AppController {
     public function admin_index() {
         $this->layout = 'admin/admin';
         $this->Album->recursive = 1;
-        $albums = $this->Album->find('all');
+        $albums = $this->Album->find('all',array('order'=>'Album.created_at DESC'));
         $existsSlideAlbum = $this->Album->existsSlideAlbum();
         $this->set(compact('albums', 'existsSlideAlbum'));
     }
@@ -73,7 +73,7 @@ class AlbumsController extends AppController {
             throw new NotFoundException(__('Invalid album'));
         }
         $options = array('conditions' => array('Album.' . $this->Album->primaryKey => $id));
-        $this->log($this->Album->find('first', $options), 'debug');
+        //$this->log($this->Album->find('first', $options), 'debug');
         $this->set('album', $this->Album->find('first', $options));
     }
 

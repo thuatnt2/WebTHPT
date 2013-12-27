@@ -30,7 +30,7 @@
 				<fieldset>
 					<legend>Nhập thông tin người dùng</legend>
 					<div class="row">
-						<div class="span5">
+						<div class="span4">
 							<div class="control-group">
 								<label>Tên đăng nhập</label>
 								<div class="controls">
@@ -65,7 +65,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="span5">
+						<div class="span4">
 							<div class="control-group checkbox-group">
 								<label class="control-label">Chọn danh mục được phép đăng</label>
 								<div class="checkbox">
@@ -98,6 +98,21 @@
 								</div>
 							</div>
 						</div>	
+						<div class="span4">
+							<div class="control-group checkbox-group">
+								<div class="checkbox">
+									<label>Chọn chức năng cho phép sử dụng</label>
+									<div class="root-category">
+										<label class="label-root-category"><input type="checkbox"/>Chọn tất cả</label>
+										<div class="child-category">
+											<?php foreach ($modules as $k => $v) : ?>
+												<label><input type="checkbox" name="data[Module][]" value="<?php echo $k ?>"/>Quản lý <?php echo $v['title'] ?></label>
+											<?php endforeach; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="form-actions">
 						<?php echo $this->Form->submit('Thêm người dùng', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>

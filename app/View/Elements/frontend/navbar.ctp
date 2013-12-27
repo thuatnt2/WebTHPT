@@ -47,12 +47,12 @@ $currentMenu = $this->request['controller'];
 				if ($menu['Category']['parent_id'] == null):
 
 					?>
-						<?php // debug($current_menu_id)     ?>
+					<?php // debug($current_menu_id)     ?>
 					<li class="dropdown <?php echo ($current_menu_id == $menu['Category']['id'] ? 'active' : '') ?>" id="<?php echo 'menu-id-' . $menu['Category']['id'] ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['Category']['name'] ?><b class="caret"></b></a>
-							<?php if (count($menu['ChildCategory']) > 0):
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['Category']['name'] ?> <b class="caret"></b></a>
+						<?php if (count($menu['ChildCategory']) > 0):
 
-								?><ul class="dropdown-menu">
+							?><ul class="dropdown-menu">
 								<?php
 								foreach ($menu['ChildCategory'] as $child):
 
@@ -70,12 +70,12 @@ $currentMenu = $this->request['controller'];
 										?>
 									</li>
 									<?php
-							endforeach;
+								endforeach;
 
-							?> </ul>
-					<?php endif;
+								?> </ul>
+						<?php endif;
 
-					?>
+						?>
 					</li>
 					<?php
 				endif;
@@ -110,17 +110,16 @@ $currentMenu = $this->request['controller'];
 					?>
                 </ul>
             </li>
-			<li class="<?php echo $currentMenu == 'schedules' ? 'active' : '' ?>">
-				<?php
-				echo $this->Html->link(
-						'Thời khóa biểu', array(
-					'controller' => 'schedules',
-					'action' => 'listSchedules',
-						), array('escape' => false))
-
-				?>  
-
-
+			<?php $scheduleTypes = $this->requestAction('schedules/getScheduleTypes'); ?>
+			<li class="dropdown <?php echo $currentMenu == 'schedules' ? 'active' : '' ?>">
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown">Lịch làm việc <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+					<?php foreach ($scheduleTypes as $k => $v): ?>
+						<li>
+							<?php echo $this->Html->link($v, array('controller' => 'schedules', 'action' => 'listSchedules', 'id' => $k)) ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
 			</li>
             <li class="<?php echo $currentMenu == 'albums' ? 'active' : '' ?>"><?php echo $this->Html->link('Album ảnh', array('plugin' => null, 'controller' => 'albums', 'action' => 'index'), array('escape' => false)) ?></li>
             <li class="<?php echo $currentMenu == 'videos' ? 'active' : '' ?>"><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>

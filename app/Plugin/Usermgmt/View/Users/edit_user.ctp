@@ -39,7 +39,7 @@
 										<div class="root-category">
 											<?php if ($category['Category']['id'] == 1): ?>
 												<label class="label-root-category">
-													<input type="checkbox" name="data[Category][]" value="1" <?php if (in_array(1, $allow)) echo 'checked="checked"' ?>/>
+													<input type="checkbox" name="data[Category][]" value="1" <?php if (in_array(1, $categoriesAllow)) echo 'checked="checked"' ?>/>
 													<?php echo $category['Category']['name'] ?>
 												</label>
 											<?php else: ?>
@@ -56,7 +56,7 @@
 															type="checkbox" 
 															name="data[Category][]"
 															value="<?php echo $child['id'] ?>"
-															<?php if (in_array($child['id'], $allow)):
+															<?php if (in_array($child['id'], $categoriesAllow)):
 
 																?>
 																checked="checked"
@@ -76,6 +76,21 @@
 								</div>
 							</div>
 						</div>	
+						<div class="span5">
+							<div class="control-group checkbox-group">
+								<div class="checkbox">
+									<label>Chọn chức năng cho phép sử dụng</label>
+									<div class="root-category">
+										<label class="label-root-category"><input type="checkbox"/>Chọn tất cả</label>
+										<div class="child-category">
+											<?php foreach ($modules as $k => $v) : ?>
+												<label><input type="checkbox" name="data[Module][]" value="<?php echo $k ?>" <?php echo in_array($k, $modulesAllow)? 'checked="checked"':''  ?>/>Quản lý <?php echo $v['title'] ?></label>
+											<?php endforeach; ?>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div class="form-actions">
 						<?php echo $this->Form->submit('Đồng ý', array('class' => 'btn btn-large btn-primary', 'div' => false)) ?>

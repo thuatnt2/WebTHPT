@@ -24,9 +24,9 @@ class SchedulesController extends AppController {
 	 */
 	public function admin_index() {
 		$this->Schedule->recursive = 0;
-		$this->set('resources', $this->Schedule->find('all'));
+		$this->set('schedules', $this->Schedule->find('all'));
 		$this->set('title_for_layout', 'Tài liệu');
-		$this->set('resource_type', $this->Schedule->resource_type);
+		$this->set('schedule_types', $this->Schedule->scheduleTypes);
 	}
 
 	/**
@@ -64,6 +64,7 @@ class SchedulesController extends AppController {
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		}
+		$this->set('scheduleTypes', $this->Schedule->scheduleTypes);
 		$this->set('title_for_layout', 'Thêm tài liệu');
 	}
 
@@ -130,28 +131,33 @@ class SchedulesController extends AppController {
 		if (!is_dir($path)) {
 			mkdir($path);
 		}
-		$this->Schedule->set($this->request->data);
 		$result = array();
 		$result['status'] = 0;
-		if ($this->Schedule->validates(array('fieldList' => array('file')))) {
-			$fileName = $this->request->data['Schedule']['file']['name'];
-			$fileName = time() . '_' . ($fileName);
-			move_uploaded_file($this->request->data['Schedule']['file']['tmp_name'], $path . DS . $fileName);
-			$extArr = explode('.', $fileName);
-			$ext = array_pop($extArr);
-			$result['ext'] = $ext;
-			$result['icon'] = Router::url('/', true) . 'img/admin/icons/' . $this->Schedule->file_icons[$ext];
-			$result['status'] = 1;
-			$result['file_name'] = $fileName;
-			$result['message'] = 'Upload tài liệu thành công';
-			$result['file_path'] = $baseUrl . 'schedules/' . $fileName;
-			$result['file_absolute_path'] = $path . DS . $fileName;
-			$result['file_size'] = ($this->request->data['Schedule']['file']['size'] / 1000000) . ' MB';
+		if (!empty($this->request->data)) {
+			$this->Schedule->set($this->request->data);
+			if ($this->Schedule->validates(array('fieldList' => array('file')))) {
+				$fileName = $this->request->data['Schedule']['file']['name'];
+				$fileName = time() . '_' . ($fileName);
+				move_uploaded_file($this->request->data['Schedule']['file']['tmp_name'], $path . DS . $fileName);
+				$extArr = explode('.', $fileName);
+				$ext = array_pop($extArr);
+				$result['ext'] = $ext;
+				$result['icon'] = Router::url('/', true) . 'img/admin/icons/' . $this->Schedule->file_icons[$ext];
+				$result['status'] = 1;
+				$result['file_name'] = $fileName;
+				$result['message'] = 'Upload tài liệu thành công';
+				$result['file_path'] = $baseUrl . 'schedules/' . $fileName;
+				$result['file_absolute_path'] = $path . DS . $fileName;
+				$result['file_size'] = ($this->request->data['Schedule']['file']['size'] / 1000000) . ' MB';
+			} else {
+				// didn't validate logic
+				$errors = $this->Schedule->validationErrors;
+				$result['message'] = $errors['file']['0'];
+			}
 		} else {
-			// didn't validate logic
-			$errors = $this->Schedule->validationErrors;
-			$result['message'] = $errors['file']['0'];
+			$result['message'] = 'File quá lớn hoặc định tên file không hợp lệ, vui lòng kiểm tra lại';
 		}
+
 
 		return json_encode($result);
 	}
@@ -166,15 +172,20 @@ class SchedulesController extends AppController {
 		return json_encode(array('status' => 1));
 	}
 
-	public function listSchedules() {
+	public function listSchedules($id) {
 		if ($this->request->isAjax) {
 			$this->layout = null;
 		} else {
 			$this->layout = 'frontend/detailArticle';
 		}
-		$this->paginate = array('limit' => $this->limit);
+		$this->paginate = array('limit' => $this->limit, 'conditions' => array('Schedule.type' => $id));
 		$this->set('schedules', $this->Paginator->paginate());
+		$this->set('schedule_types', $this->Schedule->scheduleTypes[$id]);
 		$this->set('title_for_layout', 'Thời khóa biểu');
+	}
+	
+	public function getScheduleTypes(){
+		return $this->Schedule->scheduleTypes;
 	}
 
 	public function view($id) {

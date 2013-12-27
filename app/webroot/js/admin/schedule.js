@@ -60,7 +60,7 @@ $(function() {
 			else {
 				$("#schedule-alert").removeClass();
 				$("#schedule-alert").addClass("alert alert-error");
-				$("#schedule-alert span").html(data["message"]);
+				$("#schedule-alert span").html('<strong>Lỗi : </strong>'+data["message"]);
 				$("#schedule-alert").show(1000);
 			}
 

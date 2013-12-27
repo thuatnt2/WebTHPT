@@ -13,6 +13,10 @@ class Schedule extends AppModel {
 	 * @var string
 	 */
 	public $displayField = 'title';
+	public $scheduleTypes = array(	
+		1 =>'Thời khóa biểu',
+		2 => 'Lịch công tác',
+	);
 	public $file_icons = array(
 		'pdf' => '_pdf.png',
 		'doc' => '_doc.png',
@@ -35,8 +39,8 @@ class Schedule extends AppModel {
 		),
 		'file' => array(
 			'name' => array(
-				'rule' => array('extension', array('pdf', 'doc', 'docx', 'elt', 'elsx')),
-				'message' => 'Chỉ cho phép các định dạng  pdf, doc, docx,elt, elsx',
+				'rule' => array('extension', array('pdf', 'doc', 'docx', 'xls', 'xls')),
+				'message' => 'Chỉ cho phép các định dạng  pdf, doc, docx, xls , xlsx',
 			),
 			'tmp_name' => array(
 				'rule' => array('fileSize', '<=', '10MB'),

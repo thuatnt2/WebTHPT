@@ -1,4 +1,4 @@
 <div class="alert alert-success">
 	<button data-dismiss="alert" class="close">×</button>
-	<?php echo $message ?>
+	<strong>Thông báo : </strong><?php echo $message ?>
 </div>
