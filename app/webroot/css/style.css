@@ -222,6 +222,9 @@ ul.nav.nav-tabs li a {
 #content {
     padding: 0 2px;
 }
+#portal-links {
+    margin-bottom: 2px;
+}
 #portal-links ul{
     list-style: none;
     padding-left: 5px;
