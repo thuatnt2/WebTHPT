@@ -34,7 +34,7 @@ $controller = $this->request['controller'];
                 <ul class="nav">
 					<li><a href="/admin/danh-sach-bai-viet">Bài viết</a></li>
 					<?php foreach ($modules as $module): ?>
-						<li class="<?php echo $controller == $module['controller'] ? 'active' : '' ?>"><?php echo $this->Html->link($module['title'], array('controller' => $module['controller'])) ?></li>
+						<li class="<?php echo $controller == $module['controller'] ? 'active' : '' ?>"><?php echo $this->Html->link($module['title'],'/admin/'.$module['controller'],array('escape'=>false)) ?></li>
 					<?php endforeach; ?>
 					<?php
 					if (isset($user['UserGroup']['id']) && $user['UserGroup']['id'] == ADMIN_GROUP_ID):
