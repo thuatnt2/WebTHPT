@@ -49,7 +49,7 @@ $currentMenu = $this->request['controller'];
 					?>
 					<?php // debug($current_menu_id)     ?>
 					<li class="dropdown <?php echo ($current_menu_id == $menu['Category']['id'] ? 'active' : '') ?>" id="<?php echo 'menu-id-' . $menu['Category']['id'] ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['Category']['name'] ?><b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $menu['Category']['name'] ?> <b class="caret"></b></a>
 						<?php if (count($menu['ChildCategory']) > 0):
 
 							?><ul class="dropdown-menu">

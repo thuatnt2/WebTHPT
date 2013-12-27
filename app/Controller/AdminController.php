@@ -45,5 +45,21 @@ class AdminController extends AppController {
         $this->set('links', $this->Link->find('all'));
         $this->set('linkTypes', $this->Link->linkTypes);
     }
+	
+	public function getBackendMenu(){
+		$this->loadModel('UserModule');
+		$modules = $this->UserModule->modules;
+		$userId = $this->UserAuth->getUserId();
+		if(!$this->UserAuth->isAdmin()){
+			$modulesAllowIds = $this->UserModule->find('all',array('fields'=>array('UserModule.module_id','conditions'=>array('UserModule.user_id'=>$userId))));
+			$modulesTmp = $modules;
+			foreach ($modulesTmp as $k => $v) {
+				if(!in_array($k, $modules)){
+					unset($modules[$k]);
+				}
+			}
+		}
+	}
+	
 
 }

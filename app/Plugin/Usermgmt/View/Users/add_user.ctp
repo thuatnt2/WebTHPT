@@ -101,10 +101,15 @@
 						<div class="span4">
 							<div class="control-group checkbox-group">
 								<div class="checkbox">
-									<label class="control-label">Chọn chức năng cho phép sử dụng</label>
-									<?php foreach ($modules as $k => $v) : ?>
-										<label><input type="checkbox" name="data[Module][]" value="<?php echo $k ?>"/>Quản lý <?php echo $v['title'] ?></label>
-									<?php endforeach; ?>
+									<label>Chọn chức năng cho phép sử dụng</label>
+									<div class="root-category">
+										<label class="label-root-category"><input type="checkbox"/>Chọn tất cả</label>
+										<div class="child-category">
+											<?php foreach ($modules as $k => $v) : ?>
+												<label><input type="checkbox" name="data[Module][]" value="<?php echo $k ?>"/>Quản lý <?php echo $v['title'] ?></label>
+											<?php endforeach; ?>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

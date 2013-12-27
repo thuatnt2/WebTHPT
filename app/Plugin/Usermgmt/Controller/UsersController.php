@@ -305,8 +305,10 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function addUser() {
+		$modules = $this->User->modules;
 		if ($this->request->isPost()) {
-			//var_dump($this->request->data); exit();
+			//var_dump($this->request->data);
+			//exit();
 			$this->User->set($this->data);
 			if ($this->User->RegisterValidate()) {
 				$this->request->data['User']['email_verified'] = 1;
@@ -322,12 +324,19 @@ class UsersController extends UserMgmtAppController {
 							'associationForeignKey' => 'category_id',
 						),
 				)));
-				$this->User->save($this->request->data, false);
+				$user = $this->User->save($this->request->data, false);
+				$this->loadModel('UserModule');
+				$moduleData = array();
+				foreach ($this->request->data['Module'] as $k) {
+					$moduleData['user_id'] = $user['User']['id'];
+					$moduleData['module_id'] = $k;
+					$this->UserModule->create();
+					$this->UserModule->save($moduleData, false);
+				}
 				$this->Session->setFlash('Lưu thành công người dùng', 'flash_success');
 				$this->redirect('/admin/nguoi-dung');
 			}
 		}
-		$modules = $this->User->modules;
 		$this->loadModel('Category');
 		$this->Category->recursive = 1;
 		$this->Category->unbindModel(array('hasMany' => array('Post')));
@@ -345,6 +354,9 @@ class UsersController extends UserMgmtAppController {
 	 * @return void
 	 */
 	public function editUser($userId = null) {
+		$modules = $this->User->modules;
+		$this->loadModel('UserCategory');
+		$this->loadModel('UserModule');
 		if (!empty($userId)) {
 			$userGroups = $this->UserGroup->getGroups();
 			$this->set('userGroups', $userGroups);
@@ -359,8 +371,9 @@ class UsersController extends UserMgmtAppController {
 								'associationForeignKey' => 'category_id',
 							),
 					)));
-					$this->loadModel('UserCategory');
+
 					$this->UserCategory->deleteAll(array('UserCategory.user_id' => $userId));
+					$this->UserModule->deleteAll(array('UserModule.user_id' => $userId));
 					$this->request->data['User']['id'] = $userId;
 					$this->User->save($this->request->data, false);
 					$data = array();
@@ -369,6 +382,13 @@ class UsersController extends UserMgmtAppController {
 						$data['UserCategory']['category_id'] = $k;
 						$this->UserCategory->create();
 						$this->UserCategory->save($data);
+					}
+					$moduleData = array();
+					foreach ($this->request->data['Module'] as $k) {
+						$moduleData['user_id'] = $userId;
+						$moduleData['module_id'] = $k;
+						$this->UserModule->create();
+						$this->UserModule->save($moduleData, false);
 					}
 					$this->Session->setFlash('Sửa thành công', 'flash_success');
 					$this->redirect('/admin/nguoi-dung');
@@ -388,14 +408,22 @@ class UsersController extends UserMgmtAppController {
 		$this->Category->recursive = 1;
 		$this->Category->unbindModel(array('hasMany' => array('Post')));
 		$categories = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null)));
-		$this->loadModel('UserCategory');
-		$categoriesAllow = $this->UserCategory->find('all', array('fields' => array('UserCategory.category_id'), 'conditions' => array('UserCategory.user_id' => $userId)));
-		$allow = array();
-		foreach ($categoriesAllow as $k) {
-			array_push($allow, $k['UserCategory']['category_id']);
+
+		$categoriesTmp = $this->UserCategory->find('all', array('fields' => array('UserCategory.category_id'), 'conditions' => array('UserCategory.user_id' => $userId)));
+		$categoriesAllow = array();
+		foreach ($categoriesTmp as $k) {
+			array_push($categoriesAllow, $k['UserCategory']['category_id']);
 		}
-		$this->set('allow', $allow);
+
+		$modulesAllow = array();
+		$modulesTmp = $this->UserModule->find('all', array('fields' => array('UserModule.module_id'), 'conditions' => array('UserModule.user_id' => $userId)));
+		foreach ($modulesTmp as $k) {
+			array_push($modulesAllow, $k['UserModule']['module_id']);
+		}
+		$this->set('modulesAllow', $modulesAllow);
+		$this->set('categoriesAllow', $categoriesAllow);
 		$this->set('categories', $categories);
+		$this->set('modules', $modules);
 		$this->set('title_for_layout', 'Cập nhật thông tin tài khoản');
 	}
 
