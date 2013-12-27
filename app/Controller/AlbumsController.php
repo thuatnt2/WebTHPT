@@ -192,7 +192,7 @@ class AlbumsController extends AppController {
     }
 
     public function recentAlbum() {
-        $album = $this->Album->find('first');
+        $album = $this->Album->find('first',array('Album.for_slide != '=>1));
         return $album;
     }
 
