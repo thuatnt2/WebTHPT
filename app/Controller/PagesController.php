@@ -51,44 +51,36 @@ class PagesController extends AppController {
         parent::beforeFilter();
     }
 
-    public function display() {
-        $path = func_get_args();
-
-        $count = count($path);
-        if (!$count) {
-            return $this->redirect('/');
-        }
-        $page = $subpage = $title_for_layout = null;
-
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        if (!empty($path[$count - 1])) {
-            $title_for_layout = Inflector::humanize($path[$count - 1]);
-        }
-        $this->set(compact('page', 'subpage', 'title_for_layout'));
-
-        try {
-            $this->render(implode('/', $path));
-        } catch (MissingViewException $e) {
-            if (Configure::read('debug')) {
-                throw $e;
-            }
-            throw new NotFoundException();
-        }
+    // Hiển thị trang liên hệ
+    public function contact() {
+        $this->layout = 'frontend/detailArticle';
+        $contact_page = $this->Page->findOrCreateContactPage();
+         $this->set(compact('contact_page'));
     }
+
     // Cho menu giới thiệu
-    public function getIntroductionMenu() {
-        $this->loadModel('Page');
-    }
+//    public function getIntroductionMenu() {
+//        $this->loadModel('Page');
+//    }
 
     public function admin_manage() {
         $this->layout = 'admin/admin';
         $pages = $this->Page->find('all');
         $this->set(compact('pages'));
+    }
+
+    public function admin_contactPage() {
+        $this->layout = 'admin/admin';
+        if ($this->request->is('get')) {
+            $this->request->data = $this->Page->findOrCreateContactPage();
+        } else {
+            if ($this->Page->save($this->request->data)) {
+                $this->Session->setFlash(__('Lưu thành công.'));
+                return $this->redirect(Router::url(array('controller' => 'pages', 'action' => 'contactPage', 'admin' => true)));
+            } else {
+                $this->Session->setFlash(__('Lưu không thành công.'));
+            }
+        }
     }
 
     public function admin_edit() {

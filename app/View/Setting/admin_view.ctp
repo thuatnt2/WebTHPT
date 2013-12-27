@@ -65,8 +65,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><?php ?></td>
-                            <td><?php ?></td>
+                            <td>Trang liên hệ</td>
+                            <td><a href="/admin/trang-lien-he">Sửa</a></td>
                             <td></td>
                             <td>
                             </td>

@@ -27,3 +27,4 @@ Router::connect('/admin/album-anh/delete_photo', array('controller' => 'albums',
 Router::connect('/admin/albums/tao-slide-album', array('controller' => 'albums', 'action' => 'createSlideAlbum', 'admin' => true));
 
 Router::connect('/admin/cau-hinh-site',array('controller' => 'setting', 'action' => 'view', 'admin' => true));
+Router::connect('/admin/trang-lien-he',array('controller' => 'pages', 'action' => 'contactPage', 'admin' => true));

@@ -214,10 +214,7 @@ ul.nav.nav-tabs li a {
     color:rgb(47, 164, 231);
 }
 */
-#banner  {
-    height: 150px;
-    /*background: url('/img/frontend/banner.png') no-repeat;*/
-}
+
 #banner img {
     width: 100%;
 }
