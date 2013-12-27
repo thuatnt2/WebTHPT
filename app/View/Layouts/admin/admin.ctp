@@ -25,7 +25,7 @@ and open the template in the editor.
     <body>
         <?php echo $this->element('admin/header'); ?>
         <div class="container">
-            <div class="jumbotron">
+            <div class="jumbotron admin-content-wrapper">
                 <?php
                 echo $this->fetch('content');
                 ?>

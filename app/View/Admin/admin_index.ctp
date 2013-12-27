@@ -1,58 +1,60 @@
 <div class="row-fluid">	
-	<div class="block">
-		<div class="navbar navbar-inner block-header">
-			<div class="muted pull-left">Quản trị nội dung trang web</div>
-		</div>
-		<div class="block-content collapse in">
-			<div class="row-fluid padd-bottom">
-				<?php echo $this->Session->flash() ?>
-				<div class="span3">
-					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-baiviet-bg.png'), '/admin/danh-sach-bai-viet', array('escape' => false, 'class' => 'thumbnail'))
+    <div class="block">
+        <div class="navbar navbar-inner block-header">
+            <div class="header">Quản trị nội dung trang web</div>
+        </div>
+        <div class="block-content collapse in shortcut-links">
+            <?php echo $this->Session->flash() ?>
+            <div class="row-fluid padd-bottom">
+                <?php echo $this->Session->flash() ?>
+                <div class="span4">
+                    <a href="/admin/danh-sach-bai-viet">
+                        <?php echo $this->Html->image('admin/article.png') ?> 
+                        BÀI VIẾT
+                    </a>
+                </div>
+                <div class="span4">
+                    <a href="/admin/danh-muc">
+                        <?php echo $this->Html->image('admin/category.png') ?> 
+                        DANH MỤC
+                    </a> 
+                </div>
+                <div class="span4">
+                    <a href="/admin/tai-lieu">
+                        <?php echo $this->Html->image('admin/document.png') ?> 
+                        TÀI LIỆU
+                    </a> 
+                </div>
 
-					?>
-				</div>
-				<div class="span3">
-					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-danhmuc-bg.png'), '/admin/danh-muc', array('escape' => false, 'class' => 'thumbnail'))
+            </div>
+            <hr />
+            <div class="row-fluid padd-bottom">
 
-					?>
-				</div>
-				<div class="span3">
-					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-tailieu-bg.png'), '/admin/tai-lieu', array('escape' => false, 'class' => 'thumbnail'))
+                <div class="span4">
 
-					?>
-				</div>
-				<?php if ($isAdmin):
+                    <a href="/admin/videos">
+                        <?php echo $this->Html->image('admin/video.png') ?> 
+                        VIDEO
+                    </a> 
 
-					?>
-					<div class="span3">
-						<?php
-						echo $this->Html->link($this->Html->image('admin/ql-nguoidung-bg.png'), '/admin/nguoi-dung', array('escape' => false, 'class' => 'thumbnail'))
+                </div>
+                <div class="span4">
+                    <a href="/admin/album-anh">
+                        <?php echo $this->Html->image('admin/picture.png') ?> 
+                        HÌNH ẢNH
+                    </a> 
 
-						?>
-					</div>
-				<?php endif;
-
-				?>
-			</div>
-			<div class="row-fluid padd-bottom">
-				<?php echo $this->Session->flash() ?>
-				<div class="span3">
-					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-video-bg.png'), '/admin/videos', array('escape' => false, 'class' => 'thumbnail'))
-
-					?>
-				</div>
-				<div class="span3">
-					<?php
-					echo $this->Html->link($this->Html->image('admin/ql-hinhanh-bg.png'), '/admin/album-anh', array('escape' => false, 'class' => 'thumbnail'))
-
-					?>
-				</div>
-			</div>
-		</div>
-	</div>
+                </div>
+                <?php if ($isAdmin): ?>
+                    <div class="span4">
+                        <a href="/admin/nguoi-dung">
+                            <?php echo $this->Html->image('admin/user.png') ?> 
+                            NGƯỜI DÙNG
+                        </a> 
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </div>
 
