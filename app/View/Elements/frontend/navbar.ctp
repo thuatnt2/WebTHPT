@@ -123,7 +123,7 @@ $currentMenu = $this->request['controller'];
 			</li>
             <li class="<?php echo $currentMenu == 'albums' ? 'active' : '' ?>"><?php echo $this->Html->link('Album ảnh', array('plugin' => null, 'controller' => 'albums', 'action' => 'index'), array('escape' => false)) ?></li>
             <li class="<?php echo $currentMenu == 'videos' ? 'active' : '' ?>"><?php echo $this->Html->link('Video', array('plugin' => null, 'controller' => 'videos', 'action' => 'index'), array('escape' => false)) ?></li>
-            <!--<li><a href="#" style="padding-right:35px">Liên hệ</a></li>-->
+            <li><a href="<?php echo $this->Html->url('/lien-he') ?>" style="padding-right:35px">Liên hệ</a></li>
             <li>
             </li>
         </ul>
