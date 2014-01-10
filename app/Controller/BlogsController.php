@@ -72,9 +72,8 @@ class BlogsController extends AppController {
 
     public function editArticle() {
         $this->__readyDataForLayout();
-        $article = $this->Article->read(null, $this->request->params['article_id']);
-        $this->request->data = $article;
-        $this->set(compact('article'));
+
+
         if ($this->request->is(array('post', 'put'))) {
             $user = $this->User->read(null, $this->request->data['Article']['user_id']);
             if ($this->Article->save($this->request->data)) {
@@ -88,6 +87,10 @@ class BlogsController extends AppController {
             } else {
                 $this->Session->setFlash(__('Đã có lỗi xảy ra, cập nhật bài viết không thành công!'));
             }
+        } else {
+            $article = $this->Article->read(null, $this->request->params['article_id']);
+            $this->request->data = $article;
+            $this->set(compact('article'));
         }
     }
 
