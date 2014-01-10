@@ -61,12 +61,33 @@ class BlogsController extends AppController {
                         'slug' => $this->Common->vnit_change_title($user['User']['first_name'])
             ));
             if ($this->Article->save($this->request->data)) {
-               // $a  = $this->Article->save($this->request->data);
+                // $a  = $this->Article->save($this->request->data);
 //                $this->Session->setFlash(__('Đăng bài viết thành công!'));
             } else {
                 $this->Session->setFlash(__('Đã có lỗi xảy ra, tạo bài viết không thành công!'));
             }
             $this->redirect($blog_url);
+        }
+    }
+
+    public function editArticle() {
+        $this->__readyDataForLayout();
+        $article = $this->Article->read(null, $this->request->params['article_id']);
+        $this->request->data = $article;
+        $this->set(compact('article'));
+        if ($this->request->is(array('post', 'put'))) {
+            $user = $this->User->read(null, $this->request->data['Article']['user_id']);
+            if ($this->Article->save($this->request->data)) {
+                $blog_url = Router::url(array(
+                            'controller' => 'blogs',
+                            'action' => 'index',
+                            'bloger_id' => $user['User']['id'],
+                            'slug' => $this->Common->vnit_change_title($user['User']['first_name'])
+                ));
+                $this->redirect($blog_url);
+            } else {
+                $this->Session->setFlash(__('Đã có lỗi xảy ra, cập nhật bài viết không thành công!'));
+            }
         }
     }
 
@@ -128,7 +149,7 @@ class BlogsController extends AppController {
         );
 
         $articles = $this->Article->find('all', $options);
-        $this->set(compact('articles','current_user_is_owner'));
+        $this->set(compact('articles', 'current_user_is_owner'));
 // Get result list in html
         $view = new View($this, false);
         $html = $view->render('/Articles/articles_listing');

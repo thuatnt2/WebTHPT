@@ -65,6 +65,10 @@ Router::connect(
 	'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
 );
 Router::connect(
+		'/blog/:bloger_id-:slug/sua-bai-viet/:article_id', array('controller' => 'blogs', 'action' => 'editArticle'), array(
+	'pass' => array('bloger_id', 'slug', 'article_id'), 'bloger_id' => '[0-9]+', 'article_id' => '[0-9]+')
+);
+Router::connect(
 		'/blog/:bloger_id-:slug/bai-viet', array('controller' => 'blogs', 'action' => 'writeArticle'), array(
 	'pass' => array('bloger_id', 'slug'), 'bloger_id' => '[0-9]+')
 );

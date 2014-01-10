@@ -55,7 +55,7 @@ class PagesController extends AppController {
     public function contact() {
         $this->layout = 'frontend/detailArticle';
         $contact_page = $this->Page->findOrCreateContactPage();
-         $this->set(compact('contact_page'));
+        $this->set(compact('contact_page'));
     }
 
     // Cho menu giới thiệu

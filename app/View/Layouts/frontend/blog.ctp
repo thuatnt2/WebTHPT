@@ -124,8 +124,6 @@
                                 <div>
                                     <ul>
                                         <li>Họ tên: <?php echo $user['first_name'] . ' ' . $user['last_name'] ?></li>
-                                        <li>Khoa: CNTT</li>
-                                        <li>Danh ngôn: </li>
                                     </ul>
                                 </div>
                             </div>
@@ -156,24 +154,8 @@
                             <div class='clear'></div>
                         </div>
                     </div>
-                    <div class='sidebar-children' >
-                        <h2>Thống kê</h2>
-                        <div class=''>
-                            <ul>
-                                <li>
-                                    Số lần truy cập : 10
-                                </li>
-                                <li>
-                                    Tổng số bài viết: <?php echo count($articles) ?>
-                                </li>
-                                <li>
-                                    Bình luận : 0
-                                </li>
-                            </ul>
-                            <div class='clear'></div>
-
-                        </div>
-                    </div></div>
+                    
+                </div>
             </div><!-- #secondary -->
         </div><!-- #main .wrapper -->
         <footer>

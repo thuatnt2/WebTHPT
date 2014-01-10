@@ -42,12 +42,23 @@
                 <?php echo "Đăng ngày: " . $date->format('d/m/Y') ?>
             </p>
             <span class="article-actions" style="display: none">
+                <?php
+                $user_slug = $this->Common->vnit_change_string(Inflector::slug($user['username']));
+                $article_slug = $this->Common->vnit_change_string(Inflector::slug($article['Article']['title']));
+                $edit_url = Router::url(array(
+                            'controller' => 'blogs',
+                            'action' => 'editArticle',
+                            'bloger_id' => $user['id'],
+                            'slug' => $user_slug,
+                            'article_id' => $article['Article']['id'],
+                ));
+                ?>
                 <ul>
                     <li>
                         <a href="#" data-article-id="<?php echo $article['Article']['id'] ?>" data-url ="<?php echo Router::url('/blog/xoa_bai') ?>" class="btn btn-small btn-warning delete_article_lk">Xóa</a>
                     </li>
                     <li>
-                        <a href="#" class="btn btn-small btn-success edit_article_lk" data-article-id="<?php echo $article['Article']['id'] ?>">Sửa</a>
+                        <a href="<?php echo $edit_url ?>" class="btn btn-small btn-success edit_article_lk" data-article-id="<?php echo $article['Article']['id'] ?>">Sửa</a>
                     </li>
                 </ul>
             </span>
