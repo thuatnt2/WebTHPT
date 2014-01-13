@@ -40,9 +40,10 @@ $controller = $this->request['controller'];
 					if (isset($user['UserGroup']['id']) && $user['UserGroup']['id'] == ADMIN_GROUP_ID):
 
 						?>
+						<li><a href="/admin/confidentials">Tâm sự thầy trò</a></li> 
 						<li><a href="/admin/nguoi-dung">Người dùng</a></li> 
 						<li>
-	                        <a href="<?php echo $this->Html->url('/admin/cau-hinh-site') ?>">Cấu hình trang web</a>
+	                        <a href="<?php echo $this->Html->url('/admin/cau-hinh-site') ?>">Cấu hình</a>
 	                    </li>   
 						<?php
 					endif;

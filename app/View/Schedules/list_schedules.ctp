@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
 	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
-	<li>Thời khóa biểu</li>
+	<li><?php echo $schedule_types  ?></li>
 </ol>
 <div class="list-page-wrapper"> 
 	<?php if (empty($schedules)) { ?>

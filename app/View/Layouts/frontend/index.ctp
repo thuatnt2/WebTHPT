@@ -43,6 +43,7 @@
                             <!--<begin slider>-->
 							<?php
 							echo $this->element('frontend/slider');
+
 							?>
                             <!--<end slider>-->
                         </div>
@@ -68,29 +69,39 @@
                                         <ul>
                                             <li>
 												<?php
-												echo $this->Html->link(
-														$this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
+												echo $this->Html->link($this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
 													'controller' => 'schedules',
 													'action' => 'listSchedules',
-														), array('escape' => false))
+													'id' => 1,
+														//'slug'=>$this->Common->vnit_change_string(Inflector::slug($v)),
+														), array('escape' => false));
 
-												?>                                               
-                                            </li><li>
-                                                <a href="#">
-                                                    <img src="/img/submenu/lichcongtac.png"/>
-                                                    Lịch Công Tác
-                                                </a>
-                                            </li><li>
+												?>                                          
+                                            </li>
+											<li>
+												<?php
+												echo $this->Html->link($this->Html->image('submenu/lichcongtac.png') . 'Lịch công tác', array(
+													'controller' => 'schedules',
+													'action' => 'listSchedules',
+													'id' => 2,
+														//'slug'=>$this->Common->vnit_change_string(Inflector::slug($v)),
+														), array('escape' => false));
+
+												?>  
+                                            </li>
+											<li>
                                                 <a href="#">
                                                     <img src="/img/submenu/tracuu.png"/>
                                                     Tra Cứu Điểm
                                                 </a>
-                                            </li><li>
+                                            </li>
+											<li>
                                                 <a href="#">
                                                     <img src="/img/submenu/vanphong.png"/>
                                                     Văn Phòng Trực Tuyến
                                                 </a>
-                                            </li><li>
+                                            </li>
+											<li>
                                                 <a href="#">
                                                     <img src="/img/submenu/hoidap.png"/>
                                                     Hỏi Đáp

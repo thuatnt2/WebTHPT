@@ -326,16 +326,25 @@ label.label-root-category {
 .child-category label{
     margin-left: 20px;
 }
+.shortcut-links{
+	//float: left;
+}
 .shortcut-links a {
     font-family: Tahoma;
-    font-size: 25px;
+    font-size: 23px;
+	text-transform: uppercase;
 }
 .shortcut-links a:hover {
     text-decoration: none;
+	text-transform: uppercase;
 }
-.shortcut-links .span4{
-    padding: 10px;
-    border: 1px solid #eee;
+.shortcut-links .shortcut-item{
+	width: 266px;
+	display: inline;
+    padding: 0px 20px;
+	margin: 10px 25px;
+	float: left;
+   // border: 1px solid #eee;
 }
 .admin-content-wrapper .header{
     text-transform: uppercase;

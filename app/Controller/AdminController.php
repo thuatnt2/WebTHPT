@@ -36,6 +36,19 @@ class AdminController extends AppController {
 	public function admin_index() {
 		$isAdmin = $this->UserAuth->isAdmin();
 		$this->set('isAdmin', $isAdmin);
+		$this->loadModel('UserModule');
+		$modules = $this->UserModule->modules;
+		$userId = $this->UserAuth->getUserId();
+		if (!$this->UserAuth->isAdmin()) {
+			$modulesAllowIds = $this->UserModule->find('all', array('fields' => array('UserModule.module_id'), 'conditions' => array('UserModule.user_id' => $userId)));
+			//var_dump($modulesAllowIds);exit();
+			$modulesTmp = array();
+			foreach ($modulesAllowIds as $module) {
+				array_push($modulesTmp, $modules[$module['UserModule']['module_id']]);
+			}
+			$modules = $modulesTmp;
+		}
+		$this->set('modules', $modules);
 		$this->set('title_for_layout', 'Quản trị nội dung');
 	}
 
@@ -52,7 +65,7 @@ class AdminController extends AppController {
 		if (!$this->UserAuth->isAdmin()) {
 			$modulesAllowIds = $this->UserModule->find('all', array('fields' => array('UserModule.module_id'), 'conditions' => array('UserModule.user_id' => $userId)));
 			//var_dump($modulesAllowIds);exit();
-			$modulesTmp = array() ;
+			$modulesTmp = array();
 			foreach ($modulesAllowIds as $module) {
 				array_push($modulesTmp, $modules[$module['UserModule']['module_id']]);
 			}
