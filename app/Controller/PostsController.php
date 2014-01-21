@@ -82,7 +82,7 @@ class PostsController extends AppController {
 			}
 		}
 		$this->Post->Category->unbindModel(array('hasMany' => array('Post')));
-		$categories = $this->Post->Category->find('list');
+		$categories =  $this->Post->Category->generateTreeList(null, null, null, '---');
 		$this->loadModel('UserCategory');
 		$user_id = $this->UserAuth->getUserId();
 		$user_categories = $this->UserCategory->find('all', array('conditions' => array('UserCategory.user_id' => $user_id), 'fields' => array('category_id')));

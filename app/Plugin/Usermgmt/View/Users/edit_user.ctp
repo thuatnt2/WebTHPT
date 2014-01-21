@@ -33,18 +33,13 @@
 						<div class="span5">
 							<div class="control-group checkbox-group">
 								<label class="control-label">Chọn danh mục được phép đăng</label>
-								<div class="checkbox">
-									<?php //debug($categories) ?>
-									<?php foreach ($categories as $k => $v) : ?>
-										<div class="root-category">
-											<div class="child-category">
-												<label>
-													<input type="checkbox" name="data[Category][]" value="<?php echo $k ?>" <?php echo in_array($k, $categoriesAllow) ? 'checked' : '' ?> />
-													<?php echo $v ?>
-												</label>
-											</div>
-										</div>
-									<?php endforeach; ?>
+								<div class="checkbox" id="category-checkbox">
+									<?php
+									foreach ($categories as $category) {
+										echo $this->Menu->generateTreeAllow($category,$categoriesAllow);
+									}
+
+									?>
 
 								</div>
 							</div>
@@ -74,4 +69,12 @@
 		</div>
 	</div>
 </div>
-<?php echo $this->Html->script('admin/add-user', array('block' => 'scriptBottom')) ?>
+<?php echo $this->Html->script('vendor/jquery-ui.min', array('block' => 'scriptBottom')) ?>
+<?php echo $this->Html->script('jtree/js/jquery.tree', array('block' => 'scriptBottom')) ?>
+<?php echo $this->Html->script('jtree/js/jquery.treecheckbox', array('block' => 'scriptBottom')) ?>
+<?php echo $this->Html->script('admin/add-user', array('block' => 'scriptBottom')); ?>
+<?php //echo $this->Html->css('vendor/jquery-ui', array('block' => 'headerCss')); ?>
+<?php
+	$script = '$("#category-checkbox").tree({});';
+	echo $this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
+?>

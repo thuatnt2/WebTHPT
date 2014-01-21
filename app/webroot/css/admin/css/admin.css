@@ -352,3 +352,4 @@ label.label-root-category {
     padding: 20px 0;
     color: rgb(51, 48, 48);
 }
+#category-checkbox li {list-style: none}
