@@ -1,13 +1,13 @@
 <div class="row-fluid">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
-			<div class="muted pull-left">Quản lí lịch làm việc</div>
+			<div class="muted pull-left">Điều hành tác nghiệp</div>
 		</div>
 		<div class="block-content collapse in">
 			<div class="span12">
 				<?php echo $this->Form->create('Schedule'); ?>
 				<fieldset>
-					<legend>Thêm mới lịch công tác</legend>
+					<legend>Thêm mới</legend>
 					<div class="alert alert-warning">
 						<button data-dismiss="alert" class="close">×</button>
 						<strong>Chú ý : </strong>Chỉ cho phép upload các file pdf, word và excel với các định dạng "pdf, doc, docx, xls, xlsx"

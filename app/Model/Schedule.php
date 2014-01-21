@@ -14,8 +14,12 @@ class Schedule extends AppModel {
 	 */
 	public $displayField = 'title';
 	public $scheduleTypes = array(	
-		1 =>'Thời khóa biểu',
-		2 => 'Lịch công tác',
+		1 =>'Thông tin, thông báo',
+		2 => 'Lịch công tác tuần',
+		3 => 'Lịch công tác tháng',
+		4 => 'Thời khóa biểu',
+		5 => 'Văn bản pháp quy',
+		6 => 'Góp ý BGH',
 	);
 	public $file_icons = array(
 		'pdf' => '_pdf.png',

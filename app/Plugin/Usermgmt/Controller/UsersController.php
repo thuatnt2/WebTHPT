@@ -340,7 +340,7 @@ class UsersController extends UserMgmtAppController {
 		$this->loadModel('Category');
 		$this->Category->recursive = 1;
 		$this->Category->unbindModel(array('hasMany' => array('Post')));
-		$categories = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null)));
+		$categories = $this->Category->find('list');
 		$this->set('categories', $categories);
 		$this->set('modules', $modules);
 		$this->set('title_for_layout', 'Thêm người dùng');
@@ -407,7 +407,7 @@ class UsersController extends UserMgmtAppController {
 		$this->loadModel('Category');
 		$this->Category->recursive = 1;
 		$this->Category->unbindModel(array('hasMany' => array('Post')));
-		$categories = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null)));
+		$categories = $this->Category->find('list');
 
 		$categoriesTmp = $this->UserCategory->find('all', array('fields' => array('UserCategory.category_id'), 'conditions' => array('UserCategory.user_id' => $userId)));
 		$categoriesAllow = array();

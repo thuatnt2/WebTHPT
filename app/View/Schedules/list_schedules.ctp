@@ -5,7 +5,7 @@
 <div class="list-page-wrapper"> 
 	<?php if (empty($schedules)) { ?>
 		<div class="empty text-center"> 
-			<h3>Hiện không có thời khóa biểu nào.</h3>
+			<h3>Hiện không có văn bản nào.</h3>
 		</div>
 	<?php } ?>
     <div class="list-wrapper"> 

@@ -33,8 +33,8 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Table', 'TvFck');
-	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth', 'Common',);
+	var $helpers = array('Form', 'Html', 'Session', 'Js', 'Table', 'TvFck','Menu');
+	public $components = array('Session', 'RequestHandler', 'Usermgmt.UserAuth', 'Common');
 	protected $limit = 10;
 
 	function beforeFilter() {

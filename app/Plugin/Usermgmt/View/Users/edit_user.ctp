@@ -35,41 +35,14 @@
 								<label class="control-label">Chọn danh mục được phép đăng</label>
 								<div class="checkbox">
 									<?php //debug($categories) ?>
-									<?php foreach ($categories as $category) : ?>
+									<?php foreach ($categories as $k => $v) : ?>
 										<div class="root-category">
-											<?php if ($category['Category']['id'] == 1): ?>
-												<label class="label-root-category">
-													<input type="checkbox" name="data[Category][]" value="1" <?php if (in_array(1, $categoriesAllow)) echo 'checked="checked"' ?>/>
-													<?php echo $category['Category']['name'] ?>
-												</label>
-											<?php else: ?>
-												<label class="label-root-category">
-													<input type="checkbox"/>
-													<?php echo $category['Category']['name'] ?>
-												</label>
-											<?php endif; ?>
-
 											<div class="child-category">
-												<?php foreach ($category['ChildCategory'] as $child): ?>
-													<label>
-														<input
-															type="checkbox" 
-															name="data[Category][]"
-															value="<?php echo $child['id'] ?>"
-															<?php if (in_array($child['id'], $categoriesAllow)):
-
-																?>
-																checked="checked"
-																<?php
-															endif;
-
-															?>
-															/>
-															<?php echo $child['name'] ?>
-													</label>
-												<?php endforeach; ?>
+												<label>
+													<input type="checkbox" name="data[Category][]" value="<?php echo $k ?>" <?php echo in_array($k, $categoriesAllow) ? 'checked' : '' ?> />
+													<?php echo $v ?>
+												</label>
 											</div>
-
 										</div>
 									<?php endforeach; ?>
 
@@ -84,7 +57,7 @@
 										<label class="label-root-category"><input type="checkbox"/>Chọn tất cả</label>
 										<div class="child-category">
 											<?php foreach ($modules as $k => $v) : ?>
-												<label><input type="checkbox" name="data[Module][]" value="<?php echo $k ?>" <?php echo in_array($k, $modulesAllow)? 'checked="checked"':''  ?>/>Quản lý <?php echo $v['title'] ?></label>
+												<label><input type="checkbox" name="data[Module][]" value="<?php echo $k ?>" <?php echo in_array($k, $modulesAllow) ? 'checked="checked"' : '' ?>/>Quản lý <?php echo $v['title'] ?></label>
 											<?php endforeach; ?>
 										</div>
 									</div>

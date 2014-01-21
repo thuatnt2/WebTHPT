@@ -48,29 +48,17 @@ class CategoriesController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Category->create();
 			$this->request->data['Category']['alias'] = $this->Common->vnit_change_title($this->request->data['Category']['name']);
-			//debug($this->request->data); exit();
-			$category = $this->Category->save($this->request->data);
-			if ($category) {
-				$this->loadModel('UserCategory');
-				$data = array();
-				foreach ($this->request->data['User'] as $k) {
-					$data['UserCategory']['user_id'] = $k;
-					$data['UserCategory']['category_id'] = $category['Category']['id'];
-					$this->UserCategory->create();
-					$this->UserCategory->save($data);
-				}
-				$this->Session->setFlash('Lưu thành công', 'flash_success');
-				return $this->redirect(array('action' => 'index'));
+			if ($this->Category->save($this->request->data)) {
+				$this->Session->setFlash(__('The category has been saved'));
+				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The category could not be saved. Please, try again.'));
 			}
 		}
-		$conditions['AND'] = array('parent_id' => null, 'id !=' => 1);
-		$parentCategories = $this->Category->ParentCategory->find('list', array('conditions' => $conditions));
-		$this->loadModel('Usermgmt.User');
-		$this->User->unbindModel(array('hasMany' => array('Article', 'LoginToken')));
-		$users = $this->User->find('all', array('fields' => array('User.id', 'User.username', 'User.first_name')));
-		$this->set(compact('parentCategories', 'users'));
+		//$parentCategories = $this->Category->find('list');
+		$parentCategories = $this->Category->generateTreeList(null, null, null, '---');
+		//var_dump($parentCategories);exit();
+		$this->set(compact('parentCategories'));
 		$this->set('title_for_layout', 'Thêm danh mục');
 	}
 
@@ -162,8 +150,19 @@ class CategoriesController extends AppController {
 	}
 
 	public function getMainMenu() {
-		$conditions['AND'] = array('Category.id !=' => 1, 'Category.is_active' => 1);
-		$menus = $this->Category->find('all', array('conditions' => $conditions));
+		$this->Category->unbindModel(array('hasMany' => array('Post'), 'belongsTo' => array('ParentCategory')));
+		//$this->Category->recursive = 4;
+		//$menus = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null), 'fields' => array('Category.id', 'Category.name', 'Category.parent_id', 'Category.alias')));
+		$menus = $this->Category->find('threaded', array('fields' => array('id', 'parent_id', 'name','alias')));
+		//debug($menus);
+		//exit();
+		return $menus;
+	}
+
+	public function getChildMenu($parent_id) {
+		$this->Category->unbindModel(array('hasMany' => array('Post')));
+		$menus = $this->Category->find('all', array('conditions' => array('Category.parent_id' => $parent_id), 'fields' => array('Category.id', 'Category.name', 'Category.parent_id')));
+
 		return $menus;
 	}
 

@@ -8,7 +8,7 @@ $menus = $this->requestAction('categories/getMainMenu');
 ?>
 <nav class="navbar navbar-default" role="navigation">
     <div class="collapse navbar-collapse navbar-ex1-collapse">
-		<ul class="nav navbar-nav">
+		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
             <li class="<?php echo $currentMenu == 'index' ? 'active' : '' ?>"><a href="<?php echo Router::url('/') ?>">
                     <span class="glyphicon glyphicon-home"></span>&nbspTrang Chủ</a>
             </li>
@@ -24,7 +24,7 @@ $menus = $this->requestAction('categories/getMainMenu');
 
 			?>
             <li class="dropdown <?php echo $currentMenu == 'resources' ? 'active' : '' ?>">
-                <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tài nguyên<b class="caret"></b></a>
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tài nguyên điện tử <b class="caret"></b></a>
                 <ul class="dropdown-menu">
 					<?php
 					foreach ($resource_type as $k => $v):

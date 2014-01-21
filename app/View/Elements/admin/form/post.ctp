@@ -1,4 +1,4 @@
-<?php //debug($this->request->data);         ?>
+<?php //debug($this->request->data);           ?>
 <div class="row">
 	<div class="block">
 		<div class="navbar navbar-inner block-header">
@@ -14,27 +14,11 @@
 						<div class="controls">
 							<select name="data[Post][category_id]" class="input-xxlarge">
 								<?php
-								foreach ($categories as $category):
-									if ($category['Category']['id'] == 1 && in_array(1, $categoryAllow)) {
+								foreach ($categories as $k => $v):
+									if (in_array($k, $categoryAllow)) {
 
 										?>
-										<option value="<?php echo $category['Category']['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id']) && $this->request->data['Category']['id'] == $category['Category']['id']) ? 'selected' : '' ?>><?php echo $category['Category']['name'] ?></option>
-										<?php
-									} else {
-
-										?><optgroup label="<?php echo $category['Category']['name'] ?>">
-											<?php
-											foreach ($category['ChildCategory'] as $child):
-												if (in_array($child['id'], $categoryAllow)):
-
-													?>
-													<option value="<?php echo $child['id'] ?>" <?php echo (isset($this->request->data['Post']['category_id']) && $this->request->data['Category']['id'] == $child['id']) ? 'selected' : '' ?>><?php echo $child['name'] ?></option>
-													<?php
-												endif;
-											endforeach;
-
-											?>
-										</optgroup>
+										<option value="<?php echo $k?>" <?php echo (isset($this->request->data['Post']['category_id']) && $this->request->data['Category']['id'] == $k) ? 'selected' : '' ?>><?php echo $v ?></option>
 										<?php
 									}
 

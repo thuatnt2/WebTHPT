@@ -34,17 +34,17 @@ $controller = $this->request['controller'];
                 <ul class="nav">
 					<li><a href="/admin/danh-sach-bai-viet">Bài viết</a></li>
 					<?php foreach ($modules as $module): ?>
-						<li class="<?php echo $controller == $module['controller'] ? 'active' : '' ?>"><?php echo $this->Html->link($module['title'],'/admin/'.$module['controller'],array('escape'=>false)) ?></li>
+						<li class="<?php echo $controller == $module['controller'] ? 'active' : '' ?>"><?php echo $this->Html->link($module['title'], '/admin/' . $module['controller'], array('escape' => false)) ?></li>
 					<?php endforeach; ?>
 					<?php
 					if (isset($user['UserGroup']['id']) && $user['UserGroup']['id'] == ADMIN_GROUP_ID):
 
 						?>
-						<li><a href="/admin/confidentials">Tâm sự thầy trò</a></li> 
-						<li><a href="/admin/nguoi-dung">Người dùng</a></li> 
+						<li class="<?php echo $controller == 'confidentials' ? 'active' : '' ?>"><a href="/admin/confidentials">Tâm sự thầy trò</a></li> 
+						<li class="<?php echo $controller == 'users' ? 'active' : '' ?>"><a href="/admin/nguoi-dung">Người dùng</a></li> 
 						<li>
-	                        <a href="<?php echo $this->Html->url('/admin/cau-hinh-site') ?>">Cấu hình</a>
-	                    </li>   
+							<a href="<?php echo $this->Html->url('/admin/cau-hinh-site') ?>">Cấu hình</a>
+						</li>   
 						<?php
 					endif;
 

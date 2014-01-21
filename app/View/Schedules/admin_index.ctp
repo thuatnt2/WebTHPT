@@ -8,7 +8,7 @@
 				<div class="dataTables_wrapper form-inline" role="grid">
 					<div  class="row">
 						<div class="actions" style="margin-bottom: 20px">
-							<?php echo $this->Html->link('Nhập lịch làm việc', array('action' => 'add'), array('class' => 'btn btn-primary')); ?>
+							<?php echo $this->Html->link('Thêm mới', array('action' => 'add'), array('class' => 'btn btn-primary')); ?>
 						</div>
 					</div>
 

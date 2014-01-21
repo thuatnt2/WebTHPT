@@ -7,7 +7,6 @@ App::uses('AppModel', 'Model');
  *
  */
 class Resource extends AppModel {
-
 	/**
 	 * Display field
 	 *
@@ -15,9 +14,12 @@ class Resource extends AppModel {
 	 */
 	public $displayField = 'title';
 	public $resource_type = array(
-		1 => 'Giáo án điện tử',
-		2 => 'Sách điện tử',
-		3 => 'Bộ đề kiểm tra',
+		1 => 'Giáo án',
+		2 => 'SKKN',
+		3 => 'Các bộ đề kiểm tra',
+		4 => 'Tài liệu tham khảo',
+		4 => 'Phần mềm phục vụ giáo dục',
+		4 => 'Kinh nghiệm dạy học',
 	);
 	public $validate = array(
 		'title' => array(
@@ -62,15 +64,15 @@ class Resource extends AppModel {
 	}
 
 	public function checkDropboxLink($data) {
-		
-		if (strpos( $data['link'],'www.dropbox.com') === false) {
+
+		if (strpos($data['link'], 'www.dropbox.com') === false) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
-	public function getExtFile($data){
+
+	public function getExtFile($data) {
 		$tmp = explode('.', $data);
 		$ext = $tmp[count($tmp) - 1];
 		return $ext;

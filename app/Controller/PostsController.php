@@ -81,14 +81,8 @@ class PostsController extends AppController {
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		}
-		$fields = array(
-			'Category.id',
-			'Category.name',
-			'Category.parent_id',
-		);
-		$conditions['And'] = array('Category.is_active' => 1, 'Category.parent_id' => null);
 		$this->Post->Category->unbindModel(array('hasMany' => array('Post')));
-		$categories = $this->Post->Category->find('all', array('fields' => $fields, 'conditions' => $conditions));
+		$categories = $this->Post->Category->find('list');
 		$this->loadModel('UserCategory');
 		$user_id = $this->UserAuth->getUserId();
 		$user_categories = $this->UserCategory->find('all', array('conditions' => array('UserCategory.user_id' => $user_id), 'fields' => array('category_id')));
@@ -96,6 +90,7 @@ class PostsController extends AppController {
 		foreach ($user_categories as $k) {
 			array_push($categoryAllow, $k['UserCategory']['category_id']);
 		}
+		//var_dump($categoryAllow);exit ();
 		$this->set(compact('categories', 'categoryAllow'));
 		$this->set('title_for_layout', 'Thêm bài viết');
 	}
