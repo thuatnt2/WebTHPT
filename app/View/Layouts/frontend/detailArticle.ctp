@@ -3,6 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><?php echo $title_for_layout ?></title>
+		<link rel="shortcut icon" href="<?php echo $this->Html->webroot('img/favicon.ico') ?>" type="image/x-icon">
+		<link rel="icon" href="<?php echo $this->Html->webroot('img/favicon.ico') ?>" type="image/x-icon">
 		<?php
 		echo $this->Html->css(array(
 			'vendor/bootstrap.min',
