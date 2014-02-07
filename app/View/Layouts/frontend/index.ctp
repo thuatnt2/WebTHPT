@@ -3,6 +3,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<link rel="shortcut icon" href="<?php echo $this->Html->webroot('img/favicon.ico') ?>" type="image/x-icon">
+		<link rel="icon" href="<?php echo $this->Html->webroot('img/favicon.ico') ?>" type="image/x-icon">
         <title><?php echo $title_for_layout ?></title>
 		<?php
 		echo $this->Html->css(array(
@@ -143,7 +145,7 @@
 
                 </div>
                 <div style="clear: both"></div>
-                <?php echo $this->element('frontend/footer'); ?>
+				<?php echo $this->element('frontend/footer'); ?>
             </div>
         </div> <!-- .container -->
 		<?php
