@@ -28,6 +28,8 @@ $(function() {
 		},
 		start: function(e) {
 			$('#schedule-upload-progress').show();
+			$("#schedule-alert").removeClass();
+			$("#schedule-alert").hide();
 			$('.progress .bar').css(
 					"width",
 					0 + '%'
@@ -60,10 +62,16 @@ $(function() {
 			else {
 				$("#schedule-alert").removeClass();
 				$("#schedule-alert").addClass("alert alert-error");
-				$("#schedule-alert span").html('<strong>Lỗi : </strong>'+data["message"]);
+				$("#schedule-alert span").html(data["message"]);
 				$("#schedule-alert").show(1000);
 			}
 
+		},
+		error: function(error) {
+			$("#schedule-alert").removeClass();
+			$("#schedule-alert").addClass("alert alert-error");
+			$("#schedule-alert span").html('<strong>Lỗi:</strong>File quá lớn hoặc không đúng định dạng, vui lòng thử lại');
+			$("#schedule-alert").show(1000);
 		},
 		progressall: function(e, data) {
 			var progress = parseInt(data.loaded / data.total * 100, 10);

@@ -20,6 +20,7 @@
 								'options' => $parentCategories,
 								'empty' => '--Là danh mục cha--',
 								'required' => false,
+								'escape'=>false,
 							));
 
 							?>

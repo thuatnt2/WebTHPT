@@ -30,7 +30,7 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="main-wrap">
             <div class="row">
                 <div id="banner">
                     <div class="row">

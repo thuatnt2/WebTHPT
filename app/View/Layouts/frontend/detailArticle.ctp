@@ -22,7 +22,7 @@
         <![endif]-->
     </head>
     <body>
-        <div class="container">
+        <div class="container" id="main-wrap">
             <div class="row">
 				<?php
 				echo $this->element('frontend/banner');
@@ -55,16 +55,7 @@
 
                 </div>
                 <div style="clear: both"></div>
-                <div id="footer">
-                    <div class="col-lg-8">
-                        <div class="footer-content">
-                            <p class="text-center"><span style="font-weight: bold">TRANG THÔNG TIN ĐIỆN TỬ TRƯỜNG TRUNG HỌC PHỔ THÔNGTIỂU LA</span><br>
-                                Địa chỉ: 01 Vũ Văn Dũng, Huyện Thăng Bình, Tỉnh Quảng Nam<br/>  Điện thoại: 0511.3944844 - Fax: 0511.3944936
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
+                <?php echo $this->element('frontend/footer'); ?>
             </div>
         </div> <!-- .container -->
 		<?php

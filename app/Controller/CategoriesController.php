@@ -56,7 +56,7 @@ class CategoriesController extends AppController {
 			}
 		}
 		//$parentCategories = $this->Category->find('list');
-		$parentCategories = $this->Category->generateTreeList(null, null, null, '---');
+		$parentCategories = $this->Category->generateTreeList(null, null, null,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 		//var_dump($parentCategories);exit();
 		$this->set(compact('parentCategories'));
 		$this->set('title_for_layout', 'Thêm danh mục');
@@ -78,17 +78,6 @@ class CategoriesController extends AppController {
 			$this->Category->id = $id;
 			$category = $this->Category->save($this->request->data);
 			if ($category) {
-				if (!empty($this->request->data['User'])) {
-					$this->loadModel('UserCategory');
-					$this->UserCategory->deleteAll(array('UserCategory.category_id' => $id));
-					$data = array();
-					foreach ($this->request->data['User'] as $k) {
-						$data['UserCategory']['user_id'] = $k;
-						$data['UserCategory']['category_id'] = $id;
-						$this->UserCategory->create();
-						$this->UserCategory->save($data);
-					}
-				}
 				$this->Session->setFlash('Lưu thành công danh mục "' . $category['Category']['name'] . '"', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
 			} else {
@@ -97,20 +86,9 @@ class CategoriesController extends AppController {
 		} else {
 			$options = array('conditions' => array('Category.' . $this->Category->primaryKey => $id));
 			$this->request->data = $this->Category->find('first', $options);
-			$conditions['AND'] = array('parent_id' => null, 'id !=' => 1);
-			$parentCategories = $this->Category->ParentCategory->find('list', array('conditions' => $conditions));
-			$this->loadModel('Usermgmt.User');
-			$this->User->unbindModel(array('hasMany' => array('Article', 'LoginToken')));
-			$users = $this->User->find('all', array('fields' => array('User.id', 'User.username', 'User.first_name')));
-			$this->loadModel('UserCategory');
-			$usersAllow = array();
-			$dataAllow = $this->UserCategory->find('all', array('fields' => 'UserCategory.user_id', 'conditions' => array('UserCategory.category_id' => $id)));
-			foreach ($dataAllow as $k) {
-				array_push($usersAllow, $k['UserCategory']['user_id']);
-			}
+			$parentCategories = $this->Category->generateTreeList(null, null, null,'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
 			$this->set(compact('parentCategories', 'users'));
 			$this->set('title_for_layout', 'Sửa danh mục');
-			$this->set('usersAllow', $usersAllow);
 		}
 	}
 
@@ -153,7 +131,7 @@ class CategoriesController extends AppController {
 		$this->Category->unbindModel(array('hasMany' => array('Post'), 'belongsTo' => array('ParentCategory')));
 		//$this->Category->recursive = 4;
 		//$menus = $this->Category->find('all', array('conditions' => array('Category.parent_id' => null), 'fields' => array('Category.id', 'Category.name', 'Category.parent_id', 'Category.alias')));
-		$menus = $this->Category->find('threaded', array('fields' => array('id', 'parent_id', 'name','alias')));
+		$menus = $this->Category->find('threaded', array('fields' => array('id', 'parent_id', 'name', 'alias')));
 		//debug($menus);
 		//exit();
 		return $menus;

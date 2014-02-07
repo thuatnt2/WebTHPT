@@ -13,8 +13,8 @@ class Schedule extends AppModel {
 	 * @var string
 	 */
 	public $displayField = 'title';
-	public $scheduleTypes = array(	
-		1 =>'Thông tin, thông báo',
+	public $scheduleTypes = array(
+		1 => 'Thông tin, thông báo',
 		2 => 'Lịch công tác tuần',
 		3 => 'Lịch công tác tháng',
 		4 => 'Thời khóa biểu',
@@ -25,8 +25,8 @@ class Schedule extends AppModel {
 		'pdf' => '_pdf.png',
 		'doc' => '_doc.png',
 		'docx' => '_docx.png',
-		'elt' => '_excel.png',
-		'elsx' => '_excel.png',
+		'xls' => '_excel.png',
+		'xlsx' => '_excel.png',
 		'ppt' => '_ppt.png',
 	);
 	public $resource_type = array(
@@ -43,7 +43,7 @@ class Schedule extends AppModel {
 		),
 		'file' => array(
 			'name' => array(
-				'rule' => array('extension', array('pdf', 'doc', 'docx', 'xls', 'xls')),
+				'rule' => array('extension', array('pdf', 'doc', 'docx', 'xls', 'xlsx')),
 				'message' => 'Chỉ cho phép các định dạng  pdf, doc, docx, xls , xlsx',
 			),
 			'tmp_name' => array(

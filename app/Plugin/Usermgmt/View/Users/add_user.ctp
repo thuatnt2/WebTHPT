@@ -37,6 +37,12 @@
 									<?php echo $this->Form->input("username", array('label' => false, 'div' => false, 'class' => 'input-xlarge')) ?>
 								</div>
 							</div>
+							<div class="control-group">
+								<label>Phân quyền</label>
+								<div class="controls">
+									<?php echo $this->Form->input('user_group_id', array('type'=>'select','options'=>array(DEFAULT_GROUP_ID=>'Nguời dùng bình thường',ADMIN_GROUP_ID=>'Người quản trị'), 'label' => false, 'div' => false, 'class' => 'input-xlarge')); ?>
+								</div>
+							</div>
 
 							<div class="control-group">
 								<label>Họ tên</label>
@@ -110,6 +116,7 @@
 <?php echo $this->Html->script('admin/add-user', array('block' => 'scriptBottom')); ?>
 <?php //echo $this->Html->css('vendor/jquery-ui', array('block' => 'headerCss')); ?>
 <?php
-	$script = '$("#category-checkbox").tree({});';
-	echo $this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
+$script = '$("#category-checkbox").tree({});';
+echo $this->Html->scriptBlock($script, array('block' => 'scriptBottom'));
+
 ?>

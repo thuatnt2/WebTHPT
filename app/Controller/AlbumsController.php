@@ -122,7 +122,8 @@ class AlbumsController extends AppController {
 
     public function admin_upload() {
         $this->autoRender = false;
-        $this->log($this->request->data, 'debug');
+        //$this->log($this->request->data, 'debug');
+		var_dump($this->request->data['album_id']); exit();
         $album_id = $this->request->data['album_id'];
         $photo_temps = $this->request->data['Photos'];
         //Create folder to upload

@@ -36,7 +36,7 @@
 								<div class="checkbox" id="category-checkbox">
 									<?php
 									foreach ($categories as $category) {
-										echo $this->Menu->generateTreeAllow($category,$categoriesAllow);
+										echo $this->Menu->generateTreeAllow($category, $categoriesAllow);
 									}
 
 									?>
@@ -58,6 +58,13 @@
 									</div>
 								</div>
 							</div>
+						</div>	
+						<div class="span2">
+							<label>Quyền hệ thống</label>
+							<select name="data[User][user_group_id]" class="form-control">
+								<option value="<?php echo DEFAULT_GROUP_ID ?>">Người dùng bình thường</option>
+								<option value="<?php echo ADMIN_GROUP_ID ?>" <?php echo $this->request->data['User']['user_group_id'] == ADMIN_GROUP_ID ? 'selected' : '' ?>>Người quản trị</option>
+							</select>
 						</div>
 					</div>
 					<div class="form-actions">
@@ -75,6 +82,7 @@
 <?php echo $this->Html->script('admin/add-user', array('block' => 'scriptBottom')); ?>
 <?php //echo $this->Html->css('vendor/jquery-ui', array('block' => 'headerCss')); ?>
 <?php
-	$script = '$("#category-checkbox").tree({});';
-	echo $this->Html->scriptBlock($script, array('block'=>'scriptBottom'));
+$script = '$("#category-checkbox").tree({});';
+echo $this->Html->scriptBlock($script, array('block' => 'scriptBottom'));
+
 ?>
