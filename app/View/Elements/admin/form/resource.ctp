@@ -25,17 +25,18 @@
 					<div class="control-group">
 						<label>Thể loại tài liệu</label>
 						<div class="controls">
-							<?php
-							echo $this->Form->input('resource_type', array(
-								'class' => 'input-xxlarge',
-								'type' => 'select',
-								'options' => $resource_type,
-								'selected'=> !(empty($this->request->data)) ? $this->request->data['Resource']['resource_type']:'',
-								'div' => false,
-								'label' => false
-							));
-
-							?>
+							<select name="data[Resource][resource_type]" class="input-xxlarge">
+								<optgroup label="Tài nguyên điện tử">
+									<?php foreach ($resource_type['TNDT'] as $k => $v): ?>
+										<option value="<?php echo $k ?>"><?php echo $v ?></option>
+									<?php endforeach; ?>
+								</optgroup>
+								<optgroup label="Kết quả học tập">
+									<?php foreach ($resource_type['KQHT'] as $k => $v): ?>
+										<option value="<?php echo $k ?>"><?php echo $v ?></option>
+									<?php endforeach; ?>
+								</optgroup>
+							</select>
 						</div>
 					</div>	
 
@@ -47,19 +48,19 @@
 								'class' => 'input-xxlarge',
 								'div' => false,
 								'label' => false,
-								'required' =>false,
+								'required' => false,
 							));
 
 							?>
 						</div>
 					</div>	
-					
+
 					<div class="control-group">
 						<label>Mô tả</label>
 						<div class="controls">
 							<?php
 							echo $this->Form->input('description', array(
-								'type'=>'textarea',
+								'type' => 'textarea',
 								'class' => 'input-xxlarge',
 								'div' => false,
 								'label' => false,

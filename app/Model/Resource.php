@@ -14,12 +14,19 @@ class Resource extends AppModel {
 	 */
 	public $displayField = 'title';
 	public $resource_type = array(
-		1 => 'Giáo án',
-		2 => 'SKKN',
-		3 => 'Các bộ đề kiểm tra',
-		4 => 'Tài liệu tham khảo',
-		4 => 'Phần mềm phục vụ giáo dục',
-		4 => 'Kinh nghiệm dạy học',
+		'TNDT' => array(
+			1 => 'Giáo án',
+			2 => 'SKKN',
+			3 => 'Các bộ đề kiểm tra',
+			5 => 'Tài liệu tham khảo',
+			6 => 'Phần mềm phục vụ giáo dục',
+			7 => 'Kinh nghiệm dạy học',
+		),
+		'KQHT' => array(
+			8 => 'Khối 10',
+			9 => 'Khối 11',
+			10 => 'Khối 12',
+		),
 	);
 	public $validate = array(
 		'title' => array(

@@ -23,11 +23,35 @@ $menus = $this->requestAction('categories/getMainMenu');
 			$resource_type = $this->requestAction('resources/getResourceType');
 
 			?>
-            <li class="dropdown <?php echo $currentMenu == 'resources' ? 'active' : '' ?>">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle " data-toggle="dropdown">Kết quả học tập<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+					<?php
+					foreach ($resource_type['KQHT'] as $k => $v):
+
+						?>
+						<li>
+							<?php
+							echo $this->Html->link($v, array(
+								'controller' => 'resources',
+								'action' => 'listResources',
+								'id' => $k,
+									//'slug'=>$this->Common->vnit_change_string(Inflector::slug($v)),
+							));
+
+							?>
+						</li>
+						<?php
+					endforeach;
+
+					?>
+                </ul>
+            </li>
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle " data-toggle="dropdown">Tài nguyên<b class="caret"></b></a>
                 <ul class="dropdown-menu">
 					<?php
-					foreach ($resource_type as $k => $v):
+					foreach ($resource_type['TNDT'] as $k => $v):
 
 						?>
 						<li>

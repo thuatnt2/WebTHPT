@@ -1,7 +1,7 @@
 <ol class="breadcrumb">
 	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
-	<li>Tài nguyên điện tử</li>
-	<li><?php echo $resource_type; ?></li>
+	<li><?php echo $resource_title ?></li>
+	<li><?php echo $resource_item; ?></li>
 	<li><?php echo $resource['Resource']['title'] ?></li>
 </ol>
 <div class="list-page-wrapper"> 

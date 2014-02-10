@@ -147,11 +147,18 @@ class ResourcesController extends AppController {
 		$resources = $this->Paginator->paginate();
 		$this->set('resources', $resources);
 		$resource_type = $this->Resource->resource_type;
-		if (!empty($resources)) {
-			$this->set('title_for_layout', 'Tài liệu - ' . $resource_type[$id]);
-			$this->set('resource_type', $resource_type[$id]);
+		if (isset($resource_type['TNDT'][$id])) {
+			$resource_title = 'Tài nguyên điện tử';
+			$resource_item = $resource_type['TNDT'][$id];
+		} else {
+			$resource_title = 'Kết quả học tập';
+			$resource_item = $resource_type['KQHT'][$id];
 		}
-		else{
+		$this->set('resource_title', $resource_title);
+		$this->set('resource_item', $resource_item);
+		if (!empty($resources)) {
+			$this->set('title_for_layout', 'Tài liệu');
+		} else {
 			$this->set('title_for_layout', 'Không có tài liệu nào');
 			$this->set('resource_type', $id);
 		}
@@ -167,12 +174,22 @@ class ResourcesController extends AppController {
 		$this->layout = 'frontend/detailArticle';
 		$this->set('title_for_layout', 'Xem tài liệu');
 		$resource = $this->Resource->read(null, $id);
-		$resource_type = $resource['Resource']['resource_type'];
-		$conditions['AND'] = array('Resource.resource_type' => $resource_type, 'Resource.id !=' => $id);
+		$resource_type_id = $resource['Resource']['resource_type'];
+		$conditions['AND'] = array('Resource.resource_type' => $resource_type_id, 'Resource.id !=' => $id);
 		$resources = $this->Resource->find('all', array('conditions' => $conditions));
 		$this->set('resource', $resource);
 		$this->set('resources', $resources);
-		$this->set('resource_type', $this->Resource->resource_type[$resource_type]);
+		$resource_type = $this->Resource->resource_type;
+		if (isset($resource_type['TNDT'][$id])) {
+			$resource_title = 'Tài nguyên điện tử';
+			$resource_item = $resource_type['TNDT'][$id];
+		} else {
+			$resource_title = 'Kết quả học tập';
+			$resource_item = $resource_type['KQHT'][$id];
+		}
+		$this->set('resource_title', $resource_title);
+		$this->set('resource_item', $resource_item);
+		//$this->set('resource_type', $this->Resource->resource_type[$resource_type]);
 	}
 
 }

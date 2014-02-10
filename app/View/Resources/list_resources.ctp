@@ -1,8 +1,7 @@
 <ol class="breadcrumb">
 	<li><?php echo $this->Html->link('Trang chủ', '/'); ?></li>
-	<li>Tài nguyên điện tử</li>
-	<li><?php echo $resource_type;?>
-	</li>
+	<li><?php echo $resource_title ?></li>
+	<li><?php echo $resource_item;?></li>
 </ol>
 <div class="list-page-wrapper"> 
 	<?php if (empty($resources)) : ?>
@@ -12,7 +11,7 @@
 	<?php else : ?>
 		<div class="list-wrapper"> 
 			<div class="text-center">
-				<h3><?php echo $resource_type ?></h3>
+				<h3><?php echo $resource_item ?></h3>
 			</div>
 			<hr>
 			<ul class="list">
