@@ -74,7 +74,7 @@
 												echo $this->Html->link($this->Html->image('submenu/calendar.png') . 'Thời khóa biểu', array(
 													'controller' => 'schedules',
 													'action' => 'listSchedules',
-													'id' => 1,
+													'id' => 4,
 														//'slug'=>$this->Common->vnit_change_string(Inflector::slug($v)),
 														), array('escape' => false));
 

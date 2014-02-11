@@ -46,6 +46,7 @@ class ResourcesController extends AppController {
 		}
 		$options = array('conditions' => array('Resource.' . $this->Resource->primaryKey => $id));
 		$this->set('resource', $this->Resource->find('first', $options));
+		//$this->set('resource_type',$this->Resource->resource_type);
 	}
 
 	/**

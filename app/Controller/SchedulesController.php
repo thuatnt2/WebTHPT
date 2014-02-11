@@ -83,6 +83,11 @@ class SchedulesController extends AppController {
 			$this->Schedule->id = $id;
 			$user = $this->UserAuth->getUser();
 			$this->request->data['Schedule']['user_create'] = $user['User']['first_name'];
+			$options = array('conditions' => array('Schedule.' . $this->Schedule->primaryKey => $id));
+			$oldSchedule = $this->Schedule->find('first', $options);
+			if (is_file($oldSchedule['Schedule']['file_absolute_path'])) {
+				unlink($oldSchedule['Schedule']['file_absolute_path']);
+			}
 			if ($this->Schedule->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công tài liệu', 'flash_success');
 				return $this->redirect(array('action' => 'index'));
@@ -90,6 +95,10 @@ class SchedulesController extends AppController {
 				$this->Session->setFlash('Đã có lỗi xảy ra, vui lòng thử lại', 'flash_error');
 			}
 		}
+		$options = array('conditions' => array('Schedule.' . $this->Schedule->primaryKey => $id));
+		$this->request->data = $this->Schedule->find('first', $options);
+		$this->set('scheduleTypes', $this->Schedule->scheduleTypes);
+		$this->set('title_for_layout', 'Thêm tài liệu');
 	}
 
 	/**

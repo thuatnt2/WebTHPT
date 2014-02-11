@@ -28,12 +28,18 @@
 						<?php
 						//debug($resource_type[1]);
 						foreach ($resources as $row):
+							$resource_title = '';
+							if (isset($resource_type['TNDT'][$row['Resource']['resource_type']])) {
+								$resource_title = 'Tài nguyên điện tử/' . $resource_type['TNDT'][$row['Resource']['resource_type']];
+							} else {
+								$resource_title = 'Kết quả học tập/' . $resource_type['KQHT'][$row['Resource']['resource_type']];
+							}
 
 							?>
 							<tr>
 								<td><?php echo $stt++ ?></td>
 								<td><?php echo $this->Html->link($row['Resource']['title'], $row['Resource']['link'], array('target' => '_blank')); ?></td>
-								<td><?php echo $resource_type[$row['Resource']['resource_type']] ?></td>
+								<td><?php echo $resource_title ?></td>
 								<td><?php echo date('d/m/Y', strtotime($row['Resource']['created'])) ?></td>
 								<td><?php echo $row['Resource']['user_create'] ?></td>
 								<td>

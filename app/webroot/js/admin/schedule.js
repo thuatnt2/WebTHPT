@@ -11,6 +11,7 @@ $(function() {
 		errorClass: 'help-block'
 	});
 	$("#ScheduleAdminAddForm").validate();
+	$("#ScheduleAdminEditForm").validate();
 	$("#ScheduleTitle").rules('add', {
 		required: true,
 		messages: {
@@ -116,6 +117,7 @@ $(function() {
 	//submit form  scheduler
 	$("#schedule-upload-submit").on("click", function() {
 		$("#ScheduleAdminAddForm").submit();
+		$("#ScheduleAdminEditForm").submit();
 	});
 
 });

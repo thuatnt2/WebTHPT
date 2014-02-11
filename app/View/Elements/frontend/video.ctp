@@ -1,7 +1,7 @@
 <?php
 $videos = $this->requestAction('videos/recentVideo');
-//debug($videos);
-
+//debug(count($videos));
+$index = count($videos) -1;
 ?>
 <?php if (!empty($videos) && !empty($videos['Default'])): ?>
 	<div class="panel-body">
@@ -17,7 +17,7 @@ $videos = $this->requestAction('videos/recentVideo');
 			?>
 		</div>
 		<?php
-		for ($i = 0; $i < 3; $i++) {
+		for ($i = 0; $i < $index; $i++) {
 
 			?>
 

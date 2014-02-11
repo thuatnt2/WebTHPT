@@ -32,7 +32,7 @@ class VideosController extends AppController {
 	public function view($id) {
 		$this->layout = 'frontend/detailArticle';
 		$videoDefault = $this->Video->read(null, $id);
-		$this->paginate = array('conditions' => array('Video.id != ' => $id), 'limit' =>20);
+		$this->paginate = array('conditions' => array('Video.id != ' => $id), 'limit' => 20);
 		$videos = $this->Paginator->paginate();
 		$this->set('title_for_layout', 'Xem video');
 		$this->set('videos', $videos);
@@ -103,6 +103,13 @@ class VideosController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			$this->Video->id = $id;
+			$this->request->data['Video']['alias'] = $this->Common->vnit_change_title($this->request->data['Video']['title']);
+			$link = $this->request->data['Video']['link'];
+			$pos = strpos($link, 'v=');
+			$youtube_id = substr($link, $pos + 2);
+			$this->request->data['Video']['youtube_id'] = $youtube_id;
+			//$this->request->data['Video']['is_default'] = false;
+			//$this->Video->create();
 			if ($this->Video->save($this->request->data)) {
 				$this->Session->setFlash('Lưu thành công', 'flash_success');
 				return $this->redirect(array('action' => 'index'));

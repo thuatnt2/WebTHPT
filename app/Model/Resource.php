@@ -16,7 +16,7 @@ class Resource extends AppModel {
 	public $resource_type = array(
 		'TNDT' => array(
 			1 => 'Giáo án',
-			2 => 'SKKN',
+			2 => 'Sáng kiến kinh nghiệm',
 			3 => 'Các bộ đề kiểm tra',
 			5 => 'Tài liệu tham khảo',
 			6 => 'Phần mềm phục vụ giáo dục',
