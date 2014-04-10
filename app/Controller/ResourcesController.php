@@ -144,7 +144,11 @@ class ResourcesController extends AppController {
 			$this->layout = 'frontend/detailArticle';
 		}
 		$conditions = array('Resource.resource_type' => $id);
-		$this->paginate = array('conditions' => $conditions, 'limit' => $this->limit);
+		$this->paginate = array(
+			'conditions' => $conditions,
+			'limit' => $this->limit,
+			'order' => 'Resource.created DESC',
+		);
 		$resources = $this->Paginator->paginate();
 		$this->set('resources', $resources);
 		$resource_type = $this->Resource->resource_type;

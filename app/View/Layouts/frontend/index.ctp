@@ -155,6 +155,9 @@
 		echo $this->fetch('scriptBottom');
 
 		?>
+		<script type="text/javascript">
+			$('.carousel').carousel();
+		</script>
 
     </body>
 </html>

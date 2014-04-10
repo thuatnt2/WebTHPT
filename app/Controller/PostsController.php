@@ -124,9 +124,8 @@ class PostsController extends AppController {
 			'Category.name',
 			'Category.parent_id',
 		);
-		$conditions['And'] = array('Category.is_active' => 1, 'Category.parent_id' => null);
 		$this->Post->Category->unbindModel(array('hasMany' => array('Post')));
-		$categories = $this->Post->Category->find('all', array('fields' => $fields, 'conditions' => $conditions));
+		$categories =  $this->Post->Category->generateTreeList(null, null, null, '---');
 		$this->loadModel('UserCategory');
 		$user_id = $this->UserAuth->getUserId();
 		$user_categories = $this->UserCategory->find('all', array('conditions' => array('UserCategory.user_id' => $user_id), 'fields' => array('category_id')));
@@ -174,7 +173,7 @@ class PostsController extends AppController {
 			'limit' => 8,
 			'conditions' => $conditions,
 			'order' => array(
-				'Post.modified' => 'DESC'
+				'Post.created' => 'DESC'
 			),
 		);
 		$current_menu_id = $category['Category']['parent_id'] == null ? $category['Category']['id'] : $category['Category']['parent_id'];
@@ -187,7 +186,11 @@ class PostsController extends AppController {
 
 	public function allPosts() {
 		$this->layout = null;
-		$this->paginate = array('limit' => 8, 'maxLimit' => 40);
+		$this->paginate = array(
+			'limit' => 8,
+			'maxLimit' => 40,
+			'order' => 'Post.created DESC'
+			);
 		$posts = $this->paginate();
 		$this->set(compact('posts'));
 	}

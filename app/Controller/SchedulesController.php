@@ -189,7 +189,11 @@ class SchedulesController extends AppController {
 		} else {
 			$this->layout = 'frontend/detailArticle';
 		}
-		$this->paginate = array('limit' => $this->limit, 'conditions' => array('Schedule.type' => $id));
+		$this->paginate = array(
+			'limit' => $this->limit, 
+			'conditions' => array('Schedule.type' => $id),
+			'order' =>'Schedule.created DESC'
+			);
 		$this->set('schedules', $this->Paginator->paginate());
 		$this->set('schedule_types', $this->Schedule->scheduleTypes[$id]);
 		$this->set('title_for_layout', 'Điều hành tác nghiệp');

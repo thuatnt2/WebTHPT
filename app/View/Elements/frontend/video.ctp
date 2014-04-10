@@ -1,7 +1,8 @@
 <?php
 $videos = $this->requestAction('videos/recentVideo');
 //debug(count($videos));
-$index = count($videos) -1;
+$index = count($videos) - 1;
+
 ?>
 <?php if (!empty($videos) && !empty($videos['Default'])): ?>
 	<div class="panel-body">
@@ -9,10 +10,11 @@ $index = count($videos) -1;
 		<div class="col-lg-12">
 			<?php
 			echo $this->Html->link($videos['Default']['Video']['title'], array(
+				'controller'=>'videos',
 				'action' => 'view',
 				'id' => $videos['Default']['Video']['id'],
 				'slug' => $videos['Default']['Video']['alias'],
-					), array('class' => 'text-center'))
+					), array('class' => 'text-center', 'escape' => false))
 
 			?>
 		</div>
@@ -47,7 +49,7 @@ $index = count($videos) -1;
 
 	</div>
 <?php else: ?>
-<div class="panel-body">
-	Hiện chưa có video nào
-</div>
+	<div class="panel-body">
+		Hiện chưa có video nào
+	</div>
 <?php endif; ?>
